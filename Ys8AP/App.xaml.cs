@@ -59,7 +59,7 @@ namespace Ys8AP
 
         private static MainWindowViewModel Context;
         private static readonly object _lockObject = new();
-
+        private static ulong baseAddress = 0;
         private static readonly ConcurrentQueue<Location> locationQueue = new();
 
         private Thread queueThread;
@@ -147,6 +147,8 @@ namespace Ys8AP
             if (Client == null)
             {
                 Client = new ArchipelagoClient(Ys8Client);
+                Memory.GlobalOffset = Memory.GetBaseAddress("ys8");
+                GlobalAddresses.FlagEnumOffset = Memory.ReadUInt(GlobalAddresses.FlagEnumPointer);
             }
             
             Client.Connected += OnConnected;
@@ -259,10 +261,6 @@ namespace Ys8AP
             }
 
             Log.Logger.Information("Connected to game.");
-
-            Memory.CurrentProcId = Memory.GetProcessID("ys8");
-            
-            GlobalAddresses.FlagEnumOffset = Memory.ReadUInt(GlobalAddresses.FlagEnumPointer);
             
             // Verify correct game/version
             /*
