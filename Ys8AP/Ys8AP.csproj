@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<LangVersion>latest</LangVersion>
+		<AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<AvaloniaResource Include="Assets\**" />
+	</ItemGroup>
+	
+	<ItemGroup>
+		<None Remove="Items\ChestLocations.json" />
+	    <None Remove="App.xaml" />
+	</ItemGroup>
+	  
+	<ItemGroup>
+		<EmbeddedResource Include="Items\ChestLocations.json" />
+	    <AvaloniaResource Include="App.xaml" />
+	</ItemGroup>
+	  
+	<ItemGroup>
+		<PackageReference Include="Archipelago.Core" Version="2.0.1" />
+		<PackageReference Include="Archipelago.Core.AvaloniaGUI" Version="1.0.0" />
+		<PackageReference Include="Avalonia" Version="11.3.9" />
+		<PackageReference Include="Avalonia.Themes.Fluent" Version="11.3.9" />
+		<PackageReference Include="Avalonia.Fonts.Inter" Version="11.3.9" />
+		<!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
+		<PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.3.9" />
+		<PackageReference Include="ReactiveUI.Avalonia" Version="11.3.8" />
+		<PackageReference Include="Serilog" Version="4.2.0" />
+	</ItemGroup>
+	  
+
+</Project>
