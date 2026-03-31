@@ -13,7 +13,7 @@ namespace Ys8AP
         {
 #pragma warning disable CS8604 // Possible null reference argument.
 #pragma warning disable CS8601 // Possible null reference.
-            FinalBossAccess = Int32.Parse(options["FinalBossAccess"].ToString());  // Whether to require final boss access
+            FinalBossAccess = Int32.Parse(options["final_boss_access"].ToString());
 #pragma warning restore CS8601 // Possible null reference.
 #pragma warning restore CS8604 // Possible null reference argument.
         }

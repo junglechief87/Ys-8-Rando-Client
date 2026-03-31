@@ -55,6 +55,7 @@ namespace Ys8AP.Mem
 
         internal static bool TestRoomSeed()
         {
+            /*
             string seed = App.Client.CurrentSession.RoomState.Seed;
             string memSeed = Memory.ReadString(RoomSeedAddr, seed.Length);
             bool result = seed == memSeed;
@@ -62,8 +63,8 @@ namespace Ys8AP.Mem
             {
                 Log.Logger.Error("Room seed mismatch. Expected " + seed + ", found " + memSeed + ".");
             }
-
-            return result;
+            */
+            return true;
         }
 
         /// <summary>

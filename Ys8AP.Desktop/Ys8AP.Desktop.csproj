@@ -35,6 +35,7 @@
     <PackageReference Include="Archipelago.Core" Version="2.0.1" />
     <PackageReference Include="Archipelago.Core.AvaloniaGUI" Version="1.0.0" />
     <PackageReference Include="Avalonia.Desktop" Version="11.3.9" />
+    <PackageReference Include="Serilog.Sinks.File" Version="7.0.0" />
   </ItemGroup>
 
   <ItemGroup>

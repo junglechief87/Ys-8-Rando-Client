@@ -10,8 +10,10 @@ namespace Ys8AP.Mem
         /// Game is loaded and ready to connect with.
         public static bool PlayerReady()
         {
+            
             // File is loaded, player not in load menu, player can recieve items.
-            return Memory.ReadByte(GlobalAddresses.HealAreaFlag) == 1 && Memory.ReadByte(GlobalAddresses.SaveMenuFlag) != 1 && Memory.ReadByte(GlobalAddresses.TimeAttackFlag) != 1;
+            return Memory.ReadByte(GlobalAddresses.FlagEnumOffset + GlobalAddresses.SaveMenuFlag) != 1 && 
+            Memory.ReadByte(GlobalAddresses.FlagEnumOffset + GlobalAddresses.TimeAttackFlag) != 1;
         }
 
     }

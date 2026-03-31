@@ -18,7 +18,7 @@ namespace Ys8AP.Threads
             {
                 while (true)
                 {
-                    if (PlayerState.PlayerReady())
+                    if (PlayerState.PlayerReady() && App.Client.IsConnected )
                     {
                         CheckChests();
                     }
@@ -31,11 +31,13 @@ namespace Ys8AP.Threads
         private static void CheckChests()
         {
             int ChestID;
-            for (int i = 0; i < 100; i++)
+            uint ChestOpenFlag;
+            for (uint i = 0; i < 100; i++)
             {
-                if (FlagEnum.GetFlagByte(i, GlobalAddresses.ChestFlagStart + 0x3) == 0x30)
+                ChestOpenFlag=FlagEnum.GetFlag(i, GlobalAddresses.ChestFlagStart + 2);
+                if (ChestOpenFlag == 0x30)
                 {
-                    ChestID = i;
+                    ChestID = (int)i;
                     Ys8AP.App.SendLocation(ChestID);
                 }
             }

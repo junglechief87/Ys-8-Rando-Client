@@ -178,6 +178,9 @@ namespace Ys8AP
             Client.MessageReceived += Client_MessageReceived;
 
             slotName = e.Slot;
+
+            var currentSlot = Client.CurrentSession.ConnectionInfo.Slot;
+            var slotData = await Client.CurrentSession.DataStorage.GetSlotDataAsync(currentSlot);
             
             try
             {

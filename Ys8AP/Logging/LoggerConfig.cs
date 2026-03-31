@@ -16,6 +16,7 @@ namespace Ys8AP.Logging
             _archipelagoEventLogHandler = archipelagoEventLogHandler;
             var loggerConfiguration = new LoggerConfiguration()
                 .WriteTo.ArchipelagoGuiSink(_outputAction, archipelagoEventLogHandler);
+                //.WriteTo.File("Logging/log.txt", rollingInterval: RollingInterval.Day);
 
             _logger = loggerConfiguration.CreateLogger();
             Log.Logger = _logger;
@@ -29,6 +30,7 @@ namespace Ys8AP.Logging
             _minimumLevel = level;
             var loggerConfiguration = new LoggerConfiguration()
             .MinimumLevel.Is(level)
+            //.WriteTo.File("Logging/log.txt", rollingInterval: RollingInterval.Day, restrictedToMinimumLevel: level);
             .WriteTo.ArchipelagoGuiSink(_outputAction, _archipelagoEventLogHandler, level);
             _logger = loggerConfiguration.CreateLogger();
             Log.Logger = _logger;
@@ -38,6 +40,7 @@ namespace Ys8AP.Logging
             _minimumLevel = LogEventLevel.Information;
             return new LoggerConfiguration()
                 .MinimumLevel.Information()
+                //.WriteTo.File("Logging/log.txt", rollingInterval: RollingInterval.Day);
                 .WriteTo.ArchipelagoGuiSink(mainFormWriter, archipelagoEventLogHandler);
         }
     }
