@@ -1,14 +1,14 @@
 {
-    "10378": {
+    "0": {
     "Name": "Waterdrop Cave Living Space Chest 1",
-    "ChestID": 0
+    "LocationID": 10378
   },
-    "10379": {
+    "1": {
     "Name": "Waterdrop Cave Living Space Chest 2",
-    "ChestID": 1
+    "LocationID": 10379
   },
-    "10380": {
+    "2": {
     "Name": "Waterdrop Cave Living Space Chest 1",
-    "ChestID": 2
+    "LocationID": 10380
   }
 }

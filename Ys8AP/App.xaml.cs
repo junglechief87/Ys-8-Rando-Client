@@ -134,7 +134,7 @@ namespace Ys8AP
                     _deathlinkService = null;
                 }
             }
-
+        
             Ys8Client = Ys8Connect();
 
             if (Ys8Client == null)
@@ -148,7 +148,7 @@ namespace Ys8AP
             {
                 Client = new ArchipelagoClient(Ys8Client);
                 Memory.GlobalOffset = Memory.GetBaseAddress("ys8");
-                GlobalAddresses.FlagEnumOffset = Memory.ReadUInt(GlobalAddresses.FlagEnumPointer);
+                GlobalAddresses.FlagEnumAddress = Memory.ReadULong(GlobalAddresses.FlagEnumPointer);
             }
             
             Client.Connected += OnConnected;
@@ -196,7 +196,7 @@ namespace Ys8AP
 
             if (reconnectThread == null)
             {
-                reconnectThread = new(new ParameterizedThreadStart(Reconnect))
+                reconnectThread = new Thread(new ParameterizedThreadStart(Reconnect))
                 {
                     IsBackground = true
                 };
@@ -231,9 +231,9 @@ namespace Ys8AP
                 */
             }
 
-            if (helperThread == null)
+            if (helperThread == null && Client.IsConnected)
             {
-                helperThread = new Thread(new ThreadStart(HelperThread.DoLoop))
+                helperThread = new Thread(new ParameterizedThreadStart(HelperThread.DoLoop))
                 {
                     IsBackground = true
                 };

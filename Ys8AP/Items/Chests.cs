@@ -3,6 +3,6 @@
     internal class ChestLocation
     {
         public string Name;
-        public uint ChestID;
+        public int LocationID;
     }
 }

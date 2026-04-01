@@ -17,7 +17,7 @@ namespace Ys8AP.Items
     {
         private static ConcurrentDictionary<long, InvItem>? ItemData;
 
-        private static ConcurrentDictionary<long, ChestLocation>? LocationData;
+        private static ConcurrentDictionary<int, ChestLocation>? LocationData;
         private static readonly Random random = new();
 
         private static readonly ConcurrentDictionary<long, int> itemCounts = [];

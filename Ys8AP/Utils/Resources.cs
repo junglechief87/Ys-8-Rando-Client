@@ -18,7 +18,7 @@ namespace Ys8AP.Utils
                 IncludeFields = true
             };
 
-            public static ConcurrentDictionary<long, ChestLocation> Locations
+            public static ConcurrentDictionary<int, ChestLocation> Locations
             {
                 get
                 {
@@ -28,7 +28,7 @@ namespace Ys8AP.Utils
                         .GetExecutingAssembly()
                         .GetManifestResourceStream($"{name}.Items.ChestLocations.json")!;
                     using var streamReader = new StreamReader(stream, Encoding.UTF8);
-                    return JsonSerializer.Deserialize<ConcurrentDictionary<long, ChestLocation>>(streamReader.ReadToEnd(), jOptions);
+                    return JsonSerializer.Deserialize<ConcurrentDictionary<int, ChestLocation>>(streamReader.ReadToEnd(), jOptions);
                 }
             }
 
