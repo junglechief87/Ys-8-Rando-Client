@@ -31,7 +31,7 @@ using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
-using Ys8AP.Constants;
+using Ys8AP.GlobalAddresses;
 using Ys8AP.Items;
 using Ys8AP.Mem;
 using Ys8AP.Models;
@@ -55,16 +55,16 @@ namespace Ys8AP
 {
     public partial class App : Application
     {
-        public static ArchipelagoClient Client { get; set; }
+        public static ArchipelagoClient? Client { get; set; }
 
-        private static MainWindowViewModel Context;
+        private static MainWindowViewModel? Context;
         private static readonly object _lockObject = new();
         private static ulong baseAddress = 0;
         private static readonly ConcurrentQueue<Location> locationQueue = new();
 
-        private Thread queueThread;
-        private Thread helperThread;
-        private Thread reconnectThread;
+        private Thread? queueThread;
+        private Thread? locationWatcherThread;
+        private Thread? reconnectThread;
         private GameClient? Ys8Client;
         private bool diviningHouseDone = false;
         private bool cathedralDone = false;
@@ -117,6 +117,9 @@ namespace Ys8AP
             if (e.Host == null || e.Host == "") e.Host = "localhost:38281";
             if (e.Slot == null || e.Slot == "") e.Slot = "Player1";
 
+            if (Context == null)
+                return;
+                
             Context.ConnectButtonEnabled = false;
             Log.Logger.Information("Connecting...");
 
@@ -147,8 +150,7 @@ namespace Ys8AP
             if (Client == null)
             {
                 Client = new ArchipelagoClient(Ys8Client);
-                Memory.GlobalOffset = Memory.GetBaseAddress("ys8");
-                GlobalAddresses.FlagEnumAddress = Memory.ReadULong(GlobalAddresses.FlagEnumPointer);
+                AddressInit.InitializeAddresses();
             }
             
             Client.Connected += OnConnected;
@@ -163,9 +165,8 @@ namespace Ys8AP
                 return;
 
             }
-            Client.MessageReceived += Client_MessageReceived;
 
-            await Client.Login(e.Slot, !string.IsNullOrWhiteSpace(e.Password) ? e.Password : null);
+            await Client.Login(e.Slot, !string.IsNullOrWhiteSpace(e.Password) ? e.Password : "");
 
             if (!Client.IsConnected || !Client.IsLoggedIn)
             {
@@ -222,22 +223,22 @@ namespace Ys8AP
 
             if (queueThread == null)
             {
-                /*
+                
                 queueThread = new Thread(new ParameterizedThreadStart(ItemQueue.ThreadLoop))
                 {
                     IsBackground = true
                 };
                 queueThread.Start();
-                */
+                
             }
 
-            if (helperThread == null && Client.IsConnected)
+            if (locationWatcherThread == null && Client.IsConnected)
             {
-                helperThread = new Thread(new ParameterizedThreadStart(HelperThread.DoLoop))
+                locationWatcherThread = new Thread(new ParameterizedThreadStart(LocationWatcher.DoLoop))
                 {
                     IsBackground = true
                 };
-                helperThread.Start();
+                locationWatcherThread.Start();
             }
 
             Context.ConnectButtonEnabled = true;
@@ -411,26 +412,9 @@ namespace Ys8AP
         private static void Client_ItemReceived(object? sender, ItemReceivedEventArgs e)
         {
             long itemId = e.Item.Id;
-            /*
-            // Not a real item, so ignore
-            if (itemId == MiscConstants.DarkGenieApId) return;
 
-            if (itemId >= MiscConstants.AttachIdBase)
-            {
-                ItemQueue.AddAttachment(itemId);
-            }
-            else if (itemId >= MiscConstants.ItemIdBase)
-            {
-                if (MiscConstants.KeyItemApIds.Contains(itemId))
-                    ItemQueue.AddKeyItem(itemId);
-                else
-                    ItemQueue.AddItem(itemId);
-            }
-            else
-            {
-                GeoInvMgmt.GiveGeorama(itemId);
-            }
-            */
+            ItemQueue.AddItem(itemId);
+
         }
 
         private void Client_MessageReceived(object? sender, MessageReceivedEventArgs e)

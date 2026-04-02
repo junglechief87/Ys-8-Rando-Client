@@ -1,12 +1,13 @@
 ﻿using Archipelago.Core.Util;
 using Archipelago.MultiClient.Net.Models;
-using Ys8AP.Constants;
+using Ys8AP.GlobalAddresses;
 using Ys8AP.Mem;
 using Ys8AP.Threads;
 using Ys8AP.Utils;
 using Serilog;
 using System;
 using System.Collections.Concurrent;
+using System.Reflection;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -15,193 +16,30 @@ namespace Ys8AP.Items
 {
     internal class InventoryMgmt
     {
-        private static ConcurrentDictionary<long, InvItem>? ItemData;
-
-        private static ConcurrentDictionary<int, ChestLocation>? LocationData;
-        private static readonly Random random = new();
-
-        private static readonly ConcurrentDictionary<long, int> itemCounts = [];
-        private static readonly ConcurrentDictionary<long, int> attachCounts = [];
-
-        private const uint InvMaxAddr = 0x01CDD8AC;  // Byte.  Can't exceed 100 or we run past the buffer.
-        private const byte InvMaxLimit = 10;  // Subtract from the value at InvMaxAddr
-        private const uint InvCurAddr = 0x01CDD8AD;  // Byte.  Next byte starts the active item shorts, followed by 3 shorts giving count of the active items per slot, then shorts for the other items.
-        private const uint IDSize = sizeof(short);
-
-        private const uint FirstInvAddr = 0x01CDD8BA;
-        /*
-         *  0 for most items. Duration for things like feathers and amulets. Gives value item restores as well for curatives
-         *  but doesn't seem to do anything if changed. -1 or 0 for no item (sometimes ghost values as well caused by moving items from the active list)
-         */
-        private const uint FirstItemDurationAddr = 0x01CDD988; // Short
-        private const uint FirstActiveItemCountAddr = 0x01CDD8B4;
-
-        // Add 1 byte for the CurAddr field, then 2 for each short past the first addr
-        //private static uint[] ActiveItemAddrs = [InvCurAddr + 1, InvCurAddr + 3, InvCurAddr + 5];
-        //private static uint[] ActiveItemCountAddrs = [InvCurAddr + 7, InvCurAddr + 9, InvCurAddr + 11];
-
-        private const uint FirstAttchAddr = 0x01CE1A48;
-        private const int MaxAttachCount = 40;
-        private const int AttachLimit = 35;  // this keeps us from flooding the player's inventory unmanagably.
-        private const uint AttachmentSize = 0x20;
-        private const uint FirstAttachAttrOffset = 0x08;
-        private const int FirstAttachDefaultValue = 3;
-
-        //private static readonly List<(short, short)> attachChanges = []; // (index, item ID)
-
-        private struct AttachmentStr()
-        {
-#pragma warning disable IDE0044 // Add readonly modifier
-            short id = -1;
-            short synthedWeaponId = 0;  // Matches weapon ID for id 5A, synthsphere
-            // These shorts contain data about how many levels and what boons/banes the attach provides (for synthspheres)
-            short ignored2 = 0;
-            short ignored3 = 0;
-
-            short attack = 0;
-            short endurance = 0;
-            short speed = 0;
-            short magic = 0;
-
-            byte fire = 0;
-            byte ice = 0;
-            byte thunder = 0;
-            byte wind = 0;
-            byte holy = 0;
-            
-            byte drag = 0;
-            byte undead = 0;
-            byte fish = 0;
-            byte rock = 0;
-            byte plant = 0;
-            byte beast = 0;
-            byte sky = 0;
-            byte metal = 0;
-            byte mimic = 0;
-            byte mage = 0;
-            private byte padding = 0;
-#pragma warning restore IDE0044 // Add readonly modifier
-        }
-
-        internal static void LocationMgmt()
-        {
-            LocationData = Resources.Embedded.Locations;
-        }
-
-        /// <summary>
-        /// The game is very unreliable about counting the player's inventory.  Manually count here to account for hotbar items.
-        /// </summary>
-        /// <returns></returns>
-        private static bool HasAvailableInventory(short itemID)
-        {
-            byte invCount = 0;
-            byte maxCount = Memory.ReadByte(InvMaxAddr);
-
-            byte activeCount = (byte)(Memory.ReadByte(FirstActiveItemCountAddr) + Memory.ReadByte(FirstActiveItemCountAddr
-                + sizeof(short)) + Memory.ReadByte(FirstActiveItemCountAddr + 2 * sizeof(short)));
-
-            invCount += activeCount;
-
-            for (int ii = 0; ii < maxCount; ii++)
-            {
-                uint addr = (uint)(FirstInvAddr + IDSize * ii);
-                short itemValue = Memory.ReadShort(addr);
-
-                if (itemValue != -1 && itemValue != 0)
-                {
-                    invCount++;
-                }
-            }
-
-            // Allow pockets and key items to be received even if the player is at the limited max items count.
-            /*
-            if (!MiscConstants.KeyItemIds.Contains(itemID))
-                maxCount -= InvMaxLimit;
-            */
-
-            return invCount < maxCount;
-        }
+        private static ConcurrentDictionary<long, InvItem>? ItemData = Resources.Embedded.Items;
 
         /// <summary>
         /// Searches for an empty inventory slot and gives the player the item supplied.  Returns true if successful, false if inventory is full.
         /// </summary>
         /// <param name="itemId"></param>
         /// <returns></returns>
-        internal static bool GiveItem(long itemId, bool updateFlag=true)
+        internal static void GiveItem(long itemId)
         {
-            byte maxInv = Memory.ReadByte(InvMaxAddr);
-            InvItem item = ItemData[itemId];
+            InvItem receivedItem = ItemData[itemId];
+            int currentQuantity = Memory.ReadInt(Contexts.InventoryContext.GetItemQuantityAddress(receivedItem.ItemID));
+            int newQuantity = currentQuantity + receivedItem.ItemQuantity;
 
-            if (HasAvailableInventory(item.ItemID))
+            if (currentQuantity > receivedItem.QuantityMax)
             {
-                for (int ii = 0; ii < maxInv; ii++)
-                {
-                    uint addr = (uint)(FirstInvAddr + IDSize * ii);
-                    short itemValue = Memory.ReadShort(addr);
-
-                    if (itemValue == -1 || itemValue == 0)
-                    {
-                        Memory.Write(addr, item.ItemID);
-                        uint durationAddr = FirstItemDurationAddr + (uint)(IDSize * ii);
-                        if (item.ValueMax > 0)
-                        {
-                            // Items with usage values like amulets/dran's feather need this value set or they break immediately.
-                            // Other items like bread & water have a value but it doesn't seem to matter; set them just in case.
-                            if (item.ValueMax == item.ValueMin)
-                                Memory.Write(durationAddr, (short)item.ValueMin);
-                            else
-                                Memory.Write(durationAddr, (short)random.Next(item.ValueMin, item.ValueMax + 1));
-                        }
-                        else
-                        {
-                            Memory.Write(durationAddr, -1);
-                        }
-
-                        string msg = "Received " + item.Name + ".";
-                        /*
-                        if (PlayerState.IsPlayerInDungeon())
-                        {
-                            ItemQueue.AddMsg(msg);
-                        }
-                        
-                        else
-                        {
-                            Log.Logger.Information(msg);
-                            App.Client.AddOverlayMessage(msg);
-                        }
-                        */
-
-                        if (updateFlag)
-                            OpenMem.IncItemCountValue(itemId);
-
-                        return true;
-                    }
-                }
+                newQuantity = receivedItem.QuantityMax;
             }
-
-            return false;
-        }
-
-        internal static bool RemoveInvItem(short itemId)
-        {
-            bool success = false;
-            byte maxInv = Memory.ReadByte(InvMaxAddr);
-            uint addr = FirstInvAddr - IDSize + (maxInv * IDSize);
-
-            for (int ii = maxInv - 1; ii >= 0; ii--)
+            else if (currentQuantity > receivedItem.QuantityMaxInferno)
             {
-                short id = Memory.ReadShort(addr);
-                if (id == itemId)
-                {
-                    Memory.Write(addr, (ushort)0xFFFF);
-                    // We probably should overwrite the durability value for the item but it shouldn't matter.
-                    success = true;
-                    break;
-                }
-                addr -= IDSize;
+                newQuantity = receivedItem.QuantityMaxInferno;
             }
-
-            return success;
+            
+            Contexts.InventoryContext.CheckIfObtainedAndSet(receivedItem.ItemID);
+            Memory.WriteByte(Contexts.InventoryContext.GetItemQuantityAddress(receivedItem.ItemID), (byte)newQuantity);
         }
 
         // Now unused, holding onto in case we find a reason to use it.
@@ -227,26 +65,10 @@ namespace Ys8AP.Items
         //    return result;
         //}
 
-        internal static void GiveFreeFeather()
-        {
-            //GiveItem(MiscConstants.FeatherId, false);
-        }
-
-        private static void IncItemCount(long apId)
-        {
-            itemCounts.TryGetValue(apId, out int value);
-            itemCounts[apId] = value + 1;
-        }
-
-        private static void IncAttachCount(long apId)
-        {
-            attachCounts.TryGetValue(apId, out int value);
-            attachCounts[apId] = value + 1;
-        }
-
         /// <summary>
         /// Compares the GameState item counts to how many of each item are saved to memory, giving the player the difference.
         /// </summary>
+        /*
         internal static void VerifyItems()
         {
             // Clear current values, check what the server thinks first, then compare that against the save file.
@@ -256,13 +78,11 @@ namespace Ys8AP.Items
 
             foreach (ItemInfo itemInfo in App.Client.CurrentSession.Items.AllItemsReceived)
             {
-                /*
                 long apId = itemInfo.ItemId;
                 if (apId > MiscConstants.AttachIdBase)
                     IncAttachCount(apId);
                 else if (apId > MiscConstants.ItemIdBase)
                     IncItemCount(apId);
-                    */
             }
 
             foreach (long itemId in itemCounts.Keys)
@@ -274,12 +94,10 @@ namespace Ys8AP.Items
                 {
                     for (int ii = value; ii < itemCounts[itemId]; ii++)
                     {
-                        /*
                         if (MiscConstants.KeyItemApIds.Contains(itemId))
                             ItemQueue.AddKeyItem(itemId);
                         else
                             ItemQueue.AddItem(itemId);
-                            */
                     }
                 }
             }
@@ -296,6 +114,7 @@ namespace Ys8AP.Items
                 }
             }
         }
+        */
 
         // Now unused, holding onto in case we find a reason to use it.
         /// <summary>

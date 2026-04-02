@@ -1,5 +1,5 @@
 ﻿using Archipelago.Core.Util;
-using Ys8AP.Constants;
+using Ys8AP.GlobalAddresses;
 using Ys8AP.Mem;
 using Ys8AP;
 using System.Collections.Generic;
@@ -10,15 +10,16 @@ using Ys8AP.Utils;
 using Ys8AP.Items;
 using ReactiveUI;
 using Archipelago.Core.Models;
+using System.Threading.Tasks;
 
 namespace Ys8AP.Threads
 {
     /// <summary>
     /// More complex monitoring of memory/game state than Memory.Monitor methods
     /// </summary>
-    internal class HelperThread
+    internal class LocationWatcher
     {
-        private static ConcurrentDictionary<int, ChestLocation> ChestData = Resources.Embedded.Locations;
+        private static ConcurrentDictionary<int, ChestLocation> ChestData = Resources.Embedded.ChestLocations;
         internal static void DoLoop(object? parameters)
         {
             while (true)
@@ -31,20 +32,18 @@ namespace Ys8AP.Threads
             }
         }
 
-        private static void CheckChests()
+        private static async Task CheckChests()
         {
             int ChestID;
             ChestLocation Chest;
-            ulong ChestOpenFlag;
             
             for (uint i = 0; i < 3; i++)
             {
-                ChestOpenFlag=FlagEnum.GetFlagByte(i, GlobalAddresses.ChestFlagStart + 2);
-                if (ChestOpenFlag == 0x30)
+                if (Contexts.FlagEnumContext.GetChestByID(i).ChestOpened == 0x30)
                 {
                     ChestID = Convert.ToInt32(i);
                     Chest = ChestData[ChestID];
-                    Ys8AP.App.SendLocation(Chest.LocationID);
+                    await Ys8AP.App.SendLocation(Chest.LocationID);
                 }
             }
         }

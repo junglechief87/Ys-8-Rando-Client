@@ -1,8 +1,23 @@
 {
-  "971111101": {
-    "Name": "Pocket",
-    "ItemID": 179,
-    "ValueMin": 10,
-    "ValueMax": 10
+  "24300": {
+    "Name": "Leather Armor x2",
+    "ItemID": 243,
+    "QuantityMax": 99,
+    "QuantityMaxInferno": 99,
+    "ItemQuantity": 2
+  },
+  "50000": {
+    "Name": "Heal Potion",
+    "ItemID": 500,
+    "QuantityMax": 99,
+    "QuantityMaxInferno": 1,
+    "ItemQuantity": 1
+  },
+  "53100": {
+    "Name": "Coconut",
+    "ItemID": 531,
+    "QuantityMax": 99,
+    "QuantityMaxInferno": 1,
+    "ItemQuantity": 1
   }
 }

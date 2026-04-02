@@ -1,5 +1,5 @@
 ﻿using Archipelago.Core.Util;
-using Ys8AP.Constants;
+using Ys8AP.GlobalAddresses;
 
 namespace Ys8AP.Mem
 {
@@ -12,8 +12,10 @@ namespace Ys8AP.Mem
         {
             
             // File is loaded, player not in load menu, player can recieve items.
-            return Memory.ReadByte(GlobalAddresses.FlagEnumOffset + GlobalAddresses.SaveMenuFlag) != 1 && 
-            Memory.ReadByte(GlobalAddresses.FlagEnumOffset + GlobalAddresses.TimeAttackFlag) != 1;
+            return Contexts.FlagEnumContext != null &&
+            Contexts.FlagEnumContext.SaveMenuFlag != 1 && 
+            Contexts.FlagEnumContext.TimeAttackFlag != 1 &&
+            Contexts.FlagEnumContext.HealAreaFlag == 1;
         }
 
     }

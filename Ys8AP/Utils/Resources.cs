@@ -18,7 +18,7 @@ namespace Ys8AP.Utils
                 IncludeFields = true
             };
 
-            public static ConcurrentDictionary<int, ChestLocation> Locations
+            public static ConcurrentDictionary<int, ChestLocation> ChestLocations
             {
                 get
                 {
@@ -26,13 +26,13 @@ namespace Ys8AP.Utils
                     var name = info.Name;
                     using var stream = Assembly
                         .GetExecutingAssembly()
-                        .GetManifestResourceStream($"{name}.Items.ChestLocations.json")!;
+                        .GetManifestResourceStream($"{name}.Locations.ChestLocations.json")!;
                     using var streamReader = new StreamReader(stream, Encoding.UTF8);
                     return JsonSerializer.Deserialize<ConcurrentDictionary<int, ChestLocation>>(streamReader.ReadToEnd(), jOptions);
                 }
             }
 
-            public static string MiracleChests
+            public static ConcurrentDictionary<long, InvItem> Items
             {
                 get
                 {
@@ -40,9 +40,9 @@ namespace Ys8AP.Utils
                     var name = info.Name;
                     using var stream = Assembly
                         .GetExecutingAssembly()
-                        .GetManifestResourceStream($"{name}.Items.miracle_locations.csv")!;
+                        .GetManifestResourceStream($"{name}.Items.Items.json")!;
                     using var streamReader = new StreamReader(stream, Encoding.UTF8);
-                    return streamReader.ReadToEnd();
+                    return JsonSerializer.Deserialize<ConcurrentDictionary<long, InvItem>>(streamReader.ReadToEnd(), jOptions);
                 }
             }
         }
