@@ -326,7 +326,7 @@
         "ItemID": 243,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 2
     },
     "25200": {
         "Name": "Needle Wristband",
@@ -508,7 +508,7 @@
         "ItemID": 307,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 2
     },
     "30800": {
         "Name": "Ancient Hide",
@@ -522,63 +522,63 @@
         "ItemID": 311,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 5
     },
     "31200": {
         "Name": "Sparkling Mucus x2",
         "ItemID": 312,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 2
     },
     "31600": {
         "Name": "Sturdy Lumber x3",
         "ItemID": 316,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 3
     },
     "32100": {
         "Name": "Beautiful Flower x5",
         "ItemID": 321,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 5
     },
     "32600": {
         "Name": "Iron Ore x3",
         "ItemID": 326,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 3
     },
     "32601": {
         "Name": "Iron Ore x5",
         "ItemID": 326,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 5
     },
     "32700": {
         "Name": "Tektite Ore x2",
         "ItemID": 327,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 2
     },
     "32701": {
         "Name": "Tektite Ore x3",
         "ItemID": 327,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 3
     },
     "32702": {
         "Name": "Tektite Ore x5",
         "ItemID": 327,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 5
     },
     "32800": {
         "Name": "Essence Stone",
@@ -592,35 +592,35 @@
         "ItemID": 328,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 2
     },
     "32802": {
         "Name": "Essence Stone x3",
         "ItemID": 328,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 3
     },
     "40000": {
         "Name": "Beast Claw x3",
         "ItemID": 400,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 3
     },
     "40100": {
         "Name": "Remex x5",
         "ItemID": 401,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 5
     },
     "40400": {
         "Name": "Gwaranga Pincer x2",
         "ItemID": 404,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 2
     },
     "40500": {
         "Name": "Bullfrodon Mucus",
@@ -634,49 +634,49 @@
         "ItemID": 419,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 3
     },
     "41901": {
         "Name": "Digitalis Leaf x5",
         "ItemID": 419,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 5
     },
     "42000": {
         "Name": "Sword Tip Fang x3",
         "ItemID": 420,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 3
     },
     "42100": {
         "Name": "Razor Feather x3",
         "ItemID": 421,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 3
     },
     "42200": {
         "Name": "Accursed Shell x3",
         "ItemID": 422,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 3
     },
     "42300": {
         "Name": "Lustrous Scale x3",
         "ItemID": 423,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 3
     },
     "42400": {
         "Name": "Salamandine Hide x3",
         "ItemID": 424,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 3
     },
     "43600": {
         "Name": "Large Pearl",
@@ -690,7 +690,7 @@
         "ItemID": 436,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 3
     },
     "43700": {
         "Name": "Glow Rock",
@@ -704,42 +704,42 @@
         "ItemID": 437,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 3
     },
     "43800": {
         "Name": "Stalactite x3",
         "ItemID": 438,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 3
     },
     "44000": {
         "Name": "Thunder Claw x3",
         "ItemID": 440,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 3
     },
     "44100": {
         "Name": "Blue Sky Feather x3",
         "ItemID": 441,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 3
     },
     "44200": {
         "Name": "Diamond Shell x3",
         "ItemID": 442,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 3
     },
     "44300": {
         "Name": "Rigid Fiber x2",
         "ItemID": 443,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 2
     },
     "44301": {
         "Name": "Rigid Fiber",
@@ -753,21 +753,21 @@
         "ItemID": 443,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 3
     },
     "44400": {
         "Name": "Vivine Bitters x2",
         "ItemID": 444,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 2
     },
     "44600": {
         "Name": "Saurian Scale x2",
         "ItemID": 446,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 2
     },
     "44601": {
         "Name": "Saurian Scale",
@@ -781,14 +781,14 @@
         "ItemID": 457,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 3
     },
     "45900": {
         "Name": "Rim Flower x2",
         "ItemID": 459,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 2
     },
     "45901": {
         "Name": "Rim Flower",
@@ -802,21 +802,21 @@
         "ItemID": 460,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 2
     },
     "46100": {
         "Name": "Lunar Wings x2",
         "ItemID": 461,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 2
     },
     "46200": {
         "Name": "Starry Shell x2",
         "ItemID": 462,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 2
     },
     "46300": {
         "Name": "Acidic Liquid",
@@ -844,21 +844,21 @@
         "ItemID": 476,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 5
     },
     "47602": {
         "Name": "Prismatic Jewel x2",
         "ItemID": 476,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 2
     },
     "47603": {
         "Name": "Prismatic Jewel x3",
         "ItemID": 476,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 3
     },
     "47800": {
         "Name": "Dragon Crest Stone",
@@ -872,7 +872,7 @@
         "ItemID": 478,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 2
     },
     "47900": {
         "Name": "Great Tree Lumber",
@@ -886,7 +886,7 @@
         "ItemID": 479,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 2
     },
     "48600": {
         "Name": "Saurian Carapace",
@@ -900,7 +900,7 @@
         "ItemID": 497,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 3
     },
     "49800": {
         "Name": "Pure Orichalcum",
@@ -914,7 +914,7 @@
         "ItemID": 499,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 2
     },
     "49901": {
         "Name": "Aura Grass",
@@ -928,7 +928,7 @@
         "ItemID": 499,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 3
     },
     "50000": {
         "Name": "Heal Potion",
@@ -984,42 +984,42 @@
         "ItemID": 510,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 5
     },
     "51001": {
         "Name": "Antidote x3",
         "ItemID": 510,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 3
     },
     "51100": {
         "Name": "Eye Drops x5",
         "ItemID": 511,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 5
     },
     "51101": {
         "Name": "Eye Drops x3",
         "ItemID": 511,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 3
     },
     "51200": {
         "Name": "Antiparalytic x5",
         "ItemID": 512,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 5
     },
     "51201": {
         "Name": "Antiparalytic x3",
         "ItemID": 512,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 3
     },
     "51202": {
         "Name": "Antiparalytic",
@@ -1033,42 +1033,42 @@
         "ItemID": 513,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 5
     },
     "51301": {
         "Name": "Defrost Medicine x3",
         "ItemID": 513,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 3
     },
     "51400": {
         "Name": "Burn Medicine x3",
         "ItemID": 514,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 3
     },
     "51401": {
         "Name": "Burn Medicine x5",
         "ItemID": 514,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 5
     },
     "51500": {
         "Name": "Hemostatic x3",
         "ItemID": 515,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 3
     },
     "51501": {
         "Name": "Hemostatic x5",
         "ItemID": 515,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 5
     },
     "51502": {
         "Name": "Hemostatic",
@@ -1082,28 +1082,28 @@
         "ItemID": 516,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 3
     },
     "51700": {
         "Name": "Antiparalytic x3",
         "ItemID": 517,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 3
     },
     "51800": {
         "Name": "Burn Medicine x3",
         "ItemID": 518,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 3
     },
     "51900": {
         "Name": "Remedy x3",
         "ItemID": 519,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 3
     },
     "52000": {
         "Name": "Sweet Remedy",
@@ -1117,14 +1117,14 @@
         "ItemID": 520,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 3
     },
     "52002": {
         "Name": "Sweet Remedy x5",
         "ItemID": 520,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 5
     },
     "52100": {
         "Name": "Bitter Remedy",
@@ -1138,14 +1138,14 @@
         "ItemID": 521,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 3
     },
     "52102": {
         "Name": "Bitter Remedy x2",
         "ItemID": 521,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 2
     },
     "52200": {
         "Name": "Hermit's Elixir",
@@ -1159,7 +1159,7 @@
         "ItemID": 522,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 3
     },
     "52300": {
         "Name": "Strength Elixir",
@@ -1173,7 +1173,7 @@
         "ItemID": 523,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 3
     },
     "52400": {
         "Name": "Defense Elixir",
@@ -1187,7 +1187,7 @@
         "ItemID": 524,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 3
     },
     "52500": {
         "Name": "Life Elixir",
@@ -1201,7 +1201,7 @@
         "ItemID": 525,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 3
     },
     "52600": {
         "Name": "Spirit Elixir",
@@ -1229,21 +1229,21 @@
         "ItemID": 531,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 2
     },
     "53200": {
         "Name": "Mango x2",
         "ItemID": 532,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 2
     },
     "53201": {
         "Name": "Mango x5",
         "ItemID": 532,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 5
     },
     "53300": {
         "Name": "Dragon Tree Treasure",
@@ -1264,21 +1264,21 @@
         "ItemID": 535,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 2
     },
     "53502": {
         "Name": "Ripe Crudberry x3",
         "ItemID": 535,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 3
     },
     "53600": {
         "Name": "Ripe Coconut x2",
         "ItemID": 536,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 2
     },
     "53601": {
         "Name": "Ripe Coconut",
@@ -1292,14 +1292,14 @@
         "ItemID": 536,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 3
     },
     "53700": {
         "Name": "Ripe Mango x2",
         "ItemID": 537,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 2
     },
     "53701": {
         "Name": "Ripe Mango",
@@ -1313,7 +1313,7 @@
         "ItemID": 537,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 3
     },
     "53800": {
         "Name": "Dragon Tree Treasure",
@@ -1327,7 +1327,7 @@
         "ItemID": 538,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 3
     },
     "54200": {
         "Name": "Hope Stone",
@@ -1537,21 +1537,21 @@
         "ItemID": 602,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 5
     },
     "60300": {
         "Name": "Pheasant Egg x5",
         "ItemID": 603,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 5
     },
     "60900": {
         "Name": "Sweet Pepper x5",
         "ItemID": 609,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 5
     },
     "61000": {
         "Name": "Eggplant Seed",
@@ -1565,14 +1565,14 @@
         "ItemID": 612,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 5
     },
     "61400": {
         "Name": "King Pumpkin x2",
         "ItemID": 614,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 2
     },
     "61700": {
         "Name": "Strength Elixir",
@@ -1607,14 +1607,14 @@
         "ItemID": 628,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 10
     },
     "62801": {
         "Name": "Bait x5",
         "ItemID": 628,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 5
     },
     "62900": {
         "Name": "Fishing Rod",
@@ -1628,21 +1628,21 @@
         "ItemID": 670,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 50
     },
     "67001": {
         "Name": "Energy Fragment x150",
         "ItemID": 670,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 150
     },
     "67002": {
         "Name": "Energy Fragment x100",
         "ItemID": 670,
         "QuantityMax": 99,
         "QuantityMaxInferno": 99,
-        "ItemQuantity": 1
+        "ItemQuantity": 100
     },
     "68700": {
         "Name": "Eyedrop Formula",
