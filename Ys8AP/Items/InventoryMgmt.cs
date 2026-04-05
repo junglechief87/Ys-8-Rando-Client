@@ -33,7 +33,7 @@ namespace Ys8AP.Items
             {
                 newQuantity = receivedItem.QuantityMax;
             }
-            else if (currentQuantity > receivedItem.QuantityMaxInferno)
+            else if (currentQuantity > receivedItem.QuantityMaxInferno && Contexts.FlagEnumContext.InfernoFlag)
             {
                 newQuantity = receivedItem.QuantityMaxInferno;
             }

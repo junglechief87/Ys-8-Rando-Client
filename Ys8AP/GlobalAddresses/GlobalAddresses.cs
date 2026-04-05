@@ -25,14 +25,16 @@ namespace Ys8AP.GlobalAddresses
         [MemoryOffset(0x00000000)]
         public uint Context { get; set; } // In case I need to call custom attrbiute on the object instead of the property for some reason
 
-        [MemoryOffset(0x002C7130)]
-        public uint TimeAttackFlag { get; set; }
-
         [MemoryOffset(0x002C705C)]
-        public uint SaveMenuFlag { get; set; }
+        public bool SaveMenuFlag { get; set; }
 
-        [MemoryOffset(0x002C7078)]
-        public uint HealAreaFlag { get; set; } // Name is misleading, in reality it's used anytime your character can sheath their weapons
+        [MemoryOffset(0x002C7130)]
+        public bool TimeAttackFlag { get; set; }
+
+        [MemoryOffset(0x002C71B0)]
+        public bool InfernoFlag { get; set; }
+
+
 
         public ulong ChestStartOffset = 0x002C9934;
         public ulong ChestStartAddress 

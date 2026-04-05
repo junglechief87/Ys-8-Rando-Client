@@ -412,7 +412,7 @@ namespace Ys8AP
         private static void Client_ItemReceived(object? sender, ItemReceivedEventArgs e)
         {
             long itemId = e.Item.Id;
-
+            Log.Logger.Information($"Item received from Archipelago: {sender} sent {e.Item.Name}");
             ItemQueue.AddItem(itemId);
 
         }
