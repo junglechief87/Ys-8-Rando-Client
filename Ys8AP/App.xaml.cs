@@ -123,8 +123,6 @@ namespace Ys8AP
             Context.ConnectButtonEnabled = false;
             Log.Logger.Information("Connecting...");
 
-            PlayerState.ValidGameState = false;
-
             if (Client != null)
             {
                 Client.Connected -= OnConnected;
@@ -151,6 +149,10 @@ namespace Ys8AP
             {
                 Client = new ArchipelagoClient(Ys8Client);
                 AddressInit.InitializeAddresses();
+                if (!PlayerState.PlayerReady())
+                {
+                    Log.Logger.Warning("Inventory not connected, make sure you have loaded a save, are not in the main menu, or have started a new game.");
+                }
             }
             
             Client.Connected += OnConnected;
@@ -204,12 +206,15 @@ namespace Ys8AP
                 reconnectThread.Start();
             }
 
-            PlayerState.ValidGameState = true;
-
             // Initialize things once the player is connected
+            // If the player isn't in a valid game state it's likely due to the inventory address not being loaded yet, so try to initialize addresses and check again.  
             if (PlayerState.PlayerReady())
             {
                 PlayerReady(slotName);
+            }
+            else
+            {
+                AddressInit.InitializeAddresses();
             }
 
             /*
@@ -246,7 +251,6 @@ namespace Ys8AP
             //MessageFuncs.InitOverlay();
         }
         #region Ys8
-        private static byte bossKillTest = 0;
 
         private GameClient? Ys8Connect()
         {
@@ -293,12 +297,10 @@ namespace Ys8AP
             {
                 // Padding because Avalonia keeps cutting things off...
                 Log.Logger.Error("Wrong slot name. Current save is using slot: " + currSlot + "      ");
-                PlayerState.ValidGameState = false;
                 return;
             }
             else if (!OpenMem.TestRoomSeed())
             {
-                PlayerState.ValidGameState = false;
                 return;
             }
 
@@ -313,7 +315,6 @@ namespace Ys8AP
             }
             */
 
-            PlayerState.ValidGameState = true;
 
             // Watch for the player to reset the game, then change the valid state flag and ready up to connect again.
             //Memory.MonitorAddressForAction<int>(MiscAddrs.TimeOfDayAddr, () => PlayerNotReady(slotName), (o) => { return o == 0; });
@@ -322,7 +323,6 @@ namespace Ys8AP
 
         private void PlayerNotReady(string slotName)
         {
-            PlayerState.ValidGameState = false;
             ItemQueue.ClearQueues();
             //Memory.MonitorAddressForAction<int>(MiscAddrs.TimeOfDayAddr, () => PlayerReady(slotName), (o) => { return o != 0; });
         }
@@ -412,7 +412,7 @@ namespace Ys8AP
         private static void Client_ItemReceived(object? sender, ItemReceivedEventArgs e)
         {
             long itemId = e.Item.Id;
-            Log.Logger.Information($"Item received from Archipelago: {sender} sent {e.Item.Name}");
+            Log.Logger.Information($"{e.Item.Name} received from {sender}.");
             ItemQueue.AddItem(itemId);
 
         }
@@ -421,7 +421,7 @@ namespace Ys8AP
         {
             if (e.Message.Parts.Any(x => x.Text == "[Hint]: "))
             {
-                //LogHint(e.Message);
+                LogHint(e.Message);
                 // TODO fix hint logging with Avalonia
             }
             Log.Logger.Information(JsonConvert.SerializeObject(e.Message));

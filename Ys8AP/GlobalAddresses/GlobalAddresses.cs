@@ -28,13 +28,17 @@ namespace Ys8AP.GlobalAddresses
         [MemoryOffset(0x002C705C)]
         public bool SaveMenuFlag { get; set; }
 
+        [MemoryOffset(0x002C7084)]
+        public bool AdolJoinOK { get; set; }
+
         [MemoryOffset(0x002C7130)]
         public bool TimeAttackFlag { get; set; }
 
         [MemoryOffset(0x002C71B0)]
         public bool InfernoFlag { get; set; }
 
-
+        [MemoryOffset(0x002C7394)]
+        public bool AdolJoined { get; set; }
 
         public ulong ChestStartOffset = 0x002C9934;
         public ulong ChestStartAddress 
@@ -97,6 +101,37 @@ namespace Ys8AP.GlobalAddresses
             }
         }
 
+        public ulong SkillTableStartOffset = 0x0001E6E4;
+        public ulong SkillTableStartAddress 
+        { 
+            get
+            {
+                return Contexts.GameContext.InventoryAddress + SkillTableStartOffset;
+            }
+        }
+
+        public Skill GetSkillByCharacterAndID(uint id, uint characterId)
+        {
+            return Memory.ReadObject<Skill>(SkillTableStartAddress + (id * 12) + (characterId * 0x1DC));
+        }
+
+        public int GetCharacterDamageType(uint characterId)
+        {
+            // 24 is Slash, 25 is Strike, 26 is Pierce
+            return Memory.ReadInt(Contexts.InventoryContext.SkillTableStartAddress + 0x108 + (characterId * 0x1DC));
+        }
+    }
+
+    public class Skill
+    {
+        [MemoryOffset(0x00)]
+        public uint SkillID { get; set; }
+
+        [MemoryOffset(0x04)]
+        public uint SkillLevel { get; set; }
+
+        [MemoryOffset(0x08)]
+        public uint SkillExperience { get; set; }
     }
 
     public class AddressInit
