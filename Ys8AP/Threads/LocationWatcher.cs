@@ -7,7 +7,7 @@ using System.Collections.Concurrent;
 using System.Threading;
 using System;
 using Ys8AP.Utils;
-using Ys8AP.Items;
+using Ys8AP.Locations;
 using ReactiveUI;
 using Archipelago.Core.Models;
 using System.Threading.Tasks;
@@ -34,16 +34,11 @@ namespace Ys8AP.Threads
 
         private static async Task CheckChests()
         {
-            int ChestID;
-            ChestLocation Chest;
-            
-            for (uint i = 0; i < 3; i++)
+            foreach (int ChestID in ChestData.Keys)
             {
-                if (Contexts.FlagEnumContext.GetChestByID(i).ChestOpened == 0x30)
+                if (Contexts.FlagEnumContext.GetChestByID((uint)ChestID).ChestOpened == 0x30)
                 {
-                    ChestID = Convert.ToInt32(i);
-                    Chest = ChestData[ChestID];
-                    await Ys8AP.App.SendLocation(Chest.LocationID);
+                    await Ys8AP.App.SendLocation(ChestData[ChestID].LocationID);
                 }
             }
         }

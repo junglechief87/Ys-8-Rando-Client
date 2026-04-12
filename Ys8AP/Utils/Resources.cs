@@ -1,4 +1,4 @@
-﻿using Ys8AP;
+﻿using Ys8AP.Locations;
 using Ys8AP.Items;
 using System.Collections.Concurrent;
 using System.IO;

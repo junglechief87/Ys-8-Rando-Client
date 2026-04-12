@@ -1,4 +1,4 @@
-﻿namespace Ys8AP.Items
+﻿namespace Ys8AP.Locations
 {
     internal class ChestLocation
     {
