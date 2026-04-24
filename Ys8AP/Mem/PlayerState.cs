@@ -13,7 +13,8 @@ namespace Ys8AP.Mem
             // File is loaded, player not in load menu, player can recieve items.
             return Contexts.GameContext.InventoryAddress != 0 &&
             !Contexts.FlagEnumContext.SaveMenuFlag && 
-            !Contexts.FlagEnumContext.TimeAttackFlag;
+            !Contexts.FlagEnumContext.TimeAttackFlag &&
+            !Contexts.FlagEnumContext.GameOverSelect;
         }
 
     }

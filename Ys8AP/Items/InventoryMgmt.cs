@@ -21,10 +21,8 @@ namespace Ys8AP.Items
         private static readonly HashSet<long> TMemos = new() { 760, 761, 762, 763 };
 
         /// <summary>
-        /// Searches for an empty inventory slot and gives the player the item supplied.  Returns true if successful, false if inventory is full.
+        /// Handles all receiving logic for items, including setting flags, handling special item cases, and enforcing quantity limits.
         /// </summary>
-        /// <param name="itemId"></param>
-        /// <returns></returns>
         internal static void GiveItem(long itemId)
         {   
             InvItem receivedItem = ItemData[itemId];
@@ -129,10 +127,28 @@ namespace Ys8AP.Items
                 Contexts.InventoryContext.CheckIfObtainedAndSet(148); // Landmark item for tracking totals.
                 Memory.WriteByte(Contexts.InventoryContext.GetItemQuantityAddress(148), (byte)newQuantity);
             }
+            else if (receivedItem.Skill)
+            {
+                Skill CurrentSkill = Contexts.InventoryContext.GetSkillByCharacterAndID((uint)receivedItem.SkillID, (uint)receivedItem.SkillCharacterID);
+                CurrentSkill.SkillLevel = 1;
+                CurrentSkill.SkillExperience = 0;
+                Contexts.InventoryContext.SetSkillByCharacterAndID((uint)receivedItem.SkillID, (uint)receivedItem.SkillCharacterID, CurrentSkill);
+            }
             else
             {
                 Contexts.InventoryContext.CheckIfObtainedAndSet(receivedItem.ItemID);
                 Memory.WriteByte(Contexts.InventoryContext.GetItemQuantityAddress(receivedItem.ItemID), (byte)newQuantity);
+            }
+
+            string msg = "Received " + receivedItem.Name + ".";
+            if (PlayerState.PlayerReady())
+            {
+                ItemQueue.AddMsg(msg);
+            }
+            else
+            {
+                Log.Logger.Information(msg);
+                App.Client.AddOverlayMessage(msg);
             }
         }
 

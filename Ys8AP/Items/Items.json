@@ -2428,629 +2428,876 @@
         "ItemID": 92900,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "SkillCharacterID": 0,
+        "SkillID": 0,
+        "Skill": true
+        
     },
     "93000": {
         "Name": "Arc Shot",
         "ItemID": 93000,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "SkillCharacterID": 0,
+        "SkillID": 1,
+        "Skill": true
     },
     "93100": {
         "Name": "Dagger Fling",
         "ItemID": 93100,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "SkillCharacterID": 1,
+        "SkillID": 0,
+        "Skill": true
     },
     "93200": {
         "Name": "Wake Up!",
         "ItemID": 93200,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "SkillCharacterID": 1,
+        "SkillID": 1,
+        "Skill": true
     },
     "93300": {
         "Name": "High Wave",
         "ItemID": 93300,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "SkillCharacterID": 2,
+        "SkillID": 0,
+        "Skill": true
     },
     "93400": {
         "Name": "Grand Anchor",
         "ItemID": 93400,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "SkillCharacterID": 2,
+        "SkillID": 1,
+        "Skill": true
     },
     "93500": {
         "Name": "Burst Shot",
         "ItemID": 93500,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "SkillCharacterID": 3,
+        "SkillID": 0,
+        "Skill": true
     },
     "93600": {
         "Name": "Venomous Bullet",
         "ItemID": 93600,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "SkillCharacterID": 3,
+        "SkillID": 1,
+        "Skill": true
     },
     "93700": {
         "Name": "Wild Spin",
         "ItemID": 93700,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "SkillCharacterID": 4,
+        "SkillID": 0,
+        "Skill": true
     },
     "93800": {
         "Name": "Handmade Trap",
         "ItemID": 93800,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "SkillCharacterID": 4,
+        "SkillID": 1,
+        "Skill": true
     },
     "93900": {
         "Name": "Twin Edge",
         "ItemID": 93900,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "SkillCharacterID": 5,
+        "SkillID": 0,
+        "Skill": true
     },
     "94000": {
         "Name": "Sonic Rise",
         "ItemID": 94000,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "SkillCharacterID": 5,
+        "SkillID": 1,
+        "Skill": true
     },
     "94100": {
         "Name": "Dragon Spirit",
         "ItemID": 94100,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "SkillCharacterID": 5,
+        "SkillID": 3,
+        "Skill": true
     },
     "94200": {
         "Name": "Force Edge",
         "ItemID": 94200,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "SkillCharacterID": 0,
+        "SkillID": 4,
+        "Skill": true
     },
     "94300": {
         "Name": "Spiel Round Dance",
         "ItemID": 94300,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "SkillCharacterID": 5,
+        "SkillID": 10,
+        "Skill": true
     },
     "94400": {
         "Name": "Water Burst",
         "ItemID": 94400,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "SkillCharacterID": 5,
+        "SkillID": 11,
+        "Skill": true
     },
     "94500": {
         "Name": "Firecracker",
         "ItemID": 94500,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "SkillCharacterID": 3,
+        "SkillID": 11,
+        "Skill": true
     },
     "94600": {
         "Name": "Prominence Shot",
         "ItemID": 94600,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "SkillCharacterID": 3,
+        "SkillID": 10,
+        "Skill": true
     },
     "94700": {
         "Name": "Spiral Anchor",
         "ItemID": 94700,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "SkillCharacterID": 2,
+        "SkillID": 11,
+        "Skill": true
     },
     "94800": {
         "Name": "Raging Deluge",
         "ItemID": 94800,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "SkillCharacterID": 2,
+        "SkillID": 10,
+        "Skill": true
     },
     "94900": {
         "Name": "Dino Throw",
         "ItemID": 94900,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "SkillCharacterID": 4,
+        "SkillID": 11,
+        "Skill": true
     },
     "95000": {
         "Name": "Triple Bang",
         "ItemID": 95000,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "SkillCharacterID": 4,
+        "SkillID": 9,
+        "Skill": true
     },
     "95100": {
         "Name": "Precious Impact",
         "ItemID": 95100,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "SkillCharacterID": 1,
+        "SkillID": 10,
+        "Skill": true
     },
     "95200": {
         "Name": "Lethal Raid",
         "ItemID": 95200,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "SkillCharacterID": 1,
+        "SkillID": 11,
+        "Skill": true
     },
     "95300": {
         "Name": "Mistral Edge",
         "ItemID": 95300,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "SkillCharacterID": 5,
+        "SkillID": 8,
+        "Skill": true
     },
     "95400": {
         "Name": "Thrust Storm",
         "ItemID": 95400,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "SkillCharacterID": 0,
+        "SkillID": 10,
+        "Skill": true
     },
     "95500": {
         "Name": "Green Whip",
         "ItemID": 95500,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "SkillCharacterID": 4,
+        "SkillID": 8,
+        "Skill": true
     },
     "95600": {
         "Name": "Magna Wave",
         "ItemID": 95600,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "SkillCharacterID": 2,
+        "SkillID": 9,
+        "Skill": true
     },
     "95700": {
         "Name": "Hasty Valor",
         "ItemID": 95700,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "SkillCharacterID": 3,
+        "SkillID": 9,
+        "Skill": true
     },
     "95800": {
         "Name": "Beast Attack",
         "ItemID": 95800,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "SkillCharacterID": 4,
+        "SkillID": 7,
+        "Skill": true
     },
     "95900": {
         "Name": "Boomerang Edge",
         "ItemID": 95900,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "SkillCharacterID": 5,
+        "SkillID": 6,
+        "Skill": true
     },
     "96000": {
         "Name": "Upper Break",
         "ItemID": 96000,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "SkillCharacterID": 2,
+        "SkillID": 8,
+        "Skill": true
     },
     "96100": {
         "Name": "Power Strike",
         "ItemID": 96100,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "SkillCharacterID": 2,
+        "SkillID": 6,
+        "Skill": true
     },
     "96200": {
         "Name": "Seine Toss",
         "ItemID": 96200,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "SkillCharacterID": 2,
+        "SkillID": 7,
+        "Skill": true
     },
     "96300": {
         "Name": "Judgment",
         "ItemID": 96300,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "SkillCharacterID": 3,
+        "SkillID": 6,
+        "Skill": true
     },
     "96400": {
         "Name": "Counter Trick",
         "ItemID": 96400,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "SkillCharacterID": 3,
+        "SkillID": 7,
+        "Skill": true
     },
     "96500": {
         "Name": "Flame Swing",
         "ItemID": 96500,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "SkillCharacterID": 4,
+        "SkillID": 4,
+        "Skill": true
     },
     "96600": {
         "Name": "Mighty Orbit",
         "ItemID": 96600,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "SkillCharacterID": 4,
+        "SkillID": 5,
+        "Skill": true
     },
     "96700": {
         "Name": "Blade Rush",
         "ItemID": 96700,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "SkillCharacterID": 0,
+        "SkillID": 9,
+        "Skill": true
     },
     "96800": {
         "Name": "Aura Blade",
         "ItemID": 96800,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "SkillCharacterID": 0,
+        "SkillID": 8,
+        "Skill": true
     },
     "96900": {
         "Name": "Eagle Lancer",
         "ItemID": 96900,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "SkillCharacterID": 1,
+        "SkillID": 8,
+        "Skill": true
     },
     "97000": {
         "Name": "Spark Chaser",
         "ItemID": 97000,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "SkillCharacterID": 1,
+        "SkillID": 7,
+        "Skill": true
     },
     "97100": {
         "Name": "Bandit Tackle",
         "ItemID": 97100,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "SkillCharacterID": 4,
+        "SkillID": 3,
+        "Skill": true
     },
     "97200": {
         "Name": "Screw Fang",
         "ItemID": 97200,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "SkillCharacterID": 4,
+        "SkillID": 2,
+        "Skill": true
     },
     "97300": {
         "Name": "Stun Thrust",
         "ItemID": 97300,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "SkillCharacterID": 1,
+        "SkillID": 4,
+        "Skill": true
     },
     "97400": {
         "Name": "Blitz Charge",
         "ItemID": 97400,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "SkillCharacterID": 1,
+        "SkillID": 5,
+        "Skill": true
     },
     "97500": {
         "Name": "Earth Dragon",
         "ItemID": 97500,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "SkillCharacterID": 5,
+        "SkillID": 4,
+        "Skill": true
     },
     "97600": {
         "Name": "Twin Moon Blade",
         "ItemID": 97600,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "SkillCharacterID": 5,
+        "SkillID": 5,
+        "Skill": true
     },
     "97700": {
         "Name": "Triple Bomber",
         "ItemID": 97700,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "SkillCharacterID": 3,
+        "SkillID": 5,
+        "Skill": true
     },
     "97800": {
         "Name": "Guilty Raid",
         "ItemID": 97800,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "SkillCharacterID": 3,
+        "SkillID": 4,
+        "Skill": true
     },
     "97900": {
         "Name": "Somersault",
         "ItemID": 97900,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "SkillCharacterID": 3,
+        "SkillID": 2,
+        "Skill": true
     },
     "98000": {
         "Name": "Elemental Shot",
         "ItemID": 98000,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "SkillCharacterID": 5,
+        "SkillID": 2,
+        "Skill": true
     },
     "98100": {
         "Name": "Aerial Spin",
         "ItemID": 98100,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "SkillCharacterID": 0,
+        "SkillID": 5,
+        "Skill": true
     },
     "98200": {
         "Name": "Sky Drive",
         "ItemID": 98200,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "SkillCharacterID": 0,
+        "SkillID": 6,
+        "Skill": true
     },
     "98300": {
         "Name": "Vortex",
         "ItemID": 98300,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "SkillCharacterID": 2,
+        "SkillID": 4,
+        "Skill": true
     },
     "98400": {
         "Name": "Great Ram",
         "ItemID": 98400,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "SkillCharacterID": 2,
+        "SkillID": 5,
+        "Skill": true
     },
     "98500": {
         "Name": "Rapid Thrust",
         "ItemID": 98500,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "SkillCharacterID": 1,
+        "SkillID": 2,
+        "Skill": true
     },
     "98600": {
         "Name": "Needle Break",
         "ItemID": 98600,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "SkillCharacterID": 1,
+        "SkillID": 3,
+        "Skill": true
     },
     "98700": {
         "Name": "Rising Slash",
         "ItemID": 98700,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "SkillCharacterID": 0,
+        "SkillID": 2,
+        "Skill": true
     },
     "98800": {
         "Name": "Sword Impact",
         "ItemID": 98800,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "SkillCharacterID": 0,
+        "SkillID": 3,
+        "Skill": true
     },
     "98900": {
         "Name": "Spiral Drive",
         "ItemID": 98900,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "SkillCharacterID": 4,
+        "SkillID": 10,
+        "Skill": true
     },
     "99000": {
         "Name": "Gale Blow",
         "ItemID": 99000,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "SkillCharacterID": 2,
+        "SkillID": 3,
+        "Skill": true
     },
     "99100": {
         "Name": "Dragon Wave",
         "ItemID": 99100,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "SkillCharacterID": 5,
+        "SkillID": 7,
+        "Skill": true
     },
     "99200": {
         "Name": "Piercing Tempest",
         "ItemID": 99200,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "SkillCharacterID": 1,
+        "SkillID": 9,
+        "Skill": true
     },
     "99300": {
         "Name": "Assault Rain",
         "ItemID": 99300,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "SkillCharacterID": 3,
+        "SkillID": 8,
+        "Skill": true
     },
     "99400": {
         "Name": "Brave Charge",
         "ItemID": 99400,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "SkillCharacterID": 0,
+        "SkillID": 11,
+        "Skill": true
     },
     "99500": {
         "Name": "Birdsong Rock",
         "ItemID": 99500,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "Flags": ["0x002C7E64"],
+        "Landmark": true
     },
     "99600": {
         "Name": "Cobalt Crag",
         "ItemID": 99600,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "Flags": ["0x002C7E68"],
+        "Landmark": true
     },
     "99700": {
         "Name": "Rainbow Falls",
         "ItemID": 99700,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "Flags": ["0x002C7E6C"],
+        "Landmark": true
     },
     "99800": {
         "Name": "Metavolicalis",
         "ItemID": 99800,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "Flags": ["0x002C7E70"],
+        "Landmark": true
     },
     "99900": {
         "Name": "Parasequoia",
         "ItemID": 99900,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "Flags": ["0x002C7E74"],
+        "Landmark": true
     },
     "100000": {
         "Name": "Chimney Rock",
         "ItemID": 100000,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "Flags": ["0x002C7E80"],
+        "Landmark": true
     },
     "100100": {
         "Name": "Indigo Mineral Vein",
         "ItemID": 100100,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "Flags": ["0x002C7E84"],
+        "Landmark": true
     },
     "100200": {
         "Name": "Beached Remains",
         "ItemID": 100200,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "Flags": ["0x002C7E88"],
+        "Landmark": true
     },
     "100300": {
         "Name": "Field of Medicinal Herbs",
         "ItemID": 100300,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "Flags": ["0x002C7E8C"],
+        "Landmark": true
     },
     "100400": {
         "Name": "Airs Cairn",
         "ItemID": 100400,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "Flags": ["0x002C7E94"],
+        "Landmark": true
     },
     "100500": {
         "Name": "Zephyr Hill",
         "ItemID": 100500,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "Flags": ["0x002C7EA0"],
+        "Landmark": true
     },
     "100600": {
         "Name": "Lapis Mineral Vein",
         "ItemID": 100600,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "Flags": ["0x002C7EA4"],
+        "Landmark": true
     },
     "100700": {
         "Name": "Beehive",
         "ItemID": 100700,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "Flags": ["0x002C7EAC"],
+        "Landmark": true
     },
     "100800": {
         "Name": "Ship Graveyard",
         "ItemID": 100800,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "Flags": ["0x002C7EB4"],
+        "Landmark": true
     },
     "100900": {
         "Name": "Hidden Pirate Storehouse",
         "ItemID": 100900,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "Flags": ["0x002C7EB8"],
+        "Landmark": true
     },
     "101000": {
         "Name": "Magna Carpa",
         "ItemID": 101000,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "Flags": ["0x002C7EBC"],
+        "Landmark": true
     },
     "101100": {
         "Name": "Prismatic Mineral Vein",
         "ItemID": 101100,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "Flags": ["0x002C7EC0"],
+        "Landmark": true
     },
     "101200": {
         "Name": "Unicalamites",
         "ItemID": 101200,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "Flags": ["0x002C7EC4"],
+        "Landmark": true
     },
     "101300": {
         "Name": "Breath Fountain",
         "ItemID": 101300,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "Flags": ["0x002C7ECC"],
+        "Landmark": true
     },
     "101400": {
         "Name": "Ancient Tree",
         "ItemID": 101400,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "Flags": ["0x002C7ED0"],
+        "Landmark": true
     },
     "101500": {
         "Name": "Sky Garden",
         "ItemID": 101500,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "Flags": ["0x002C7EE0"],
+        "Landmark": true
     },
     "101600": {
         "Name": "Soundless Hall",
         "ItemID": 101600,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "Flags": ["0x002C7EE4"],
+        "Landmark": true
     },
     "101700": {
         "Name": "Graves of Ancient Heroes",
         "ItemID": 101700,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "Flags": ["0x002C7EE8"],
+        "Landmark": true
     },
     "101800": {
         "Name": "Milky White Vein",
         "ItemID": 101800,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
-        "ItemQuantity": 1
+        "ItemQuantity": 1,
+        "Flags": ["0x002C7EA8"],
+        "Landmark": true
     }
 }

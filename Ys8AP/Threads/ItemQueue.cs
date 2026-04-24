@@ -13,26 +13,17 @@ namespace Ys8AP.Threads
     {
         private const int DisplayTime = 350; // cs, 3.5 seconds
         //private static int MsToCs = 10;  // Convert 1000ths of a second to 100ths
-
         private static ConcurrentQueue<long> inventoryQueue = new();
         private static ConcurrentQueue<string> msgQueue = new();
-
-        private static int oldKeyCount = 0;
-        private static int oldInvCount = 0;
-        private static int oldAttachCount = 0;
-
         internal static bool checkItems = false;
-
         internal static bool runThread = true;
 
-        
         internal static void AddItem(long apId)
         {
             if (PlayerState.PlayerReady())
                 inventoryQueue.Enqueue(apId);
         }
         
-
         internal static void AddMsg(string msg)
         {
             if (PlayerState.PlayerReady())
@@ -44,10 +35,7 @@ namespace Ys8AP.Threads
 
         internal static void ThreadLoop(object? parameters)
         {
-            
             runThread = true;
-            bool result = true;
-            bool itemReceived = false;
 
             // Clean out the queues before stopping
             while (runThread)
@@ -56,26 +44,24 @@ namespace Ys8AP.Threads
 
                 if (PlayerState.PlayerReady())
                 {
-                    itemReceived = false;
-                    result = true;
-
-                    while (result && inventoryQueue.TryDequeue(out long apId))
-                    {
-                        InventoryMgmt.GiveItem(apId);
-                        itemReceived = true;
-                    }
-
-
+                    // If player was not ready before but is now, we check items.
                     if (checkItems)
                     {
                         //InventoryMgmt.VerifyItems();
                         checkItems = false;
                     }
+
+                    while (inventoryQueue.TryDequeue(out long apId))
+                    {
+                        InventoryMgmt.GiveItem(apId);
+                    }
+                    
                 }
-                // Player hasn't started the game, or has reset so clear the queues.
-                else
+                // If player enters a not ready state, we clear queues and prepare to check items, once they exit the states.
+                else if (!PlayerState.PlayerReady())
                 {
-                    //ClearQueues();
+                    ClearQueues();
+                    checkItems = true;
                 }
             }
         }

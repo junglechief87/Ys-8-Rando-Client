@@ -66,9 +66,6 @@ namespace Ys8AP
         private Thread? locationWatcherThread;
         private Thread? reconnectThread;
         private GameClient? Ys8Client;
-        private bool diviningHouseDone = false;
-        private bool cathedralDone = false;
-
         private DeathLinkService? _deathlinkService = null;
         private bool deathFromDeathlink = false;
         private string slotName = "";
@@ -247,14 +244,11 @@ namespace Ys8AP
             }
 
             Context.ConnectButtonEnabled = true;
-
-            //MessageFuncs.InitOverlay();
         }
         #region Ys8
 
         private GameClient? Ys8Connect()
         {
-            //String gameId = "BASCUS-97111dkcloud";
 
             GameClient client = new("ys8");
             try
@@ -269,16 +263,6 @@ namespace Ys8AP
             }
 
             Log.Logger.Information("Connected to game.");
-            
-            // Verify correct game/version
-            /*
-            String gameIdTest = Memory.ReadString(MiscAddrs.GameIdAddr, gameId.Length);
-            if (!gameId.Equals(gameIdTest))
-            {
-                Log.Logger.Error("Wrong game or wrong version of Dark Cloud, please load NTSC version of the game.");
-                return null;
-            }
-            */
 
             return client;
         }
@@ -306,18 +290,6 @@ namespace Ys8AP
 
             // Check for any missing items after a connect/reconnect
             //ItemQueue.checkItems = true;
-
-            // Skip needing Yaya to dance on your head if doing Saia once the building event viewed flag is set.
-            /*
-            if (Options.Goal >= 3 && !EventMasks.YayaDone())
-            {
-
-            }
-            */
-
-
-            // Watch for the player to reset the game, then change the valid state flag and ready up to connect again.
-            //Memory.MonitorAddressForAction<int>(MiscAddrs.TimeOfDayAddr, () => PlayerNotReady(slotName), (o) => { return o == 0; });
             //WatchGoal();
         }
 
@@ -412,9 +384,7 @@ namespace Ys8AP
         private static void Client_ItemReceived(object? sender, ItemReceivedEventArgs e)
         {
             long itemId = e.Item.Id;
-            Log.Logger.Information($"{e.Item.Name} received from {sender}.");
             ItemQueue.AddItem(itemId);
-
         }
 
         private void Client_MessageReceived(object? sender, MessageReceivedEventArgs e)

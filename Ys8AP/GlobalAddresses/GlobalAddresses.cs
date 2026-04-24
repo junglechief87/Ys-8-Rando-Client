@@ -26,6 +26,9 @@ namespace Ys8AP.GlobalAddresses
         [MemoryOffset(0x00000000)]
         public uint Context { get; set; } // In case I need to call custom attrbiute on the object instead of the property for some reason
 
+        [MemoryOffset(0x002C7028)]
+        public bool GameOverSelect { get; set; }
+
         [MemoryOffset(0x002C705C)]
         public bool SaveMenuFlag { get; set; }
 
@@ -86,6 +89,7 @@ namespace Ys8AP.GlobalAddresses
         [MemoryOffset(0x02)]
         public byte ChestOpened { get; set; }
     }
+
     public class Inventory
     {
         [MemoryOffset(0x00000000)]
@@ -139,6 +143,11 @@ namespace Ys8AP.GlobalAddresses
         public Skill GetSkillByCharacterAndID(uint id, uint characterId)
         {
             return Memory.ReadObject<Skill>(SkillTableStartAddress + (id * 12) + (characterId * 0x1DC));
+        }
+
+        public void SetSkillByCharacterAndID(uint id, uint characterId, Skill skill)
+        {
+            Memory.WriteObject<Skill>(SkillTableStartAddress + (id * 12) + (characterId * 0x1DC), skill);
         }
 
         public int GetCharacterDamageType(uint characterId)

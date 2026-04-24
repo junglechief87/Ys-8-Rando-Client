@@ -11,9 +11,12 @@ namespace Ys8AP.Items
         public int QuantityMaxInferno;
         public int ItemQuantity;
         public List<string>? Flags; // list of flag addresses to set when item is obtained, in hex string format (e.g. "0x002C8A30")    
-        public int? CrewJoinID; // determines bit offset in SF_NPCJOINSTATE, used for all non-party castaways to track availability for work or raids.
+        public uint? CrewJoinID; // determines bit offset in SF_NPCJOINSTATE, used for all non-party castaways to track availability for work or raids.
+        public uint? SkillCharacterID; // if the item is a skill, determines which character's skill list it goes in
+        public uint? SkillID; // if the item is a skill
         public bool CrewMember = false; 
         public bool Landmark = false; 
+        public bool Skill = false;
 
     }
 }
