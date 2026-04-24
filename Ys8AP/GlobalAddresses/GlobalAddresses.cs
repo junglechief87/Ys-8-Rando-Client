@@ -1,6 +1,7 @@
 using System.Reflection;
 using System;
 using Archipelago.Core.Util;
+using System.Reactive.Concurrency;
 
 namespace Ys8AP.GlobalAddresses
 {
@@ -28,18 +29,43 @@ namespace Ys8AP.GlobalAddresses
         [MemoryOffset(0x002C705C)]
         public bool SaveMenuFlag { get; set; }
 
-        [MemoryOffset(0x002C7084)]
-        public bool AdolJoinOK { get; set; }
-
         [MemoryOffset(0x002C7130)]
         public bool TimeAttackFlag { get; set; }
 
         [MemoryOffset(0x002C71B0)]
         public bool InfernoFlag { get; set; }
 
-        [MemoryOffset(0x002C7394)]
-        public bool AdolJoined { get; set; }
+        // Ts Memos /////////////////////////////////////////////////////////////
+        [MemoryOffset(0x002CA578)]
+        public bool TMemo1 { get; set; }
 
+        [MemoryOffset(0x002CA57C)]
+        public bool TMemo2 { get; set; }
+
+        [MemoryOffset(0x002CA580)]
+        public bool TMemo3 { get; set; }
+
+        [MemoryOffset(0x002CA584)]
+        public bool TMemo4 { get; set; }
+        
+        // Village Join Flags ///////////////////////////////////////////////////////
+        public ulong NPCJoinState = 0x002C7308;
+        
+        public uint CurrentState
+        {
+            get
+            {
+                return Memory.ReadUInt(Contexts.GameContext.FlagEnumAddress + NPCJoinState);
+            }
+        }
+        public void SetNPCJoinState(int CrewJoinID)
+        {
+            uint currentState = CurrentState;
+            uint bitToSet = (uint)(1 << CrewJoinID);
+            Memory.Write(Contexts.GameContext.FlagEnumAddress + NPCJoinState, currentState | bitToSet);
+        }
+
+        // Chest Flags /////////////////////////////////////////////////////////////
         public ulong ChestStartOffset = 0x002C9934;
         public ulong ChestStartAddress 
         { 

@@ -17,6 +17,8 @@ namespace Ys8AP.Items
     internal class InventoryMgmt
     {
         private static ConcurrentDictionary<long, InvItem>? ItemData = Resources.Embedded.Items;
+        private static readonly HashSet<string> FlagsSetTo2 = new() { "0x002C8B70", "0x002C8B94", "0x002C7D24" }; // when these flags are set, they need to be set to 2 instead of 1 to properly trigger events.
+        private static readonly HashSet<long> TMemos = new() { 760, 761, 762, 763 };
 
         /// <summary>
         /// Searches for an empty inventory slot and gives the player the item supplied.  Returns true if successful, false if inventory is full.
@@ -24,11 +26,84 @@ namespace Ys8AP.Items
         /// <param name="itemId"></param>
         /// <returns></returns>
         internal static void GiveItem(long itemId)
-        {
+        {   
             InvItem receivedItem = ItemData[itemId];
             int currentQuantity = Memory.ReadInt(Contexts.InventoryContext.GetItemQuantityAddress(receivedItem.ItemID));
             int newQuantity = currentQuantity + receivedItem.ItemQuantity;
+            
+            // handle special items
+            if (receivedItem.ItemID == 139 && currentQuantity >= 7) // Progressive shop rank, if we have 7 we give essences stone instead.
+            {
+                receivedItem = ItemData[32800]; // Essence Stone
+                currentQuantity = Memory.ReadInt(Contexts.InventoryContext.GetItemQuantityAddress(receivedItem.ItemID));
+                newQuantity = currentQuantity + 5;
+            }
+            else if (receivedItem.ItemID == 139 && currentQuantity == 0) // Progressive shop rank, if it's the first one we give Kathleen.
+            {
+                Contexts.FlagEnumContext.SetNPCJoinState(5); // Kathleen Join Flag
+                Memory.WriteByte(Contexts.GameContext.FlagEnumAddress + 0x002CB20C, 1); // DF_JOIN_KATRIN
+                Memory.WriteByte(Contexts.GameContext.FlagEnumAddress + 0x002C7564, 1); // GF_02MP1201_JOIN_KATRIN
+            }
+            else if (receivedItem.Name == "Dina")
+            {
+                Contexts.InventoryContext.CheckIfObtainedAndSet(580);
+                Memory.WriteByte(Contexts.InventoryContext.GetItemQuantityAddress(580), 0x63); // Give 99 Insect Repellent
+            }
+            else if (TMemos.Contains(receivedItem.ItemID)) // TMemo Intercept unlocks
+            {
+                if (!Contexts.FlagEnumContext.TMemo1)
+                {
+                    Memory.WriteByte(Contexts.GameContext.FlagEnumAddress + 0x002CA578, 1); // Intercept List 1
+                }
+                else if (!Contexts.FlagEnumContext.TMemo2)
+                {
+                    Memory.WriteByte(Contexts.GameContext.FlagEnumAddress + 0x002CA57C, 1); // Intercept List 2
+                    Memory.WriteByte(Contexts.GameContext.FlagEnumAddress + 0x002CA560, 1); // Dogi Control Option Unlocked
+                }
+                else if (!Contexts.FlagEnumContext.TMemo3)
+                {
+                    Memory.WriteByte(Contexts.GameContext.FlagEnumAddress + 0x002CA580, 1); // Intercept List 3
+                }
+                else if (!Contexts.FlagEnumContext.TMemo4)
+                {
+                    Memory.WriteByte(Contexts.GameContext.FlagEnumAddress + 0x002CA584, 1); // Intercept List 4
+                }
+            }
+            else if (receivedItem.ItemID == 629) // Fishing rod
+            {
+                Contexts.InventoryContext.CheckIfObtainedAndSet(628);
+                Memory.WriteByte(Contexts.InventoryContext.GetItemQuantityAddress(628), 0x1E); // Give 30 bait
+            }
+            else if (receivedItem.ItemID == 218) // Slash Medal
+            {
+                Contexts.InventoryContext.CheckIfObtainedAndSet(219);
+                Memory.WriteByte(Contexts.InventoryContext.GetItemQuantityAddress(219), 1); // Pierce Medal
+                Contexts.InventoryContext.CheckIfObtainedAndSet(220);
+                Memory.WriteByte(Contexts.InventoryContext.GetItemQuantityAddress(220), 1); // Strike Medal
+            }
 
+            // handle event flags
+            if (receivedItem.Flags != null)
+            {
+                foreach (string flag in receivedItem.Flags)
+                {
+
+                    if (FlagsSetTo2.Contains(flag))
+                    {
+                        Memory.WriteByte(Contexts.GameContext.FlagEnumAddress + Convert.ToUInt64(flag, 16), 2);
+                    }
+                    else if (flag == "0x002C7D0C")
+                    {
+                        Memory.WriteByte(Contexts.GameContext.FlagEnumAddress + Convert.ToUInt64(flag, 16), 7); // GF_CAMP_SHIPYARD_LV
+                    }
+                    else
+                    {
+                        Memory.WriteByte(Contexts.GameContext.FlagEnumAddress + Convert.ToUInt64(flag, 16), 1);
+                    }
+                }
+            }
+
+            // handle item quantity limits
             if (currentQuantity > receivedItem.QuantityMax)
             {
                 newQuantity = receivedItem.QuantityMax;
@@ -37,9 +112,28 @@ namespace Ys8AP.Items
             {
                 newQuantity = receivedItem.QuantityMaxInferno;
             }
-            
-            Contexts.InventoryContext.CheckIfObtainedAndSet(receivedItem.ItemID);
-            Memory.WriteByte(Contexts.InventoryContext.GetItemQuantityAddress(receivedItem.ItemID), (byte)newQuantity);
+
+
+            if (receivedItem.CrewMember)
+            {
+                Contexts.InventoryContext.CheckIfObtainedAndSet(143); // Castaway item for tracking crew member obtained for work totals.
+                Memory.WriteByte(Contexts.InventoryContext.GetItemQuantityAddress(143), (byte)newQuantity);
+
+                if (receivedItem.CrewJoinID != null)
+                {
+                    Contexts.FlagEnumContext.SetNPCJoinState((int)receivedItem.CrewJoinID);
+                }
+            }
+            else if (receivedItem.Landmark)
+            {
+                Contexts.InventoryContext.CheckIfObtainedAndSet(148); // Landmark item for tracking totals.
+                Memory.WriteByte(Contexts.InventoryContext.GetItemQuantityAddress(148), (byte)newQuantity);
+            }
+            else
+            {
+                Contexts.InventoryContext.CheckIfObtainedAndSet(receivedItem.ItemID);
+                Memory.WriteByte(Contexts.InventoryContext.GetItemQuantityAddress(receivedItem.ItemID), (byte)newQuantity);
+            }
         }
 
         // Now unused, holding onto in case we find a reason to use it.
