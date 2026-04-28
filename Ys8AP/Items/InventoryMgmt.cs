@@ -88,15 +88,15 @@ namespace Ys8AP.Items
 
                     if (FlagsSetTo2.Contains(flag))
                     {
-                        Memory.WriteByte(Contexts.GameContext.FlagEnumAddress + Convert.ToUInt64(flag, 16), 2);
+                        Memory.WriteByte(Contexts.GameContext.FlagEnumAddress + Convert.ToUInt32(flag, 16), 2);
                     }
                     else if (flag == "0x002C7D0C")
                     {
-                        Memory.WriteByte(Contexts.GameContext.FlagEnumAddress + Convert.ToUInt64(flag, 16), 7); // GF_CAMP_SHIPYARD_LV
+                        Memory.WriteByte(Contexts.GameContext.FlagEnumAddress + Convert.ToUInt32(flag, 16), 7); // GF_CAMP_SHIPYARD_LV
                     }
                     else
                     {
-                        Memory.WriteByte(Contexts.GameContext.FlagEnumAddress + Convert.ToUInt64(flag, 16), 1);
+                        Memory.WriteByte(Contexts.GameContext.FlagEnumAddress + Convert.ToUInt32(flag, 16), 1);
                     }
                 }
             }

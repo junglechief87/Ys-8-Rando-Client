@@ -11,6 +11,8 @@ using Ys8AP.Locations;
 using ReactiveUI;
 using Archipelago.Core.Models;
 using System.Threading.Tasks;
+using Silk.NET.GLFW;
+using System.Linq;
 
 namespace Ys8AP.Threads
 {
@@ -20,13 +22,18 @@ namespace Ys8AP.Threads
     internal class LocationWatcher
     {
         private static ConcurrentDictionary<int, ChestLocation> ChestData = Resources.Embedded.ChestLocations;
+        private static ConcurrentDictionary<int, EventLocation> EventData = Resources.Embedded.EventLocations;
+        private static byte EventCheck;
+        private static readonly HashSet<int> allLocationIds = App.Client.CurrentSession.Locations.AllLocations.Select(id => (int)id).ToHashSet();
+
         internal static void DoLoop(object? parameters)
         {
             while (true)
             {
-                if (PlayerState.PlayerReady() && App.Client.IsConnected)
+                if (PlayerState.PlayerReady())
                 {
                     CheckChests();
+                    CheckEvents();
                 }
                 Thread.Sleep(1000);
             }
@@ -38,7 +45,28 @@ namespace Ys8AP.Threads
             {
                 if (Contexts.FlagEnumContext.GetChestByID((uint)ChestID).ChestOpened == 0x30)
                 {
-                    await Ys8AP.App.SendLocation(ChestData[ChestID].LocationID);
+                    if (allLocationIds.Contains(ChestData[ChestID].LocationID)) // Only check chests that are actually in the AP pool
+                    {
+                        await Ys8AP.App.SendLocation(ChestData[ChestID].LocationID);
+                    }
+                }
+            }
+        }
+
+        private static async Task CheckEvents()
+        {
+            foreach (EventLocation eventLoc in EventData.Values)
+            {   
+                EventCheck = Memory.ReadByte(Contexts.GameContext.FlagEnumAddress + Convert.ToUInt32(eventLoc.Flag, 16));
+                if (EventCheck >= 1)
+                {
+                    foreach (int check in eventLoc.LocationIDs)
+                    {
+                        if (allLocationIds.Contains(check)) // Only check events that are actually in the AP pool
+                        {
+                            await Ys8AP.App.SendLocation(check);
+                        }
+                    }
                 }
             }
         }

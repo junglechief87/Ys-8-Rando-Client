@@ -32,6 +32,20 @@ namespace Ys8AP.Utils
                 }
             }
 
+            public static ConcurrentDictionary<int, EventLocation> EventLocations
+            {
+                get
+                {
+                    var info = Assembly.GetExecutingAssembly().GetName();
+                    var name = info.Name;
+                    using var stream = Assembly
+                        .GetExecutingAssembly()
+                        .GetManifestResourceStream($"{name}.Locations.EventLocations.json")!;
+                    using var streamReader = new StreamReader(stream, Encoding.UTF8);
+                    return JsonSerializer.Deserialize<ConcurrentDictionary<int, EventLocation>>(streamReader.ReadToEnd(), jOptions);
+                }
+            }
+
             public static ConcurrentDictionary<long, InvItem> Items
             {
                 get
