@@ -1,135 +1,617 @@
 {
-    "0": {"Name": "Eroded Valley Boss Arena Kill Boss, Skill 1, 2", "LocationIDs": [435,570,571], "Flag": "0x002CA510"},
-    "1": {"Name": "Eroded Valley Mid-Boss Arena Lonbrigius Skill 1, 2", "LocationIDs": [572,573], "Flag": "0x002C75A0"},
-    "2": {"Name": "Archeozoic Chasm Boss Arena Kill Boss, Skill 1, 2", "LocationIDs": [437,548,549], "Flag": "0x002CA520"},
-    "5": {"Name": "Archeozoic Chasm Mid-Boss Arena Coelacantos Skill 1, 2", "LocationIDs": [550,551], "Flag": "0x002C78B8"},
-    "7": {"Name": "Baja Tower Top Floor Monolith Scene", "LocationIDs": [440], "Flag": "0x002CA5E8"},
-    "8": {"Name": "Baja Tower Boss Arena Carveros Skill 1, 2", "LocationIDs": [554,555], "Flag": "0x002C785C"},
-    "10": {"Name": "Baja Tower Mid-Boss Arena Exmetal Skill 1, 2", "LocationIDs": [556,557], "Flag": "0x002C7854"},
-    "12": {"Name": "Calm Inlet Intercept Stage 2", "LocationIDs": [446], "Flag": "0x002C93F0"},
-    "13": {"Name": "Calm Inlet Intercept Stage 3", "LocationIDs": [447], "Flag": "0x002C93F4"},
-    "14": {"Name": "Calm Inlet Intercept Stage 5", "LocationIDs": [448], "Flag": "0x002C93F8"},
-    "15": {"Name": "Calm Inlet Intercept Stage 7", "LocationIDs": [449], "Flag": "0x002C93FC"},
-    "16": {"Name": "Calm Inlet Intercept Stage 9", "LocationIDs": [450], "Flag": "0x002C9400"},
-    "17": {"Name": "Calm Inlet Map Completion Percent 10", "LocationIDs": [451], "Flag": "0x002C95B8"},
-    "18": {"Name": "Calm Inlet Map Completion Percent 20", "LocationIDs": [452], "Flag": "0x002C95BC"},
-    "19": {"Name": "Calm Inlet Map Completion Percent 30", "LocationIDs": [453], "Flag": "0x002C95C0"},
-    "20": {"Name": "Calm Inlet Map Completion Percent 40", "LocationIDs": [454], "Flag": "0x002C95C4"},
-    "21": {"Name": "Calm Inlet Map Completion Percent 50", "LocationIDs": [455], "Flag": "0x002C95C8"},
-    "22": {"Name": "Calm Inlet Map Completion Percent 60", "LocationIDs": [456], "Flag": "0x002C95CC"},
-    "23": {"Name": "Calm Inlet Map Completion Percent 70", "LocationIDs": [457], "Flag": "0x002C95D0"},
-    "24": {"Name": "Calm Inlet Map Completion Percent 80", "LocationIDs": [458], "Flag": "0x002C95D4"},
-    "25": {"Name": "Calm Inlet Map Completion Percent 90", "LocationIDs": [459], "Flag": "0x002C95D8"},
-    "26": {"Name": "Calm Inlet Map Completion Percent 100", "LocationIDs": [460], "Flag": "0x002C95DC"},
-    "27": {"Name": "Calm Inlet Jewel Trade Item 1", "LocationIDs": [461], "Flag": "0x002CA564"},
-    "28": {"Name": "Calm Inlet Jewel Trade Item 2", "LocationIDs": [462], "Flag": "0x002CA568"},
-    "29": {"Name": "Calm Inlet Jewel Trade Item 3", "LocationIDs": [463], "Flag": "0x002CA56C"},
-    "30": {"Name": "Calm Inlet Jewel Trade Item 4", "LocationIDs": [464], "Flag": "0x002CA570"},
-    "31": {"Name": "Calm Inlet Jewel Trade Item 5", "LocationIDs": [465], "Flag": "0x002CA574"},
-    "32": {"Name": "Calm Inlet Jewel Trade Past Item 1", "LocationIDs": [466], "Flag": "0x002C88F4"},
-    "33": {"Name": "Calm Inlet Jewel Trade Past Item 2", "LocationIDs": [467], "Flag": "0x002C88F8"},
-    "34": {"Name": "Calm Inlet Jewel Trade Past Item 3", "LocationIDs": [468], "Flag": "0x002C88FC"},
-    "35": {"Name": "Calm Inlet Jewel Trade Past Item 4", "LocationIDs": [469], "Flag": "0x002C8900"},
-    "36": {"Name": "Calm Inlet Jewel Trade Past Item 5", "LocationIDs": [470], "Flag": "0x002C8904"},
-    "37": {"Name": "Calm Inlet Fish Trade Fish 4", "LocationIDs": [472], "Flag": "0x002C958C"},
-    "38": {"Name": "Calm Inlet Fish Trade Fish 8", "LocationIDs": [473], "Flag": "0x002C9590"},
-    "39": {"Name": "Calm Inlet Fish Trade Fish 12", "LocationIDs": [474], "Flag": "0x002C9594"},
-    "40": {"Name": "Calm Inlet Fish Trade Fish 16", "LocationIDs": [475], "Flag": "0x002C9598"},
-    "41": {"Name": "Calm Inlet Fish Trade Fish 20", "LocationIDs": [476], "Flag": "0x002C959C"},
-    "42": {"Name": "Calm Inlet Fish Trade Fish 24", "LocationIDs": [477], "Flag": "0x002C95A0"},
-    "43": {"Name": "Nameless Coast North of Castaway Village (Where Adol Meets Laxia) Laxia Join", "LocationIDs": [401], "Flag": ""},
-    "44": {"Name": "Calm Inlet Calm Inlet (Castaway Village Area) Little Paro Join", "LocationIDs": [403], "Flag": ""},
-    "45": {"Name": "Nameless Coast First Avalodragil Arena Sahad Join", "LocationIDs": [404], "Flag": ""},
-    "46": {"Name": "Calm Inlet Calm Inlet (Castaway Village Area) Dogi Join", "LocationIDs": [405], "Flag": ""},
-    "47": {"Name": "White Sand Cape Alison's Shore Alison Join", "LocationIDs": [406], "Flag": ""},
-    "48": {"Name": "Calm Inlet Ricotta and Shoebill Reunite Shoebill Join", "LocationIDs": [426], "Flag": ""},
-    "49": {"Name": "Calm Inlet Calm Inlet (Castaway Village Area) Fishing Tutorial", "LocationIDs": [471], "Flag": ""},
-    "50": {"Name": "Calm Inlet Calm Inlet (Castaway Village Area) Silvia Skill 1", "LocationIDs": [542], "Flag": ""},
-    "51": {"Name": "Calm Inlet Calm Inlet (Castaway Village Area) Silvia Skill 2", "LocationIDs": [543], "Flag": ""},
-    "52": {"Name": "Nameless Coast First Avalodragil Arena Avalodragil Skill", "LocationIDs": [578], "Flag": ""},
-    "53": {"Name": "Calm Inlet Discovery Rewards Half", "LocationIDs": [478], "Flag": ""},
-    "54": {"Name": "Calm Inlet Discovery Rewards All", "LocationIDs": [479], "Flag": ""},
-    "55": {"Name": "Eternal Hill Eternal Hill Griselda Join", "LocationIDs": [427], "Flag": ""},
-    "56": {"Name": "Waterfall Grotto Waterfall Grotto Sister Nia Join", "LocationIDs": [410], "Flag": ""},
-    "57": {"Name": "Beast Hills Valley (Where Hummel Joins) Hummel Join", "LocationIDs": [411], "Flag": ""},
-    "58": {"Name": "Longhorn Coast Reja Shore Reja Join", "LocationIDs": [413], "Flag": ""},
-    "59": {"Name": "Water and Wood Hills Water and Wood Hills - Camp Miralda Join", "LocationIDs": [419], "Flag": ""},
-    "60": {"Name": "Longhorn Coast Eastern Shore Reja's Pikkard", "LocationIDs": [510], "Flag": ""},
-    "61": {"Name": "Longhorn Coast Reja Shore Pirate Treasure", "LocationIDs": [444], "Flag": ""},
-    "62": {"Name": "Roaring Seashore Metavolicalis Kathleen Join", "LocationIDs": [409], "Flag": ""},
-    "63": {"Name": "Mont Gendarme Mid-Boss Arena Ricotta Join", "LocationIDs": [417], "Flag": ""},
-    "64": {"Name": "Mont Gendarme Cliffside Midpoint Wish Tree", "LocationIDs": [443], "Flag": ""},
-    "65": {"Name": "Mont Gendarme Mishy Rewards Food 2", "LocationIDs": [480], "Flag": ""},
-    "66": {"Name": "Mont Gendarme Mishy Rewards Food 4", "LocationIDs": [481], "Flag": ""},
-    "67": {"Name": "Mont Gendarme Mishy Rewards Food 6", "LocationIDs": [482], "Flag": ""},
-    "68": {"Name": "Mont Gendarme Mishy Rewards Food 8", "LocationIDs": [483], "Flag": ""},
-    "69": {"Name": "Mont Gendarme Mishy Rewards Food 10", "LocationIDs": [484], "Flag": ""},
-    "70": {"Name": "Mont Gendarme Mishy Rewards Food 12", "LocationIDs": [485], "Flag": ""},
-    "71": {"Name": "Mont Gendarme Boss Arena Giasburn Skill 1", "LocationIDs": [560], "Flag": ""},
-    "72": {"Name": "Mont Gendarme Boss Arena Giasburn Skill 2", "LocationIDs": [561], "Flag": ""},
-    "73": {"Name": "Mont Gendarme Mid-Boss Arena Avalodragil 2 Skill 1", "LocationIDs": [562], "Flag": ""},
-    "74": {"Name": "Mont Gendarme Mid-Boss Arena Avalodragil 2 Skill 2", "LocationIDs": [563], "Flag": ""},
-    "75": {"Name": "Mont Gendarme Mid-Boss Arena Master Kong Skill Laxia", "LocationIDs": [583], "Flag": ""},
-    "76": {"Name": "Octus Overlook Path of the Sky Era Psyche-Ura Skill 1", "LocationIDs": [534], "Flag": ""},
-    "77": {"Name": "Octus Overlook Path of the Sky Era Psyche-Ura Skill 2", "LocationIDs": [535], "Flag": ""},
-    "78": {"Name": "Octus Overlook Path of the Insectoid Era Psyche-Nestor Skill 1", "LocationIDs": [536], "Flag": ""},
-    "79": {"Name": "Octus Overlook Path of the Insectoid Era Psyche-Nestor Skill 2", "LocationIDs": [537], "Flag": ""},
-    "80": {"Name": "Octus Overlook Path of the Frozen Era Psyche-Minos Skill 1", "LocationIDs": [538], "Flag": ""},
-    "81": {"Name": "Octus Overlook Path of the Frozen Era Psyche-Minos Skill 2", "LocationIDs": [539], "Flag": ""},
-    "82": {"Name": "Octus Overlook Path of the Ocean Era Psyche-Hydra Skill 1", "LocationIDs": [540], "Flag": ""},
-    "83": {"Name": "Octus Overlook Path of the Ocean Era Psyche-Hydra Skill 2", "LocationIDs": [541], "Flag": ""},
-    "84": {"Name": "Odd Rock Coast Odd Rock Coast Licht Join", "LocationIDs": [415], "Flag": ""},
-    "85": {"Name": "Odd Rock Coast Odd Rock Coast Quina Join", "LocationIDs": [416], "Flag": ""},
-    "86": {"Name": "Odd Rock Coast Odd Rock Coast Kiergaard Weissman Skill 1", "LocationIDs": [564], "Flag": ""},
-    "87": {"Name": "Odd Rock Coast Odd Rock Coast Kiergaard Weissman Skill 2", "LocationIDs": [565], "Flag": ""},
-    "88": {"Name": "Odd Rock Coast Odd Rock Coast Master Kong Skill Dana", "LocationIDs": [582], "Flag": ""},
-    "89": {"Name": "Pangaia Plains Northern Plains Silvia Join", "LocationIDs": [421], "Flag": ""},
-    "90": {"Name": "Pangaia Plains Ancient Tree Master Kong Skill Hummel", "LocationIDs": [584], "Flag": ""},
-    "91": {"Name": "Roaring Seashore Parasequoia Master Kong Skill Ricotta", "LocationIDs": [580], "Flag": ""},
-    "92": {"Name": "Pirate Ship Eleftheria Deck Kill Boss", "LocationIDs": [434], "Flag": ""},
-    "93": {"Name": "Pirate Ship Eleftheria Deck Seiren Chart", "LocationIDs": [512], "Flag": ""},
-    "94": {"Name": "Pirate Ship Eleftheria Deck Pirate Revenant Skill 1", "LocationIDs": [552], "Flag": ""},
-    "95": {"Name": "Pirate Ship Eleftheria Deck Pirate Revenant Skill 2", "LocationIDs": [553], "Flag": ""},
-    "96": {"Name": "Sahad Starting Skill Skill 1 High Wave", "LocationIDs": [524], "Flag": ""},
-    "97": {"Name": "Sahad Starting Skill Skill 2 Grand Anchor", "LocationIDs": [525], "Flag": ""},
-    "98": {"Name": "Schlamm Jungle Entrance Euron Join", "LocationIDs": [414], "Flag": ""},
-    "99": {"Name": "Schlamm Jungle Boss Arena Laspisus Skill 1", "LocationIDs": [566], "Flag": ""},
-    "100": {"Name": "Schlamm Jungle Boss Arena Laspisus Skill 2", "LocationIDs": [567], "Flag": ""},
-    "101": {"Name": "Schlamm Jungle Mid-Boss Arena Magamandra Skill 1", "LocationIDs": [568], "Flag": ""},
-    "102": {"Name": "Schlamm Jungle Mid-Boss Arena Magamandra Skill 2", "LocationIDs": [569], "Flag": ""},
-    "103": {"Name": "Silent Tower Second Basement Mephorash Skill", "LocationIDs": [532], "Flag": ""},
-    "104": {"Name": "Solitude Island Magna Carpa Second Carlan Join", "LocationIDs": [441], "Flag": ""},
-    "105": {"Name": "Stone Pillar Wind Cave Stone Pillar Wind Cave Chest 1", "LocationIDs": [396], "Flag": ""},
-    "106": {"Name": "Stone Pillar Wind Cave Stone Pillar Wind Cave Chest 2", "LocationIDs": [397], "Flag": ""},
-    "107": {"Name": "Stone Pillar Wind Cave Stone Pillar Wind Cave Chest 3", "LocationIDs": [398], "Flag": ""},
-    "108": {"Name": "Stone Pillar Wind Cave Stone Pillar Wind Cave Chest 4", "LocationIDs": [399], "Flag": ""},
-    "109": {"Name": "Stone Pillar Wind Cave Stone Pillar Wind Cave Chest 5", "LocationIDs": [400], "Flag": ""},
-    "110": {"Name": "Sunrise Beach Sunrise Beach Dina Join", "LocationIDs": [412], "Flag": ""},
-    "111": {"Name": "Sunrise Beach Sunrise Beach Master Kong Skill Sahad", "LocationIDs": [581], "Flag": ""},
-    "112": {"Name": "Temple of the Great Tree Great Tree Garden Thanatos Join", "LocationIDs": [420], "Flag": ""},
-    "113": {"Name": "Temple of the Great Tree Great Tree Garden Dana Join", "LocationIDs": [422], "Flag": ""},
-    "114": {"Name": "Temple of the Great Tree Great Tree Garden Dana Join Event Flame Stone", "LocationIDs": [433], "Flag": ""},
-    "115": {"Name": "Temple of the Great Tree Dana's Room Blue Score Location", "LocationIDs": [439], "Flag": ""},
-    "116": {"Name": "Temple of the Great Tree Temple Boss Arena Brachion Skill 1", "LocationIDs": [558], "Flag": ""},
-    "117": {"Name": "Temple of the Great Tree Temple Boss Arena Brachion Skill 2", "LocationIDs": [559], "Flag": ""},
-    "118": {"Name": "Towering Coral Forest Midpoint Sir Carlan Join", "LocationIDs": [407], "Flag": ""},
-    "119": {"Name": "Towering Coral Forest Midpoint Kiergaard Join", "LocationIDs": [408], "Flag": ""},
-    "120": {"Name": "Towering Coral Forest Boss Arena Clareon Skill 1", "LocationIDs": [574], "Flag": ""},
-    "121": {"Name": "Towering Coral Forest Boss Arena Clareon Skill 2", "LocationIDs": [575], "Flag": ""},
-    "122": {"Name": "Towering Coral Forest Mid-Boss Arena Serpentus Skill 1", "LocationIDs": [576], "Flag": ""},
-    "123": {"Name": "Towering Coral Forest Mid-Boss Arena Serpentus Skill 2", "LocationIDs": [577], "Flag": ""},
-    "124": {"Name": "Underground Water Vein Submerged Area Pikkard", "LocationIDs": [442], "Flag": ""},
-    "125": {"Name": "Valley of Kings Seren Garden Mistilteinn Event", "LocationIDs": [432], "Flag": ""},
-    "126": {"Name": "Valley of Kings Boss Arena Kill Boss", "LocationIDs": [436], "Flag": ""},
-    "127": {"Name": "Valley of Kings Boss Arena Basileus Skill 1", "LocationIDs": [544], "Flag": ""},
-    "128": {"Name": "Valley of Kings Boss Arena Basileus Skill 2", "LocationIDs": [545], "Flag": ""},
-    "129": {"Name": "Valley of Kings Mid-Boss Arena Doxa Griel Skill 1", "LocationIDs": [546], "Flag": ""},
-    "130": {"Name": "Valley of Kings Mid-Boss Arena Doxa Griel Skill 2", "LocationIDs": [547], "Flag": ""},
-    "131": {"Name": "Vista Ridge Vista Ridge Upper Franz Join", "LocationIDs": [425], "Flag": ""},
-    "132": {"Name": "Vista Ridge Vista Ridge Lower Master Kong Join", "LocationIDs": [428], "Flag": ""},
-    "133": {"Name": "Vista Ridge Vista Ridge Lower Master Kong Skill Adol", "LocationIDs": [585], "Flag": ""},
-    "134": {"Name": "Waterdrop Cave Coastal Outlook Captain Barbaros Join", "LocationIDs": [402], "Flag": ""},
-    "135": {"Name": "Waterdrop Cave Boss Arena Byfteriza Skill", "LocationIDs": [579], "Flag": ""},
-    "136": {"Name": "Western Foot of Gendarme Near Cavern of the Ancient King Austin Join", "LocationIDs": [418], "Flag": ""},
-    "137": {"Name": "Cavern of the Ancient King Cavern of the Ancient King Cave Wall", "LocationIDs": [431], "Flag": ""}
+    "0": {
+        "Name": "Eroded Valley Boss Arena Kill Boss, Skill 1, 2",
+        "LocationIDs": [435, 570, 571],
+        "Flag": "0x002CA510"
+    },
+    "1": {
+        "Name": "Eroded Valley Mid-Boss Arena Lonbrigius Skill 1, 2",
+        "LocationIDs": [572, 573],
+        "Flag": "0x002C75A0"
+    },
+    "2": {
+        "Name": "Archeozoic Chasm Boss Arena Kill Boss, Skill 1, 2",
+        "LocationIDs": [437, 548, 549],
+        "Flag": "0x002CA520"
+    },
+    "3": {
+        "Name": "Archeozoic Chasm Mid-Boss Arena Coelacantos Skill 1, 2",
+        "LocationIDs": [550, 551],
+        "Flag": "0x002C78B8"
+    },
+    "4": {
+        "Name": "Baja Tower Top Floor Monolith Scene",
+        "LocationIDs": [440],
+        "Flag": "0x002CA5E8"
+    },
+    "5": {
+        "Name": "Baja Tower Boss Arena Carveros Skill 1, 2",
+        "LocationIDs": [554, 555],
+        "Flag": "0x002C785C"
+    },
+    "6": {
+        "Name": "Baja Tower Mid-Boss Arena Exmetal Skill 1, 2",
+        "LocationIDs": [556, 557],
+        "Flag": "0x002C7854"
+    },
+    "7": {
+        "Name": "Calm Inlet Intercept Stage 2",
+        "LocationIDs": [446],
+        "Flag": "0x002C93F0"
+    },
+    "8": {
+        "Name": "Calm Inlet Intercept Stage 3",
+        "LocationIDs": [447],
+        "Flag": "0x002C93F4"
+    },
+    "9": {
+        "Name": "Calm Inlet Intercept Stage 5",
+        "LocationIDs": [448],
+        "Flag": "0x002C93F8"
+    },
+    "10": {
+        "Name": "Calm Inlet Intercept Stage 7",
+        "LocationIDs": [449],
+        "Flag": "0x002C93FC"
+    },
+    "11": {
+        "Name": "Calm Inlet Intercept Stage 9",
+        "LocationIDs": [450],
+        "Flag": "0x002C9400"
+    },
+    "12": {
+        "Name": "Calm Inlet Map Completion Percent 10",
+        "LocationIDs": [451],
+        "Flag": "0x002C95B8"
+    },
+    "13": {
+        "Name": "Calm Inlet Map Completion Percent 20",
+        "LocationIDs": [452],
+        "Flag": "0x002C95BC"
+    },
+    "14": {
+        "Name": "Calm Inlet Map Completion Percent 30",
+        "LocationIDs": [453],
+        "Flag": "0x002C95C0"
+    },
+    "15": {
+        "Name": "Calm Inlet Map Completion Percent 40",
+        "LocationIDs": [454],
+        "Flag": "0x002C95C4"
+    },
+    "16": {
+        "Name": "Calm Inlet Map Completion Percent 50",
+        "LocationIDs": [455],
+        "Flag": "0x002C95C8"
+    },
+    "17": {
+        "Name": "Calm Inlet Map Completion Percent 60",
+        "LocationIDs": [456],
+        "Flag": "0x002C95CC"
+    },
+    "18": {
+        "Name": "Calm Inlet Map Completion Percent 70",
+        "LocationIDs": [457],
+        "Flag": "0x002C95D0"
+    },
+    "19": {
+        "Name": "Calm Inlet Map Completion Percent 80",
+        "LocationIDs": [458],
+        "Flag": "0x002C95D4"
+    },
+    "20": {
+        "Name": "Calm Inlet Map Completion Percent 90",
+        "LocationIDs": [459],
+        "Flag": "0x002C95D8"
+    },
+    "21": {
+        "Name": "Calm Inlet Map Completion Percent 100",
+        "LocationIDs": [460],
+        "Flag": "0x002C95DC"
+    },
+    "22": {
+        "Name": "Calm Inlet Jewel Trade Item 1",
+        "LocationIDs": [461],
+        "Flag": "0x002CA564"
+    },
+    "23": {
+        "Name": "Calm Inlet Jewel Trade Item 2",
+        "LocationIDs": [462],
+        "Flag": "0x002CA568"
+    },
+    "24": {
+        "Name": "Calm Inlet Jewel Trade Item 3",
+        "LocationIDs": [463],
+        "Flag": "0x002CA56C"
+    },
+    "25": {
+        "Name": "Calm Inlet Jewel Trade Item 4",
+        "LocationIDs": [464],
+        "Flag": "0x002CA570"
+    },
+    "26": {
+        "Name": "Calm Inlet Jewel Trade Item 5",
+        "LocationIDs": [465],
+        "Flag": "0x002CA574"
+    },
+    "27": {
+        "Name": "Calm Inlet Jewel Trade Past Item 1",
+        "LocationIDs": [466],
+        "Flag": "0x002C88F4"
+    },
+    "28": {
+        "Name": "Calm Inlet Jewel Trade Past Item 2",
+        "LocationIDs": [467],
+        "Flag": "0x002C88F8"
+    },
+    "29": {
+        "Name": "Calm Inlet Jewel Trade Past Item 3",
+        "LocationIDs": [468],
+        "Flag": "0x002C88FC"
+    },
+    "30": {
+        "Name": "Calm Inlet Jewel Trade Past Item 4",
+        "LocationIDs": [469],
+        "Flag": "0x002C8900"
+    },
+    "31": {
+        "Name": "Calm Inlet Jewel Trade Past Item 5",
+        "LocationIDs": [470],
+        "Flag": "0x002C8904"
+    },
+    "32": {
+        "Name": "Calm Inlet Fish Trade Fish 4",
+        "LocationIDs": [472],
+        "Flag": "0x002C958C"
+    },
+    "33": {
+        "Name": "Calm Inlet Fish Trade Fish 8",
+        "LocationIDs": [473],
+        "Flag": "0x002C9590"
+    },
+    "34": {
+        "Name": "Calm Inlet Fish Trade Fish 12",
+        "LocationIDs": [474],
+        "Flag": "0x002C9594"
+    },
+    "35": {
+        "Name": "Calm Inlet Fish Trade Fish 16",
+        "LocationIDs": [475],
+        "Flag": "0x002C9598"
+    },
+    "36": {
+        "Name": "Calm Inlet Fish Trade Fish 20",
+        "LocationIDs": [476],
+        "Flag": "0x002C959C"
+    },
+    "37": {
+        "Name": "Calm Inlet Fish Trade Fish 24",
+        "LocationIDs": [477],
+        "Flag": "0x002C95A0"
+    },
+    "38": {
+        "Name": "Nameless Coast North of Castaway Village (Where Adol Meets Laxia) Laxia Join",
+        "LocationIDs": [401],
+        "Flag": "0x002C73D0"
+    },
+    "39": {
+        "Name": "Calm Inlet Calm Inlet (Castaway Village Area) Little Paro Join, Dogi Join, Fishing Tutorial, Avalodragil Skill",
+        "LocationIDs": [403, 471, 405, 578],
+        "Flag": "0x002C741C"
+    },
+    "40": {
+        "Name": "Nameless Coast First Avalodragil Arena Sahad Join",
+        "LocationIDs": [404],
+        "Flag": "0x002CA5C0"
+    },
+    "41": {
+        "Name": "White Sand Cape Alison's Shore Alison Join",
+        "LocationIDs": [406],
+        "Flag": "0x002CA4D4"
+    },
+    "42": {
+        "Name": "Calm Inlet Ricotta and Shoebill Reunite Shoebill Join",
+        "LocationIDs": [426],
+        "Flag": "0x002C9528"
+    },
+    "43": {
+        "Name": "Calm Inlet Calm Inlet (Castaway Village Area) Silvia Skill 1, 2",
+        "LocationIDs": [542, 543],
+        "Flag": "0x002CA5A0"
+    },
+    "44": {
+        "Name": "Calm Inlet Discovery Rewards Half",
+        "LocationIDs": [478],
+        "Flag": "0x002C951C"
+    },
+    "45": {
+        "Name": "Calm Inlet Discovery Rewards All",
+        "LocationIDs": [479],
+        "Flag": "0x002C9520"
+    },
+    "46": {
+        "Name": "Eternal Hill Eternal Hill Griselda Join",
+        "LocationIDs": [427],
+        "Flag": "0x002C94BC"
+    },
+    "47": {
+        "Name": "Waterfall Grotto Waterfall Grotto Sister Nia Join",
+        "LocationIDs": [410],
+        "Flag": "0x002C94C4"
+    },
+    "48": {
+        "Name": "Beast Hills Valley (Where Hummel Joins) Hummel Join",
+        "LocationIDs": [411],
+        "Flag": "0x002C7594"
+    },
+    "49": {
+        "Name": "Longhorn Coast Reja Shore Reja Join",
+        "LocationIDs": [413, 510],
+        "Flag": "0x002CA4E8"
+    },
+    "50": {
+        "Name": "Water and Wood Hills Water and Wood Hills - Camp Miralda Join",
+        "LocationIDs": [419],
+        "Flag": "0x002CA4E4"
+    },
+    "51": {
+        "Name": "Longhorn Coast Reja Shore Pirate Treasure",
+        "LocationIDs": [444],
+        "Flag": "0x002CAB04"
+    },
+    "52": {
+        "Name": "Roaring Seashore Metavolicalis Kathleen Join",
+        "LocationIDs": [409],
+        "Flag": "0x002CA4D0"
+    },
+    "53": {
+        "Name": "Mont Gendarme Mid-Boss Arena Ricotta Join, Avalodragil 2 Skill 1, 2",
+        "LocationIDs": [417, 562, 563],
+        "Flag": "0x002C76D8"
+    },
+    "54": {
+        "Name": "Mont Gendarme Cliffside Midpoint Wish Tree",
+        "LocationIDs": [443],
+        "Flag": "0x002CAB08"
+    },
+    "55": {
+        "Name": "Mont Gendarme Mishy Rewards Food 2",
+        "LocationIDs": [480],
+        "Flag": "0x002C9668"
+    },
+    "56": {
+        "Name": "Mont Gendarme Mishy Rewards Food 4",
+        "LocationIDs": [481],
+        "Flag": "0x002C966C"
+    },
+    "57": {
+        "Name": "Mont Gendarme Mishy Rewards Food 6",
+        "LocationIDs": [482],
+        "Flag": "0x002C9670"
+    },
+    "58": {
+        "Name": "Mont Gendarme Mishy Rewards Food 8",
+        "LocationIDs": [483],
+        "Flag": "0x002C9674"
+    },
+    "59": {
+        "Name": "Mont Gendarme Mishy Rewards Food 10",
+        "LocationIDs": [484],
+        "Flag": "0x002C9678"
+    },
+    "60": {
+        "Name": "Mont Gendarme Mishy Rewards Food 12",
+        "LocationIDs": [485],
+        "Flag": "0x002C967C"
+    },
+    "61": {
+        "Name": "Mont Gendarme Boss Arena Giasburn Skill 1, 2",
+        "LocationIDs": [560, 561],
+        "Flag": "0x002C7700"
+    },
+    "62": {
+        "Name": "Mont Gendarme Mid-Boss Arena Master Kong Skill Laxia",
+        "LocationIDs": [583],
+        "Flag": "0x002C9500"
+    },
+    "63": {
+        "Name": "Octus Overlook Path of the Sky Era Psyche-Ura Skill 1, 2",
+        "LocationIDs": [534, 535],
+        "Flag": "0x002C7A10"
+    },
+    "64": {
+        "Name": "Octus Overlook Path of the Insectoid Era Psyche-Nestor Skill 1, 2",
+        "LocationIDs": [536, 537],
+        "Flag": "0x002C7A08"
+    },
+    "65": {
+        "Name": "Octus Overlook Path of the Frozen Era Psyche-Minos Skill 1, 2",
+        "LocationIDs": [538, 539],
+        "Flag": "0x002C7A00"
+    },
+    "66": {
+        "Name": "Octus Overlook Path of the Ocean Era Psyche-Hydra Skill 1, 2",
+        "LocationIDs": [540, 541],
+        "Flag": "0x002C79F8"
+    },
+    "67": {
+        "Name": "Odd Rock Coast Odd Rock Coast Licht Join",
+        "LocationIDs": [415],
+        "Flag": "0x002C75C4"
+    },
+    "68": {
+        "Name": "Odd Rock Coast Odd Rock Coast Quina Join, Kiergaard Weissman Skill 1, 2",
+        "LocationIDs": [416, 564, 565],
+        "Flag": "0x002C7608"
+    },
+    "69": {
+        "Name": "Odd Rock Coast Odd Rock Coast Master Kong Skill Dana",
+        "LocationIDs": [582],
+        "Flag": "0x002C94F8"
+    },
+    "70": {
+        "Name": "Pangaia Plains Northern Plains Silvia Join",
+        "LocationIDs": [421],
+        "Flag": "0x002C94D0"
+    },
+    "71": {
+        "Name": "Pangaia Plains Ancient Tree Master Kong Skill Hummel",
+        "LocationIDs": [584],
+        "Flag": "0x002C9508"
+    },
+    "72": {
+        "Name": "Roaring Seashore Parasequoia Master Kong Skill Ricotta",
+        "LocationIDs": [580],
+        "Flag": "0x002CAF4C"
+    },
+    "73": {
+        "Name": "Pirate Ship Eleftheria Deck Kill Boss, Pirate Revenant Skill 1, 2",
+        "LocationIDs": [434, 552, 553],
+        "Flag": "0x002C7890"
+    },
+    "74": {
+        "Name": "Pirate Ship Eleftheria Deck Seiren Chart",
+        "LocationIDs": [512],
+        "Flag": "0x002C789C"
+    },
+    "75": {
+        "Name": "Schlamm Jungle Entrance Euron Join",
+        "LocationIDs": [414],
+        "Flag": "0x002CA4F0"
+    },
+    "76": {
+        "Name": "Schlamm Jungle Boss Arena Laspisus Skill 1, 2",
+        "LocationIDs": [566, 567],
+        "Flag": "0x002C75BC"
+    },
+    "77": {
+        "Name": "Schlamm Jungle Mid-Boss Arena Magamandra Skill 1, 2",
+        "LocationIDs": [568, 569],
+        "Flag": "0x002C75B8"
+    },
+    "78": {
+        "Name": "Silent Tower Second Basement Mephorash Skill",
+        "LocationIDs": [532],
+        "Flag": "0x002C8828"
+    },
+    "79": {
+        "Name": "Solitude Island Magna Carpa Second Carlan Join",
+        "LocationIDs": [441],
+        "Flag": "0x002CA594"
+    },
+    "80": {
+        "Name": "Sunrise Beach Sunrise Beach Dina Join",
+        "LocationIDs": [412],
+        "Flag": "0x002CA4E0"
+    },
+    "81": {
+        "Name": "Sunrise Beach Sunrise Beach Master Kong Skill Sahad",
+        "LocationIDs": [581],
+        "Flag": "0x002C94F0"
+    },
+    "82": {
+        "Name": "Temple of the Great Tree Great Tree Garden Thanatos Join, Dana Join, Flame Stone",
+        "LocationIDs": [420, 422, 433],
+        "Flag": "0x002CA518"
+    },
+    "83": {
+        "Name": "Temple of the Great Tree Dana's Room Blue Score Location",
+        "LocationIDs": [439],
+        "Flag": "0x002CAB5C"
+    },
+    "84": {
+        "Name": "Temple of the Great Tree Temple Boss Arena Brachion Skill 1, 2",
+        "LocationIDs": [558, 559],
+        "Flag": "0x002C77F8"
+    },
+    "85": {
+        "Name": "Towering Coral Forest Midpoint Sir Carlan Join, Kiergaard Join",
+        "LocationIDs": [407, 408],
+        "Flag": "0x002CA4EC"
+    },
+    "86": {
+        "Name": "Towering Coral Forest Boss Arena Clareon Skill 1, 2",
+        "LocationIDs": [574, 575],
+        "Flag": "0x002C7560"
+    },
+    "87": {
+        "Name": "Towering Coral Forest Mid-Boss Arena Serpentus Skill 1, 2",
+        "LocationIDs": [576, 577],
+        "Flag": "0x002C7548"
+    },
+    "88": {
+        "Name": "Underground Water Vein Submerged Area Pikkard",
+        "LocationIDs": [442],
+        "Flag": "0x002C95E8"
+    },
+    "89": {
+        "Name": "Valley of Kings Seren Garden Mistilteinn Event",
+        "LocationIDs": [432],
+        "Flag": "0x002CA58C"
+    },
+    "90": {
+        "Name": "Valley of Kings Boss Arena Kill Boss, Skill 1, 2",
+        "LocationIDs": [436, 544, 545],
+        "Flag": "0x002CA528"
+    },
+    "91": {
+        "Name": "Valley of Kings Mid-Boss Arena Doxa Griel Skill 1, 2",
+        "LocationIDs": [546, 547],
+        "Flag": "0x002C78F4"
+    },
+    "92": {
+        "Name": "Vista Ridge Vista Ridge Upper Franz Join",
+        "LocationIDs": [425],
+        "Flag": "0x002C94D8"
+    },
+    "93": {
+        "Name": "Vista Ridge Vista Ridge Lower Master Kong Join, Skill Adol",
+        "LocationIDs": [585, 428],
+        "Flag": "0x002C9510"
+    },
+    "94": {
+        "Name": "Waterdrop Cave Coastal Outlook Captain Barbaros Join",
+        "LocationIDs": [402],
+        "Flag": "0x002C740C"
+    },
+    "95": {
+        "Name": "Waterdrop Cave Boss Arena Byfteriza Skill",
+        "LocationIDs": [579],
+        "Flag": "0x002C7408"
+    },
+    "96": {
+        "Name": "Western Foot of Gendarme Near Cavern of the Ancient King Austin Join",
+        "LocationIDs": [418],
+        "Flag": "0x002CA588"
+    },
+    "97": {
+        "Name": "Cavern of the Ancient King Cavern of the Ancient King Cave Wall",
+        "LocationIDs": [431],
+        "Flag": "0x002CA4F8"
+    },
+    "98": {
+        "Name": "White Sand Cape Cobalt Crag Landmark",
+        "LocationIDs": [638],
+        "Flag": "0x002CA5FC"
+    },
+    "99": {
+        "Name": "East Coast Cave East Coast Cave Landmark",
+        "LocationIDs": [651],
+        "Flag": "0x002CA630"
+    },
+    "100": {
+        "Name": "Eroded Valley Dark Passage Landmark",
+        "LocationIDs": [643],
+        "Flag": "0x002CA610"
+    },
+    "101": {
+        "Name": "Eternal Hill Eternal Hill Landmark",
+        "LocationIDs": [659],
+        "Flag": "0x002CA650"
+    },
+    "102": {
+        "Name": "Great River Valley Chimney Rock Landmark",
+        "LocationIDs": [642],
+        "Flag": "0x002CA60C"
+    },
+    "103": {
+        "Name": "Waterfall Grotto Waterfall Grotto Landmark",
+        "LocationIDs": [660],
+        "Flag": "0x002CA654"
+    },
+    "104": {
+        "Name": "Lodinia Marshlands Exit to Valley of Kings Landmark",
+        "LocationIDs": [657],
+        "Flag": "0x002CA648"
+    },
+    "105": {
+        "Name": "Longhorn Coast Reja Shore Landmark",
+        "LocationIDs": [649],
+        "Flag": "0x002CA628"
+    },
+    "106": {
+        "Name": "Roaring Seashore Metavolicalis Landmark",
+        "LocationIDs": [640],
+        "Flag": "0x002CA604"
+    },
+    "107": {
+        "Name": "Mountain Pinnacle Trail Second Cave Landmark",
+        "LocationIDs": [653],
+        "Flag": "0x002CA638"
+    },
+    "108": {
+        "Name": "Titis Primeval Forest Near Primordial Den Landmark",
+        "LocationIDs": [654],
+        "Flag": "0x002CA63C"
+    },
+    "109": {
+        "Name": "Pangaia Plains Northern Plains Landmark",
+        "LocationIDs": [655],
+        "Flag": "0x002CA640"
+    },
+    "110": {
+        "Name": "Pangaia Plains Ancient Tree Landmark",
+        "LocationIDs": [656],
+        "Flag": "0x002CA644"
+    },
+    "111": {
+        "Name": "Nameless Coast Shoreline North of Boulder Landmark",
+        "LocationIDs": [637],
+        "Flag": ""
+    },
+    "112": {
+        "Name": "Nostalgia Cape Nostalgia Cape Landmark",
+        "LocationIDs": [650],
+        "Flag": "0x002CA5F8"
+    },
+    "113": {
+        "Name": "Roaring Seashore Parasequoia Landmark",
+        "LocationIDs": [641],
+        "Flag": "0x002CA608"
+    },
+    "114": {
+        "Name": "Schlamm Jungle Muddy Passage Landmark",
+        "LocationIDs": [645],
+        "Flag": "0x002CA618"
+    },
+    "115": {
+        "Name": "Solitude Island Magna Carpa Landmark",
+        "LocationIDs": [652],
+        "Flag": "0x002CA634"
+    },
+    "116": {
+        "Name": "Sunrise Beach Sunrise Beach Landmark",
+        "LocationIDs": [644],
+        "Flag": "0x002CA614"
+    },
+    "117": {
+        "Name": "The Submerged Cemetery The Submerged Cemetery Landmark",
+        "LocationIDs": [658],
+        "Flag": "0x002CA64C"
+    },
+    "118": {
+        "Name": "Towering Coral Forest Rainbow Falls Landmark",
+        "LocationIDs": [639],
+        "Flag": "0x002CA600"
+    },
+    "119": {
+        "Name": "Underground Water Vein Lapis Mineral Vein Landmark",
+        "LocationIDs": [648],
+        "Flag": "0x002CA624"
+    },
+    "120": {
+        "Name": "Weathervane Hills Zephyr Hill Landmark",
+        "LocationIDs": [647],
+        "Flag": "0x002CA620"
+    },
+    "121": {
+        "Name": "Western Foot of Gendarme Near Cavern of the Ancient King Landmark",
+        "LocationIDs": [646],
+        "Flag": "0x002CA61C"
+    },
+    "122": {
+        "Name": "Former Sanctuary Crypt - Final Floor Boss Arena Melaiduma Skill",
+        "LocationIDs": [533],
+        "Flag": "0x002C88A0"
+    }
 }
