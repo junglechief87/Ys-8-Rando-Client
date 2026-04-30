@@ -14,8 +14,23 @@ namespace Ys8AP.Mem
             return Contexts.GameContext.InventoryAddress != 0 &&
             !Contexts.FlagEnumContext.SaveMenuFlag && 
             !Contexts.FlagEnumContext.TimeAttackFlag &&
-            !Contexts.FlagEnumContext.GameOverSelect;
+            !Contexts.FlagEnumContext.CustomGameOverFlag &&
+            App.validState;
         }
 
+        public static bool PostRetry()
+        {
+            return Contexts.FlagEnumContext.RetryFlag;
+        }
+
+        public static bool GameOver()
+        {
+            return Contexts.FlagEnumContext.CustomGameOverFlag;
+        }
+
+        public static bool NotInTown()
+        {
+            return !Contexts.FlagEnumContext.InTownFlag;
+        }
     }
 }

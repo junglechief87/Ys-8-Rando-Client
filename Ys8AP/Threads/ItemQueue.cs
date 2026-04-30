@@ -47,18 +47,18 @@ namespace Ys8AP.Threads
                     // If player was not ready before but is now, we check items.
                     if (checkItems)
                     {
-                        //InventoryMgmt.VerifyItems();
+                        InventoryMgmt.VerifyItems();
                         checkItems = false;
                     }
 
-                    while (inventoryQueue.TryDequeue(out long apId))
+                    while (inventoryQueue.TryDequeue(out long apId) && !checkItems)
                     {
                         InventoryMgmt.GiveItem(apId);
                     }
                     
                 }
                 // If player enters a not ready state, we clear queues and prepare to check items, once they exit the states.
-                else if (!PlayerState.PlayerReady())
+                else if (!PlayerState.PlayerReady() || PlayerState.PostRetry())
                 {
                     ClearQueues();
                     checkItems = true;

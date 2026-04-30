@@ -17,6 +17,6 @@ namespace Ys8AP.Items
         public bool CrewMember = false; 
         public bool Landmark = false; 
         public bool Skill = false;
-
+        public int APSaveID; // ID used for AP Save file, is just based on the order of items in the Items.json file
     }
 }

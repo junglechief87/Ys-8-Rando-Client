@@ -49,6 +49,7 @@ using System.Reactive.Concurrency;
 using System.Threading;
 using System.Threading.Tasks;
 using Color = Avalonia.Media.Color;
+using Ys8AP.Threads;
 
 // Adapted from github.com/ArsonAssassin/Archipelago-Avalonia-Template
 namespace Ys8AP
@@ -65,10 +66,12 @@ namespace Ys8AP
         private Thread? queueThread;
         private Thread? locationWatcherThread;
         private Thread? reconnectThread;
+        private Thread? PartyWatcherThread;
         private GameClient? Ys8Client;
-        private DeathLinkService? _deathlinkService = null;
+        private static DeathLinkService? _deathlinkService = null;
         private bool deathFromDeathlink = false;
-        private string slotName = "";
+        private static string slotName = "";
+        public static bool validState = false;
 
         public override void Initialize()
         {
@@ -165,7 +168,7 @@ namespace Ys8AP
 
             }
 
-            await Client.Login(e.Slot, !string.IsNullOrWhiteSpace(e.Password) ? e.Password : "");
+            await Client.Login(e.Slot, !string.IsNullOrWhiteSpace(e.Password) ? e.Password : "", Archipelago.MultiClient.Net.Enums.ItemsHandlingFlags.IncludeStartingInventory);
 
             if (!Client.IsConnected || !Client.IsLoggedIn)
             {
@@ -214,14 +217,13 @@ namespace Ys8AP
                 AddressInit.InitializeAddresses();
             }
 
-            /*
-            if (Options.DeathLink)
+            
+            if (Options.DeathLinkEnabled)
             {
                 _deathlinkService = Client.EnableDeathLink();
                 _deathlinkService.OnDeathLinkReceived += _deathlinkService_OnDeathLinkReceived;
-                ListenForDeath();
+                PartyWatcher.ListenForDeath();
             }
-            */
 
             if (queueThread == null)
             {
@@ -241,6 +243,15 @@ namespace Ys8AP
                     IsBackground = true
                 };
                 locationWatcherThread.Start();
+            }
+
+            if (PartyWatcherThread == null && Client.IsConnected)
+            {
+                PartyWatcherThread = new Thread(new ParameterizedThreadStart(PartyWatcher.DoLoop))
+                {
+                    IsBackground = true
+                };
+                PartyWatcherThread.Start();
             }
 
             Context.ConnectButtonEnabled = true;
@@ -270,33 +281,24 @@ namespace Ys8AP
         private void PlayerReady(string slotName)
         {
             Thread.Sleep(50);
-            string currSlot = OpenMem.GetSlotName();
 
-            // First load for this save, so do extra stuff
-            if (currSlot == "")
-            {
-                OpenMem.SetSlotData(slotName);
-            }
-            else if (currSlot != slotName)
-            {
-                // Padding because Avalonia keeps cutting things off...
-                Log.Logger.Error("Wrong slot name. Current save is using slot: " + currSlot + "      ");
-                return;
-            }
-            else if (!OpenMem.TestRoomSeed())
+            if (!OpenMem.TestRoomSeed())
             {
                 return;
             }
-
             // Check for any missing items after a connect/reconnect
-            //ItemQueue.checkItems = true;
-            //WatchGoal();
-        }
+            validState = true;
+            // On connect reveal the player tracking items in the inventory.
+            Contexts.InventoryContext.CheckIfObtainedAndSet(139); // Progressive Shop Rank
+            Contexts.InventoryContext.CheckIfObtainedAndSet(143); // Castaway
+            Contexts.InventoryContext.CheckIfObtainedAndSet(148); // Discovery
+            if (Options.FinalBossAccess == 2) 
+            {
+                Contexts.InventoryContext.CheckIfObtainedAndSet(831); // Psyches
+            }
 
-        private void PlayerNotReady(string slotName)
-        {
-            ItemQueue.ClearQueues();
-            //Memory.MonitorAddressForAction<int>(MiscAddrs.TimeOfDayAddr, () => PlayerReady(slotName), (o) => { return o != 0; });
+            ItemQueue.checkItems = true;
+            WatchGoal();
         }
 
         internal static async Task SendLocation(int locId)
@@ -307,78 +309,39 @@ namespace Ys8AP
             };
 
             if (Client.CurrentSession != null && Client.CurrentSession.Socket.Connected) 
-                App.Client.SendLocationAsync(loc);
+                Client.SendLocationAsync(loc);
             else
                 locationQueue.Enqueue(loc);
         }
 
-        private void ListenForDeath()
-        {
-            /*
-            for (int i = 0; i < MiscAddrs.HpAddrs.Length; i++)
-            {
-                uint addr = MiscAddrs.HpAddrs[i];
-                short curValue = Memory.ReadShort(addr);
-
-                // Connected while player is dead, don't send a death and wait for revive (or for the char to be recruited)
-                if (curValue <= 0)
-                    Memory.MonitorAddressForAction<short>(addr, () => HandleCharRevive(addr), (o) => { return o > 0; });
-                else
-                    Memory.MonitorAddressForAction<short>(addr, () => HandleCharDeath(addr), (o) => { return o <= 0; });
-            }
-            */
-        }
-
-        private void HandleCharDeath(uint addr)
-        {
-            return;
-            /*
-            // Don't death link on game reset
-            if (PlayerState.PlayerReady() && !deathFromDeathlink)
-            {
-                DeathLink dl = new(slotName);
-                _deathlinkService.SendDeathLink(dl);
-                Log.Logger.Information("DeathLink: Sending Death to your friends...");
-            }
-
-            deathFromDeathlink = false;
-
-            // Monitor for the char to be revived.
-            Memory.MonitorAddressForAction<short>(addr, () => HandleCharRevive(addr), (o) => { return o > 0; });
-            */
-        }
-
-        private void HandleCharRevive(uint addr)
-        {
-            Memory.MonitorAddressForAction<short>(addr, () => HandleCharDeath(addr), (o) => { return o <= 0; });
-        }
-
         private static void WatchGoal()
         {
-            return;
-            /*
-            // For some reason, the Boss Kill Flag doesn't set for Utan so use the floor kill count instead
-            if (Options.Goal == 2)
-                Memory.MonitorAddressForAction<byte>(MiscAddrs.UtanFlag, () => Client.SendGoalCompletion(), (o) => { return o != 0; });
-            else
-                Memory.MonitorAddressForAction<short>(MiscAddrs.BossKillAddr, () => Client.SendGoalCompletion(), (o) => { return o == Options.Goal * 100; });
-                */
+            if (Contexts.FlagEnumContext.GoalFlag && PlayerState.PlayerReady())
+            {
+                Client.SendGoalCompletion();
+            }
         }
         #endregion
 
         private void _deathlinkService_OnDeathLinkReceived(DeathLink deathLink)
         {
-            return;
-            /*
+            
             // Kill player x_x
-            if (PlayerState.IsPlayerInDungeon())
+            if (PlayerState.PlayerReady() && !PlayerState.GameOver() && !PlayerState.NotInTown())
             {
-                deathFromDeathlink = true;
-                byte currChar = Memory.ReadByte(MiscAddrs.CurrCharAddr);
-                Memory.Write(MiscAddrs.HpAddrs[currChar], (short)-1);
+                PartyWatcher.KillParty();
                 Log.Logger.Information("DeathLink: Received from " + deathLink.Source);
             }
-                */
+        }
+
+        public static void sendDeathLink()
+        {
+            if (_deathlinkService != null)
+            {
+                DeathLink dl = new(slotName);
+                _deathlinkService.SendDeathLink(dl);
+                Log.Logger.Information("DeathLink: Sending Death to your friends...");
+            }
         }
 
         private static void Client_ItemReceived(object? sender, ItemReceivedEventArgs e)

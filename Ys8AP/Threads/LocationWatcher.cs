@@ -24,10 +24,15 @@ namespace Ys8AP.Threads
         private static ConcurrentDictionary<int, ChestLocation> ChestData = Resources.Embedded.ChestLocations;
         private static ConcurrentDictionary<int, EventLocation> EventData = Resources.Embedded.EventLocations;
         private static byte EventCheck;
-        private static readonly HashSet<int> allLocationIds = App.Client.CurrentSession.Locations.AllLocations.Select(id => (int)id).ToHashSet();
+        private static HashSet<long>? allLocationIds;
 
         internal static void DoLoop(object? parameters)
         {
+            if (allLocationIds == null && App.Client.CurrentSession != null)
+            {
+                allLocationIds = App.Client.CurrentSession.Locations.AllLocations.ToHashSet();
+            }
+
             while (true)
             {
                 if (PlayerState.PlayerReady())

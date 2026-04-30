@@ -19,6 +19,7 @@ namespace Ys8AP.Items
         private static ConcurrentDictionary<long, InvItem>? ItemData = Resources.Embedded.Items;
         private static readonly HashSet<string> FlagsSetTo2 = new() { "0x002C8B70", "0x002C8B94", "0x002C7D24" }; // when these flags are set, they need to be set to 2 instead of 1 to properly trigger events.
         private static readonly HashSet<long> TMemos = new() { 760, 761, 762, 763 };
+        private static Dictionary<int, int>? itemCounts;
 
         /// <summary>
         /// Handles all receiving logic for items, including setting flags, handling special item cases, and enforcing quantity limits.
@@ -111,6 +112,7 @@ namespace Ys8AP.Items
                 newQuantity = receivedItem.QuantityMaxInferno;
             }
 
+            Contexts.FlagEnumContext.SetAPSaveValue((uint)receivedItem.APSaveID);
 
             if (receivedItem.CrewMember)
             {
@@ -152,109 +154,44 @@ namespace Ys8AP.Items
             }
         }
 
-        // Now unused, holding onto in case we find a reason to use it.
-        //internal static bool RemoveAttchItem(short itemId)
-        //{
-        //    uint addr;
-        //    bool result = false;
-
-        //    for (int ii = 0; ii < attachChanges.Count; ii++)
-        //    {
-        //        (short, short) item = attachChanges[ii];
-        //        if (item.Item2 == itemId)
-        //        {
-        //            addr = (uint)(FirstAttchAddr + (item.Item1 * AttachmentSize));
-        //            Memory.Write(addr, 0x0000FFFF);
-        //            for (int x = 4; x < AttachmentSize; x += 4)
-        //                Memory.Write((ulong)(addr + x), 0);
-        //            result = true;
-        //            break;
-        //        }
-        //    }
-
-        //    return result;
-        //}
-
         /// <summary>
         /// Compares the GameState item counts to how many of each item are saved to memory, giving the player the difference.
         /// </summary>
-        /*
+
         internal static void VerifyItems()
         {
             // Clear current values, check what the server thinks first, then compare that against the save file.
             ItemQueue.ClearItemQueues();
-            itemCounts.Clear();
-            attachCounts.Clear();
+            if (itemCounts == null)
+            {
+                itemCounts = new Dictionary<int, int>();
+            }
+            else
+            {
+                itemCounts.Clear();
+            }
 
             foreach (ItemInfo itemInfo in App.Client.CurrentSession.Items.AllItemsReceived)
             {
                 long apId = itemInfo.ItemId;
-                if (apId > MiscConstants.AttachIdBase)
-                    IncAttachCount(apId);
-                else if (apId > MiscConstants.ItemIdBase)
-                    IncItemCount(apId);
+                InvItem receivedItem = ItemData[apId];
+                if (!itemCounts.ContainsKey(receivedItem.APSaveID))
+                    itemCounts[receivedItem.APSaveID] = 0;
+                itemCounts[receivedItem.APSaveID] += 1;
             }
 
-            foreach (long itemId in itemCounts.Keys)
+            foreach (var item in itemCounts)
             {
-                //if (itemId == MiscConstants.DarkGenieApId) continue;
-
-                byte value = OpenMem.ReadItemCountValue(itemId);
-                if (itemCounts[itemId] > value)
+                int receivedItemCount = Contexts.FlagEnumContext.GetAPSaveValue((uint)item.Key);
+                if (receivedItemCount < item.Value)
                 {
-                    for (int ii = value; ii < itemCounts[itemId]; ii++)
+                    int quantityToGive = item.Value - receivedItemCount;
+                    for (int i = 0; i < quantityToGive; i++)
                     {
-                        if (MiscConstants.KeyItemApIds.Contains(itemId))
-                            ItemQueue.AddKeyItem(itemId);
-                        else
-                            ItemQueue.AddItem(itemId);
+                        ItemQueue.AddItem(item.Key);
                     }
                 }
             }
-
-            foreach (long attachId in attachCounts.Keys)
-            {
-                //if (attachId == MiscConstants.DarkGenieApId) continue;
-
-                byte value = OpenMem.ReadItemCountValue(attachId);
-                if (attachCounts[attachId] > value)
-                {
-                    for (int ii = value; ii < attachCounts[attachId]; ii++)
-                        ItemQueue.AddAttachment(attachId);
-                }
-            }
         }
-        */
-
-        // Now unused, holding onto in case we find a reason to use it.
-        /// <summary>
-        /// Checks the player's current attachment inventory and optionally compares it against the most recent inventory so when we remove 
-        /// an attachment, we only remove the new one.  This is due to atk/spd/mg/end attachments all having the same ID but different values.
-        /// </summary>
-        /// <param name="firstInit">Don't compare against the existing data, this is an initialization call.</param>
-        //internal static void CheckAttachments(bool firstInit)
-        //{
-        //    uint addr = FirstAttchAddr;
-        //    List<short> newAttachmentInv = new(MaxAttachCount);
-
-        //    for (int ii = 0; ii < MaxAttachCount; ii++)
-        //    {
-        //        newAttachmentInv.Add(Memory.ReadShort(addr));
-        //        addr += AttachmentSize;
-        //    }
-
-        //    if (!firstInit)
-        //    {
-        //        attachChanges.Clear();
-        //        for (short ii = 0; ii < attachmentInv.Count; ii++)
-        //        {
-        //            if (attachmentInv[ii] != newAttachmentInv[ii])
-        //            {
-        //                attachChanges.Add((ii, newAttachmentInv[ii]));
-        //            }
-        //        }
-        //        attachmentInv = newAttachmentInv;
-        //    }
-        //}
     }
 }
