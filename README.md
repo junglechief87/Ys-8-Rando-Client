@@ -1,16 +1,12 @@
 # Ys 8 Randomizer
 
-Home of Seiren Shuffle randomizer for Archipelago. Shamelessly copied from Lizardman175 DC1 Client implementation, will edit this later.
-
-## Warning! (Note: I believe this to be fixed now, please let me know if it happens)
-Play at your own risk: There is an uncommon but serious bug that can result in not receiving some Georama.  If the game is saved with this bad data, there is no fix but to load an older save, restart, or /release the slot.
+Home of Seiren Shuffle randomizer for Archipelago. Developed by JungleChief87. Does not include "Seiren Shuffle Lite" and "Ys8 AP World" which are also needed for this to work correctly.
 
 ## Requirements
-- Windows only for now
-- Install PCSX2 1.7+
-- Legally obtained copy of Dark Cloud 1 NTSC version
+- Steam version of Ys 8 only
+- Run Seiren Shuffle Lite after receiving the patch file from AP.
 - Install [Archipelago](https://archipelago.gg/tutorial/Archipelago/setup_en)
-- Download and install the dc1.apworld file from the latest release like normal ('run' the .apworld file)
+- Download and install the Ys8.apworld file from the latest release like normal ('run' the .apworld file)
 - Download the client .exe from the latest release
 
 ## Running the game
@@ -21,13 +17,4 @@ Play at your own risk: There is an uncommon but serious bug that can result in n
 - Click the burger icon in the client, put in host/slot/password info and click connect. Make sure to connect before entering the dungeon!
 
 ## Things of note
-- Save states are not 100% supported yet.  If you must use them, reset the game before loading the state.  Otherwise consider closing the client if save stating for perfect score on duels.
-- For multiworlds, consider forcing "Progressive Gaffer's Buggy" and "Progressive Paige's House" local.  These are logically required for Xiao so this will ensure they're always in the first half of the DBC so you don't have to wait for a shop.
-- Due to game mechanics, georama can only be received in dungeons.  If you are waiting for an item from another world, hang out in a dungeon floor for a bit.
-- The .pnach file is optional.  It contains a mod for pcsx2 to show all georama tabs regardless if the player has been to the town.
-- If you aren't seeing a miracle chest try these steps before posting:
-  - Chests won't spawn until you've entered the local dungeon once, don't forget to do that first!
-  - Use R2 for first person camera.  Some chests are tricky to find
-  - Go into a dungeon to receive georama.  It might be logically available on the tracker, but the required georama is missing in your inventory.
-  - Some chests may show logically available but not be seen if you haven't recruited a character that is now available.
-  - If the above fails, dm me or ask in the Dark Cloud thread
+- Some items (Mistilteinn, Spirit Ring, and Party Members) have complex function chains that haven't been fully solved. To make these work when being sent from off world there is an item in the player's inventory that's given on game start, it's called AP Packages. If you received one of these items from another player use the AP Packages item and it will process the rest of the functions needed to finish giving the item. 

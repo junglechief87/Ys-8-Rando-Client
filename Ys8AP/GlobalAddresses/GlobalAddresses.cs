@@ -6,6 +6,9 @@ using System.Xml;
 
 namespace Ys8AP.GlobalAddresses
 {
+    // ============================================================================
+    // CONTEXTS - Global context accessors for all game memory structures
+    // ============================================================================
     public static class Contexts
     {
         public static MainGame? GameContext { get; set; }
@@ -14,6 +17,9 @@ namespace Ys8AP.GlobalAddresses
         public static CharacterData? CharacterDataContext { get; set; }
     }
 
+    // ============================================================================
+    // GAME CONTEXT - Main game state and address management
+    // ============================================================================
     public class MainGame
     {
         [MemoryOffset(0x006B7138)]
@@ -26,6 +32,9 @@ namespace Ys8AP.GlobalAddresses
         public ulong CharacterDataAddress { get; set; }
     }
 
+    // ============================================================================
+    // FLAG ENUM CONTEXT - Game flags, state management, and AP integration
+    // ============================================================================
     public class FlagEnum
     {
         [MemoryOffset(0x00000000)]
@@ -147,12 +156,18 @@ namespace Ys8AP.GlobalAddresses
         }
     }
 
+    // ============================================================================
+    // CHEST PARAMS - Chest state structure
+    // ============================================================================
     public class ChestParams
     {
         [MemoryOffset(0x02)]
         public byte ChestOpened { get; set; }
     }
 
+    // ============================================================================
+    // INVENTORY CONTEXT - Item management, party member tracking, and skills
+    // ============================================================================
     public class Inventory
     {
         [MemoryOffset(0x00000000)]
@@ -232,6 +247,9 @@ namespace Ys8AP.GlobalAddresses
         }
     }
 
+    // ============================================================================
+    // SKILL - Character skill data structure
+    // ============================================================================
     public class Skill
     {
         [MemoryOffset(0x00)]
@@ -244,6 +262,9 @@ namespace Ys8AP.GlobalAddresses
         public uint SkillExperience { get; set; }
     }
 
+    // ============================================================================
+    // CHARACTER DATA CONTEXT - Character stats and memory management
+    // ============================================================================
     public class CharacterData
     {
         [MemoryOffset(0x00000000)]
@@ -319,6 +340,9 @@ namespace Ys8AP.GlobalAddresses
         public float CharacterEXP { get; set; }
     }
 
+    // ============================================================================
+    // ADDRESS INIT - Context initialization and memory binding
+    // ============================================================================
     public class AddressInit
     {
         public static void InitializeAddresses()

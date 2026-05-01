@@ -21,10 +21,12 @@ namespace Ys8AP.Threads
     /// </summary>
     internal class LocationWatcher
     {
+        private const byte CHEST_OPENED_FLAG = 0x30;
+        
         private static ConcurrentDictionary<int, ChestLocation> ChestData = Resources.Embedded.ChestLocations;
         private static ConcurrentDictionary<int, EventLocation> EventData = Resources.Embedded.EventLocations;
-        private static byte EventCheck;
         private static HashSet<long>? allLocationIds;
+        private static bool goalCompleted = false;
 
         internal static void DoLoop(object? parameters)
         {
@@ -39,6 +41,7 @@ namespace Ys8AP.Threads
                 {
                     CheckChests();
                     CheckEvents();
+                    WatchGoal();
                 }
                 Thread.Sleep(1000);
             }
@@ -48,12 +51,10 @@ namespace Ys8AP.Threads
         {
             foreach (int ChestID in ChestData.Keys)
             {
-                if (Contexts.FlagEnumContext.GetChestByID((uint)ChestID).ChestOpened == 0x30)
+                if (Contexts.FlagEnumContext.GetChestByID((uint)ChestID).ChestOpened == CHEST_OPENED_FLAG)
                 {
                     if (allLocationIds.Contains(ChestData[ChestID].LocationID)) // Only check chests that are actually in the AP pool
-                    {
-                        await Ys8AP.App.SendLocation(ChestData[ChestID].LocationID);
-                    }
+                        await App.SendLocation(ChestData[ChestID].LocationID);
                 }
             }
         }
@@ -62,17 +63,24 @@ namespace Ys8AP.Threads
         {
             foreach (EventLocation eventLoc in EventData.Values)
             {   
-                EventCheck = Memory.ReadByte(Contexts.GameContext.FlagEnumAddress + Convert.ToUInt32(eventLoc.Flag, 16));
-                if (EventCheck >= 1)
+                byte eventCheck = Memory.ReadByte(Contexts.GameContext.FlagEnumAddress + Convert.ToUInt32(eventLoc.Flag, 16));
+                if (eventCheck >= 1)
                 {
                     foreach (int check in eventLoc.LocationIDs)
                     {
                         if (allLocationIds.Contains(check)) // Only check events that are actually in the AP pool
-                        {
-                            await Ys8AP.App.SendLocation(check);
-                        }
+                            await App.SendLocation(check);
                     }
                 }
+            }
+        }
+
+        private static void WatchGoal()
+        {
+            if (!goalCompleted && Contexts.FlagEnumContext.GoalFlag && PlayerState.PlayerReady())
+            {
+                App.Client.SendGoalCompletion();
+                goalCompleted = true;
             }
         }
     }

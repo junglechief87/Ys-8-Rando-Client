@@ -16,7 +16,15 @@ namespace Ys8AP.Items
 {
     internal class InventoryMgmt
     {
+        internal const int PROGRESSIVE_SHOP_RANK_ID = 139;
+        internal const int CASTAWAY_TRACKING_ID = 143;
+        internal const int LANDMARK_TRACKING_ID = 148;
+        internal const int PSYCHES_ITEM_ID = 831;
+        private const int ESSENCE_STONE_ID = 32800;
+        
         private static ConcurrentDictionary<long, InvItem>? ItemData = Resources.Embedded.Items;
+        // Reverse lookup: APSaveID -> item key (string from Items.json)
+        private static Dictionary<int, long>? APSaveIDToItemKey;
         private static readonly HashSet<string> FlagsSetTo2 = new() { "0x002C8B70", "0x002C8B94", "0x002C7D24" }; // when these flags are set, they need to be set to 2 instead of 1 to properly trigger events.
         private static readonly HashSet<long> TMemos = new() { 760, 761, 762, 763 };
         private static Dictionary<int, int>? itemCounts;
@@ -31,13 +39,13 @@ namespace Ys8AP.Items
             int newQuantity = currentQuantity + receivedItem.ItemQuantity;
             
             // handle special items
-            if (receivedItem.ItemID == 139 && currentQuantity >= 7) // Progressive shop rank, if we have 7 we give essences stone instead.
+            if (receivedItem.ItemID == PROGRESSIVE_SHOP_RANK_ID && currentQuantity >= 7) // Progressive shop rank, if we have 7 we give essences stone instead.
             {
-                receivedItem = ItemData[32800]; // Essence Stone
+                receivedItem = ItemData[ESSENCE_STONE_ID]; // Essence Stone
                 currentQuantity = Memory.ReadInt(Contexts.InventoryContext.GetItemQuantityAddress(receivedItem.ItemID));
                 newQuantity = currentQuantity + 5;
             }
-            else if (receivedItem.ItemID == 139 && currentQuantity == 0) // Progressive shop rank, if it's the first one we give Kathleen.
+            else if (receivedItem.ItemID == PROGRESSIVE_SHOP_RANK_ID && currentQuantity == 0) // Progressive shop rank, if it's the first one we give Kathleen.
             {
                 Contexts.FlagEnumContext.SetNPCJoinState(5); // Kathleen Join Flag
                 Memory.WriteByte(Contexts.GameContext.FlagEnumAddress + 0x002CB20C, 1); // DF_JOIN_KATRIN
@@ -116,8 +124,8 @@ namespace Ys8AP.Items
 
             if (receivedItem.CrewMember)
             {
-                Contexts.InventoryContext.CheckIfObtainedAndSet(143); // Castaway item for tracking crew member obtained for work totals.
-                Memory.WriteByte(Contexts.InventoryContext.GetItemQuantityAddress(143), (byte)newQuantity);
+                Contexts.InventoryContext.CheckIfObtainedAndSet(CASTAWAY_TRACKING_ID); // Castaway item for tracking crew member obtained for work totals.
+                Memory.WriteByte(Contexts.InventoryContext.GetItemQuantityAddress(CASTAWAY_TRACKING_ID), (byte)newQuantity);
 
                 if (receivedItem.CrewJoinID != null)
                 {
@@ -126,8 +134,8 @@ namespace Ys8AP.Items
             }
             else if (receivedItem.Landmark)
             {
-                Contexts.InventoryContext.CheckIfObtainedAndSet(148); // Landmark item for tracking totals.
-                Memory.WriteByte(Contexts.InventoryContext.GetItemQuantityAddress(148), (byte)newQuantity);
+                Contexts.InventoryContext.CheckIfObtainedAndSet(LANDMARK_TRACKING_ID); // Landmark item for tracking totals.
+                Memory.WriteByte(Contexts.InventoryContext.GetItemQuantityAddress(LANDMARK_TRACKING_ID), (byte)newQuantity);
             }
             else if (receivedItem.Skill)
             {
@@ -160,6 +168,18 @@ namespace Ys8AP.Items
 
         internal static void VerifyItems()
         {
+            // Build APSaveID to item key lookup if not already built
+            if (APSaveIDToItemKey == null)
+            {
+                APSaveIDToItemKey = new Dictionary<int, long>();
+                // ItemData is ConcurrentDictionary<long, InvItem> where key is the item key as long
+                foreach (var item in ItemData)
+                {
+                    // Convert the long key to string to match Items.json keys
+                    APSaveIDToItemKey[item.Value.APSaveID] = item.Key;
+                }
+            }
+
             // Clear current values, check what the server thinks first, then compare that against the save file.
             ItemQueue.ClearItemQueues();
             if (itemCounts == null)
@@ -188,7 +208,7 @@ namespace Ys8AP.Items
                     int quantityToGive = item.Value - receivedItemCount;
                     for (int i = 0; i < quantityToGive; i++)
                     {
-                        ItemQueue.AddItem(item.Key);
+                        ItemQueue.AddItem(APSaveIDToItemKey[item.Key]);
                     }
                 }
             }

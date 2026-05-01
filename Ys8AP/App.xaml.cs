@@ -36,6 +36,7 @@ using Ys8AP.Items;
 using Ys8AP.Mem;
 using Ys8AP.Models;
 using Ys8AP.Threads;
+using Ys8AP.Utils;
 using Ys8AP.ViewModels;
 using Ys8AP.Views;
 using Newtonsoft.Json;
@@ -49,7 +50,6 @@ using System.Reactive.Concurrency;
 using System.Threading;
 using System.Threading.Tasks;
 using Color = Avalonia.Media.Color;
-using Ys8AP.Threads;
 
 // Adapted from github.com/ArsonAssassin/Archipelago-Avalonia-Template
 namespace Ys8AP
@@ -60,7 +60,6 @@ namespace Ys8AP
 
         private static MainWindowViewModel? Context;
         private static readonly object _lockObject = new();
-        private static ulong baseAddress = 0;
         private static readonly ConcurrentQueue<Location> locationQueue = new();
 
         private Thread? queueThread;
@@ -111,11 +110,11 @@ namespace Ys8AP
         {
             if (e.Host != null && e.Host.StartsWith("/connect ")) e.Host = e.Host.Substring("/connect ".Length); // trim "/connect " off front
             // trim extra spaces before defaulting
-            if (e.Host != null) e.Host.Trim();
-            if (e.Slot != null) e.Slot.Trim();
+            e.Host = e.Host?.Trim() ?? e.Host;
+            e.Slot = e.Slot?.Trim() ?? e.Slot;
             // default to most basic local-hosted setup if they were empty
-            if (e.Host == null || e.Host == "") e.Host = "localhost:38281";
-            if (e.Slot == null || e.Slot == "") e.Slot = "Player1";
+            if (string.IsNullOrEmpty(e.Host)) e.Host = "localhost:38281";
+            if (string.IsNullOrEmpty(e.Slot)) e.Slot = "Player1";
 
             if (Context == null)
                 return;
@@ -208,55 +207,28 @@ namespace Ys8AP
 
             // Initialize things once the player is connected
             // If the player isn't in a valid game state it's likely due to the inventory address not being loaded yet, so try to initialize addresses and check again.  
-            if (PlayerState.PlayerReady())
-            {
-                PlayerReady(slotName);
-            }
-            else
-            {
-                AddressInit.InitializeAddresses();
-            }
-
             
-            if (Options.DeathLinkEnabled)
-            {
-                _deathlinkService = Client.EnableDeathLink();
-                _deathlinkService.OnDeathLinkReceived += _deathlinkService_OnDeathLinkReceived;
-                PartyWatcher.ListenForDeath();
-            }
+            _deathlinkService = PartyWatcher.InitializeDeathLink(Client, Options.DeathLinkEnabled, _deathlinkService_OnDeathLinkReceived);
 
             if (queueThread == null)
-            {
-                
-                queueThread = new Thread(new ParameterizedThreadStart(ItemQueue.ThreadLoop))
-                {
-                    IsBackground = true
-                };
-                queueThread.Start();
-                
-            }
+                queueThread = StartWorkerThread(ItemQueue.ThreadLoop);
 
             if (locationWatcherThread == null && Client.IsConnected)
-            {
-                locationWatcherThread = new Thread(new ParameterizedThreadStart(LocationWatcher.DoLoop))
-                {
-                    IsBackground = true
-                };
-                locationWatcherThread.Start();
-            }
+                locationWatcherThread = StartWorkerThread(LocationWatcher.DoLoop);
 
             if (PartyWatcherThread == null && Client.IsConnected)
-            {
-                PartyWatcherThread = new Thread(new ParameterizedThreadStart(PartyWatcher.DoLoop))
-                {
-                    IsBackground = true
-                };
-                PartyWatcherThread.Start();
-            }
+                PartyWatcherThread = StartWorkerThread(PartyWatcher.DoLoop);
 
             Context.ConnectButtonEnabled = true;
         }
         #region Ys8
+
+        private Thread StartWorkerThread(ParameterizedThreadStart action)
+        {
+            var thread = new Thread(action) { IsBackground = true };
+            thread.Start();
+            return thread;
+        }
 
         private GameClient? Ys8Connect()
         {
@@ -278,7 +250,7 @@ namespace Ys8AP
             return client;
         }
 
-        private void PlayerReady(string slotName)
+        private void PrepSeed()
         {
             Thread.Sleep(50);
 
@@ -289,16 +261,15 @@ namespace Ys8AP
             // Check for any missing items after a connect/reconnect
             validState = true;
             // On connect reveal the player tracking items in the inventory.
-            Contexts.InventoryContext.CheckIfObtainedAndSet(139); // Progressive Shop Rank
-            Contexts.InventoryContext.CheckIfObtainedAndSet(143); // Castaway
-            Contexts.InventoryContext.CheckIfObtainedAndSet(148); // Discovery
+            Contexts.InventoryContext.CheckIfObtainedAndSet(InventoryMgmt.PROGRESSIVE_SHOP_RANK_ID); // Progressive Shop Rank
+            Contexts.InventoryContext.CheckIfObtainedAndSet(InventoryMgmt.CASTAWAY_TRACKING_ID); // Castaway
+            Contexts.InventoryContext.CheckIfObtainedAndSet(InventoryMgmt.LANDMARK_TRACKING_ID); // Discovery
             if (Options.FinalBossAccess == 2) 
             {
-                Contexts.InventoryContext.CheckIfObtainedAndSet(831); // Psyches
+                Contexts.InventoryContext.CheckIfObtainedAndSet(InventoryMgmt.PSYCHES_ITEM_ID); // Psyches
             }
 
             ItemQueue.checkItems = true;
-            WatchGoal();
         }
 
         internal static async Task SendLocation(int locId)
@@ -314,13 +285,6 @@ namespace Ys8AP
                 locationQueue.Enqueue(loc);
         }
 
-        private static void WatchGoal()
-        {
-            if (Contexts.FlagEnumContext.GoalFlag && PlayerState.PlayerReady())
-            {
-                Client.SendGoalCompletion();
-            }
-        }
         #endregion
 
         private void _deathlinkService_OnDeathLinkReceived(DeathLink deathLink)
@@ -348,6 +312,15 @@ namespace Ys8AP
         {
             long itemId = e.Item.Id;
             ItemQueue.AddItem(itemId);
+            
+            // Display in UI
+            if (Context != null && e.Item.Name != null)
+            {
+                RxApp.MainThreadScheduler.Schedule(() =>
+                {
+                    Context.ItemList.Add(new Models.LogListItem(e.Item.Name));
+                });
+            }
         }
 
         private void Client_MessageReceived(object? sender, MessageReceivedEventArgs e)
@@ -368,10 +341,10 @@ namespace Ys8AP
             {
                 return; //Hint already in list
             }
-            List<TextSpan> spans = new List<TextSpan>();
+            var spans = new List<TextSpan>();
             foreach (var part in message.Parts)
             {
-                spans.Add(new TextSpan() { Text = part.Text, TextColor = new SolidColorBrush(Color.FromRgb(part.Color.R, part.Color.G, part.Color.B)) });
+                spans.Add(new TextSpan { Text = part.Text, TextColor = new SolidColorBrush(Color.FromRgb(part.Color.R, part.Color.G, part.Color.B)) });
             }
             lock (_lockObject)
             {
@@ -399,6 +372,12 @@ namespace Ys8AP
 
             while (true)
             {
+                if (!PlayerState.PlayerReady())
+                {
+                    PrepSeed();
+                    AddressInit.InitializeAddresses();
+                }
+
                 if (Client.CurrentSession == null || !Client.CurrentSession.Socket.Connected)
                 {
                     waitTime = 0;  // Setup for longer wait time on reconnect attempts

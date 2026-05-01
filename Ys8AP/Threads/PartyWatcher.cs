@@ -4,6 +4,9 @@ using Ys8AP;
 using System.Collections.Generic;
 using System.Threading;
 using Silk.NET.GLFW;
+using Archipelago.MultiClient.Net.BounceFeatures.DeathLink;
+using Archipelago.Core;
+using System;
 
 namespace Ys8AP.Threads
 {
@@ -12,9 +15,45 @@ namespace Ys8AP.Threads
     /// </summary>
     internal class PartyWatcher
     {
+        private const int PARTY_SLOTS = 3;
         private static bool deathFromDeathlink = false;
         private static Dictionary<uint, CharacterStats> currentPartyMembers = new Dictionary<uint, CharacterStats>();
         private static int enemyKills = 0;
+        private static DeathLinkService? _deathlinkService = null;
+
+        // Character data structure to eliminate repetitive join flag checks
+        private readonly struct CharacterInfo
+        {
+            public uint CharacterID { get; init; }
+            public Func<bool> IsJoined { get; init; }
+        }
+
+        private static readonly CharacterInfo[] PartyCharacters =
+        {
+            new() { CharacterID = 0, IsJoined = () => Contexts.FlagEnumContext.AdolJoinFlag },
+            new() { CharacterID = 1, IsJoined = () => Contexts.FlagEnumContext.LaxiaJoinFlag },
+            new() { CharacterID = 2, IsJoined = () => Contexts.FlagEnumContext.SahadJoinFlag },
+            new() { CharacterID = 3, IsJoined = () => Contexts.FlagEnumContext.HummelJoinFlag },
+            new() { CharacterID = 4, IsJoined = () => Contexts.FlagEnumContext.RicottaJoinFlag },
+            new() { CharacterID = 5, IsJoined = () => Contexts.FlagEnumContext.DanaJoinFlag },
+            new() { CharacterID = 7, IsJoined = () => Contexts.FlagEnumContext.DanaJoinFlag },
+            new() { CharacterID = 8, IsJoined = () => Contexts.FlagEnumContext.DanaJoinFlag },
+        };
+
+        /// <summary>
+        /// Initializes the DeathLink service and sets up event subscriptions.
+        /// </summary>
+        internal static DeathLinkService? InitializeDeathLink(ArchipelagoClient client, bool deathLinkEnabled, Action<DeathLink> onDeathLinkReceived)
+        {
+            if (!deathLinkEnabled)
+                return null;
+
+            _deathlinkService = client.EnableDeathLink();
+            _deathlinkService.OnDeathLinkReceived += (deathLink) => onDeathLinkReceived?.Invoke(deathLink);
+            
+            return _deathlinkService;
+        }
+
         internal static void DoLoop(object? parameters)
         {
             while (true)
@@ -24,8 +63,11 @@ namespace Ys8AP.Threads
                 {
                     if (Contexts.FlagEnumContext.MonsterKillCount != enemyKills)
                     {
+                        enemyKills = Contexts.FlagEnumContext.MonsterKillCount;
                         HandlePartyExperience();
                     }
+
+                    ListenForDeath();
                 }
                 Thread.Sleep(1000);
             }
@@ -33,17 +75,15 @@ namespace Ys8AP.Threads
         private static void GetCurrentPartyMembers()
         {
             currentPartyMembers.Clear();
-            for (uint slot = 0; slot < 4; slot++)
+            for (uint slot = 0; slot < PARTY_SLOTS; slot++)
             {
                 uint characterId = Contexts.InventoryContext.GetPartyMemberBySlot(slot);
                 if (characterId >= 0)
-                {
-                    currentPartyMembers.Add(characterId, Contexts.CharacterDataContext.GetCharacterDataByID((uint)characterId));
-                }
+                    currentPartyMembers.Add(characterId, Contexts.CharacterDataContext.GetCharacterDataByID(characterId));
             }
         }
 
-        public static async void KillParty()
+        public static void KillParty()
         {
             GetCurrentPartyMembers();
             foreach (var member in currentPartyMembers)
@@ -54,7 +94,7 @@ namespace Ys8AP.Threads
             }
         }
 
-        public static async void ListenForDeath()
+        public static void ListenForDeath()
         {
             if (PlayerState.GameOver() && !deathFromDeathlink)
             {
@@ -63,78 +103,34 @@ namespace Ys8AP.Threads
             }
         }
 
-        private static async void HandlePartyExperience()
+        private static void HandlePartyExperience()
         {
             float PartyAverageExperience = GetPartyAverageExperience();
-            CharacterStats CurrentCharacter = null;
             
-            if (Contexts.FlagEnumContext.AdolJoinFlag)
+            foreach (var character in PartyCharacters)
             {
-                UpdateExperienceForCharacter(0, PartyAverageExperience);
+                if (character.IsJoined())
+                {
+                    UpdateExperienceForCharacter(character.CharacterID, PartyAverageExperience);
+                }
             }
-            if (Contexts.FlagEnumContext.LaxiaJoinFlag)
-            {
-                UpdateExperienceForCharacter(1, PartyAverageExperience);
-            }
-            if (Contexts.FlagEnumContext.SahadJoinFlag)
-            {
-                UpdateExperienceForCharacter(2, PartyAverageExperience);
-            }
-            if (Contexts.FlagEnumContext.HummelJoinFlag)
-            {
-                UpdateExperienceForCharacter(3, PartyAverageExperience);
-            }
-            if (Contexts.FlagEnumContext.RicottaJoinFlag)
-            {
-                UpdateExperienceForCharacter(4, PartyAverageExperience);
-            }
-            if (Contexts.FlagEnumContext.DanaJoinFlag)
-            {
-                UpdateExperienceForCharacter(5, PartyAverageExperience);
-                UpdateExperienceForCharacter(7, PartyAverageExperience);
-                UpdateExperienceForCharacter(8, PartyAverageExperience);
-            }
-
         }
 
         private static float GetPartyAverageExperience()
         {
-            float AvailablePartyMembers = 0;
             float totalExperience = 0;
+            var processedFlags = new HashSet<Func<bool>>(); // Track processed flags to count Dana once
 
-            if (Contexts.FlagEnumContext.AdolJoinFlag)
+            foreach (var character in PartyCharacters)
             {
-                AvailablePartyMembers++;
-                totalExperience += Contexts.CharacterDataContext.GetCharacterDataByID(0).CharacterEXP;
-            }
-            if (Contexts.FlagEnumContext.LaxiaJoinFlag)
-            {
-                AvailablePartyMembers++;
-                totalExperience += Contexts.CharacterDataContext.GetCharacterDataByID(1).CharacterEXP;
-            }
-            if (Contexts.FlagEnumContext.SahadJoinFlag)
-            {
-                AvailablePartyMembers++;
-                totalExperience += Contexts.CharacterDataContext.GetCharacterDataByID(2).CharacterEXP;
-            }
-            if (Contexts.FlagEnumContext.HummelJoinFlag)
-            {
-                AvailablePartyMembers++;
-                totalExperience += Contexts.CharacterDataContext.GetCharacterDataByID(3).CharacterEXP;
-            }
-            if (Contexts.FlagEnumContext.RicottaJoinFlag)
-            {
-                AvailablePartyMembers++;
-                totalExperience += Contexts.CharacterDataContext.GetCharacterDataByID(4).CharacterEXP;
-            }
-            if (Contexts.FlagEnumContext.DanaJoinFlag)
-            {
-                AvailablePartyMembers++;
-                totalExperience += Contexts.CharacterDataContext.GetCharacterDataByID(5).CharacterEXP;
+                if (character.IsJoined() && processedFlags.Add(character.IsJoined))
+                {
+                    totalExperience += Contexts.CharacterDataContext.GetCharacterDataByID(character.CharacterID).CharacterEXP;
+                }
             }
 
-
-            return AvailablePartyMembers > 0 ? totalExperience / AvailablePartyMembers : 0;
+            var availablePartyMembers = processedFlags.Count;
+            return availablePartyMembers > 0 ? totalExperience / availablePartyMembers : 0;
         }
 
         private static void UpdateExperienceForCharacter(uint characterID, float experience)

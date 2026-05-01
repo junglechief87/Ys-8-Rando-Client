@@ -58,12 +58,17 @@ namespace Ys8AP.Threads
                     
                 }
                 // If player enters a not ready state, we clear queues and prepare to check items, once they exit the states.
-                else if (!PlayerState.PlayerReady() || PlayerState.PostRetry())
+                else if (ShouldClearQueues())
                 {
                     ClearQueues();
                     checkItems = true;
                 }
             }
+        }
+
+        private static bool ShouldClearQueues()
+        {
+            return (!PlayerState.PlayerReady() || PlayerState.PostRetry()) && !checkItems;
         }
 
         internal static void ClearQueues()

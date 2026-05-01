@@ -19,10 +19,8 @@ namespace Ys8AP.Mem
         /// </summary>
         private static uint GetCompressedRoomSeed()
         {
-            object seedVal = App.Client.CurrentSession.RoomState.Seed;
-            double d = Convert.ToDouble(seedVal); // Handles ulong, long, int, etc.
-            float f = (float)d;
-            byte[] bytes = BitConverter.GetBytes(f);
+            float seedVal = float.Parse(App.Client.CurrentSession.RoomState.Seed);
+            byte[] bytes = BitConverter.GetBytes(seedVal);
             if (!BitConverter.IsLittleEndian) Array.Reverse(bytes);
             return BitConverter.ToUInt32(bytes, 0); // matches Python's unsigned int.from_bytes(..., 'little')
         }
