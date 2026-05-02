@@ -1,6 +1,7 @@
 ﻿using Archipelago.Core.Util;
 using Archipelago.MultiClient.Net.Models;
 using Ys8AP.GlobalAddresses;
+using Ys8AP.Threads;
 using Ys8AP.Mem;
 using Ys8AP.Threads;
 using Ys8AP.Utils;
@@ -58,24 +59,31 @@ namespace Ys8AP.Items
                 Contexts.InventoryContext.CheckIfObtainedAndSet(580);
                 Memory.WriteByte(Contexts.InventoryContext.GetItemQuantityAddress(580), 0x63); // Give 99 Insect Repellent
             }
-            else if (TMemos.Contains(receivedItem.ItemID)) // TMemo Intercept unlocks
+            else if (TMemos.Contains(receivedItem.ItemID)) // TMemo Intercept unlocks - progressive unlock based on current count
             {
-                if (!Contexts.FlagEnumContext.TMemo1)
+                // Count how many TMemos are already unlocked
+                int unlockedCount = 0;
+                if (Contexts.FlagEnumContext.GetTMemo1()) unlockedCount++;
+                if (Contexts.FlagEnumContext.GetTMemo2()) unlockedCount++;
+                if (Contexts.FlagEnumContext.GetTMemo3()) unlockedCount++;
+                if (Contexts.FlagEnumContext.GetTMemo4()) unlockedCount++;
+
+                // Unlock the next TMemo based on current count
+                switch (unlockedCount)
                 {
-                    Memory.WriteByte(Contexts.GameContext.FlagEnumAddress + 0x002CA578, 1); // Intercept List 1
-                }
-                else if (!Contexts.FlagEnumContext.TMemo2)
-                {
-                    Memory.WriteByte(Contexts.GameContext.FlagEnumAddress + 0x002CA57C, 1); // Intercept List 2
-                    Memory.WriteByte(Contexts.GameContext.FlagEnumAddress + 0x002CA560, 1); // Dogi Control Option Unlocked
-                }
-                else if (!Contexts.FlagEnumContext.TMemo3)
-                {
-                    Memory.WriteByte(Contexts.GameContext.FlagEnumAddress + 0x002CA580, 1); // Intercept List 3
-                }
-                else if (!Contexts.FlagEnumContext.TMemo4)
-                {
-                    Memory.WriteByte(Contexts.GameContext.FlagEnumAddress + 0x002CA584, 1); // Intercept List 4
+                    case 0:
+                        Memory.WriteByte(Contexts.GameContext.FlagEnumAddress + 0x002CA578, 1); // Intercept List 1
+                        break;
+                    case 1:
+                        Memory.WriteByte(Contexts.GameContext.FlagEnumAddress + 0x002CA57C, 1); // Intercept List 2
+                        Memory.WriteByte(Contexts.GameContext.FlagEnumAddress + 0x002CA560, 1); // Dogi Control Option Unlocked
+                        break;
+                    case 2:
+                        Memory.WriteByte(Contexts.GameContext.FlagEnumAddress + 0x002CA580, 1); // Intercept List 3
+                        break;
+                    case 3:
+                        Memory.WriteByte(Contexts.GameContext.FlagEnumAddress + 0x002CA584, 1); // Intercept List 4
+                        break;
                 }
             }
             else if (receivedItem.ItemID == 629) // Fishing rod
@@ -117,7 +125,7 @@ namespace Ys8AP.Items
             {
                 newQuantity = receivedItem.QuantityMax;
             }
-            else if (currentQuantity > receivedItem.QuantityMaxInferno && Contexts.FlagEnumContext.InfernoFlag)
+            else if (currentQuantity > receivedItem.QuantityMaxInferno && Contexts.FlagEnumContext.GetInfernoFlag())
             {
                 newQuantity = receivedItem.QuantityMaxInferno;
             }
@@ -152,16 +160,20 @@ namespace Ys8AP.Items
                 Memory.WriteByte(Contexts.InventoryContext.GetItemQuantityAddress(receivedItem.ItemID), (byte)newQuantity);
             }
 
-            string msg = "Received " + receivedItem.Name + ".";
-            if (PlayerState.PlayerReady())
+            if (!isVerifying)
             {
-                ItemQueue.AddMsg(msg);
+                string msg = "Received " + receivedItem.Name + ".";
+                if (PlayerState.IsPlayerReady)
+                {
+                    ItemQueue.AddMsg(msg);
+                }
+                else
+                {
+                    Log.Logger.Information(msg);
+                    App.Client.AddOverlayMessage(msg);
+                }
             }
-            else
-            {
-                Log.Logger.Information(msg);
-                App.Client.AddOverlayMessage(msg);
-            }
+            
         }
 
         /// <summary>

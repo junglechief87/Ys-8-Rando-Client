@@ -1,4 +1,5 @@
 using Ys8AP.GlobalAddresses;
+using Ys8AP.Threads;
 using Ys8AP.Mem;
 using Ys8AP;
 using System.Collections.Generic;
@@ -30,14 +31,14 @@ namespace Ys8AP.Threads
 
         private static readonly CharacterInfo[] PartyCharacters =
         {
-            new() { CharacterID = 0, IsJoined = () => Contexts.FlagEnumContext.AdolJoinFlag },
-            new() { CharacterID = 1, IsJoined = () => Contexts.FlagEnumContext.LaxiaJoinFlag },
-            new() { CharacterID = 2, IsJoined = () => Contexts.FlagEnumContext.SahadJoinFlag },
-            new() { CharacterID = 3, IsJoined = () => Contexts.FlagEnumContext.HummelJoinFlag },
-            new() { CharacterID = 4, IsJoined = () => Contexts.FlagEnumContext.RicottaJoinFlag },
-            new() { CharacterID = 5, IsJoined = () => Contexts.FlagEnumContext.DanaJoinFlag },
-            new() { CharacterID = 7, IsJoined = () => Contexts.FlagEnumContext.DanaJoinFlag },
-            new() { CharacterID = 8, IsJoined = () => Contexts.FlagEnumContext.DanaJoinFlag },
+            new() { CharacterID = 0, IsJoined = () => Contexts.FlagEnumContext.GetAdolJoinFlag() },
+            new() { CharacterID = 1, IsJoined = () => Contexts.FlagEnumContext.GetLaxiaJoinFlag() },
+            new() { CharacterID = 2, IsJoined = () => Contexts.FlagEnumContext.GetSahadJoinFlag() },
+            new() { CharacterID = 3, IsJoined = () => Contexts.FlagEnumContext.GetHummelJoinFlag() },
+            new() { CharacterID = 4, IsJoined = () => Contexts.FlagEnumContext.GetRicottaJoinFlag() },
+            new() { CharacterID = 5, IsJoined = () => Contexts.FlagEnumContext.GetDanaJoinFlag() },
+            new() { CharacterID = 7, IsJoined = () => Contexts.FlagEnumContext.GetDanaJoinFlag() },
+            new() { CharacterID = 8, IsJoined = () => Contexts.FlagEnumContext.GetDanaJoinFlag() },
         };
 
         /// <summary>
@@ -59,11 +60,11 @@ namespace Ys8AP.Threads
             while (true)
             {
                 
-                if (PlayerState.PlayerReady())
+                if (PlayerState.IsPlayerReady)
                 {
-                    if (Contexts.FlagEnumContext.MonsterKillCount != enemyKills)
+                    if (Contexts.FlagEnumContext.GetMonsterKillCount() != enemyKills)
                     {
-                        enemyKills = Contexts.FlagEnumContext.MonsterKillCount;
+                        enemyKills = Contexts.FlagEnumContext.GetMonsterKillCount();
                         HandlePartyExperience();
                     }
 

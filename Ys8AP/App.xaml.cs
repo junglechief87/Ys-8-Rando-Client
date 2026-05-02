@@ -70,7 +70,6 @@ namespace Ys8AP
         private static DeathLinkService? _deathlinkService = null;
         private bool deathFromDeathlink = false;
         private static string slotName = "";
-        public static bool validState = false;
 
         public override void Initialize()
         {
@@ -104,6 +103,9 @@ namespace Ys8AP
                 };
             }
             base.OnFrameworkInitializationCompleted();
+            
+            // Start the player state monitoring thread
+            PlayerState.StartMonitoring();
         }
 
         private async void Context_ConnectClicked(object? sender, ConnectClickedEventArgs e)
@@ -148,7 +150,7 @@ namespace Ys8AP
             {
                 Client = new ArchipelagoClient(Ys8Client);
                 AddressInit.InitializeAddresses();
-                if (!PlayerState.PlayerReady())
+                if (!PlayerState.IsPlayerReady)
                 {
                     Log.Logger.Warning("Inventory not connected, make sure you have loaded a save, are not in the main menu, or have started a new game.");
                 }
@@ -252,14 +254,6 @@ namespace Ys8AP
 
         private void PrepSeed()
         {
-            Thread.Sleep(50);
-
-            if (!OpenMem.TestRoomSeed())
-            {
-                return;
-            }
-            // Check for any missing items after a connect/reconnect
-            validState = true;
             // On connect reveal the player tracking items in the inventory.
             Contexts.InventoryContext.CheckIfObtainedAndSet(InventoryMgmt.PROGRESSIVE_SHOP_RANK_ID); // Progressive Shop Rank
             Contexts.InventoryContext.CheckIfObtainedAndSet(InventoryMgmt.CASTAWAY_TRACKING_ID); // Castaway
@@ -269,7 +263,7 @@ namespace Ys8AP
                 Contexts.InventoryContext.CheckIfObtainedAndSet(InventoryMgmt.PSYCHES_ITEM_ID); // Psyches
             }
 
-            ItemQueue.checkItems = true;
+            //ItemQueue.checkItems = true;
         }
 
         internal static async Task SendLocation(int locId)
@@ -291,7 +285,7 @@ namespace Ys8AP
         {
             
             // Kill player x_x
-            if (PlayerState.PlayerReady() && !PlayerState.GameOver() && !PlayerState.NotInTown())
+            if (PlayerState.IsPlayerReady && !PlayerState.GameOver() && !PlayerState.NotInTown())
             {
                 PartyWatcher.KillParty();
                 Log.Logger.Information("DeathLink: Received from " + deathLink.Source);
@@ -347,41 +341,53 @@ namespace Ys8AP
             else
             {
                 // Log regular messages with proper colors
-                var spans = new List<TextSpan>();
-                foreach (var part in e.Message.Parts)
-                {
-                    Color textColor = Color.FromRgb(part.Color.R, part.Color.G, part.Color.B);
-                    spans.Add(new TextSpan { Text = part.Text, TextColor = new SolidColorBrush(textColor) });
-                }
+                var partData = e.Message.Parts.Select(p => new { p.Text, p.Color }).ToList();
                 
                 RxApp.MainThreadScheduler.Schedule(() =>
                 {
                     if (Context != null)
+                    {
+                        var spans = new List<TextSpan>();
+                        foreach (var part in partData)
+                        {
+                            Color textColor = Color.FromRgb(part.Color.R, part.Color.G, part.Color.B);
+                            spans.Add(new TextSpan { Text = part.Text, TextColor = new SolidColorBrush(textColor) });
+                        }
                         Context.LogList.Add(new LogListItem(spans));
+                    }
                 });
             }
         }
 
         private static void LogHint(LogMessage message)
         {
-            var newMessage = message.Parts.Select(x => x.Text);
-
-            if (Context.HintList.Any(x => x.TextSpans.Select(y => y.Text) == newMessage))
+            // Extract part data on background thread to avoid threading issues
+            var partData = message.Parts.Select(p => new { p.Text, p.Color }).ToList();
+            
+            RxApp.MainThreadScheduler.Schedule(() =>
             {
-                return; //Hint already in list
-            }
-            var spans = new List<TextSpan>();
-            foreach (var part in message.Parts)
-            {
-                spans.Add(new TextSpan { Text = part.Text, TextColor = new SolidColorBrush(Color.FromRgb(part.Color.R, part.Color.G, part.Color.B)) });
-            }
-            lock (_lockObject)
-            {
-                RxApp.MainThreadScheduler.Schedule(() =>
+                if (Context == null)
+                    return;
+                
+                // Check if hint already exists
+                var newMessage = message.Parts.Select(x => x.Text);
+                if (Context.HintList.Any(x => x.TextSpans.Select(y => y.Text) == newMessage))
                 {
-                    Context.HintList.Add(new LogListItem(spans));
-                });
-            }
+                    return; //Hint already in list
+                }
+                
+                // Create spans on UI thread
+                var spans = new List<TextSpan>();
+                foreach (var part in partData)
+                {
+                    Color textColor = Color.FromRgb(part.Color.R, part.Color.G, part.Color.B);
+                    spans.Add(new TextSpan { Text = part.Text, TextColor = new SolidColorBrush(textColor) });
+                }
+                
+                var logItem = new LogListItem(spans);
+                Context.HintList.Add(logItem);
+                Context.LogList.Add(logItem);  // Also add to log like other messages
+            });
         }
 
         private static void OnConnected(object? sender, EventArgs? args)
@@ -401,7 +407,7 @@ namespace Ys8AP
 
             while (true)
             {
-                if (!PlayerState.PlayerReady())
+                if (!PlayerState.IsPlayerReady)
                 {
                     PrepSeed();
                     AddressInit.InitializeAddresses();

@@ -1,6 +1,6 @@
 ﻿using Archipelago.Core.Util;
 using Ys8AP.GlobalAddresses;
-using Ys8AP.Mem;
+using Ys8AP.Threads;
 using Ys8AP;
 using System.Collections.Generic;
 using System.Collections.Concurrent;
@@ -37,7 +37,7 @@ namespace Ys8AP.Threads
 
             while (true)
             {
-                if (PlayerState.PlayerReady())
+                if (PlayerState.IsPlayerReady)
                 {
                     CheckChests();
                     CheckEvents();
@@ -86,7 +86,7 @@ namespace Ys8AP.Threads
 
         private static void WatchGoal()
         {
-            if (!goalCompleted && Contexts.FlagEnumContext.GoalFlag && PlayerState.PlayerReady())
+            if (!goalCompleted && Contexts.FlagEnumContext.GetGoalFlag() && PlayerState.IsPlayerReady)
             {
                 App.Client.SendGoalCompletion();
                 goalCompleted = true;

@@ -212,18 +212,20 @@
 										 ItemsSource="{Binding LogList}">
 									<ListBox.ItemTemplate>
 										<DataTemplate DataType="models:LogListItem">
-											<Border>
+											<Border Padding="0">
 												<ItemsControl ItemsSource="{Binding TextSpans}">
 													<ItemsControl.ItemsPanel>
 														<ItemsPanelTemplate>
-															<StackPanel Orientation="Horizontal" Spacing="2"/>
+															<StackPanel Orientation="Horizontal" Spacing="0"/>
 														</ItemsPanelTemplate>
 													</ItemsControl.ItemsPanel>
 													<ItemsControl.ItemTemplate>
 														<DataTemplate DataType="models:TextSpan">
-															<TextBox IsEnabled="False" Text="{Binding Text}"
-																	 Foreground="{Binding TextColor}"
-																	 TextWrapping="Wrap"/>
+															<TextBlock Text="{Binding Text}"
+																	   Foreground="{Binding TextColor}"
+																	   Padding="0"
+																	   Margin="0"
+																	   TextWrapping="Wrap"/>
 														</DataTemplate>
 													</ItemsControl.ItemTemplate>
 												</ItemsControl>
@@ -247,18 +249,20 @@
 							<ListBox ItemsSource="{Binding HintList}" Name="HintList" Margin="0,0,0,10">
 								<ListBox.ItemTemplate>
 									<DataTemplate DataType="models:LogListItem">
-										<Border>
+										<Border Padding="0">
 											<ItemsControl ItemsSource="{Binding TextSpans}">
 												<ItemsControl.ItemsPanel>
 													<ItemsPanelTemplate>
-														<StackPanel Orientation="Horizontal"/>
+														<StackPanel Orientation="Horizontal" Spacing="0"/>
 													</ItemsPanelTemplate>
 												</ItemsControl.ItemsPanel>
 												<ItemsControl.ItemTemplate>
 													<DataTemplate DataType="models:TextSpan">
-														<TextBox IsEnabled="False" Text="{Binding Text}"
-																 Foreground="{Binding TextColor}"
-																 TextWrapping="Wrap"/>
+														<TextBlock Text="{Binding Text}"
+																   Foreground="{Binding TextColor}"
+																   Padding="0"
+																   Margin="0"
+																   TextWrapping="Wrap"/>
 													</DataTemplate>
 												</ItemsControl.ItemTemplate>
 											</ItemsControl>
@@ -273,18 +277,20 @@
 							<ListBox ItemsSource="{Binding ItemList}" Name="ItemList" Margin="0,0,0,10">
 								<ListBox.ItemTemplate>
 									<DataTemplate DataType="models:LogListItem">
-										<Border>
+										<Border Padding="0">
 											<ItemsControl ItemsSource="{Binding TextSpans}">
 												<ItemsControl.ItemsPanel>
 													<ItemsPanelTemplate>
-														<StackPanel Orientation="Horizontal"/>
+														<StackPanel Orientation="Horizontal" Spacing="0"/>
 													</ItemsPanelTemplate>
 												</ItemsControl.ItemsPanel>
 												<ItemsControl.ItemTemplate>
 													<DataTemplate DataType="models:TextSpan">
-														<TextBox IsEnabled="False" Text="{Binding Text}"
-																 Foreground="{Binding TextColor}"
-																 TextWrapping="Wrap"/>
+														<TextBlock Text="{Binding Text}"
+																   Foreground="{Binding TextColor}"
+																   Padding="0"
+																   Margin="0"
+																   TextWrapping="Wrap"/>
 													</DataTemplate>
 												</ItemsControl.ItemTemplate>
 											</ItemsControl>

@@ -37,68 +37,58 @@ namespace Ys8AP.GlobalAddresses
     // ============================================================================
     public class FlagEnum
     {
-        [MemoryOffset(0x00000000)]
-        public uint Context { get; set; } // In case I need to call custom attrbiute on the object instead of the property for some reason
+        // ============================================================================
+        // STATE MANAGEMENT FLAGS - Direct memory reads to avoid caching issues
+        // ============================================================================
+        private const ulong RetryFlagOffset = 0x002C72AC;
+        private const ulong SaveMenuFlagOffset = 0x002C705C;
+        private const ulong TimeAttackFlagOffset = 0x002C7130;
+        private const ulong InTownFlagOffset = 0x002C7074;
+        private const ulong APSeedOffset = 0x002CA5BC;
+        private const ulong InfernoFlagOffset = 0x002C71B0;
+        private const ulong CustomGameOverFlagOffset = 0x002CA5C4;
+        private const ulong MonsterKillCountOffset = 0x002C7278;
+        private const ulong GoalFlagOffset = 0x002CA5C8;
 
-        // State Management Flags //////////////////////////////////////////////////////////
-        [MemoryOffset(0x002C72AC)]
-        public bool RetryFlag { get; set; }
+        public bool GetRetryFlag() => Memory.ReadByte(Contexts.GameContext.FlagEnumAddress + RetryFlagOffset) != 0;
+        public bool GetSaveMenuFlag() => Memory.ReadByte(Contexts.GameContext.FlagEnumAddress + SaveMenuFlagOffset) != 0;
+        public bool GetTimeAttackFlag() => Memory.ReadByte(Contexts.GameContext.FlagEnumAddress + TimeAttackFlagOffset) != 0;
+        public bool GetInTownFlag() => Memory.ReadByte(Contexts.GameContext.FlagEnumAddress + InTownFlagOffset) != 0;
+        public uint GetAPSeed() => Memory.ReadUInt(Contexts.GameContext.FlagEnumAddress + APSeedOffset);
+        public bool GetInfernoFlag() => Memory.ReadByte(Contexts.GameContext.FlagEnumAddress + InfernoFlagOffset) != 0;
+        public bool GetCustomGameOverFlag() => Memory.ReadByte(Contexts.GameContext.FlagEnumAddress + CustomGameOverFlagOffset) != 0;
+        public int GetMonsterKillCount() => Memory.ReadInt(Contexts.GameContext.FlagEnumAddress + MonsterKillCountOffset);
+        public bool GetGoalFlag() => Memory.ReadByte(Contexts.GameContext.FlagEnumAddress + GoalFlagOffset) != 0;
 
-        [MemoryOffset(0x002C705C)]
-        public bool SaveMenuFlag { get; set; }
+        // ============================================================================
+        // PARTY MEMBER FLAGS - Direct memory reads
+        // ============================================================================
+        private const ulong AdolJoinFlagOffset = 0x002C7084;
+        private const ulong LaxiaJoinFlagOffset = 0x002C7088;
+        private const ulong SahadJoinFlagOffset = 0x002C708C;
+        private const ulong HummelJoinFlagOffset = 0x002C7090;
+        private const ulong RicottaJoinFlagOffset = 0x002C7094;
+        private const ulong DanaJoinFlagOffset = 0x002C7098;
 
-        [MemoryOffset(0x002C7130)]
-        public bool TimeAttackFlag { get; set; }
+        public bool GetAdolJoinFlag() => Memory.ReadByte(Contexts.GameContext.FlagEnumAddress + AdolJoinFlagOffset) != 0;
+        public bool GetLaxiaJoinFlag() => Memory.ReadByte(Contexts.GameContext.FlagEnumAddress + LaxiaJoinFlagOffset) != 0;
+        public bool GetSahadJoinFlag() => Memory.ReadByte(Contexts.GameContext.FlagEnumAddress + SahadJoinFlagOffset) != 0;
+        public bool GetHummelJoinFlag() => Memory.ReadByte(Contexts.GameContext.FlagEnumAddress + HummelJoinFlagOffset) != 0;
+        public bool GetRicottaJoinFlag() => Memory.ReadByte(Contexts.GameContext.FlagEnumAddress + RicottaJoinFlagOffset) != 0;
+        public bool GetDanaJoinFlag() => Memory.ReadByte(Contexts.GameContext.FlagEnumAddress + DanaJoinFlagOffset) != 0;
 
-        [MemoryOffset(0x002C7074)]
-        public bool InTownFlag { get; set; }
+        // ============================================================================
+        // T'S MEMOS - Direct memory reads
+        // ============================================================================
+        private const ulong TMemo1Offset = 0x002CA578;
+        private const ulong TMemo2Offset = 0x002CA57C;
+        private const ulong TMemo3Offset = 0x002CA580;
+        private const ulong TMemo4Offset = 0x002CA584;
 
-        [MemoryOffset(0x002CA5BC)]
-        public uint APSeed { get; set; } 
-
-        [MemoryOffset(0x002C71B0)]
-        public bool InfernoFlag { get; set; }
-
-        [MemoryOffset(0x002CA5C4)]
-        public bool CustomGameOverFlag { get; set; }
-
-        [MemoryOffset(0x002C7278)]
-        public int MonsterKillCount { get; set; }
-
-        [MemoryOffset(0x002CA5C8)]
-        public bool GoalFlag { get; set; }
-
-        // Available Party Member Flags //////////////////////////////////////////////////////////
-        [MemoryOffset(0x002C7084)]
-        public bool AdolJoinFlag { get; set; }
-
-        [MemoryOffset(0x002C7088)]        
-        public bool LaxiaJoinFlag { get; set; }
-
-        [MemoryOffset(0x002C708C)]        
-        public bool SahadJoinFlag { get; set; }
-
-        [MemoryOffset(0x002C7090)]        
-        public bool HummelJoinFlag { get; set; }
-
-        [MemoryOffset(0x002C7094)]        
-        public bool RicottaJoinFlag { get; set; }
-
-        [MemoryOffset(0x002C7098)]        
-        public bool DanaJoinFlag { get; set; }
-
-        // Ts Memos /////////////////////////////////////////////////////////////
-        [MemoryOffset(0x002CA578)]
-        public bool TMemo1 { get; set; }
-
-        [MemoryOffset(0x002CA57C)]
-        public bool TMemo2 { get; set; }
-
-        [MemoryOffset(0x002CA580)]
-        public bool TMemo3 { get; set; }
-
-        [MemoryOffset(0x002CA584)]
-        public bool TMemo4 { get; set; }
+        public bool GetTMemo1() => Memory.ReadByte(Contexts.GameContext.FlagEnumAddress + TMemo1Offset) != 0;
+        public bool GetTMemo2() => Memory.ReadByte(Contexts.GameContext.FlagEnumAddress + TMemo2Offset) != 0;
+        public bool GetTMemo3() => Memory.ReadByte(Contexts.GameContext.FlagEnumAddress + TMemo3Offset) != 0;
+        public bool GetTMemo4() => Memory.ReadByte(Contexts.GameContext.FlagEnumAddress + TMemo4Offset) != 0;
         
         // Village Join Flags ///////////////////////////////////////////////////////
         public ulong NPCJoinState = 0x002C7308;
@@ -267,8 +257,6 @@ namespace Ys8AP.GlobalAddresses
     // ============================================================================
     public class CharacterData
     {
-        [MemoryOffset(0x00000000)]
-        public uint Context { get; set; } // In case I need to call custom attrbiute on the object instead of the property for some reason
 
         [MemoryOffset(0x002EBC28)]
         public ulong AdolData { get; set; }
@@ -348,7 +336,8 @@ namespace Ys8AP.GlobalAddresses
         public static void InitializeAddresses()
         {
             Contexts.GameContext = Memory.ReadObject<MainGame>(Memory.GetBaseAddress("ys8"));
-            Contexts.FlagEnumContext = Memory.ReadObject<FlagEnum>(Contexts.GameContext.FlagEnumAddress);
+            // FlagEnumContext is created as empty; flags are read directly from memory with Get methods
+            Contexts.FlagEnumContext = new FlagEnum();
             Contexts.InventoryContext = Memory.ReadObject<Inventory>(Contexts.GameContext.InventoryAddress);
             Contexts.CharacterDataContext = Memory.ReadObject<CharacterData>(Contexts.GameContext.CharacterDataAddress);
         }

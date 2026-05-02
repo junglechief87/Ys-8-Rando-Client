@@ -1,6 +1,7 @@
 using Archipelago.Core.Util;
 using Ys8AP.GlobalAddresses;
 using Ys8AP.Items;
+using Ys8AP.Threads;
 using Ys8AP.Mem;
 using Serilog;
 using System.Collections.Concurrent;
@@ -20,13 +21,13 @@ namespace Ys8AP.Threads
 
         internal static void AddItem(long apId)
         {
-            if (PlayerState.PlayerReady())
+            if (PlayerState.IsPlayerReady)
                 inventoryQueue.Enqueue(apId);
         }
         
         internal static void AddMsg(string msg)
         {
-            if (PlayerState.PlayerReady())
+            if (PlayerState.IsPlayerReady)
             {
                 Log.Logger.Information(msg);
                 msgQueue.Enqueue(msg);
@@ -42,7 +43,7 @@ namespace Ys8AP.Threads
             {
                 Thread.Sleep(100);
 
-                if (PlayerState.PlayerReady())
+                if (PlayerState.IsPlayerReady)
                 {
                     // If player was not ready before but is now, we check items.
                     if (checkItems)
@@ -68,7 +69,7 @@ namespace Ys8AP.Threads
 
         private static bool ShouldClearQueues()
         {
-            return (!PlayerState.PlayerReady() || PlayerState.PostRetry()) && !checkItems;
+            return (!PlayerState.IsPlayerReady || PlayerState.PostRetry()) && !checkItems;
         }
 
         internal static void ClearQueues()
