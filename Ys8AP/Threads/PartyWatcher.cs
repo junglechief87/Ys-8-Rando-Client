@@ -109,7 +109,7 @@ namespace Ys8AP.Threads
             
             foreach (var character in PartyCharacters)
             {
-                if (character.IsJoined())
+                if (!character.IsJoined())
                 {
                     UpdateExperienceForCharacter(character.CharacterID, PartyAverageExperience);
                 }

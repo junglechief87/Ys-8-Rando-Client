@@ -2301,7 +2301,7 @@
     },
     "13900": {
         "Name": "Progressive Shop Rank",
-        "ItemID": 778,
+        "ItemID": 139,
         "QuantityMax": 7,
         "QuantityMaxInferno": 7,
         "ItemQuantity": 1,

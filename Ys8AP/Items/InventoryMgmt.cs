@@ -22,6 +22,8 @@ namespace Ys8AP.Items
         internal const int PSYCHES_ITEM_ID = 831;
         private const int ESSENCE_STONE_ID = 32800;
         
+        internal static bool isVerifying = false;
+        
         private static ConcurrentDictionary<long, InvItem>? ItemData = Resources.Embedded.Items;
         // Reverse lookup: APSaveID -> item key (string from Items.json)
         private static Dictionary<int, long>? APSaveIDToItemKey;
@@ -168,6 +170,8 @@ namespace Ys8AP.Items
 
         internal static void VerifyItems()
         {
+            isVerifying = true;
+            
             // Build APSaveID to item key lookup if not already built
             if (APSaveIDToItemKey == null)
             {
@@ -212,6 +216,8 @@ namespace Ys8AP.Items
                     }
                 }
             }
+            
+            isVerifying = false;
         }
     }
 }

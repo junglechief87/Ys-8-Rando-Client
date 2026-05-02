@@ -313,12 +313,26 @@ namespace Ys8AP
             long itemId = e.Item.Id;
             ItemQueue.AddItem(itemId);
             
-            // Display in UI
-            if (Context != null && e.Item.Name != null)
+            // Display in UI with AP-standard color coding (skip if verifying items from state sync)
+            if (!InventoryMgmt.isVerifying && Context != null && e.Item.Name != null)
             {
                 RxApp.MainThreadScheduler.Schedule(() =>
                 {
-                    Context.ItemList.Add(new Models.LogListItem(e.Item.Name));
+                    // Determine item classification color (AP standard)
+                    Color itemColor;
+                    if (e.Item.IsProgression)
+                        itemColor = Color.FromRgb(160, 32, 240); // Purple
+                    else if (e.Item.IsUseful)
+                        itemColor = Color.FromRgb(0, 100, 255); // Blue
+                    else if (e.Item.IsTrap)
+                        itemColor = Color.FromRgb(255, 165, 0); // Orange
+                    else
+                        itemColor = Color.FromRgb(255, 255, 255); // White (filler)
+
+                    var textSpan = new TextSpan { Text = e.Item.Name, TextColor = new SolidColorBrush(itemColor) };
+                    var logItem = new Models.LogListItem(e.Item.Name);
+                    logItem.TextSpans.Clear();
+                    logItem.TextSpans.Add(textSpan);
                 });
             }
         }
@@ -330,7 +344,22 @@ namespace Ys8AP
                 LogHint(e.Message);
                 // TODO fix hint logging with Avalonia
             }
-            Log.Logger.Information(JsonConvert.SerializeObject(e.Message));
+            else
+            {
+                // Log regular messages with proper colors
+                var spans = new List<TextSpan>();
+                foreach (var part in e.Message.Parts)
+                {
+                    Color textColor = Color.FromRgb(part.Color.R, part.Color.G, part.Color.B);
+                    spans.Add(new TextSpan { Text = part.Text, TextColor = new SolidColorBrush(textColor) });
+                }
+                
+                RxApp.MainThreadScheduler.Schedule(() =>
+                {
+                    if (Context != null)
+                        Context.LogList.Add(new LogListItem(spans));
+                });
+            }
         }
 
         private static void LogHint(LogMessage message)

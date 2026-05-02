@@ -557,12 +557,12 @@
     "111": {
         "Name": "Nameless Coast Shoreline North of Boulder Landmark",
         "LocationIDs": [637],
-        "Flag": ""
+        "Flag": "0x002CA5F8"
     },
     "112": {
         "Name": "Nostalgia Cape Nostalgia Cape Landmark",
         "LocationIDs": [650],
-        "Flag": "0x002CA5F8"
+        "Flag": "0x002CA62C"
     },
     "113": {
         "Name": "Roaring Seashore Parasequoia Landmark",

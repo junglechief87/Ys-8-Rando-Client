@@ -27,14 +27,16 @@ namespace Ys8AP.Mem
 
         /// <summary>
         /// Compares the compressed seed stored in the flag context with the computed compressed seed.
+        /// Only logs errors if the game is actually loaded; silently returns false if file not loaded yet.
         /// </summary>
         internal static bool TestRoomSeed()
         {
-
             uint compressed = GetCompressedRoomSeed();
             uint roomSeed = Contexts.FlagEnumContext.APSeed;
             bool result = compressed == roomSeed;
-            if (!result)
+            
+            // Only log errors if the game is actually loaded; otherwise silently retry
+            if (!result && Contexts.GameContext.InventoryAddress != 0)
             {
                 Log.Logger.Error("Room seed mismatch. Expected " + roomSeed + ", found " + compressed + ".");
             }

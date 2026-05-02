@@ -51,10 +51,19 @@ namespace Ys8AP.Threads
         {
             foreach (int ChestID in ChestData.Keys)
             {
-                if (Contexts.FlagEnumContext.GetChestByID((uint)ChestID).ChestOpened == CHEST_OPENED_FLAG)
+                byte chestFlag = Contexts.FlagEnumContext.GetChestByID((uint)ChestID).ChestOpened;
+                int locationID = ChestData[ChestID].LocationID;
+                
+                // Corpses and Driftage (LocationID 493-516) are single events, check for exactly 1
+                // Regular chests check for the opened flag (0x30)
+                bool isOpened = (locationID >= 493 && locationID <= 516) 
+                    ? chestFlag == 1 
+                    : chestFlag == CHEST_OPENED_FLAG;
+                
+                if (isOpened)
                 {
-                    if (allLocationIds.Contains(ChestData[ChestID].LocationID)) // Only check chests that are actually in the AP pool
-                        await App.SendLocation(ChestData[ChestID].LocationID);
+                    if (allLocationIds.Contains(locationID))
+                        await App.SendLocation(locationID);
                 }
             }
         }
