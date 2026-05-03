@@ -38,14 +38,14 @@ namespace Ys8AP.Items
         internal static void GiveItem(long itemId)
         {   
             InvItem receivedItem = ItemData[itemId];
-            int currentQuantity = Memory.ReadInt(Contexts.InventoryContext.GetItemQuantityAddress(receivedItem.ItemID));
+            int currentQuantity = Memory.ReadUShort(Contexts.InventoryContext.GetItemQuantityAddress(receivedItem.ItemID));
             int newQuantity = currentQuantity + receivedItem.ItemQuantity;
             
             // handle special items
             if (receivedItem.ItemID == PROGRESSIVE_SHOP_RANK_ID && currentQuantity >= 7) // Progressive shop rank, if we have 7 we give essences stone instead.
             {
                 receivedItem = ItemData[ESSENCE_STONE_ID]; // Essence Stone
-                currentQuantity = Memory.ReadInt(Contexts.InventoryContext.GetItemQuantityAddress(receivedItem.ItemID));
+                currentQuantity = Memory.ReadUShort(Contexts.InventoryContext.GetItemQuantityAddress(receivedItem.ItemID));
                 newQuantity = currentQuantity + 5;
             }
             else if (receivedItem.ItemID == PROGRESSIVE_SHOP_RANK_ID && currentQuantity == 0) // Progressive shop rank, if it's the first one we give Kathleen.
@@ -89,14 +89,27 @@ namespace Ys8AP.Items
             else if (receivedItem.ItemID == 629) // Fishing rod
             {
                 Contexts.InventoryContext.CheckIfObtainedAndSet(628);
-                Memory.WriteByte(Contexts.InventoryContext.GetItemQuantityAddress(628), 0x1E); // Give 30 bait
+                int currentBaitQuantity = Memory.ReadUShort(Contexts.InventoryContext.GetItemQuantityAddress(628));
+                int newBaitQuantity = currentBaitQuantity + 30;
+                if (newBaitQuantity > 999)
+                    newBaitQuantity = 30;
+                Memory.WriteByte(Contexts.InventoryContext.GetItemQuantityAddress(628), (byte)newBaitQuantity); // Give 30 bait
             }
             else if (receivedItem.ItemID == 218) // Slash Medal
             {
                 Contexts.InventoryContext.CheckIfObtainedAndSet(219);
-                Memory.WriteByte(Contexts.InventoryContext.GetItemQuantityAddress(219), 1); // Pierce Medal
+                int currentPierceMedalQuantity = Memory.ReadUShort(Contexts.InventoryContext.GetItemQuantityAddress(219));
+                int newPierceMedalQuantity = currentPierceMedalQuantity + 1;
+                if (newPierceMedalQuantity > 99)
+                    newPierceMedalQuantity = 1;
+                Memory.WriteByte(Contexts.InventoryContext.GetItemQuantityAddress(219), (byte)newPierceMedalQuantity); // Pierce Medal
+                
                 Contexts.InventoryContext.CheckIfObtainedAndSet(220);
-                Memory.WriteByte(Contexts.InventoryContext.GetItemQuantityAddress(220), 1); // Strike Medal
+                int currentStrikeMedalQuantity = Memory.ReadUShort(Contexts.InventoryContext.GetItemQuantityAddress(220));
+                int newStrikeMedalQuantity = currentStrikeMedalQuantity + 1;
+                if (newStrikeMedalQuantity > 99)
+                    newStrikeMedalQuantity = 1;
+                Memory.WriteByte(Contexts.InventoryContext.GetItemQuantityAddress(220), (byte)newStrikeMedalQuantity); // Strike Medal
             }
 
             // handle event flags

@@ -74,7 +74,7 @@ namespace Ys8AP.Threads
                         // Wait for debounce period after state change before validating seed
                         if (DateTime.UtcNow.Subtract(_lastStateChangeTime).TotalMilliseconds >= SEED_VALIDATION_DEBOUNCE_MS)
                         {
-                            IsPlayerReady = OpenMem.TestRoomSeed();
+                            IsPlayerReady = OpenMem.TestRoomSeed() && App.Client?.IsConnected == true;
                         }
                         else
                         {

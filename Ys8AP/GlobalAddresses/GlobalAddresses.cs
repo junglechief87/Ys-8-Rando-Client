@@ -151,6 +151,9 @@ namespace Ys8AP.GlobalAddresses
     // ============================================================================
     public class ChestParams
     {
+        [MemoryOffset(0x00)]
+        public byte NonChestEventFlag { get; set; } // Used for corpses and driftage, they're in the chest table but aren't actually chests
+
         [MemoryOffset(0x02)]
         public byte ChestOpened { get; set; }
     }

@@ -1,1638 +1,1638 @@
 {
-    "0": {
-        "Name": "Waterdrop Cave Dilapidated Living Space Chest 2",
-        "LocationID": 378
-    },
-    "1": {
-        "Name": "Waterdrop Cave Dilapidated Living Space Chest 3",
-        "LocationID": 379
-    },
-    "2": {
-        "Name": "Waterdrop Cave Before Boss Arena Chest 1",
-        "LocationID": 380
-    },
-    "3": {
-        "Name": "Nameless Coast Northwest of Laxia Chest 1",
-        "LocationID": 51
-    },
-    "4": {
-        "Name": "Nameless Coast Shoreline South of Boulder Chest 1",
-        "LocationID": 33
-    },
-    "5": {
-        "Name": "Nameless Coast Cliffs South - Treebridge Chest 1",
-        "LocationID": 23
-    },
-    "6": {
-        "Name": "Nameless Coast Cliffs South - Treebridge Chest 2",
-        "LocationID": 24
-    },
-    "7": {
-        "Name": "Nameless Coast Cliffs South - Treebridge Chest 3",
-        "LocationID": 25
-    },
-    "8": {
-        "Name": "Nameless Coast Shoreline North of Boulder Chest 1",
-        "LocationID": 34
-    },
-    "9": {
-        "Name": "Nameless Coast Shoreline North of Boulder Chest 2",
-        "LocationID": 35
-    },
-    "10": {
-        "Name": "Nameless Coast Forested Area (Gravel Spot) Chest 1",
-        "LocationID": 91
-    },
-    "11": {
-        "Name": "Nameless Coast Forested Area (Gravel Spot) Chest 2",
-        "LocationID": 92
-    },
-    "12": {
-        "Name": "Nameless Coast Cliffs North Chest 1",
-        "LocationID": 26
-    },
-    "13": {
-        "Name": "White Sand Cape North of Starting Shore Chest 1",
-        "LocationID": 36
-    },
-    "14": {
-        "Name": "White Sand Cape Cobalt Crag Chest 1",
-        "LocationID": 52
-    },
-    "15": {
-        "Name": "White Sand Cape Cobalt Crag Chest 2",
-        "LocationID": 53
-    },
-    "16": {
-        "Name": "White Sand Cape Alison's Shore Chest 1",
-        "LocationID": 55
-    },
-    "17": {
-        "Name": "White Sand Cape Coral Shore Chest 1",
-        "LocationID": 56
-    },
-    "18": {
-        "Name": "Towering Coral Forest Entrance Chest 1",
-        "LocationID": 60
-    },
-    "19": {
-        "Name": "Towering Coral Forest Entrance Chest 2",
-        "LocationID": 61
-    },
-    "20": {
-        "Name": "Towering Coral Forest Walkways Chest 3",
-        "LocationID": 65
-    },
-    "21": {
-        "Name": "Towering Coral Forest Walkways Chest 4",
-        "LocationID": 66
-    },
-    "22": {
-        "Name": "Towering Coral Forest Walkways Chest 5",
-        "LocationID": 67
-    },
-    "23": {
-        "Name": "Towering Coral Forest Walkways Chest 6",
-        "LocationID": 68
-    },
-    "24": {
-        "Name": "Towering Coral Forest After Mid-Boss Chest 1",
-        "LocationID": 73
-    },
-    "25": {
-        "Name": "Towering Coral Forest After Mid-Boss Chest 2",
-        "LocationID": 74
-    },
-    "26": {
-        "Name": "Towering Coral Forest After Mid-Boss Chest 3",
-        "LocationID": 75
-    },
-    "27": {
-        "Name": "Towering Coral Forest After Mid-Boss Chest 4",
-        "LocationID": 76
-    },
-    "28": {
-        "Name": "Towering Coral Forest Rainbow Falls Chest 1",
-        "LocationID": 79
-    },
-    "29": {
-        "Name": "Towering Coral Forest Rainbow Falls Chest 2",
-        "LocationID": 80
-    },
-    "30": {
-        "Name": "Towering Coral Forest Rainbow Falls Chest 3",
-        "LocationID": 81
-    },
-    "31": {
-        "Name": "Towering Coral Forest Rainbow Falls Chest 4",
-        "LocationID": 82
-    },
-    "32": {
-        "Name": "Towering Coral Forest Rainbow Falls Chest 5",
-        "LocationID": 83
-    },
-    "33": {
-        "Name": "Towering Coral Forest Midpoint Chest 1",
-        "LocationID": 87
-    },
-    "34": {
-        "Name": "Towering Coral Forest End Chest 1",
-        "LocationID": 89
-    },
-    "35": {
-        "Name": "Roaring Seashore Metavolicalis Chest 1",
-        "LocationID": 42
-    },
-    "36": {
-        "Name": "Roaring Seashore Parasequoia Chest 1",
-        "LocationID": 58
-    },
-    "37": {
-        "Name": "Roaring Seashore Parasequoia Chest 2",
-        "LocationID": 59
-    },
-    "38": {
-        "Name": "Great River Valley Falls Chest 1",
-        "LocationID": 93
-    },
-    "39": {
-        "Name": "Great River Valley Falls Chest 2",
-        "LocationID": 94
-    },
-    "40": {
-        "Name": "Great River Valley Falls Chest 3",
-        "LocationID": 95
-    },
-    "41": {
-        "Name": "Great River Valley Falls Chest 4",
-        "LocationID": 96
-    },
-    "42": {
-        "Name": "Great River Valley Falls Chest 5",
-        "LocationID": 97
-    },
-    "43": {
-        "Name": "Great River Valley Large Shoreline Chest 1",
-        "LocationID": 44
-    },
-    "44": {
-        "Name": "Great River Valley Large Shoreline Chest 2",
-        "LocationID": 45
-    },
-    "45": {
-        "Name": "Great River Valley Large Shoreline Chest 3",
-        "LocationID": 46
-    },
-    "46": {
-        "Name": "Great River Valley Lookout Tower Chest 1",
-        "LocationID": 114
-    },
-    "47": {
-        "Name": "Great River Valley Chimney Rock Chest 1",
-        "LocationID": 115
-    },
-    "48": {
-        "Name": "Waterfall Grotto Waterfall Grotto Chest 1",
-        "LocationID": 392
-    },
-    "49": {
-        "Name": "Waterfall Grotto Waterfall Grotto Chest 2",
-        "LocationID": 393
-    },
-    "50": {
-        "Name": "Beast Hills Valley (Where Hummel Joins) Chest 1",
-        "LocationID": 29
-    },
-    "51": {
-        "Name": "Beast Hills Collapsed Cliff Chest 1",
-        "LocationID": 30
-    },
-    "52": {
-        "Name": "Beast Hills Collapsed Cliff Chest 2",
-        "LocationID": 31
-    },
-    "53": {
-        "Name": "Beast Hills Collapsed Cliff Chest 3",
-        "LocationID": 32
-    },
-    "54": {
-        "Name": "Eroded Valley Entrance Chest 1",
-        "LocationID": 128
-    },
-    "55": {
-        "Name": "Eroded Valley Entrance Chest 2",
-        "LocationID": 129
-    },
-    "56": {
-        "Name": "Eroded Valley Entrance Chest 3",
-        "LocationID": 130
-    },
-    "57": {
-        "Name": "Eroded Valley Entrance Chest 4",
-        "LocationID": 131
-    },
-    "58": {
-        "Name": "Eroded Valley Entrance Chest 5",
-        "LocationID": 132
-    },
-    "59": {
-        "Name": "Eroded Valley Cave Chest 1",
-        "LocationID": 133
-    },
-    "60": {
-        "Name": "Eroded Valley Cave Chest 2",
-        "LocationID": 134
-    },
-    "61": {
-        "Name": "Eroded Valley Cave Chest 3",
-        "LocationID": 135
-    },
-    "62": {
-        "Name": "Eroded Valley Dark Passage Chest 1",
-        "LocationID": 136
-    },
-    "63": {
-        "Name": "Eroded Valley Midpoint Chest 1",
-        "LocationID": 137
-    },
-    "64": {
-        "Name": "Eroded Valley Midpoint Chest 2",
-        "LocationID": 138
-    },
-    "65": {
-        "Name": "Eroded Valley Midpoint Chest 3",
-        "LocationID": 139
-    },
-    "66": {
-        "Name": "Eroded Valley Webbed Walkways Chest 1",
-        "LocationID": 141
-    },
-    "67": {
-        "Name": "Eroded Valley Webbed Walkways Chest 2",
-        "LocationID": 142
-    },
-    "68": {
-        "Name": "Eroded Valley Webbed Walkways Chest 3",
-        "LocationID": 143
-    },
-    "69": {
-        "Name": "Eroded Valley End Chest 1",
-        "LocationID": 144
-    },
-    "70": {
-        "Name": "Weathervane Hills South of Nameless Coast Rockslide Chest 1",
-        "LocationID": 111
-    },
-    "71": {
-        "Name": "Weathervane Hills Zephyr Hill Chest 1",
-        "LocationID": 113
-    },
-    "72": {
-        "Name": "Headwater Falls Headwater Falls Chest 1",
-        "LocationID": 384
-    },
-    "73": {
-        "Name": "Headwater Falls Headwater Falls Chest 2",
-        "LocationID": 385
-    },
-    "74": {
-        "Name": "Headwater Falls Headwater Falls Chest 3",
-        "LocationID": 386
-    },
-    "75": {
-        "Name": "Headwater Falls Headwater Falls Chest 4",
-        "LocationID": 387
-    },
-    "76": {
-        "Name": "Headwater Falls Headwater Falls Chest 5",
-        "LocationID": 388
-    },
-    "77": {
-        "Name": "Underground Water Vein Submerged Area Chest 1",
-        "LocationID": 389
-    },
-    "78": {
-        "Name": "Underground Water Vein Submerged Area Chest 2",
-        "LocationID": 390
-    },
-    "79": {
-        "Name": "Underground Water Vein Submerged Area Chest 3",
-        "LocationID": 391
-    },
-    "80": {
-        "Name": "Longhorn Coast Reja Shore Chest 1",
-        "LocationID": 37
-    },
-    "81": {
-        "Name": "Longhorn Coast Eastern Shore Chest 1",
-        "LocationID": 39
-    },
-    "82": {
-        "Name": "Longhorn Coast Eastern Shore Chest 2",
-        "LocationID": 40
-    },
-    "83": {
-        "Name": "Longhorn Coast Reja Shore Chest 3",
-        "LocationID": 38
-    },
-    "84": {
-        "Name": "Water and Wood Hills Foggy Forest Chest 1",
-        "LocationID": 100
-    },
-    "85": {
-        "Name": "Schlamm Jungle Entrance Chest 1",
-        "LocationID": 101
-    },
-    "86": {
-        "Name": "Schlamm Jungle Entrance Chest 2",
-        "LocationID": 102
-    },
-    "87": {
-        "Name": "Schlamm Jungle Entrance Chest 3",
-        "LocationID": 103
-    },
-    "88": {
-        "Name": "Schlamm Jungle North of Entrance Chest 1",
-        "LocationID": 104
-    },
-    "89": {
-        "Name": "Schlamm Jungle Small Passage Chest 1",
-        "LocationID": 106
-    },
-    "90": {
-        "Name": "Schlamm Jungle Muddy Passage Chest 1",
-        "LocationID": 108
-    },
-    "91": {
-        "Name": "Schlamm Jungle Muddy Passage Chest 2",
-        "LocationID": 109
-    },
-    "92": {
-        "Name": "Schlamm Jungle End Chest 1",
-        "LocationID": 110
-    },
-    "93": {
-        "Name": "Great River Valley Cliffs Chest 1",
-        "LocationID": 27
-    },
-    "94": {
-        "Name": "Western Foot of Gendarme Moutain Base Chest 1",
-        "LocationID": 116
-    },
-    "95": {
-        "Name": "Western Foot of Gendarme Near Cavern of the Ancient King Chest 1",
-        "LocationID": 117
-    },
-    "96": {
-        "Name": "Mont Gendarme Entrance Chest 1",
-        "LocationID": 145
-    },
-    "97": {
-        "Name": "Mont Gendarme Southern Lower Cliffside Trail Chest 1",
-        "LocationID": 147
-    },
-    "98": {
-        "Name": "Mont Gendarme Northern Lower Cliffside Trail Chest 1",
-        "LocationID": 152
-    },
-    "99": {
-        "Name": "Mont Gendarme Northern Lower Cliffside Trail Chest 2",
-        "LocationID": 153
-    },
-    "100": {
-        "Name": "Mont Gendarme Outside Cabin Chest 1",
-        "LocationID": 157
-    },
-    "101": {
-        "Name": "Mont Gendarme Cliffside Midpoint Chest 1",
-        "LocationID": 158
-    },
-    "102": {
-        "Name": "Mont Gendarme Cliffside Midpoint Chest 2",
-        "LocationID": 159
-    },
-    "103": {
-        "Name": "Mont Gendarme Upper Cliffs 1 Chest 1",
-        "LocationID": 162
-    },
-    "104": {
-        "Name": "Mont Gendarme Upper Cliffs 2 Chest 1",
-        "LocationID": 165
-    },
-    "105": {
-        "Name": "Mountain Pinnacle Trail Top Chest 1",
-        "LocationID": 120
-    },
-    "106": {
-        "Name": "Mountain Pinnacle Trail First Cave Chest 1",
-        "LocationID": 377
-    },
-    "107": {
-        "Name": "Mountain Pinnacle Trail Outside First Cave Exit Chest 1",
-        "LocationID": 121
-    },
-    "108": {
-        "Name": "Mountain Pinnacle Trail Lower Mountain Trail Chest 1",
-        "LocationID": 123
-    },
-    "109": {
-        "Name": "Mountain Pinnacle Trail Outside Second Cave Entrance Chest 1",
-        "LocationID": 124
-    },
-    "110": {
-        "Name": "Mountain Pinnacle Trail Outside Second Cave Entrance Chest 2",
-        "LocationID": 125
-    },
-    "111": {
-        "Name": "Titis Primeval Forest Entrance from Temple Approach Chest 1",
-        "LocationID": 171
-    },
-    "112": {
-        "Name": "Titis Primeval Forest Near Primordial Den Chest 1",
-        "LocationID": 168
-    },
-    "113": {
-        "Name": "Titis Primeval Forest Near Primordial Den Chest 2",
-        "LocationID": 169
-    },
-    "114": {
-        "Name": "Titis Primeval Forest Near Primordial Den Chest 3",
-        "LocationID": 170
-    },
-    "115": {
-        "Name": "Titis Primeval Forest Exit to Pangaia Plains Chest 1",
-        "LocationID": 167
-    },
-    "116": {
-        "Name": "Pangaia Plains Northern Plains Chest 1",
-        "LocationID": 192
-    },
-    "117": {
-        "Name": "Pangaia Plains Northern Plains Chest 2",
-        "LocationID": 193
-    },
-    "118": {
-        "Name": "Pangaia Plains Pond Chest 1",
-        "LocationID": 181
-    },
-    "119": {
-        "Name": "Pangaia Plains Ancient Tree Chest 1",
-        "LocationID": 183
-    },
-    "120": {
-        "Name": "Stone Pillar Wind Cave Stone Pillar Wind Cave Chest 1",
-        "LocationID": 396
-    },
-    "121": {
-        "Name": "Stone Pillar Wind Cave Stone Pillar Wind Cave Chest 2",
-        "LocationID": 397
-    },
-    "122": {
-        "Name": "Stone Pillar Wind Cave Stone Pillar Wind Cave Chest 3",
-        "LocationID": 398
-    },
-    "123": {
-        "Name": "Stone Pillar Wind Cave Stone Pillar Wind Cave Chest 4",
-        "LocationID": 399
-    },
-    "124": {
-        "Name": "Stone Pillar Wind Cave Stone Pillar Wind Cave Chest 5",
-        "LocationID": 400
-    },
-    "125": {
-        "Name": "Towal Highway Baja Tower Approach Chest 1",
-        "LocationID": 172
-    },
-    "126": {
-        "Name": "Baja Tower Second Floor Chest 1",
-        "LocationID": 216
-    },
-    "127": {
-        "Name": "Baja Tower Second Floor Chest 2",
-        "LocationID": 217
-    },
-    "128": {
-        "Name": "Baja Tower Second Floor Chest 3",
-        "LocationID": 218
-    },
-    "129": {
-        "Name": "Baja Tower Third Floor Chest 1",
-        "LocationID": 219
-    },
-    "130": {
-        "Name": "Baja Tower Third Floor Chest 2",
-        "LocationID": 220
-    },
-    "131": {
-        "Name": "Baja Tower Third Floor Chest 3",
-        "LocationID": 221
-    },
-    "132": {
-        "Name": "Baja Tower Third Floor Chest 4",
-        "LocationID": 222
-    },
-    "133": {
-        "Name": "Baja Tower Mid-Boss Arena Chest 1",
-        "LocationID": 223
-    },
-    "134": {
-        "Name": "Baja Tower Fifth Floor Chest 1",
-        "LocationID": 224
-    },
-    "135": {
-        "Name": "Baja Tower Fifth Floor Chest 2",
-        "LocationID": 225
-    },
-    "136": {
-        "Name": "Baja Tower Sixth Floor Chest 1",
-        "LocationID": 226
-    },
-    "137": {
-        "Name": "Baja Tower Sixth Floor Chest 2",
-        "LocationID": 227
-    },
-    "138": {
-        "Name": "Baja Tower Sixth Floor Chest 3",
-        "LocationID": 228
-    },
-    "139": {
-        "Name": "Baja Tower Sixth Floor Chest 4",
-        "LocationID": 229
-    },
-    "140": {
-        "Name": "Baja Tower Sixth Floor Chest 5",
-        "LocationID": 230
-    },
-    "141": {
-        "Name": "Nostalgia Cape Nostalgia Cape Chest 1",
-        "LocationID": 41
-    },
-    "142": {
-        "Name": "East Coast Cave East Coast Cave Chest 1",
-        "LocationID": 381
-    },
-    "143": {
-        "Name": "East Coast Cave East Coast Cave Chest 2",
-        "LocationID": 382
-    },
-    "144": {
-        "Name": "East Coast Cave East Coast Cave Chest 3",
-        "LocationID": 383
-    },
-    "145": {
-        "Name": "Pirate Ship Eleftheria Crew Quarters Chest 1",
-        "LocationID": 13
-    },
-    "146": {
-        "Name": "Pirate Ship Eleftheria Crew Quarters Chest 2",
-        "LocationID": 14
-    },
-    "147": {
-        "Name": "Pirate Ship Eleftheria Crew Quarters Chest 3",
-        "LocationID": 15
-    },
-    "148": {
-        "Name": "Pirate Ship Eleftheria Crew Quarters Chest 4",
-        "LocationID": 16
-    },
-    "149": {
-        "Name": "Pirate Ship Eleftheria Crew Quarters Chest 5",
-        "LocationID": 17
-    },
-    "150": {
-        "Name": "Pirate Ship Eleftheria Accessway Chest 1",
-        "LocationID": 9
-    },
-    "151": {
-        "Name": "Pirate Ship Eleftheria Accessway Chest 2",
-        "LocationID": 10
-    },
-    "152": {
-        "Name": "Pirate Ship Eleftheria Accessway Chest 3",
-        "LocationID": 11
-    },
-    "153": {
-        "Name": "Pirate Ship Eleftheria Accessway Chest 4",
-        "LocationID": 12
-    },
-    "154": {
-        "Name": "Pirate Ship Eleftheria Hold Chest 1",
-        "LocationID": 5
-    },
-    "155": {
-        "Name": "Pirate Ship Eleftheria Hold Chest 2",
-        "LocationID": 6
-    },
-    "156": {
-        "Name": "Pirate Ship Eleftheria Hold Chest 3",
-        "LocationID": 7
-    },
-    "157": {
-        "Name": "Pirate Ship Eleftheria Hold Chest 4",
-        "LocationID": 8
-    },
-    "158": {
-        "Name": "Pirate Ship Eleftheria Stairwell Chest 1",
-        "LocationID": 19
-    },
-    "159": {
-        "Name": "Pirate Ship Eleftheria Stairwell Chest 2",
-        "LocationID": 20
-    },
-    "160": {
-        "Name": "Pirate Ship Eleftheria Stairwell Chest 3",
-        "LocationID": 21
-    },
-    "161": {
-        "Name": "Pirate Ship Eleftheria Stairwell Chest 4",
-        "LocationID": 22
-    },
-    "162": {
-        "Name": "Pirate Ship Eleftheria Deck Chest 1",
-        "LocationID": 18
-    },
-    "163": {
-        "Name": "Pirate Ship Eleftheria Submerged Hold Chest 1",
-        "LocationID": 1
-    },
-    "164": {
-        "Name": "Pirate Ship Eleftheria Submerged Hold Chest 2",
-        "LocationID": 2
-    },
-    "165": {
-        "Name": "Pirate Ship Eleftheria Submerged Hold Chest 3",
-        "LocationID": 3
-    },
-    "166": {
-        "Name": "Pirate Ship Eleftheria Submerged Hold Chest 4",
-        "LocationID": 4
-    },
-    "167": {
-        "Name": "Archeozoic Chasm Entrance Chest 1",
-        "LocationID": 248
-    },
-    "168": {
-        "Name": "Archeozoic Chasm Cliffs Overlooking Crater Chest 1",
-        "LocationID": 249
-    },
-    "169": {
-        "Name": "Archeozoic Chasm Cliffs Overlooking Crater Chest 2",
-        "LocationID": 250
-    },
-    "170": {
-        "Name": "Archeozoic Chasm Whirlpools Chest 1",
-        "LocationID": 251
-    },
-    "171": {
-        "Name": "Archeozoic Chasm Whirlpools Chest 2",
-        "LocationID": 252
-    },
-    "172": {
-        "Name": "Archeozoic Chasm Submerged Cave Chest 1",
-        "LocationID": 253
-    },
-    "173": {
-        "Name": "Archeozoic Chasm Submerged Cave Chest 2",
-        "LocationID": 254
-    },
-    "174": {
-        "Name": "Archeozoic Chasm Submerged Cave Chest 3",
-        "LocationID": 255
-    },
-    "175": {
-        "Name": "Archeozoic Chasm Water Vents Chest 1",
-        "LocationID": 256
-    },
-    "176": {
-        "Name": "Archeozoic Chasm Water Vents Chest 2",
-        "LocationID": 257
-    },
-    "177": {
-        "Name": "Archeozoic Chasm Sunken Eternia Ruins West Chest 1",
-        "LocationID": 258
-    },
-    "178": {
-        "Name": "Archeozoic Chasm Sunken Eternia Ruins East Chest 1",
-        "LocationID": 259
-    },
-    "179": {
-        "Name": "Archeozoic Chasm Sunken Eternia Ruins East Chest 2",
-        "LocationID": 260
-    },
-    "180": {
-        "Name": "Archeozoic Chasm Sunken Eternia Ruins East Chest 3",
-        "LocationID": 261
-    },
-    "181": {
-        "Name": "Vista Ridge Vista Ridge Upper Chest 1",
-        "LocationID": 126
-    },
-    "182": {
-        "Name": "Vista Ridge Vista Ridge Upper Chest 2",
-        "LocationID": 127
-    },
-    "183": {
-        "Name": "Lodinia Marshland Entrance from Vista Ridge Chest 1",
-        "LocationID": 173
-    },
-    "184": {
-        "Name": "Lodinia Marshland Entrance from Vista Ridge Chest 2",
-        "LocationID": 174
-    },
-    "185": {
-        "Name": "Lodinia Marshland Entrance from Vista Ridge Chest 3",
-        "LocationID": 175
-    },
-    "186": {
-        "Name": "Lodinia Marshland Muddy Lake Chest 1",
-        "LocationID": 185
-    },
-    "187": {
-        "Name": "Lodinia Marshland Muddy Lake Chest 2",
-        "LocationID": 186
-    },
-    "188": {
-        "Name": "Lodinia Marshland Muddy Lake Chest 3",
-        "LocationID": 187
-    },
-    "189": {
-        "Name": "Lodinia Marshland Near Submerged Cemetery Chest 1",
-        "LocationID": 176
-    },
-    "190": {
-        "Name": "Lodinia Marshland Near Submerged Cemetery Chest 2",
-        "LocationID": 177
-    },
-    "191": {
-        "Name": "Lodinia Marshland Exit to Valley of Kings Chest 1",
-        "LocationID": 188
-    },
-    "192": {
-        "Name": "Lodinia Marshland Exit to Valley of Kings Chest 2",
-        "LocationID": 189
-    },
-    "193": {
-        "Name": "Lodinia Marshland Exit to Valley of Kings Chest 3",
-        "LocationID": 190
-    },
-    "194": {
-        "Name": "Valley of Kings Entrance Chest 1",
-        "LocationID": 231
-    },
-    "195": {
-        "Name": "Valley of Kings Entrance Chest 2",
-        "LocationID": 232
-    },
-    "196": {
-        "Name": "Valley of Kings Entrance Chest 3",
-        "LocationID": 233
-    },
-    "197": {
-        "Name": "Valley of Kings Entrance Chest 4",
-        "LocationID": 234
-    },
-    "198": {
-        "Name": "Valley of Kings Entrance Chest 5",
-        "LocationID": 235
-    },
-    "199": {
-        "Name": "Valley of Kings Entrance Chest 6",
-        "LocationID": 236
-    },
-    "200": {
-        "Name": "Valley of Kings Northern Lower Level Chest 1",
-        "LocationID": 237
-    },
-    "201": {
-        "Name": "Valley of Kings Northern Lower Level Chest 2",
-        "LocationID": 238
-    },
-    "202": {
-        "Name": "Valley of Kings Mid-Boss Arena Chest 1",
-        "LocationID": 239
-    },
-    "203": {
-        "Name": "Valley of Kings Stairway (Statue Doors) Chest 1",
-        "LocationID": 240
-    },
-    "204": {
-        "Name": "Valley of Kings Stairway (Statue Doors) Chest 2",
-        "LocationID": 241
-    },
-    "205": {
-        "Name": "Valley of Kings Stairway (Statue Doors) Chest 3",
-        "LocationID": 242
-    },
-    "206": {
-        "Name": "Valley of Kings Stairway (Statue Doors) Chest 4",
-        "LocationID": 243
-    },
-    "207": {
-        "Name": "Valley of Kings End Chest 1",
-        "LocationID": 244
-    },
-    "208": {
-        "Name": "Valley of Kings End Chest 2",
-        "LocationID": 245
-    },
-    "209": {
-        "Name": "Valley of Kings End Chest 3",
-        "LocationID": 246
-    },
-    "210": {
-        "Name": "Valley of Kings End Chest 4",
-        "LocationID": 247
-    },
-    "211": {
-        "Name": "Eternal Hill Eternal Hill Chest 1",
-        "LocationID": 180
-    },
-    "212": {
-        "Name": "The Submerged Cemetery The Submerged Cemetery Chest 1",
-        "LocationID": 394
-    },
-    "213": {
-        "Name": "The Submerged Cemetery The Submerged Cemetery Chest 2",
-        "LocationID": 395
-    },
-    "214": {
-        "Name": "Bolado Monastery Entrance Chest 1",
-        "LocationID": 269
-    },
-    "215": {
-        "Name": "Bolado Monastery Entrance Chest 2",
-        "LocationID": 270
-    },
-    "216": {
-        "Name": "Bolado Monastery Entrance Chest 3",
-        "LocationID": 271
-    },
-    "217": {
-        "Name": "Bolado Monastery Entrance Chest 4",
-        "LocationID": 272
-    },
-    "218": {
-        "Name": "Bolado Monastery Entrance Chest 5",
-        "LocationID": 273
-    },
-    "219": {
-        "Name": "Bolado Monastery Basement Chest 1",
-        "LocationID": 274
-    },
-    "220": {
-        "Name": "Bolado Monastery Basement Chest 2",
-        "LocationID": 275
-    },
-    "221": {
-        "Name": "Bolado Monastery Basement Chest 3",
-        "LocationID": 276
-    },
-    "222": {
-        "Name": "Bolado Monastery Basement Chest 4",
-        "LocationID": 277
-    },
-    "223": {
-        "Name": "Bolado Monastery Basement Chest 5",
-        "LocationID": 278
-    },
-    "224": {
-        "Name": "Silent Tower First Basement Chest 1",
-        "LocationID": 262
-    },
-    "225": {
-        "Name": "Silent Tower First Basement Chest 2",
-        "LocationID": 263
-    },
-    "226": {
-        "Name": "Silent Tower First Basement Chest 3",
-        "LocationID": 264
-    },
-    "227": {
-        "Name": "Silent Tower Second Basement Chest 1",
-        "LocationID": 265
-    },
-    "228": {
-        "Name": "Silent Tower Second Basement Chest 2",
-        "LocationID": 266
-    },
-    "229": {
-        "Name": "Silent Tower Second Basement Chest 3",
-        "LocationID": 267
-    },
-    "230": {
-        "Name": "Silent Tower Second Basement Chest 4",
-        "LocationID": 268
-    },
-    "231": {
-        "Name": "Octus Overlook Path of the Ocean Era Chest 1",
-        "LocationID": 202
-    },
-    "232": {
-        "Name": "Octus Overlook Path of the Ocean Era Chest 2",
-        "LocationID": 203
-    },
-    "233": {
-        "Name": "Octus Overlook Path of the Frozen Era Chest 1",
-        "LocationID": 204
-    },
-    "234": {
-        "Name": "Octus Overlook Path of the Frozen Era Chest 2",
-        "LocationID": 205
-    },
-    "235": {
-        "Name": "Octus Overlook Path of the Frozen Era Chest 3",
-        "LocationID": 206
-    },
-    "236": {
-        "Name": "Octus Overlook Path of the Insectoid Era Chest 1",
-        "LocationID": 207
-    },
-    "237": {
-        "Name": "Octus Overlook Path of the Insectoid Era Chest 2",
-        "LocationID": 208
-    },
-    "238": {
-        "Name": "Octus Overlook Path of the Insectoid Era Chest 3",
-        "LocationID": 209
-    },
-    "239": {
-        "Name": "Octus Overlook Path of the Sky Era Chest 1",
-        "LocationID": 210
-    },
-    "240": {
-        "Name": "Octus Overlook Path of the Sky Era Chest 2",
-        "LocationID": 211
-    },
-    "241": {
-        "Name": "Octus Overlook Path of the Sky Era Chest 3",
-        "LocationID": 212
-    },
-    "242": {
-        "Name": "Octus Overlook Selection Sphere Chest 1",
-        "LocationID": 213
-    },
-    "243": {
-        "Name": "Octus Overlook Selection Sphere Chest 2",
-        "LocationID": 214
-    },
-    "244": {
-        "Name": "Octus Overlook Selection Sphere Chest 3",
-        "LocationID": 215
-    },
-    "245": {
-        "Name": "Schlamm Jungle Small Passage Chest 2",
-        "LocationID": 107
-    },
-    "246": {
-        "Name": "Mont Gendarme Northern Lower Cliffside Trail Chest 3",
-        "LocationID": 154
-    },
-    "247": {
-        "Name": "Mont Gendarme Upper Cliffs 1 Chest 2",
-        "LocationID": 163
-    },
-    "248": {
-        "Name": "The Primordial Passage Dana's Tree Chest 1",
-        "LocationID": 118
-    },
-    "249": {
-        "Name": "White Sand Cape Coral Shore Chest 2",
-        "LocationID": 57
-    },
-    "250": {
-        "Name": "Roaring Seashore Metavolicalis Chest 2",
-        "LocationID": 43
-    },
-    "251": {
-        "Name": "Weathervane Hills South of Nameless Coast Rockslide Chest 2",
-        "LocationID": 112
-    },
-    "252": {
-        "Name": "Mont Gendarme Southern Lower Cliffside Trail Chest 2",
-        "LocationID": 148
-    },
-    "253": {
-        "Name": "Mountain Pinnacle Trail Outside First Cave Exit Chest 2",
-        "LocationID": 122
-    },
-    "254": {
-        "Name": "The Primordial Passage Dana's Tree Chest 2",
-        "LocationID": 119
-    },
-    "255": {
-        "Name": "Towal Highway Cliff Overlooking Chasm Chest 1",
-        "LocationID": 191
-    },
-    "256": {
-        "Name": "The Ruins of Eternia Eastern Entrance Chest 1",
-        "LocationID": 197
-    },
-    "257": {
-        "Name": "The Ruins of Eternia Eastern Entrance Chest 2",
-        "LocationID": 198
-    },
-    "258": {
-        "Name": "The Ruins of Eternia Eastern Entrance Chest 3",
-        "LocationID": 199
-    },
-    "259": {
-        "Name": "The Ruins of Eternia Residence Chest 1",
-        "LocationID": 200
-    },
-    "260": {
-        "Name": "Solitude Island Cave Chest 1",
-        "LocationID": 50
-    },
-    "261": {
-        "Name": "White Sand Cape Cobalt Crag Chest 3",
-        "LocationID": 54
-    },
-    "262": {
-        "Name": "Schlamm Jungle Mid-Boss Arena Chest 1",
-        "LocationID": 105
-    },
-    "263": {
-        "Name": "Eroded Valley Mid-Boss Arena Chest 1",
-        "LocationID": 140
-    },
-    "264": {
-        "Name": "Water and Wood Hills Near Silent Tower Chest 1",
-        "LocationID": 98
-    },
-    "265": {
-        "Name": "Water and Wood Hills Near Silent Tower Chest 2",
-        "LocationID": 99
-    },
-    "266": {
-        "Name": "The Ruins of Eternia Residence Chest 2",
-        "LocationID": 201
-    },
-    "267": {
-        "Name": "The Ruins of Eternia Central District Chest 1",
-        "LocationID": 196
-    },
-    "268": {
-        "Name": "The Ruins of Eternia Central District Chest 2",
-        "LocationID": 195
-    },
-    "269": {
-        "Name": "Great River Valley Cliffs Chest 2",
-        "LocationID": 28
-    },
-    "270": {
-        "Name": "Lodinia Marshland Valley of Kings - Camp Chest 1",
-        "LocationID": 178
-    },
-    "683": {
-        "Name": "Former Sanctuary Crypt - B1 Entrance Chest 1",
-        "LocationID": 279
-    },
-    "684": {
-        "Name": "Former Sanctuary Crypt - B1 Entrance Chest 2",
-        "LocationID": 280
-    },
-    "685": {
-        "Name": "Former Sanctuary Crypt - B1 Entrance Chest 3",
-        "LocationID": 281
-    },
-    "686": {
-        "Name": "Former Sanctuary Crypt - B1 First Brazier Chest 1",
-        "LocationID": 283
-    },
-    "687": {
-        "Name": "Former Sanctuary Crypt - B1 North Brazier Room Chest 1",
-        "LocationID": 287
-    },
-    "688": {
-        "Name": "Former Sanctuary Crypt - B1 North Brazier Room Chest 2",
-        "LocationID": 288
-    },
-    "689": {
-        "Name": "Former Sanctuary Crypt - B1 Boss Arena Chest 1",
-        "LocationID": 291
-    },
-    "690": {
-        "Name": "Former Sanctuary Crypt - B2 Entrance Chest 1",
-        "LocationID": 293
-    },
-    "691": {
-        "Name": "Former Sanctuary Crypt - B2 Entrance Chest 2",
-        "LocationID": 294
-    },
-    "692": {
-        "Name": "Former Sanctuary Crypt - B2 Entrance Chest 3",
-        "LocationID": 295
-    },
-    "693": {
-        "Name": "Former Sanctuary Crypt - B2 Stone and Rock Block Puzzle Chest 1",
-        "LocationID": 296
-    },
-    "694": {
-        "Name": "Former Sanctuary Crypt - B2 Stone and Rock Block Puzzle Chest 2",
-        "LocationID": 297
-    },
-    "695": {
-        "Name": "Former Sanctuary Crypt - B2 Boss Arena Chest 1",
-        "LocationID": 301
-    },
-    "696": {
-        "Name": "Former Sanctuary Crypt - B3 Entrance Chest 1",
-        "LocationID": 303
-    },
-    "697": {
-        "Name": "Former Sanctuary Crypt - B3 Entrance Chest 2",
-        "LocationID": 304
-    },
-    "698": {
-        "Name": "Former Sanctuary Crypt - B3 Entrance Chest 3",
-        "LocationID": 305
-    },
-    "699": {
-        "Name": "Former Sanctuary Crypt - B3 Entrance Chest 4",
-        "LocationID": 306
-    },
-    "700": {
-        "Name": "Former Sanctuary Crypt - B3 Entrance Chest 5",
-        "LocationID": 307
-    },
-    "701": {
-        "Name": "Former Sanctuary Crypt - B3 Entrance Chest 6",
-        "LocationID": 308
-    },
-    "702": {
-        "Name": "Former Sanctuary Crypt - B3 Floating Block Puzzle Chest 1",
-        "LocationID": 320
-    },
-    "703": {
-        "Name": "Former Sanctuary Crypt - B3 Floating Block Puzzle Chest 2",
-        "LocationID": 321
-    },
-    "704": {
-        "Name": "Former Sanctuary Crypt - B3 Floating Block Puzzle Chest 3",
-        "LocationID": 322
-    },
-    "705": {
-        "Name": "Former Sanctuary Crypt - B3 Boss Arena Chest 1",
-        "LocationID": 329
-    },
-    "706": {
-        "Name": "Former Sanctuary Crypt - B4 Entrance Chest 1",
-        "LocationID": 331
-    },
-    "707": {
-        "Name": "Former Sanctuary Crypt - B4 Entrance Chest 2",
-        "LocationID": 332
-    },
-    "708": {
-        "Name": "Former Sanctuary Crypt - B4 Entrance Chest 3",
-        "LocationID": 333
-    },
-    "709": {
-        "Name": "Former Sanctuary Crypt - B4 Entrance Chest 4",
-        "LocationID": 334
-    },
-    "710": {
-        "Name": "Former Sanctuary Crypt - B4 Frozen Statue Room Chest 1",
-        "LocationID": 337
-    },
-    "711": {
-        "Name": "Former Sanctuary Crypt - B4 Frozen Statue Room Chest 2",
-        "LocationID": 338
-    },
-    "712": {
-        "Name": "Former Sanctuary Crypt - B4 Frozen Statue Room Chest 3",
-        "LocationID": 339
-    },
-    "713": {
-        "Name": "Former Sanctuary Crypt - B4 Frozen Statue Room Chest 4",
-        "LocationID": 340
-    },
-    "714": {
-        "Name": "Former Sanctuary Crypt - B4 Boss Arena Chest 1",
-        "LocationID": 344
-    },
-    "715": {
-        "Name": "Former Sanctuary Crypt - B5 Entrance Chest 1",
-        "LocationID": 346
-    },
-    "716": {
-        "Name": "Former Sanctuary Crypt - B5 Entrance Chest 2",
-        "LocationID": 347
-    },
-    "717": {
-        "Name": "Former Sanctuary Crypt - B5 Entrance Chest 3",
-        "LocationID": 348
-    },
-    "718": {
-        "Name": "Former Sanctuary Crypt - B5 Eastern Hall Chest 1",
-        "LocationID": 351
-    },
-    "719": {
-        "Name": "Former Sanctuary Crypt - B5 Western Hall Chest 1",
-        "LocationID": 357
-    },
-    "720": {
-        "Name": "Former Sanctuary Crypt - B5 Western Hall Chest 2",
-        "LocationID": 358
-    },
-    "721": {
-        "Name": "Former Sanctuary Crypt - B5 Western Hall Chest 3",
-        "LocationID": 359
-    },
-    "722": {
-        "Name": "Former Sanctuary Crypt - B5 Large Stairwell Chest 1",
-        "LocationID": 364
-    },
-    "723": {
-        "Name": "Former Sanctuary Crypt - B5 Large Stairwell Chest 2",
-        "LocationID": 365
-    },
-    "724": {
-        "Name": "Former Sanctuary Crypt - B5 Boss Arena Chest 1",
-        "LocationID": 366
-    },
-    "725": {
-        "Name": "Former Sanctuary Crypt - B6 Big Staircase Chest 1",
-        "LocationID": 369
-    },
-    "726": {
-        "Name": "Former Sanctuary Crypt - B6 Big Staircase Chest 2",
-        "LocationID": 370
-    },
-    "727": {
-        "Name": "Former Sanctuary Crypt - B6 Big Staircase Chest 3",
-        "LocationID": 371
-    },
-    "728": {
-        "Name": "Former Sanctuary Crypt - B6 Big Staircase Chest 4",
-        "LocationID": 372
-    },
-    "729": {
-        "Name": "Sanctuary Crypt - Chamber of Braziers (Past) Boss Arena Chest 1",
-        "LocationID": 292
-    },
-    "730": {
-        "Name": "Sanctuary Crypt - Chamber of Stone (Past) Boss Arena Chest 1",
-        "LocationID": 302
-    },
-    "731": {
-        "Name": "Sanctuary Crypt - Chamber of Clairvoyance (Past) Boss Arena Chest 1",
-        "LocationID": 330
-    },
-    "732": {
-        "Name": "Sanctuary Crypt - Chamber of Frost (Past) Boss Arena Chest 1",
-        "LocationID": 345
-    },
-    "733": {
-        "Name": "Sanctuary Crypt - Chamber of Magma (Past) Boss Arena Chest 1",
-        "LocationID": 367
-    },
-    "734": {
-        "Name": "Former Sanctuary Crypt - B3 Entrance Chest 7",
-        "LocationID": 309
-    },
-    "735": {
-        "Name": "Towering Coral Forest (Night) After Mid-Boss Chest 2",
-        "LocationID": 78
-    },
-    "736": {
-        "Name": "Former Sanctuary Crypt - B1 First Brazier Chest 2",
-        "LocationID": 284
-    },
-    "737": {
-        "Name": "Former Sanctuary Crypt - B5 Western Hall Chest 4",
-        "LocationID": 360
-    },
-    "738": {
-        "Name": "Sanctuary Crypt - Chamber of Braziers (Past) First Brazier Chest 1",
-        "LocationID": 285
-    },
-    "739": {
-        "Name": "Sanctuary Crypt - Chamber of Braziers (Past) First Brazier Chest 2",
-        "LocationID": 286
-    },
-    "740": {
-        "Name": "Former Sanctuary Crypt - Final Floor Boss Arena Melaiduma Medals",
-        "LocationID": 634
-    },
-    "741": {
-        "Name": "Sanctuary Crypt - Chamber of Stone (Past) Stone and Rock Block Puzzle Chest 1",
-        "LocationID": 298
-    },
-    "900": {
-        "Name": "Waterdrop Cave Before Boss Arena Corpse",
-        "LocationID": 493
-    },
-    "901": {
-        "Name": "Pirate Ship Eleftheria Hold Corpse",
-        "LocationID": 515
-    },
-    "902": {
-        "Name": "Eroded Valley Entrance Corpse",
-        "LocationID": 496
-    },
-    "903": {
-        "Name": "Eroded Valley Midpoint Corpse",
-        "LocationID": 495
-    },
-    "904": {
-        "Name": "Eroded Valley End Corpse",
-        "LocationID": 494
-    },
-    "905": {
-        "Name": "Schlamm Jungle Midpoint Corpse",
-        "LocationID": 497
-    },
-    "906": {
-        "Name": "Longhorn Coast Eastern Shore Corpse",
-        "LocationID": 498
-    },
-    "907": {
-        "Name": "Pirate Ship Eleftheria Stairwell Corpse",
-        "LocationID": 499
-    },
-    "908": {
-        "Name": "Nostalgia Cape Nostalgia Cape Driftage",
-        "LocationID": 513
-    },
-    "909": {
-        "Name": "Underground Water Vein Submerged Area Driftage",
-        "LocationID": 517
-    },
-    "910": {
-        "Name": "Solitude Island Magna Carpa Driftage",
-        "LocationID": 514
-    },
-    "911": {
-        "Name": "Archeozoic Chasm Boss Arena Driftage",
-        "LocationID": 516
-    },
-    "915": {
-        "Name": "Towering Coral Forest (Night) Entrance Chest 1",
-        "LocationID": 62
-    },
-    "916": {
-        "Name": "Towering Coral Forest (Night) Entrance Chest 2",
-        "LocationID": 63
-    },
-    "917": {
-        "Name": "Towering Coral Forest (Night) Entrance Chest 3",
-        "LocationID": 64
-    },
-    "918": {
-        "Name": "Towering Coral Forest (Night) Walkways Chest 1",
-        "LocationID": 69
-    },
-    "919": {
-        "Name": "Towering Coral Forest (Night) Walkways Chest 2",
-        "LocationID": 70
-    },
-    "920": {
-        "Name": "Towering Coral Forest (Night) Walkways Chest 3",
-        "LocationID": 71
-    },
-    "921": {
-        "Name": "Towering Coral Forest (Night) Walkways Chest 4",
-        "LocationID": 72
-    },
-    "922": {
-        "Name": "Towering Coral Forest (Night) After Mid-Boss Chest 1",
-        "LocationID": 77
-    },
-    "923": {
-        "Name": "Towering Coral Forest (Night) Rainbow Falls Chest 1",
-        "LocationID": 84
-    },
-    "924": {
-        "Name": "Towering Coral Forest (Night) Rainbow Falls Chest 2",
-        "LocationID": 85
-    },
-    "925": {
-        "Name": "Towering Coral Forest (Night) Rainbow Falls Chest 3",
-        "LocationID": 86
-    },
-    "926": {
-        "Name": "Towering Coral Forest (Night) Mid-Boss Arena Chest 1",
-        "LocationID": 88
-    },
-    "927": {
-        "Name": "Towering Coral Forest (Night) End Chest 1",
-        "LocationID": 90
-    },
-    "928": {
-        "Name": "Mont Gendarme (Night) Entrance Chest 1",
-        "LocationID": 146
-    },
-    "929": {
-        "Name": "Mont Gendarme (Night) Southern Lower Cliffside Trail Chest 1",
-        "LocationID": 149
-    },
-    "930": {
-        "Name": "Mont Gendarme (Night) Southern Lower Cliffside Trail Chest 2",
-        "LocationID": 150
-    },
-    "931": {
-        "Name": "Mont Gendarme (Night) Southern Lower Cliffside Trail Chest 3",
-        "LocationID": 151
-    },
-    "932": {
-        "Name": "Mont Gendarme (Night) Northern Lower Cliffside Trail Chest 1",
-        "LocationID": 155
-    },
-    "933": {
-        "Name": "Mont Gendarme (Night) Northern Lower Cliffside Trail Chest 2",
-        "LocationID": 156
-    },
-    "934": {
-        "Name": "Mont Gendarme (Night) Cliffside Midpoint Chest 1",
-        "LocationID": 160
-    },
-    "935": {
-        "Name": "Mont Gendarme (Night) Mid-Boss Arena Chest 1",
-        "LocationID": 161
-    },
-    "936": {
-        "Name": "Mont Gendarme (Night) Upper Cliffs 1 Chest 1",
-        "LocationID": 164
-    },
-    "937": {
-        "Name": "Mont Gendarme (Night) Upper Cliffs 2 Chest 1",
-        "LocationID": 166
-    },
-    "938": {
-        "Name": "Pangaia Plains (Night) Pond Chest 1",
-        "LocationID": 182
-    },
-    "939": {
-        "Name": "Pangaia Plains (Night) Ancient Tree Chest 1",
-        "LocationID": 184
-    },
-    "940": {
-        "Name": "Pangaia Plains (Night) Northern Plains Chest 1",
-        "LocationID": 194
-    },
-    "941": {
-        "Name": "Sanctuary Crypt - Chamber of Braziers (Past) Entrance Chest 1",
-        "LocationID": 282
-    },
-    "942": {
-        "Name": "Sanctuary Crypt - Chamber of Braziers (Past) Wind Tunnel Chest 1",
-        "LocationID": 289
-    },
-    "943": {
-        "Name": "Sanctuary Crypt - Chamber of Braziers (Past) Wind Tunnel Chest 2",
-        "LocationID": 290
-    },
-    "944": {
-        "Name": "Sanctuary Crypt - Chamber of Stone (Past) Stone and Rock Floating Block Puzzle with Gaps Chest 1",
-        "LocationID": 299
-    },
-    "945": {
-        "Name": "Sanctuary Crypt - Chamber of Stone (Past) Stone and Rock Floating Block Puzzle Chest 1",
-        "LocationID": 300
-    },
-    "946": {
-        "Name": "Sanctuary Crypt - Chamber of Clairvoyance (Past) Entrance Chest 1",
-        "LocationID": 310
-    },
-    "947": {
-        "Name": "Sanctuary Crypt - Chamber of Clairvoyance (Past) Entrance Chest 2",
-        "LocationID": 311
-    },
-    "948": {
-        "Name": "Sanctuary Crypt - Chamber of Clairvoyance (Past) Entrance Chest 3",
-        "LocationID": 312
-    },
-    "949": {
-        "Name": "Sanctuary Crypt - Chamber of Clairvoyance (Past) Entrance Chest 4",
-        "LocationID": 313
-    },
-    "950": {
-        "Name": "Sanctuary Crypt - Chamber of Clairvoyance (Past) Entrance Chest 5",
-        "LocationID": 314
-    },
-    "951": {
-        "Name": "Sanctuary Crypt - Chamber of Clairvoyance (Past) Entrance Chest 6",
-        "LocationID": 315
-    },
-    "952": {
-        "Name": "Sanctuary Crypt - Chamber of Clairvoyance (Past) Entrance Chest 7",
-        "LocationID": 316
-    },
-    "953": {
-        "Name": "Sanctuary Crypt - Chamber of Clairvoyance (Past) Entrance Chest 8",
-        "LocationID": 317
-    },
-    "954": {
-        "Name": "Sanctuary Crypt - Chamber of Clairvoyance (Past) Entrance Chest 9",
-        "LocationID": 318
-    },
-    "955": {
-        "Name": "Sanctuary Crypt - Chamber of Clairvoyance (Past) Entrance Chest 10",
-        "LocationID": 319
-    },
-    "956": {
-        "Name": "Sanctuary Crypt - Chamber of Clairvoyance (Past) Floating Block Puzzle Chest 1",
-        "LocationID": 323
-    },
-    "957": {
-        "Name": "Sanctuary Crypt - Chamber of Clairvoyance (Past) Floating Block Puzzle Chest 2",
-        "LocationID": 324
-    },
-    "958": {
-        "Name": "Sanctuary Crypt - Chamber of Clairvoyance (Past) Floating Block Puzzle Chest 3",
-        "LocationID": 325
-    },
-    "959": {
-        "Name": "Sanctuary Crypt - Chamber of Clairvoyance (Past) Floating Block Puzzle Chest 4",
-        "LocationID": 326
-    },
-    "960": {
-        "Name": "Sanctuary Crypt - Chamber of Clairvoyance (Past) Floating Block Puzzle Chest 5",
-        "LocationID": 327
-    },
-    "961": {
-        "Name": "Sanctuary Crypt - Chamber of Clairvoyance (Past) Floating Block Puzzle Chest 6",
-        "LocationID": 328
-    },
-    "962": {
-        "Name": "Sanctuary Crypt - Chamber of Frost (Past) Entrance Chest 1",
-        "LocationID": 335
-    },
-    "963": {
-        "Name": "Sanctuary Crypt - Chamber of Frost (Past) Entrance Chest 2",
-        "LocationID": 336
-    },
-    "964": {
-        "Name": "Sanctuary Crypt - Chamber of Frost (Past) Frozen Statue Room Chest 1",
-        "LocationID": 341
-    },
-    "965": {
-        "Name": "Sanctuary Crypt - Chamber of Frost (Past) Frozen Statue Room Chest 2",
-        "LocationID": 342
-    },
-    "966": {
-        "Name": "Sanctuary Crypt - Chamber of Frost (Past) Frozen Statue Room Chest 3",
-        "LocationID": 343
-    },
-    "967": {
-        "Name": "Sanctuary Crypt - Chamber of Magma (Past) Entrance Chest 1",
-        "LocationID": 349
-    },
-    "968": {
-        "Name": "Sanctuary Crypt - Chamber of Magma (Past) Entrance Chest 2",
-        "LocationID": 350
-    },
-    "969": {
-        "Name": "Sanctuary Crypt - Chamber of Magma (Past) Eastern Hall Chest 1",
-        "LocationID": 352
-    },
-    "970": {
-        "Name": "Sanctuary Crypt - Chamber of Magma (Past) Eastern Hall Chest 2",
-        "LocationID": 353
-    },
-    "971": {
-        "Name": "Sanctuary Crypt - Chamber of Magma (Past) Eastern Hall Chest 3",
-        "LocationID": 354
-    },
-    "972": {
-        "Name": "Sanctuary Crypt - Chamber of Magma (Past) Central Chamber North of Entrance Chest 1",
-        "LocationID": 355
-    },
-    "973": {
-        "Name": "Sanctuary Crypt - Chamber of Magma (Past) Central Chamber North of Entrance Chest 2",
-        "LocationID": 356
-    },
-    "974": {
-        "Name": "Sanctuary Crypt - Chamber of Magma (Past) Western Hall Chest 1",
-        "LocationID": 361
-    },
-    "975": {
-        "Name": "Sanctuary Crypt - Chamber of Magma (Past) Western Hall Chest 2",
-        "LocationID": 362
-    },
-    "976": {
-        "Name": "Sanctuary Crypt - Chamber of Magma (Past) Western Hall Chest 3",
-        "LocationID": 363
-    },
-    "977": {
-        "Name": "Sanctuary Crypt - Chamber of Magma (Past) Boss Arena Chest 4",
-        "LocationID": 368
-    },
-    "978": {
-        "Name": "Sanctuary Crypt - Chamber of the Final Trial (Past) Big Staircase Chest 1",
-        "LocationID": 373
-    },
-    "979": {
-        "Name": "Sanctuary Crypt - Chamber of the Final Trial (Past) Big Staircase Chest 2",
-        "LocationID": 374
-    },
-    "980": {
-        "Name": "Sanctuary Crypt - Chamber of the Final Trial (Past) Big Staircase Chest 3",
-        "LocationID": 375
-    },
-    "981": {
-        "Name": "Sanctuary Crypt - Chamber of the Final Trial (Past) Big Staircase Chest 4",
-        "LocationID": 376
-    }
+    "0":  {
+              "Name":  "Waterdrop Cave Dilapidated Living Space Chest 2",
+              "LocationID":  378
+          },
+    "1":  {
+              "Name":  "Waterdrop Cave Dilapidated Living Space Chest 3",
+              "LocationID":  379
+          },
+    "2":  {
+              "Name":  "Waterdrop Cave Before Boss Arena Chest 1",
+              "LocationID":  380
+          },
+    "3":  {
+              "Name":  "Nameless Coast Northwest of Laxia Chest 1",
+              "LocationID":  51
+          },
+    "4":  {
+              "Name":  "Nameless Coast Shoreline South of Boulder Chest 1",
+              "LocationID":  33
+          },
+    "5":  {
+              "Name":  "Nameless Coast Cliffs South - Treebridge Chest 1",
+              "LocationID":  23
+          },
+    "6":  {
+              "Name":  "Nameless Coast Cliffs South - Treebridge Chest 2",
+              "LocationID":  24
+          },
+    "7":  {
+              "Name":  "Nameless Coast Cliffs South - Treebridge Chest 3",
+              "LocationID":  25
+          },
+    "8":  {
+              "Name":  "Nameless Coast Shoreline North of Boulder Chest 1",
+              "LocationID":  34
+          },
+    "9":  {
+              "Name":  "Nameless Coast Shoreline North of Boulder Chest 2",
+              "LocationID":  35
+          },
+    "10":  {
+               "Name":  "Nameless Coast Forested Area (Gravel Spot) Chest 1",
+               "LocationID":  91
+           },
+    "11":  {
+               "Name":  "Nameless Coast Forested Area (Gravel Spot) Chest 2",
+               "LocationID":  92
+           },
+    "12":  {
+               "Name":  "Nameless Coast Cliffs North Chest 1",
+               "LocationID":  26
+           },
+    "13":  {
+               "Name":  "White Sand Cape North of Starting Shore Chest 1",
+               "LocationID":  36
+           },
+    "14":  {
+               "Name":  "White Sand Cape Cobalt Crag Chest 1",
+               "LocationID":  52
+           },
+    "15":  {
+               "Name":  "White Sand Cape Cobalt Crag Chest 2",
+               "LocationID":  53
+           },
+    "16":  {
+               "Name":  "White Sand Cape Alison\u0027s Shore Chest 1",
+               "LocationID":  55
+           },
+    "17":  {
+               "Name":  "White Sand Cape Coral Shore Chest 1",
+               "LocationID":  56
+           },
+    "18":  {
+               "Name":  "Towering Coral Forest Entrance Chest 1",
+               "LocationID":  60
+           },
+    "19":  {
+               "Name":  "Towering Coral Forest Entrance Chest 2",
+               "LocationID":  61
+           },
+    "20":  {
+               "Name":  "Towering Coral Forest Walkways Chest 3",
+               "LocationID":  65
+           },
+    "21":  {
+               "Name":  "Towering Coral Forest Walkways Chest 4",
+               "LocationID":  66
+           },
+    "22":  {
+               "Name":  "Towering Coral Forest Walkways Chest 5",
+               "LocationID":  67
+           },
+    "23":  {
+               "Name":  "Towering Coral Forest Walkways Chest 6",
+               "LocationID":  68
+           },
+    "24":  {
+               "Name":  "Towering Coral Forest After Mid-Boss Chest 1",
+               "LocationID":  73
+           },
+    "25":  {
+               "Name":  "Towering Coral Forest After Mid-Boss Chest 2",
+               "LocationID":  74
+           },
+    "26":  {
+               "Name":  "Towering Coral Forest After Mid-Boss Chest 3",
+               "LocationID":  75
+           },
+    "27":  {
+               "Name":  "Towering Coral Forest After Mid-Boss Chest 4",
+               "LocationID":  76
+           },
+    "28":  {
+               "Name":  "Towering Coral Forest Rainbow Falls Chest 1",
+               "LocationID":  79
+           },
+    "29":  {
+               "Name":  "Towering Coral Forest Rainbow Falls Chest 2",
+               "LocationID":  80
+           },
+    "30":  {
+               "Name":  "Towering Coral Forest Rainbow Falls Chest 3",
+               "LocationID":  81
+           },
+    "31":  {
+               "Name":  "Towering Coral Forest Rainbow Falls Chest 4",
+               "LocationID":  82
+           },
+    "32":  {
+               "Name":  "Towering Coral Forest Rainbow Falls Chest 5",
+               "LocationID":  83
+           },
+    "33":  {
+               "Name":  "Towering Coral Forest Midpoint Chest 1",
+               "LocationID":  87
+           },
+    "34":  {
+               "Name":  "Towering Coral Forest End Chest 1",
+               "LocationID":  89
+           },
+    "35":  {
+               "Name":  "Roaring Seashore Metavolicalis Chest 1",
+               "LocationID":  42
+           },
+    "36":  {
+               "Name":  "Roaring Seashore Parasequoia Chest 1",
+               "LocationID":  58
+           },
+    "37":  {
+               "Name":  "Roaring Seashore Parasequoia Chest 2",
+               "LocationID":  59
+           },
+    "38":  {
+               "Name":  "Great River Valley Falls Chest 1",
+               "LocationID":  93
+           },
+    "39":  {
+               "Name":  "Great River Valley Falls Chest 2",
+               "LocationID":  94
+           },
+    "40":  {
+               "Name":  "Great River Valley Falls Chest 3",
+               "LocationID":  95
+           },
+    "41":  {
+               "Name":  "Great River Valley Falls Chest 4",
+               "LocationID":  96
+           },
+    "42":  {
+               "Name":  "Great River Valley Falls Chest 5",
+               "LocationID":  97
+           },
+    "43":  {
+               "Name":  "Great River Valley Large Shoreline Chest 1",
+               "LocationID":  44
+           },
+    "44":  {
+               "Name":  "Great River Valley Large Shoreline Chest 2",
+               "LocationID":  45
+           },
+    "45":  {
+               "Name":  "Great River Valley Large Shoreline Chest 3",
+               "LocationID":  46
+           },
+    "46":  {
+               "Name":  "Great River Valley Lookout Tower Chest 1",
+               "LocationID":  114
+           },
+    "47":  {
+               "Name":  "Great River Valley Chimney Rock Chest 1",
+               "LocationID":  115
+           },
+    "48":  {
+               "Name":  "Waterfall Grotto Waterfall Grotto Chest 1",
+               "LocationID":  392
+           },
+    "49":  {
+               "Name":  "Waterfall Grotto Waterfall Grotto Chest 2",
+               "LocationID":  393
+           },
+    "50":  {
+               "Name":  "Beast Hills Valley (Where Hummel Joins) Chest 1",
+               "LocationID":  29
+           },
+    "51":  {
+               "Name":  "Beast Hills Collapsed Cliff Chest 1",
+               "LocationID":  30
+           },
+    "52":  {
+               "Name":  "Beast Hills Collapsed Cliff Chest 2",
+               "LocationID":  31
+           },
+    "53":  {
+               "Name":  "Beast Hills Collapsed Cliff Chest 3",
+               "LocationID":  32
+           },
+    "54":  {
+               "Name":  "Eroded Valley Entrance Chest 1",
+               "LocationID":  128
+           },
+    "55":  {
+               "Name":  "Eroded Valley Entrance Chest 2",
+               "LocationID":  129
+           },
+    "56":  {
+               "Name":  "Eroded Valley Entrance Chest 3",
+               "LocationID":  130
+           },
+    "57":  {
+               "Name":  "Eroded Valley Entrance Chest 4",
+               "LocationID":  131
+           },
+    "58":  {
+               "Name":  "Eroded Valley Entrance Chest 5",
+               "LocationID":  132
+           },
+    "59":  {
+               "Name":  "Eroded Valley Cave Chest 1",
+               "LocationID":  133
+           },
+    "60":  {
+               "Name":  "Eroded Valley Cave Chest 2",
+               "LocationID":  134
+           },
+    "61":  {
+               "Name":  "Eroded Valley Cave Chest 3",
+               "LocationID":  135
+           },
+    "62":  {
+               "Name":  "Eroded Valley Dark Passage Chest 1",
+               "LocationID":  136
+           },
+    "63":  {
+               "Name":  "Eroded Valley Midpoint Chest 1",
+               "LocationID":  137
+           },
+    "64":  {
+               "Name":  "Eroded Valley Midpoint Chest 2",
+               "LocationID":  138
+           },
+    "65":  {
+               "Name":  "Eroded Valley Midpoint Chest 3",
+               "LocationID":  139
+           },
+    "66":  {
+               "Name":  "Eroded Valley Webbed Walkways Chest 1",
+               "LocationID":  141
+           },
+    "67":  {
+               "Name":  "Eroded Valley Webbed Walkways Chest 2",
+               "LocationID":  142
+           },
+    "68":  {
+               "Name":  "Eroded Valley Webbed Walkways Chest 3",
+               "LocationID":  143
+           },
+    "69":  {
+               "Name":  "Eroded Valley End Chest 1",
+               "LocationID":  144
+           },
+    "70":  {
+               "Name":  "Weathervane Hills South of Nameless Coast Rockslide Chest 1",
+               "LocationID":  111
+           },
+    "71":  {
+               "Name":  "Weathervane Hills Zephyr Hill Chest 1",
+               "LocationID":  113
+           },
+    "72":  {
+               "Name":  "Headwater Falls Headwater Falls Chest 1",
+               "LocationID":  384
+           },
+    "73":  {
+               "Name":  "Headwater Falls Headwater Falls Chest 2",
+               "LocationID":  385
+           },
+    "74":  {
+               "Name":  "Headwater Falls Headwater Falls Chest 3",
+               "LocationID":  386
+           },
+    "75":  {
+               "Name":  "Headwater Falls Headwater Falls Chest 4",
+               "LocationID":  387
+           },
+    "76":  {
+               "Name":  "Headwater Falls Headwater Falls Chest 5",
+               "LocationID":  388
+           },
+    "77":  {
+               "Name":  "Underground Water Vein Submerged Area Chest 1",
+               "LocationID":  389
+           },
+    "78":  {
+               "Name":  "Underground Water Vein Submerged Area Chest 2",
+               "LocationID":  390
+           },
+    "79":  {
+               "Name":  "Underground Water Vein Submerged Area Chest 3",
+               "LocationID":  391
+           },
+    "80":  {
+               "Name":  "Longhorn Coast Reja Shore Chest 1",
+               "LocationID":  37
+           },
+    "81":  {
+               "Name":  "Longhorn Coast Eastern Shore Chest 1",
+               "LocationID":  39
+           },
+    "82":  {
+               "Name":  "Longhorn Coast Eastern Shore Chest 2",
+               "LocationID":  40
+           },
+    "83":  {
+               "Name":  "Longhorn Coast Reja Shore Chest 3",
+               "LocationID":  38
+           },
+    "84":  {
+               "Name":  "Water and Wood Hills Foggy Forest Chest 1",
+               "LocationID":  100
+           },
+    "85":  {
+               "Name":  "Schlamm Jungle Entrance Chest 1",
+               "LocationID":  101
+           },
+    "86":  {
+               "Name":  "Schlamm Jungle Entrance Chest 2",
+               "LocationID":  102
+           },
+    "87":  {
+               "Name":  "Schlamm Jungle Entrance Chest 3",
+               "LocationID":  103
+           },
+    "88":  {
+               "Name":  "Schlamm Jungle North of Entrance Chest 1",
+               "LocationID":  104
+           },
+    "89":  {
+               "Name":  "Schlamm Jungle Small Passage Chest 1",
+               "LocationID":  106
+           },
+    "90":  {
+               "Name":  "Schlamm Jungle Muddy Passage Chest 1",
+               "LocationID":  108
+           },
+    "91":  {
+               "Name":  "Schlamm Jungle Muddy Passage Chest 2",
+               "LocationID":  109
+           },
+    "92":  {
+               "Name":  "Schlamm Jungle End Chest 1",
+               "LocationID":  110
+           },
+    "93":  {
+               "Name":  "Great River Valley Cliffs Chest 1",
+               "LocationID":  27
+           },
+    "94":  {
+               "Name":  "Western Foot of Gendarme Moutain Base Chest 1",
+               "LocationID":  116
+           },
+    "95":  {
+               "Name":  "Western Foot of Gendarme Near Cavern of the Ancient King Chest 1",
+               "LocationID":  117
+           },
+    "96":  {
+               "Name":  "Mont Gendarme Entrance Chest 1",
+               "LocationID":  145
+           },
+    "97":  {
+               "Name":  "Mont Gendarme Southern Lower Cliffside Trail Chest 1",
+               "LocationID":  147
+           },
+    "98":  {
+               "Name":  "Mont Gendarme Northern Lower Cliffside Trail Chest 1",
+               "LocationID":  152
+           },
+    "99":  {
+               "Name":  "Mont Gendarme Northern Lower Cliffside Trail Chest 2",
+               "LocationID":  153
+           },
+    "100":  {
+                "Name":  "Mont Gendarme Outside Cabin Chest 1",
+                "LocationID":  157
+            },
+    "101":  {
+                "Name":  "Mont Gendarme Cliffside Midpoint Chest 1",
+                "LocationID":  158
+            },
+    "102":  {
+                "Name":  "Mont Gendarme Cliffside Midpoint Chest 2",
+                "LocationID":  159
+            },
+    "103":  {
+                "Name":  "Mont Gendarme Upper Cliffs 1 Chest 1",
+                "LocationID":  162
+            },
+    "104":  {
+                "Name":  "Mont Gendarme Upper Cliffs 2 Chest 1",
+                "LocationID":  165
+            },
+    "105":  {
+                "Name":  "Mountain Pinnacle Trail Top Chest 1",
+                "LocationID":  120
+            },
+    "106":  {
+                "Name":  "Mountain Pinnacle Trail First Cave Chest 1",
+                "LocationID":  377
+            },
+    "107":  {
+                "Name":  "Mountain Pinnacle Trail Outside First Cave Exit Chest 1",
+                "LocationID":  121
+            },
+    "108":  {
+                "Name":  "Mountain Pinnacle Trail Lower Mountain Trail Chest 1",
+                "LocationID":  123
+            },
+    "109":  {
+                "Name":  "Mountain Pinnacle Trail Outside Second Cave Entrance Chest 1",
+                "LocationID":  124
+            },
+    "110":  {
+                "Name":  "Mountain Pinnacle Trail Outside Second Cave Entrance Chest 2",
+                "LocationID":  125
+            },
+    "111":  {
+                "Name":  "Titis Primeval Forest Entrance from Temple Approach Chest 1",
+                "LocationID":  171
+            },
+    "112":  {
+                "Name":  "Titis Primeval Forest Near Primordial Den Chest 1",
+                "LocationID":  168
+            },
+    "113":  {
+                "Name":  "Titis Primeval Forest Near Primordial Den Chest 2",
+                "LocationID":  169
+            },
+    "114":  {
+                "Name":  "Titis Primeval Forest Near Primordial Den Chest 3",
+                "LocationID":  170
+            },
+    "115":  {
+                "Name":  "Titis Primeval Forest Exit to Pangaia Plains Chest 1",
+                "LocationID":  167
+            },
+    "116":  {
+                "Name":  "Pangaia Plains Northern Plains Chest 1",
+                "LocationID":  192
+            },
+    "117":  {
+                "Name":  "Pangaia Plains Northern Plains Chest 2",
+                "LocationID":  193
+            },
+    "118":  {
+                "Name":  "Pangaia Plains Pond Chest 1",
+                "LocationID":  181
+            },
+    "119":  {
+                "Name":  "Pangaia Plains Ancient Tree Chest 1",
+                "LocationID":  183
+            },
+    "120":  {
+                "Name":  "Stone Pillar Wind Cave Stone Pillar Wind Cave Chest 1",
+                "LocationID":  396
+            },
+    "121":  {
+                "Name":  "Stone Pillar Wind Cave Stone Pillar Wind Cave Chest 2",
+                "LocationID":  397
+            },
+    "122":  {
+                "Name":  "Stone Pillar Wind Cave Stone Pillar Wind Cave Chest 3",
+                "LocationID":  398
+            },
+    "123":  {
+                "Name":  "Stone Pillar Wind Cave Stone Pillar Wind Cave Chest 4",
+                "LocationID":  399
+            },
+    "124":  {
+                "Name":  "Stone Pillar Wind Cave Stone Pillar Wind Cave Chest 5",
+                "LocationID":  400
+            },
+    "125":  {
+                "Name":  "Towal Highway Baja Tower Approach Chest 1",
+                "LocationID":  172
+            },
+    "126":  {
+                "Name":  "Baja Tower Second Floor Chest 1",
+                "LocationID":  216
+            },
+    "127":  {
+                "Name":  "Baja Tower Second Floor Chest 2",
+                "LocationID":  217
+            },
+    "128":  {
+                "Name":  "Baja Tower Second Floor Chest 3",
+                "LocationID":  218
+            },
+    "129":  {
+                "Name":  "Baja Tower Third Floor Chest 1",
+                "LocationID":  219
+            },
+    "130":  {
+                "Name":  "Baja Tower Third Floor Chest 2",
+                "LocationID":  220
+            },
+    "131":  {
+                "Name":  "Baja Tower Third Floor Chest 3",
+                "LocationID":  221
+            },
+    "132":  {
+                "Name":  "Baja Tower Third Floor Chest 4",
+                "LocationID":  222
+            },
+    "133":  {
+                "Name":  "Baja Tower Mid-Boss Arena Chest 1",
+                "LocationID":  223
+            },
+    "134":  {
+                "Name":  "Baja Tower Fifth Floor Chest 1",
+                "LocationID":  224
+            },
+    "135":  {
+                "Name":  "Baja Tower Fifth Floor Chest 2",
+                "LocationID":  225
+            },
+    "136":  {
+                "Name":  "Baja Tower Sixth Floor Chest 1",
+                "LocationID":  226
+            },
+    "137":  {
+                "Name":  "Baja Tower Sixth Floor Chest 2",
+                "LocationID":  227
+            },
+    "138":  {
+                "Name":  "Baja Tower Sixth Floor Chest 3",
+                "LocationID":  228
+            },
+    "139":  {
+                "Name":  "Baja Tower Sixth Floor Chest 4",
+                "LocationID":  229
+            },
+    "140":  {
+                "Name":  "Baja Tower Sixth Floor Chest 5",
+                "LocationID":  230
+            },
+    "141":  {
+                "Name":  "Nostalgia Cape Nostalgia Cape Chest 1",
+                "LocationID":  41
+            },
+    "142":  {
+                "Name":  "East Coast Cave East Coast Cave Chest 1",
+                "LocationID":  381
+            },
+    "143":  {
+                "Name":  "East Coast Cave East Coast Cave Chest 2",
+                "LocationID":  382
+            },
+    "144":  {
+                "Name":  "East Coast Cave East Coast Cave Chest 3",
+                "LocationID":  383
+            },
+    "145":  {
+                "Name":  "Pirate Ship Eleftheria Crew Quarters Chest 1",
+                "LocationID":  13
+            },
+    "146":  {
+                "Name":  "Pirate Ship Eleftheria Crew Quarters Chest 2",
+                "LocationID":  14
+            },
+    "147":  {
+                "Name":  "Pirate Ship Eleftheria Crew Quarters Chest 3",
+                "LocationID":  15
+            },
+    "148":  {
+                "Name":  "Pirate Ship Eleftheria Crew Quarters Chest 4",
+                "LocationID":  16
+            },
+    "149":  {
+                "Name":  "Pirate Ship Eleftheria Crew Quarters Chest 5",
+                "LocationID":  17
+            },
+    "150":  {
+                "Name":  "Pirate Ship Eleftheria Accessway Chest 1",
+                "LocationID":  9
+            },
+    "151":  {
+                "Name":  "Pirate Ship Eleftheria Accessway Chest 2",
+                "LocationID":  10
+            },
+    "152":  {
+                "Name":  "Pirate Ship Eleftheria Accessway Chest 3",
+                "LocationID":  11
+            },
+    "153":  {
+                "Name":  "Pirate Ship Eleftheria Accessway Chest 4",
+                "LocationID":  12
+            },
+    "154":  {
+                "Name":  "Pirate Ship Eleftheria Hold Chest 1",
+                "LocationID":  5
+            },
+    "155":  {
+                "Name":  "Pirate Ship Eleftheria Hold Chest 2",
+                "LocationID":  6
+            },
+    "156":  {
+                "Name":  "Pirate Ship Eleftheria Hold Chest 3",
+                "LocationID":  7
+            },
+    "157":  {
+                "Name":  "Pirate Ship Eleftheria Hold Chest 4",
+                "LocationID":  8
+            },
+    "158":  {
+                "Name":  "Pirate Ship Eleftheria Stairwell Chest 1",
+                "LocationID":  19
+            },
+    "159":  {
+                "Name":  "Pirate Ship Eleftheria Stairwell Chest 2",
+                "LocationID":  20
+            },
+    "160":  {
+                "Name":  "Pirate Ship Eleftheria Stairwell Chest 3",
+                "LocationID":  21
+            },
+    "161":  {
+                "Name":  "Pirate Ship Eleftheria Stairwell Chest 4",
+                "LocationID":  22
+            },
+    "162":  {
+                "Name":  "Pirate Ship Eleftheria Deck Chest 1",
+                "LocationID":  18
+            },
+    "163":  {
+                "Name":  "Pirate Ship Eleftheria Submerged Hold Chest 1",
+                "LocationID":  1
+            },
+    "164":  {
+                "Name":  "Pirate Ship Eleftheria Submerged Hold Chest 2",
+                "LocationID":  2
+            },
+    "165":  {
+                "Name":  "Pirate Ship Eleftheria Submerged Hold Chest 3",
+                "LocationID":  3
+            },
+    "166":  {
+                "Name":  "Pirate Ship Eleftheria Submerged Hold Chest 4",
+                "LocationID":  4
+            },
+    "167":  {
+                "Name":  "Archeozoic Chasm Entrance Chest 1",
+                "LocationID":  248
+            },
+    "168":  {
+                "Name":  "Archeozoic Chasm Cliffs Overlooking Crater Chest 1",
+                "LocationID":  249
+            },
+    "169":  {
+                "Name":  "Archeozoic Chasm Cliffs Overlooking Crater Chest 2",
+                "LocationID":  250
+            },
+    "170":  {
+                "Name":  "Archeozoic Chasm Whirlpools Chest 1",
+                "LocationID":  251
+            },
+    "171":  {
+                "Name":  "Archeozoic Chasm Whirlpools Chest 2",
+                "LocationID":  252
+            },
+    "172":  {
+                "Name":  "Archeozoic Chasm Submerged Cave Chest 1",
+                "LocationID":  253
+            },
+    "173":  {
+                "Name":  "Archeozoic Chasm Submerged Cave Chest 2",
+                "LocationID":  254
+            },
+    "174":  {
+                "Name":  "Archeozoic Chasm Submerged Cave Chest 3",
+                "LocationID":  255
+            },
+    "175":  {
+                "Name":  "Archeozoic Chasm Water Vents Chest 1",
+                "LocationID":  256
+            },
+    "176":  {
+                "Name":  "Archeozoic Chasm Water Vents Chest 2",
+                "LocationID":  257
+            },
+    "177":  {
+                "Name":  "Archeozoic Chasm Sunken Eternia Ruins West Chest 1",
+                "LocationID":  258
+            },
+    "178":  {
+                "Name":  "Archeozoic Chasm Sunken Eternia Ruins East Chest 1",
+                "LocationID":  259
+            },
+    "179":  {
+                "Name":  "Archeozoic Chasm Sunken Eternia Ruins East Chest 2",
+                "LocationID":  260
+            },
+    "180":  {
+                "Name":  "Archeozoic Chasm Sunken Eternia Ruins East Chest 3",
+                "LocationID":  261
+            },
+    "181":  {
+                "Name":  "Vista Ridge Vista Ridge Upper Chest 1",
+                "LocationID":  126
+            },
+    "182":  {
+                "Name":  "Vista Ridge Vista Ridge Upper Chest 2",
+                "LocationID":  127
+            },
+    "183":  {
+                "Name":  "Lodinia Marshland Entrance from Vista Ridge Chest 1",
+                "LocationID":  173
+            },
+    "184":  {
+                "Name":  "Lodinia Marshland Entrance from Vista Ridge Chest 2",
+                "LocationID":  174
+            },
+    "185":  {
+                "Name":  "Lodinia Marshland Entrance from Vista Ridge Chest 3",
+                "LocationID":  175
+            },
+    "186":  {
+                "Name":  "Lodinia Marshland Muddy Lake Chest 1",
+                "LocationID":  185
+            },
+    "187":  {
+                "Name":  "Lodinia Marshland Muddy Lake Chest 2",
+                "LocationID":  186
+            },
+    "188":  {
+                "Name":  "Lodinia Marshland Muddy Lake Chest 3",
+                "LocationID":  187
+            },
+    "189":  {
+                "Name":  "Lodinia Marshland Near Submerged Cemetery Chest 1",
+                "LocationID":  176
+            },
+    "190":  {
+                "Name":  "Lodinia Marshland Near Submerged Cemetery Chest 2",
+                "LocationID":  177
+            },
+    "191":  {
+                "Name":  "Lodinia Marshland Exit to Valley of Kings Chest 1",
+                "LocationID":  188
+            },
+    "192":  {
+                "Name":  "Lodinia Marshland Exit to Valley of Kings Chest 2",
+                "LocationID":  189
+            },
+    "193":  {
+                "Name":  "Lodinia Marshland Exit to Valley of Kings Chest 3",
+                "LocationID":  190
+            },
+    "194":  {
+                "Name":  "Valley of Kings Entrance Chest 1",
+                "LocationID":  231
+            },
+    "195":  {
+                "Name":  "Valley of Kings Entrance Chest 2",
+                "LocationID":  232
+            },
+    "196":  {
+                "Name":  "Valley of Kings Entrance Chest 3",
+                "LocationID":  233
+            },
+    "197":  {
+                "Name":  "Valley of Kings Entrance Chest 4",
+                "LocationID":  234
+            },
+    "198":  {
+                "Name":  "Valley of Kings Entrance Chest 5",
+                "LocationID":  235
+            },
+    "199":  {
+                "Name":  "Valley of Kings Entrance Chest 6",
+                "LocationID":  236
+            },
+    "200":  {
+                "Name":  "Valley of Kings Northern Lower Level Chest 1",
+                "LocationID":  237
+            },
+    "201":  {
+                "Name":  "Valley of Kings Northern Lower Level Chest 2",
+                "LocationID":  238
+            },
+    "202":  {
+                "Name":  "Valley of Kings Mid-Boss Arena Chest 1",
+                "LocationID":  239
+            },
+    "203":  {
+                "Name":  "Valley of Kings Stairway (Statue Doors) Chest 1",
+                "LocationID":  240
+            },
+    "204":  {
+                "Name":  "Valley of Kings Stairway (Statue Doors) Chest 2",
+                "LocationID":  241
+            },
+    "205":  {
+                "Name":  "Valley of Kings Stairway (Statue Doors) Chest 3",
+                "LocationID":  242
+            },
+    "206":  {
+                "Name":  "Valley of Kings Stairway (Statue Doors) Chest 4",
+                "LocationID":  243
+            },
+    "207":  {
+                "Name":  "Valley of Kings End Chest 1",
+                "LocationID":  244
+            },
+    "208":  {
+                "Name":  "Valley of Kings End Chest 2",
+                "LocationID":  245
+            },
+    "209":  {
+                "Name":  "Valley of Kings End Chest 3",
+                "LocationID":  246
+            },
+    "210":  {
+                "Name":  "Valley of Kings End Chest 4",
+                "LocationID":  247
+            },
+    "211":  {
+                "Name":  "Eternal Hill Eternal Hill Chest 1",
+                "LocationID":  180
+            },
+    "212":  {
+                "Name":  "The Submerged Cemetery The Submerged Cemetery Chest 1",
+                "LocationID":  394
+            },
+    "213":  {
+                "Name":  "The Submerged Cemetery The Submerged Cemetery Chest 2",
+                "LocationID":  395
+            },
+    "214":  {
+                "Name":  "Bolado Monastery Entrance Chest 1",
+                "LocationID":  269
+            },
+    "215":  {
+                "Name":  "Bolado Monastery Entrance Chest 2",
+                "LocationID":  270
+            },
+    "216":  {
+                "Name":  "Bolado Monastery Entrance Chest 3",
+                "LocationID":  271
+            },
+    "217":  {
+                "Name":  "Bolado Monastery Entrance Chest 4",
+                "LocationID":  272
+            },
+    "218":  {
+                "Name":  "Bolado Monastery Entrance Chest 5",
+                "LocationID":  273
+            },
+    "219":  {
+                "Name":  "Bolado Monastery Basement Chest 1",
+                "LocationID":  274
+            },
+    "220":  {
+                "Name":  "Bolado Monastery Basement Chest 2",
+                "LocationID":  275
+            },
+    "221":  {
+                "Name":  "Bolado Monastery Basement Chest 3",
+                "LocationID":  276
+            },
+    "222":  {
+                "Name":  "Bolado Monastery Basement Chest 4",
+                "LocationID":  277
+            },
+    "223":  {
+                "Name":  "Bolado Monastery Basement Chest 5",
+                "LocationID":  278
+            },
+    "224":  {
+                "Name":  "Silent Tower First Basement Chest 1",
+                "LocationID":  262
+            },
+    "225":  {
+                "Name":  "Silent Tower First Basement Chest 2",
+                "LocationID":  263
+            },
+    "226":  {
+                "Name":  "Silent Tower First Basement Chest 3",
+                "LocationID":  264
+            },
+    "227":  {
+                "Name":  "Silent Tower Second Basement Chest 1",
+                "LocationID":  265
+            },
+    "228":  {
+                "Name":  "Silent Tower Second Basement Chest 2",
+                "LocationID":  266
+            },
+    "229":  {
+                "Name":  "Silent Tower Second Basement Chest 3",
+                "LocationID":  267
+            },
+    "230":  {
+                "Name":  "Silent Tower Second Basement Chest 4",
+                "LocationID":  268
+            },
+    "231":  {
+                "Name":  "Octus Overlook Path of the Ocean Era Chest 1",
+                "LocationID":  202
+            },
+    "232":  {
+                "Name":  "Octus Overlook Path of the Ocean Era Chest 2",
+                "LocationID":  203
+            },
+    "233":  {
+                "Name":  "Octus Overlook Path of the Frozen Era Chest 1",
+                "LocationID":  204
+            },
+    "234":  {
+                "Name":  "Octus Overlook Path of the Frozen Era Chest 2",
+                "LocationID":  205
+            },
+    "235":  {
+                "Name":  "Octus Overlook Path of the Frozen Era Chest 3",
+                "LocationID":  206
+            },
+    "236":  {
+                "Name":  "Octus Overlook Path of the Insectoid Era Chest 1",
+                "LocationID":  207
+            },
+    "237":  {
+                "Name":  "Octus Overlook Path of the Insectoid Era Chest 2",
+                "LocationID":  208
+            },
+    "238":  {
+                "Name":  "Octus Overlook Path of the Insectoid Era Chest 3",
+                "LocationID":  209
+            },
+    "239":  {
+                "Name":  "Octus Overlook Path of the Sky Era Chest 1",
+                "LocationID":  210
+            },
+    "240":  {
+                "Name":  "Octus Overlook Path of the Sky Era Chest 2",
+                "LocationID":  211
+            },
+    "241":  {
+                "Name":  "Octus Overlook Path of the Sky Era Chest 3",
+                "LocationID":  212
+            },
+    "242":  {
+                "Name":  "Octus Overlook Selection Sphere Chest 1",
+                "LocationID":  213
+            },
+    "243":  {
+                "Name":  "Octus Overlook Selection Sphere Chest 2",
+                "LocationID":  214
+            },
+    "244":  {
+                "Name":  "Octus Overlook Selection Sphere Chest 3",
+                "LocationID":  215
+            },
+    "245":  {
+                "Name":  "Schlamm Jungle Small Passage Chest 2",
+                "LocationID":  107
+            },
+    "246":  {
+                "Name":  "Mont Gendarme Northern Lower Cliffside Trail Chest 3",
+                "LocationID":  154
+            },
+    "247":  {
+                "Name":  "Mont Gendarme Upper Cliffs 1 Chest 2",
+                "LocationID":  163
+            },
+    "248":  {
+                "Name":  "The Primordial Passage Dana\u0027s Tree Chest 1",
+                "LocationID":  118
+            },
+    "249":  {
+                "Name":  "White Sand Cape Coral Shore Chest 2",
+                "LocationID":  57
+            },
+    "250":  {
+                "Name":  "Roaring Seashore Metavolicalis Chest 2",
+                "LocationID":  43
+            },
+    "251":  {
+                "Name":  "Weathervane Hills South of Nameless Coast Rockslide Chest 2",
+                "LocationID":  112
+            },
+    "252":  {
+                "Name":  "Mont Gendarme Southern Lower Cliffside Trail Chest 2",
+                "LocationID":  148
+            },
+    "253":  {
+                "Name":  "Mountain Pinnacle Trail Outside First Cave Exit Chest 2",
+                "LocationID":  122
+            },
+    "254":  {
+                "Name":  "The Primordial Passage Dana\u0027s Tree Chest 2",
+                "LocationID":  119
+            },
+    "255":  {
+                "Name":  "Towal Highway Cliff Overlooking Chasm Chest 1",
+                "LocationID":  191
+            },
+    "256":  {
+                "Name":  "The Ruins of Eternia Eastern Entrance Chest 1",
+                "LocationID":  197
+            },
+    "257":  {
+                "Name":  "The Ruins of Eternia Eastern Entrance Chest 2",
+                "LocationID":  198
+            },
+    "258":  {
+                "Name":  "The Ruins of Eternia Eastern Entrance Chest 3",
+                "LocationID":  199
+            },
+    "259":  {
+                "Name":  "The Ruins of Eternia Residence Chest 1",
+                "LocationID":  200
+            },
+    "260":  {
+                "Name":  "Solitude Island Cave Chest 1",
+                "LocationID":  50
+            },
+    "261":  {
+                "Name":  "White Sand Cape Cobalt Crag Chest 3",
+                "LocationID":  54
+            },
+    "262":  {
+                "Name":  "Schlamm Jungle Mid-Boss Arena Chest 1",
+                "LocationID":  105
+            },
+    "263":  {
+                "Name":  "Eroded Valley Mid-Boss Arena Chest 1",
+                "LocationID":  140
+            },
+    "264":  {
+                "Name":  "Water and Wood Hills Near Silent Tower Chest 1",
+                "LocationID":  98
+            },
+    "265":  {
+                "Name":  "Water and Wood Hills Near Silent Tower Chest 2",
+                "LocationID":  99
+            },
+    "266":  {
+                "Name":  "The Ruins of Eternia Residence Chest 2",
+                "LocationID":  201
+            },
+    "267":  {
+                "Name":  "The Ruins of Eternia Central District Chest 1",
+                "LocationID":  196
+            },
+    "268":  {
+                "Name":  "The Ruins of Eternia Central District Chest 2",
+                "LocationID":  195
+            },
+    "269":  {
+                "Name":  "Great River Valley Cliffs Chest 2",
+                "LocationID":  28
+            },
+    "270":  {
+                "Name":  "Lodinia Marshland Valley of Kings - Camp Chest 1",
+                "LocationID":  178
+            },
+    "683":  {
+                "Name":  "Former Sanctuary Crypt - B1 Entrance Chest 1",
+                "LocationID":  279
+            },
+    "684":  {
+                "Name":  "Former Sanctuary Crypt - B1 Entrance Chest 2",
+                "LocationID":  280
+            },
+    "685":  {
+                "Name":  "Former Sanctuary Crypt - B1 Entrance Chest 3",
+                "LocationID":  281
+            },
+    "686":  {
+                "Name":  "Former Sanctuary Crypt - B1 First Brazier Chest 1",
+                "LocationID":  283
+            },
+    "687":  {
+                "Name":  "Former Sanctuary Crypt - B1 North Brazier Room Chest 1",
+                "LocationID":  287
+            },
+    "688":  {
+                "Name":  "Former Sanctuary Crypt - B1 North Brazier Room Chest 2",
+                "LocationID":  288
+            },
+    "689":  {
+                "Name":  "Former Sanctuary Crypt - B1 Boss Arena Chest 1",
+                "LocationID":  291
+            },
+    "690":  {
+                "Name":  "Former Sanctuary Crypt - B2 Entrance Chest 1",
+                "LocationID":  293
+            },
+    "691":  {
+                "Name":  "Former Sanctuary Crypt - B2 Entrance Chest 2",
+                "LocationID":  294
+            },
+    "692":  {
+                "Name":  "Former Sanctuary Crypt - B2 Entrance Chest 3",
+                "LocationID":  295
+            },
+    "693":  {
+                "Name":  "Former Sanctuary Crypt - B2 Stone and Rock Block Puzzle Chest 1",
+                "LocationID":  296
+            },
+    "694":  {
+                "Name":  "Former Sanctuary Crypt - B2 Stone and Rock Block Puzzle Chest 2",
+                "LocationID":  297
+            },
+    "695":  {
+                "Name":  "Former Sanctuary Crypt - B2 Boss Arena Chest 1",
+                "LocationID":  301
+            },
+    "696":  {
+                "Name":  "Former Sanctuary Crypt - B3 Entrance Chest 1",
+                "LocationID":  303
+            },
+    "697":  {
+                "Name":  "Former Sanctuary Crypt - B3 Entrance Chest 2",
+                "LocationID":  304
+            },
+    "698":  {
+                "Name":  "Former Sanctuary Crypt - B3 Entrance Chest 3",
+                "LocationID":  305
+            },
+    "699":  {
+                "Name":  "Former Sanctuary Crypt - B3 Entrance Chest 4",
+                "LocationID":  306
+            },
+    "700":  {
+                "Name":  "Former Sanctuary Crypt - B3 Entrance Chest 5",
+                "LocationID":  307
+            },
+    "701":  {
+                "Name":  "Former Sanctuary Crypt - B3 Entrance Chest 6",
+                "LocationID":  308
+            },
+    "702":  {
+                "Name":  "Former Sanctuary Crypt - B3 Floating Block Puzzle Chest 1",
+                "LocationID":  320
+            },
+    "703":  {
+                "Name":  "Former Sanctuary Crypt - B3 Floating Block Puzzle Chest 2",
+                "LocationID":  321
+            },
+    "704":  {
+                "Name":  "Former Sanctuary Crypt - B3 Floating Block Puzzle Chest 3",
+                "LocationID":  322
+            },
+    "705":  {
+                "Name":  "Former Sanctuary Crypt - B3 Boss Arena Chest 1",
+                "LocationID":  329
+            },
+    "706":  {
+                "Name":  "Former Sanctuary Crypt - B4 Entrance Chest 1",
+                "LocationID":  331
+            },
+    "707":  {
+                "Name":  "Former Sanctuary Crypt - B4 Entrance Chest 2",
+                "LocationID":  332
+            },
+    "708":  {
+                "Name":  "Former Sanctuary Crypt - B4 Entrance Chest 3",
+                "LocationID":  333
+            },
+    "709":  {
+                "Name":  "Former Sanctuary Crypt - B4 Entrance Chest 4",
+                "LocationID":  334
+            },
+    "710":  {
+                "Name":  "Former Sanctuary Crypt - B4 Frozen Statue Room Chest 1",
+                "LocationID":  337
+            },
+    "711":  {
+                "Name":  "Former Sanctuary Crypt - B4 Frozen Statue Room Chest 2",
+                "LocationID":  338
+            },
+    "712":  {
+                "Name":  "Former Sanctuary Crypt - B4 Frozen Statue Room Chest 3",
+                "LocationID":  339
+            },
+    "713":  {
+                "Name":  "Former Sanctuary Crypt - B4 Frozen Statue Room Chest 4",
+                "LocationID":  340
+            },
+    "714":  {
+                "Name":  "Former Sanctuary Crypt - B4 Boss Arena Chest 1",
+                "LocationID":  344
+            },
+    "715":  {
+                "Name":  "Former Sanctuary Crypt - B5 Entrance Chest 1",
+                "LocationID":  346
+            },
+    "716":  {
+                "Name":  "Former Sanctuary Crypt - B5 Entrance Chest 2",
+                "LocationID":  347
+            },
+    "717":  {
+                "Name":  "Former Sanctuary Crypt - B5 Entrance Chest 3",
+                "LocationID":  348
+            },
+    "718":  {
+                "Name":  "Former Sanctuary Crypt - B5 Eastern Hall Chest 1",
+                "LocationID":  351
+            },
+    "719":  {
+                "Name":  "Former Sanctuary Crypt - B5 Western Hall Chest 1",
+                "LocationID":  357
+            },
+    "720":  {
+                "Name":  "Former Sanctuary Crypt - B5 Western Hall Chest 2",
+                "LocationID":  358
+            },
+    "721":  {
+                "Name":  "Former Sanctuary Crypt - B5 Western Hall Chest 3",
+                "LocationID":  359
+            },
+    "722":  {
+                "Name":  "Former Sanctuary Crypt - B5 Large Stairwell Chest 1",
+                "LocationID":  364
+            },
+    "723":  {
+                "Name":  "Former Sanctuary Crypt - B5 Large Stairwell Chest 2",
+                "LocationID":  365
+            },
+    "724":  {
+                "Name":  "Former Sanctuary Crypt - B5 Boss Arena Chest 1",
+                "LocationID":  366
+            },
+    "725":  {
+                "Name":  "Former Sanctuary Crypt - B6 Big Staircase Chest 1",
+                "LocationID":  369
+            },
+    "726":  {
+                "Name":  "Former Sanctuary Crypt - B6 Big Staircase Chest 2",
+                "LocationID":  370
+            },
+    "727":  {
+                "Name":  "Former Sanctuary Crypt - B6 Big Staircase Chest 3",
+                "LocationID":  371
+            },
+    "728":  {
+                "Name":  "Former Sanctuary Crypt - B6 Big Staircase Chest 4",
+                "LocationID":  372
+            },
+    "729":  {
+                "Name":  "Sanctuary Crypt - Chamber of Braziers (Past) Boss Arena Chest 1",
+                "LocationID":  292
+            },
+    "730":  {
+                "Name":  "Sanctuary Crypt - Chamber of Stone (Past) Boss Arena Chest 1",
+                "LocationID":  302
+            },
+    "731":  {
+                "Name":  "Sanctuary Crypt - Chamber of Clairvoyance (Past) Boss Arena Chest 1",
+                "LocationID":  330
+            },
+    "732":  {
+                "Name":  "Sanctuary Crypt - Chamber of Frost (Past) Boss Arena Chest 1",
+                "LocationID":  345
+            },
+    "733":  {
+                "Name":  "Sanctuary Crypt - Chamber of Magma (Past) Boss Arena Chest 1",
+                "LocationID":  367
+            },
+    "734":  {
+                "Name":  "Former Sanctuary Crypt - B3 Entrance Chest 7",
+                "LocationID":  309
+            },
+    "735":  {
+                "Name":  "Towering Coral Forest (Night) After Mid-Boss Chest 2",
+                "LocationID":  78
+            },
+    "736":  {
+                "Name":  "Former Sanctuary Crypt - B1 First Brazier Chest 2",
+                "LocationID":  284
+            },
+    "737":  {
+                "Name":  "Former Sanctuary Crypt - B5 Western Hall Chest 4",
+                "LocationID":  360
+            },
+    "738":  {
+                "Name":  "Sanctuary Crypt - Chamber of Braziers (Past) First Brazier Chest 1",
+                "LocationID":  285
+            },
+    "739":  {
+                "Name":  "Sanctuary Crypt - Chamber of Braziers (Past) First Brazier Chest 2",
+                "LocationID":  286
+            },
+    "740":  {
+                "Name":  "Former Sanctuary Crypt - Final Floor Boss Arena Melaiduma Medals",
+                "LocationID":  634
+            },
+    "741":  {
+                "Name":  "Sanctuary Crypt - Chamber of Stone (Past) Stone and Rock Block Puzzle Chest 1",
+                "LocationID":  298
+            },
+    "901":  {
+                "Name":  "Waterdrop Cave Before Boss Arena Corpse",
+                "LocationID":  493
+            },
+    "902":  {
+                "Name":  "Pirate Ship Eleftheria Hold Corpse",
+                "LocationID":  515
+            },
+    "903":  {
+                "Name":  "Eroded Valley Entrance Corpse",
+                "LocationID":  496
+            },
+    "904":  {
+                "Name":  "Eroded Valley Midpoint Corpse",
+                "LocationID":  495
+            },
+    "905":  {
+                "Name":  "Eroded Valley End Corpse",
+                "LocationID":  494
+            },
+    "906":  {
+                "Name":  "Schlamm Jungle Midpoint Corpse",
+                "LocationID":  497
+            },
+    "907":  {
+                "Name":  "Longhorn Coast Eastern Shore Corpse",
+                "LocationID":  498
+            },
+    "908":  {
+                "Name":  "Pirate Ship Eleftheria Stairwell Corpse",
+                "LocationID":  499
+            },
+    "909":  {
+                "Name":  "Nostalgia Cape Nostalgia Cape Driftage",
+                "LocationID":  513
+            },
+    "910":  {
+                "Name":  "Underground Water Vein Submerged Area Driftage",
+                "LocationID":  517
+            },
+    "911":  {
+                "Name":  "Solitude Island Magna Carpa Driftage",
+                "LocationID":  514
+            },
+    "912":  {
+                "Name":  "Archeozoic Chasm Boss Arena Driftage",
+                "LocationID":  516
+            },
+    "916":  {
+                "Name":  "Towering Coral Forest (Night) Entrance Chest 1",
+                "LocationID":  62
+            },
+    "917":  {
+                "Name":  "Towering Coral Forest (Night) Entrance Chest 2",
+                "LocationID":  63
+            },
+    "918":  {
+                "Name":  "Towering Coral Forest (Night) Entrance Chest 3",
+                "LocationID":  64
+            },
+    "919":  {
+                "Name":  "Towering Coral Forest (Night) Walkways Chest 1",
+                "LocationID":  69
+            },
+    "920":  {
+                "Name":  "Towering Coral Forest (Night) Walkways Chest 2",
+                "LocationID":  70
+            },
+    "921":  {
+                "Name":  "Towering Coral Forest (Night) Walkways Chest 3",
+                "LocationID":  71
+            },
+    "922":  {
+                "Name":  "Towering Coral Forest (Night) Walkways Chest 4",
+                "LocationID":  72
+            },
+    "923":  {
+                "Name":  "Towering Coral Forest (Night) After Mid-Boss Chest 1",
+                "LocationID":  77
+            },
+    "924":  {
+                "Name":  "Towering Coral Forest (Night) Rainbow Falls Chest 1",
+                "LocationID":  84
+            },
+    "925":  {
+                "Name":  "Towering Coral Forest (Night) Rainbow Falls Chest 2",
+                "LocationID":  85
+            },
+    "926":  {
+                "Name":  "Towering Coral Forest (Night) Rainbow Falls Chest 3",
+                "LocationID":  86
+            },
+    "927":  {
+                "Name":  "Towering Coral Forest (Night) Mid-Boss Arena Chest 1",
+                "LocationID":  88
+            },
+    "928":  {
+                "Name":  "Towering Coral Forest (Night) End Chest 1",
+                "LocationID":  90
+            },
+    "929":  {
+                "Name":  "Mont Gendarme (Night) Entrance Chest 1",
+                "LocationID":  146
+            },
+    "930":  {
+                "Name":  "Mont Gendarme (Night) Southern Lower Cliffside Trail Chest 1",
+                "LocationID":  149
+            },
+    "931":  {
+                "Name":  "Mont Gendarme (Night) Southern Lower Cliffside Trail Chest 2",
+                "LocationID":  150
+            },
+    "932":  {
+                "Name":  "Mont Gendarme (Night) Southern Lower Cliffside Trail Chest 3",
+                "LocationID":  151
+            },
+    "933":  {
+                "Name":  "Mont Gendarme (Night) Northern Lower Cliffside Trail Chest 1",
+                "LocationID":  155
+            },
+    "934":  {
+                "Name":  "Mont Gendarme (Night) Northern Lower Cliffside Trail Chest 2",
+                "LocationID":  156
+            },
+    "935":  {
+                "Name":  "Mont Gendarme (Night) Cliffside Midpoint Chest 1",
+                "LocationID":  160
+            },
+    "936":  {
+                "Name":  "Mont Gendarme (Night) Mid-Boss Arena Chest 1",
+                "LocationID":  161
+            },
+    "937":  {
+                "Name":  "Mont Gendarme (Night) Upper Cliffs 1 Chest 1",
+                "LocationID":  164
+            },
+    "938":  {
+                "Name":  "Mont Gendarme (Night) Upper Cliffs 2 Chest 1",
+                "LocationID":  166
+            },
+    "939":  {
+                "Name":  "Pangaia Plains (Night) Pond Chest 1",
+                "LocationID":  182
+            },
+    "940":  {
+                "Name":  "Pangaia Plains (Night) Ancient Tree Chest 1",
+                "LocationID":  184
+            },
+    "941":  {
+                "Name":  "Pangaia Plains (Night) Northern Plains Chest 1",
+                "LocationID":  194
+            },
+    "942":  {
+                "Name":  "Sanctuary Crypt - Chamber of Braziers (Past) Entrance Chest 1",
+                "LocationID":  282
+            },
+    "943":  {
+                "Name":  "Sanctuary Crypt - Chamber of Braziers (Past) Wind Tunnel Chest 1",
+                "LocationID":  289
+            },
+    "944":  {
+                "Name":  "Sanctuary Crypt - Chamber of Braziers (Past) Wind Tunnel Chest 2",
+                "LocationID":  290
+            },
+    "945":  {
+                "Name":  "Sanctuary Crypt - Chamber of Stone (Past) Stone and Rock Floating Block Puzzle with Gaps Chest 1",
+                "LocationID":  299
+            },
+    "946":  {
+                "Name":  "Sanctuary Crypt - Chamber of Stone (Past) Stone and Rock Floating Block Puzzle Chest 1",
+                "LocationID":  300
+            },
+    "947":  {
+                "Name":  "Sanctuary Crypt - Chamber of Clairvoyance (Past) Entrance Chest 1",
+                "LocationID":  310
+            },
+    "948":  {
+                "Name":  "Sanctuary Crypt - Chamber of Clairvoyance (Past) Entrance Chest 2",
+                "LocationID":  311
+            },
+    "949":  {
+                "Name":  "Sanctuary Crypt - Chamber of Clairvoyance (Past) Entrance Chest 3",
+                "LocationID":  312
+            },
+    "950":  {
+                "Name":  "Sanctuary Crypt - Chamber of Clairvoyance (Past) Entrance Chest 4",
+                "LocationID":  313
+            },
+    "951":  {
+                "Name":  "Sanctuary Crypt - Chamber of Clairvoyance (Past) Entrance Chest 5",
+                "LocationID":  314
+            },
+    "952":  {
+                "Name":  "Sanctuary Crypt - Chamber of Clairvoyance (Past) Entrance Chest 6",
+                "LocationID":  315
+            },
+    "953":  {
+                "Name":  "Sanctuary Crypt - Chamber of Clairvoyance (Past) Entrance Chest 7",
+                "LocationID":  316
+            },
+    "954":  {
+                "Name":  "Sanctuary Crypt - Chamber of Clairvoyance (Past) Entrance Chest 8",
+                "LocationID":  317
+            },
+    "955":  {
+                "Name":  "Sanctuary Crypt - Chamber of Clairvoyance (Past) Entrance Chest 9",
+                "LocationID":  318
+            },
+    "956":  {
+                "Name":  "Sanctuary Crypt - Chamber of Clairvoyance (Past) Entrance Chest 10",
+                "LocationID":  319
+            },
+    "957":  {
+                "Name":  "Sanctuary Crypt - Chamber of Clairvoyance (Past) Floating Block Puzzle Chest 1",
+                "LocationID":  323
+            },
+    "958":  {
+                "Name":  "Sanctuary Crypt - Chamber of Clairvoyance (Past) Floating Block Puzzle Chest 2",
+                "LocationID":  324
+            },
+    "959":  {
+                "Name":  "Sanctuary Crypt - Chamber of Clairvoyance (Past) Floating Block Puzzle Chest 3",
+                "LocationID":  325
+            },
+    "960":  {
+                "Name":  "Sanctuary Crypt - Chamber of Clairvoyance (Past) Floating Block Puzzle Chest 4",
+                "LocationID":  326
+            },
+    "961":  {
+                "Name":  "Sanctuary Crypt - Chamber of Clairvoyance (Past) Floating Block Puzzle Chest 5",
+                "LocationID":  327
+            },
+    "962":  {
+                "Name":  "Sanctuary Crypt - Chamber of Clairvoyance (Past) Floating Block Puzzle Chest 6",
+                "LocationID":  328
+            },
+    "963":  {
+                "Name":  "Sanctuary Crypt - Chamber of Frost (Past) Entrance Chest 1",
+                "LocationID":  335
+            },
+    "964":  {
+                "Name":  "Sanctuary Crypt - Chamber of Frost (Past) Entrance Chest 2",
+                "LocationID":  336
+            },
+    "965":  {
+                "Name":  "Sanctuary Crypt - Chamber of Frost (Past) Frozen Statue Room Chest 1",
+                "LocationID":  341
+            },
+    "966":  {
+                "Name":  "Sanctuary Crypt - Chamber of Frost (Past) Frozen Statue Room Chest 2",
+                "LocationID":  342
+            },
+    "967":  {
+                "Name":  "Sanctuary Crypt - Chamber of Frost (Past) Frozen Statue Room Chest 3",
+                "LocationID":  343
+            },
+    "968":  {
+                "Name":  "Sanctuary Crypt - Chamber of Magma (Past) Entrance Chest 1",
+                "LocationID":  349
+            },
+    "969":  {
+                "Name":  "Sanctuary Crypt - Chamber of Magma (Past) Entrance Chest 2",
+                "LocationID":  350
+            },
+    "970":  {
+                "Name":  "Sanctuary Crypt - Chamber of Magma (Past) Eastern Hall Chest 1",
+                "LocationID":  352
+            },
+    "971":  {
+                "Name":  "Sanctuary Crypt - Chamber of Magma (Past) Eastern Hall Chest 2",
+                "LocationID":  353
+            },
+    "972":  {
+                "Name":  "Sanctuary Crypt - Chamber of Magma (Past) Eastern Hall Chest 3",
+                "LocationID":  354
+            },
+    "973":  {
+                "Name":  "Sanctuary Crypt - Chamber of Magma (Past) Central Chamber North of Entrance Chest 1",
+                "LocationID":  355
+            },
+    "974":  {
+                "Name":  "Sanctuary Crypt - Chamber of Magma (Past) Central Chamber North of Entrance Chest 2",
+                "LocationID":  356
+            },
+    "975":  {
+                "Name":  "Sanctuary Crypt - Chamber of Magma (Past) Western Hall Chest 1",
+                "LocationID":  361
+            },
+    "976":  {
+                "Name":  "Sanctuary Crypt - Chamber of Magma (Past) Western Hall Chest 2",
+                "LocationID":  362
+            },
+    "977":  {
+                "Name":  "Sanctuary Crypt - Chamber of Magma (Past) Western Hall Chest 3",
+                "LocationID":  363
+            },
+    "978":  {
+                "Name":  "Sanctuary Crypt - Chamber of Magma (Past) Boss Arena Chest 4",
+                "LocationID":  368
+            },
+    "979":  {
+                "Name":  "Sanctuary Crypt - Chamber of the Final Trial (Past) Big Staircase Chest 1",
+                "LocationID":  373
+            },
+    "980":  {
+                "Name":  "Sanctuary Crypt - Chamber of the Final Trial (Past) Big Staircase Chest 2",
+                "LocationID":  374
+            },
+    "981":  {
+                "Name":  "Sanctuary Crypt - Chamber of the Final Trial (Past) Big Staircase Chest 3",
+                "LocationID":  375
+            },
+    "982":  {
+                "Name":  "Sanctuary Crypt - Chamber of the Final Trial (Past) Big Staircase Chest 4",
+                "LocationID":  376
+            }
 }

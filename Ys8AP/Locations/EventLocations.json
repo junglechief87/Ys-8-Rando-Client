@@ -613,5 +613,10 @@
         "Name": "Former Sanctuary Crypt - Final Floor Boss Arena Melaiduma Skill",
         "LocationIDs": [533],
         "Flag": "0x002C88A0"
+    },
+    "123": {
+        "Name": "Lodinia Marshlands Exit to Valley of Kings Fermented Sap",
+        "LocationIDs": [445],
+        "Flag": "0x002CAB7C"
     }
 }

@@ -18,6 +18,7 @@ namespace Ys8AP.Mem
         private static int errorLogCount = 0;  // Track how many times we've logged the error
         private const int MAX_BACKOFF_SECONDS = 30;
         internal static bool lastSeedWasGood = false;
+        private static bool hasEverFailed = false;  // Track if we've ever logged an error
 
         /// <summary>
         /// Compute the compressed seed to match Python's int.from_bytes(float32(...).tobytes(), 'little')
@@ -58,11 +59,12 @@ namespace Ys8AP.Mem
             
             if (result)
             {
-                // Log success message if previous state was bad
-                if (!lastSeedWasGood && Contexts.GameContext.InventoryAddress != 0)
+                // Log success message only if we previously had a failure
+                if (!lastSeedWasGood && hasEverFailed && Contexts.GameContext.InventoryAddress != 0)
                 {
                     Log.Logger.Information("Room seed verified successfully.");
                     lastSeedWasGood = true;
+                    hasEverFailed = false;  // Reset failure flag so we won't log success again until next failure
                     errorLogCount = 0; // Reset error count on success
                     lastErrorLogTime = DateTime.MinValue;
                 }
@@ -76,21 +78,23 @@ namespace Ys8AP.Mem
             {
                 DateTime now = DateTime.UtcNow;
                 
-                // Calculate backoff interval based on error count: 10s, 10s, 20s, then cap at 30s
+                // Calculate backoff interval based on error count: skip first, then 10s, 10s, 20s, then cap at 30s
                 int backoffInterval = errorLogCount switch
                 {
-                    0 => 10,  // First error: wait 10s
-                    1 => 10,  // Second error: wait another 10s
-                    2 => 20,  // Third error: wait 20s
-                    _ => MAX_BACKOFF_SECONDS  // Fourth+ errors: wait 30s (capped)
+                    0 => int.MaxValue,  // First error: suppress (don't log on initial file load)
+                    1 => 10,  // Second error: wait 10s
+                    2 => 10,  // Third error: wait another 10s
+                    3 => 20,  // Fourth error: wait 20s
+                    _ => MAX_BACKOFF_SECONDS  // Fifth+ errors: wait 30s (capped)
                 };
                 
                 // Check if enough time has passed to log the error again
                 if (now.Subtract(lastErrorLogTime).TotalSeconds >= backoffInterval)
                 {
-                    Log.Logger.Error("Room seed mismatch. Expected " + roomSeed + ", found " + compressed + ".");
+                    Log.Logger.Error("Room seed mismatch. Expected " + compressed + ", found " + roomSeed + ".");
                     lastErrorLogTime = now;
                     errorLogCount++;
+                    hasEverFailed = true;  // Mark that we've had at least one logged error
                 }
             }
             return false;

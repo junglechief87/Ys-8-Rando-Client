@@ -51,8 +51,14 @@ namespace Ys8AP.Threads
         {
             foreach (int ChestID in ChestData.Keys)
             {
-                byte chestFlag = Contexts.FlagEnumContext.GetChestByID((uint)ChestID).ChestOpened;
+                ChestParams chestParams = Contexts.FlagEnumContext.GetChestByID((uint)ChestID);
                 int locationID = ChestData[ChestID].LocationID;
+                
+                // Corpses and Driftage (LocationID 493-516) use NonChestEventFlag
+                // Regular chests use ChestOpened flag
+                byte chestFlag = (locationID >= 493 && locationID <= 516) 
+                    ? chestParams.NonChestEventFlag 
+                    : chestParams.ChestOpened;
                 
                 // Corpses and Driftage (LocationID 493-516) are single events, check for exactly 1
                 // Regular chests check for the opened flag (0x30)
