@@ -15,6 +15,7 @@ namespace Ys8AP.Logging
             _outputAction = mainFormWriter;
             _archipelagoEventLogHandler = archipelagoEventLogHandler;
             var loggerConfiguration = new LoggerConfiguration()
+                .Filter.ByExcluding(le => le.MessageTemplate.Text == "Disconnected")
                 .WriteTo.ArchipelagoGuiSink(_outputAction, archipelagoEventLogHandler);
                 //.WriteTo.File("Logging/log.txt", rollingInterval: RollingInterval.Day);
 
@@ -30,6 +31,7 @@ namespace Ys8AP.Logging
             _minimumLevel = level;
             var loggerConfiguration = new LoggerConfiguration()
             .MinimumLevel.Is(level)
+            .Filter.ByExcluding(le => le.MessageTemplate.Text == "Disconnected")
             //.WriteTo.File("Logging/log.txt", rollingInterval: RollingInterval.Day, restrictedToMinimumLevel: level);
             .WriteTo.ArchipelagoGuiSink(_outputAction, _archipelagoEventLogHandler, level);
             _logger = loggerConfiguration.CreateLogger();
@@ -40,6 +42,7 @@ namespace Ys8AP.Logging
             _minimumLevel = LogEventLevel.Information;
             return new LoggerConfiguration()
                 .MinimumLevel.Information()
+                .Filter.ByExcluding(le => le.MessageTemplate.Text == "Disconnected")
                 //.WriteTo.File("Logging/log.txt", rollingInterval: RollingInterval.Day);
                 .WriteTo.ArchipelagoGuiSink(mainFormWriter, archipelagoEventLogHandler);
         }

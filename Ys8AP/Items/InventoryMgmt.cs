@@ -222,6 +222,10 @@ namespace Ys8AP.Items
 
             foreach (ItemInfo itemInfo in App.Client.CurrentSession.Items.AllItemsReceived)
             {
+                // Skip items that are local to the current player's world
+                if (itemInfo.Player == App.Client.CurrentSession.ConnectionInfo.Slot)
+                    continue;
+
                 long apId = itemInfo.ItemId;
                 InvItem receivedItem = ItemData[apId];
                 if (!itemCounts.ContainsKey(receivedItem.APSaveID))

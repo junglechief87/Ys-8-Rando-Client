@@ -57,7 +57,7 @@ namespace Ys8AP.Threads
 
         internal static void DoLoop(object? parameters)
         {
-            while (true)
+            while (App.Client != null)
             {
                 
                 if (PlayerState.IsPlayerReady)

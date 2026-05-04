@@ -30,12 +30,12 @@ namespace Ys8AP.Threads
 
         internal static void DoLoop(object? parameters)
         {
-            if (allLocationIds == null && App.Client.CurrentSession != null)
+            if (allLocationIds == null && App.Client?.CurrentSession != null)
             {
                 allLocationIds = App.Client.CurrentSession.Locations.AllLocations.ToHashSet();
             }
 
-            while (true)
+            while (App.Client != null)
             {
                 if (PlayerState.IsPlayerReady)
                 {

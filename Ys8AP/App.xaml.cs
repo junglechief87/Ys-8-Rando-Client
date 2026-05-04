@@ -70,6 +70,7 @@ namespace Ys8AP
         private static DeathLinkService? _deathlinkService = null;
         private bool deathFromDeathlink = false;
         private static string slotName = "";
+        private static bool isShuttingDown = false;
 
         public override void Initialize()
         {
@@ -120,21 +121,39 @@ namespace Ys8AP
 
             if (Context == null)
                 return;
-                
+            
+            isShuttingDown = false;
             Context.ConnectButtonEnabled = false;
             Log.Logger.Information("Connecting...");
 
             if (Client != null)
             {
+                isShuttingDown = true;
+                
                 Client.Connected -= OnConnected;
                 Client.Disconnected -= OnDisconnected;
                 Client.MessageReceived -= Client_MessageReceived;
+                
+                // Stop the worker threads gracefully
+                ItemQueue.StopThread();
+                
+                // Disconnect the client
+                Client.Disconnect();
+                
+                // Give threads a moment to exit their loops before nullifying Client
+                Thread.Sleep(200);
+                Client = null;
 
                 if (_deathlinkService != null)
                 {
                     _deathlinkService.OnDeathLinkReceived -= _deathlinkService_OnDeathLinkReceived;
                     _deathlinkService = null;
                 }
+                
+                // Clear thread references
+                queueThread = null;
+                locationWatcherThread = null;
+                PartyWatcherThread = null;
             }
         
             Ys8Client = Ys8Connect();
@@ -157,7 +176,6 @@ namespace Ys8AP
             }
             
             Client.Connected += OnConnected;
-            Client.Disconnected += OnDisconnected;
 
             await Client.Connect(e.Host, "Ys 8");
             
@@ -169,7 +187,11 @@ namespace Ys8AP
 
             }
 
-            await Client.Login(e.Slot, !string.IsNullOrWhiteSpace(e.Password) ? e.Password : "", Archipelago.MultiClient.Net.Enums.ItemsHandlingFlags.IncludeStartingInventory);
+            Client.Disconnected += OnDisconnected;
+            Client.MessageReceived += Client_MessageReceived;
+
+            await Client.Login(e.Slot, !string.IsNullOrWhiteSpace(e.Password) ? e.Password : "", 
+            Archipelago.MultiClient.Net.Enums.ItemsHandlingFlags.IncludeStartingInventory);
 
             if (!Client.IsConnected || !Client.IsLoggedIn)
             {
@@ -179,7 +201,6 @@ namespace Ys8AP
 
             Client.ItemManager.ItemReceived += Client_ItemReceived;
             Client.ItemManager.ReceiveReady(Client.CurrentSession);
-            Client.MessageReceived += Client_MessageReceived;
 
             slotName = e.Slot;
 
@@ -213,7 +234,10 @@ namespace Ys8AP
             _deathlinkService = PartyWatcher.InitializeDeathLink(Client, Options.DeathLinkEnabled, _deathlinkService_OnDeathLinkReceived);
 
             if (queueThread == null)
+            {
+                ItemQueue.runThread = true;
                 queueThread = StartWorkerThread(ItemQueue.ThreadLoop);
+            }
 
             if (locationWatcherThread == null && Client.IsConnected)
                 locationWatcherThread = StartWorkerThread(LocationWatcher.DoLoop);
@@ -234,6 +258,14 @@ namespace Ys8AP
 
         private GameClient? Ys8Connect()
         {
+            // Check if the Ys 8 process is actually running
+            var ys8Process = System.Diagnostics.Process.GetProcessesByName("Ys8").FirstOrDefault();
+            if (ys8Process == null)
+            {
+                Log.Logger.Error("Ys 8 not running, open Ys 8 before connecting!");
+                Context.ConnectButtonEnabled = true;
+                return null;
+            }
 
             GameClient client = new("ys8");
             try
@@ -336,7 +368,6 @@ namespace Ys8AP
             if (e.Message.Parts.Any(x => x.Text == "[Hint]: "))
             {
                 LogHint(e.Message);
-                // TODO fix hint logging with Avalonia
             }
             else
             {
@@ -436,19 +467,22 @@ namespace Ys8AP
                     Client = new ArchipelagoClient(Ys8Client);
 
                     Client.Connected += OnConnected;
-                    Client.Disconnected += OnDisconnected;
 
                     await Client.Connect(Context.Host, "Ys 8");
 
                     if (!Client.IsConnected && waitTime < 10_000)
                     {
+                        if (!isShuttingDown)
+                            Log.Logger.Warning("Failed to reconnect, retrying in {WaitTime}ms", waitTime + 1000);
                         waitTime += 1000;
                     }
                     else if (Client.IsConnected)
                     {
+                        Client.Disconnected += OnDisconnected;
                         Client.MessageReceived += Client_MessageReceived;
 
-                        await Client.Login(Context.Slot, !string.IsNullOrWhiteSpace(Context.Password) ? Context.Password : null);
+                        await Client.Login(Context.Slot, !string.IsNullOrWhiteSpace(Context.Password) ? Context.Password : null, 
+                        Archipelago.MultiClient.Net.Enums.ItemsHandlingFlags.IncludeStartingInventory);
 
                         Client.ItemManager.ItemReceived += Client_ItemReceived;
                         Client.ItemManager.ReceiveReady(Client.CurrentSession);

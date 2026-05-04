@@ -34,12 +34,15 @@ namespace Ys8AP.Threads
             }
         }
 
+        internal static void StopThread()
+        {
+            runThread = false;
+        }
+
         internal static void ThreadLoop(object? parameters)
         {
-            runThread = true;
-
             // Clean out the queues before stopping
-            while (runThread)
+            while (runThread && App.Client != null)
             {
                 Thread.Sleep(100);
 
