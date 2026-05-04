@@ -365,9 +365,41 @@ namespace Ys8AP
 
         private void Client_MessageReceived(object? sender, MessageReceivedEventArgs e)
         {
+            var messageText = string.Concat(e.Message.Parts.Select(p => p.Text));
+            
             if (e.Message.Parts.Any(x => x.Text == "[Hint]: "))
             {
                 LogHint(e.Message);
+            }
+            else if (messageText.Contains("Cheat console:"))
+            {
+                // Parse !getitem message: "Cheat console: sending "ItemName" to SlotName"
+                var match = System.Text.RegularExpressions.Regex.Match(messageText, @"sending\s+""(.+?)""\s+to\s+(\S+)");
+                if (match.Success)
+                {
+                    var itemName = match.Groups[1].Value;
+                    var targetSlot = match.Groups[2].Value;
+                    
+                    // Verify this command is for the current client's slot
+                    if (Context?.Slot != targetSlot)
+                    {
+                        Log.Logger.Information("Ignoring cheat for slot '{TargetSlot}' (current slot: '{CurrentSlot}')", targetSlot, Context?.Slot);
+                        return;
+                    }
+                    
+                    // Look up item in Items.json by name
+                    var itemEntry = Utils.Resources.Embedded.Items?.FirstOrDefault(kvp => kvp.Value.Name == itemName);
+                    if (itemEntry?.Value != null)
+                    {
+                        long itemId = itemEntry.Value.Key;
+                        Log.Logger.Information(messageText);
+                        InventoryMgmt.GiveItem(itemId);
+                    }
+                    else
+                    {
+                        Log.Logger.Warning("Could not find item ID for cheat item '{ItemName}'", itemName);
+                    }
+                }
             }
             else
             {
