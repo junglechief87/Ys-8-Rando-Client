@@ -356,9 +356,11 @@ namespace Ys8AP
                         itemColor = Color.FromRgb(255, 255, 255); // White (filler)
 
                     var textSpan = new TextSpan { Text = e.Item.Name, TextColor = new SolidColorBrush(itemColor) };
-                    var logItem = new Models.LogListItem(e.Item.Name);
+                    var logItem = new LogListItem(e.Item.Name);
                     logItem.TextSpans.Clear();
                     logItem.TextSpans.Add(textSpan);
+                    Context.LogList.Add(logItem);
+                    Context.ItemList.Add(logItem);
                 });
             }
         }
@@ -450,6 +452,7 @@ namespace Ys8AP
                 var logItem = new LogListItem(spans);
                 Context.HintList.Add(logItem);
                 Context.LogList.Add(logItem);  // Also add to log like other messages
+                
             });
         }
 
@@ -513,8 +516,7 @@ namespace Ys8AP
                         Client.Disconnected += OnDisconnected;
                         Client.MessageReceived += Client_MessageReceived;
 
-                        await Client.Login(Context.Slot, !string.IsNullOrWhiteSpace(Context.Password) ? Context.Password : null, 
-                        Archipelago.MultiClient.Net.Enums.ItemsHandlingFlags.IncludeStartingInventory);
+                        await Client.Login(Context.Slot, !string.IsNullOrWhiteSpace(Context.Password) ? Context.Password : null);
 
                         Client.ItemManager.ItemReceived += Client_ItemReceived;
                         Client.ItemManager.ReceiveReady(Client.CurrentSession);
