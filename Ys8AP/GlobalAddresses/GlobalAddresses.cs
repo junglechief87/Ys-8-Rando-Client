@@ -1,7 +1,7 @@
 using System.Reflection;
 using System;
 using Archipelago.Core.Util;
-using System.Reactive.Concurrency;
+using Serilog;
 using System.Xml;
 
 namespace Ys8AP.GlobalAddresses
@@ -338,11 +338,19 @@ namespace Ys8AP.GlobalAddresses
     {
         public static void InitializeAddresses()
         {
-            Contexts.GameContext = Memory.ReadObject<MainGame>(Memory.GetBaseAddress("ys8"));
-            // FlagEnumContext is created as empty; flags are read directly from memory with Get methods
-            Contexts.FlagEnumContext = new FlagEnum();
-            Contexts.InventoryContext = Memory.ReadObject<Inventory>(Contexts.GameContext.InventoryAddress);
-            Contexts.CharacterDataContext = Memory.ReadObject<CharacterData>(Contexts.GameContext.CharacterDataAddress);
+            try
+            {
+                Contexts.GameContext = Memory.ReadObject<MainGame>(Memory.GetBaseAddress("ys8"));
+                // FlagEnumContext is created as empty; flags are read directly from memory with Get methods
+                Contexts.FlagEnumContext = new FlagEnum();
+                Contexts.InventoryContext = Memory.ReadObject<Inventory>(Contexts.GameContext.InventoryAddress);
+                Contexts.CharacterDataContext = Memory.ReadObject<CharacterData>(Contexts.GameContext.CharacterDataAddress);
+            }
+            catch (Exception)
+            {
+                Log.Logger.Error("Unable to find process 'ys8.exe'");
+                throw;
+            }
         }
     }
 }
