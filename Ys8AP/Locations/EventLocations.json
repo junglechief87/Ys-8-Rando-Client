@@ -618,5 +618,10 @@
         "Name": "Lodinia Marshlands Exit to Valley of Kings Fermented Sap",
         "LocationIDs": [445],
         "Flag": "0x002CAB7C"
+    },
+    "124": {
+        "Name": "Towering Coral Forest After Mid-Boss Corpse",
+        "LocationIDs": [430],
+        "Flag": "0x002C754C"
     }
 }

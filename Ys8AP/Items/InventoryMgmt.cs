@@ -2,11 +2,16 @@
 using Archipelago.MultiClient.Net.Models;
 using Ys8AP.GlobalAddresses;
 using Ys8AP.Threads;
+using Ys8AP.Mem;
+using Ys8AP.Threads;
 using Ys8AP.Utils;
 using Serilog;
 using System;
 using System.Collections.Concurrent;
+using System.Reflection;
 using System.Collections.Generic;
+using System.Linq;
+
 
 namespace Ys8AP.Items
 {
@@ -48,6 +53,10 @@ namespace Ys8AP.Items
                 Contexts.FlagEnumContext.SetNPCJoinState(5); // Kathleen Join Flag
                 Memory.WriteByte(Contexts.GameContext.FlagEnumAddress + 0x002CB20C, 1); // DF_JOIN_KATRIN
                 Memory.WriteByte(Contexts.GameContext.FlagEnumAddress + 0x002C7564, 1); // GF_02MP1201_JOIN_KATRIN
+
+                Contexts.InventoryContext.CheckIfObtainedAndSet(CASTAWAY_TRACKING_ID); // Castaway item for tracking crew member obtained for work totals.
+                int currentCastaways = Memory.ReadUShort(Contexts.InventoryContext.GetItemQuantityAddress(CASTAWAY_TRACKING_ID));
+                Memory.WriteByte(Contexts.InventoryContext.GetItemQuantityAddress(CASTAWAY_TRACKING_ID), (byte)(currentCastaways + 1));
             }
             else if (receivedItem.Name == "Dina")
             {
@@ -143,7 +152,8 @@ namespace Ys8AP.Items
             if (receivedItem.CrewMember)
             {
                 Contexts.InventoryContext.CheckIfObtainedAndSet(CASTAWAY_TRACKING_ID); // Castaway item for tracking crew member obtained for work totals.
-                Memory.WriteByte(Contexts.InventoryContext.GetItemQuantityAddress(CASTAWAY_TRACKING_ID), (byte)newQuantity);
+                int currentCastaways = Memory.ReadUShort(Contexts.InventoryContext.GetItemQuantityAddress(CASTAWAY_TRACKING_ID));
+                Memory.WriteByte(Contexts.InventoryContext.GetItemQuantityAddress(CASTAWAY_TRACKING_ID), (byte)(currentCastaways + 1));
 
                 if (receivedItem.CrewJoinID != null)
                 {
@@ -153,7 +163,8 @@ namespace Ys8AP.Items
             else if (receivedItem.Landmark)
             {
                 Contexts.InventoryContext.CheckIfObtainedAndSet(LANDMARK_TRACKING_ID); // Landmark item for tracking totals.
-                Memory.WriteByte(Contexts.InventoryContext.GetItemQuantityAddress(LANDMARK_TRACKING_ID), (byte)newQuantity);
+                int currentLandmarks = Memory.ReadUShort(Contexts.InventoryContext.GetItemQuantityAddress(LANDMARK_TRACKING_ID));
+                Memory.WriteByte(Contexts.InventoryContext.GetItemQuantityAddress(LANDMARK_TRACKING_ID), (byte)(currentLandmarks + 1));
             }
             else if (receivedItem.Skill)
             {

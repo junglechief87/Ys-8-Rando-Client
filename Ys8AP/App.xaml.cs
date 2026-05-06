@@ -191,7 +191,7 @@ namespace Ys8AP
             Client.MessageReceived += Client_MessageReceived;
 
             await Client.Login(e.Slot, !string.IsNullOrWhiteSpace(e.Password) ? e.Password : "", 
-            Archipelago.MultiClient.Net.Enums.ItemsHandlingFlags.IncludeStartingInventory);
+                Archipelago.MultiClient.Net.Enums.ItemsHandlingFlags.IncludeStartingInventory);
 
             if (!Client.IsConnected || !Client.IsLoggedIn)
             {
@@ -344,22 +344,21 @@ namespace Ys8AP
             {
                 RxApp.MainThreadScheduler.Schedule(() =>
                 {
-                    // Determine item classification color (AP standard)
+                    // Determine item classification color (matches server-side colors)
                     Color itemColor;
                     if (e.Item.IsProgression)
-                        itemColor = Color.FromRgb(160, 32, 240); // Purple
+                        itemColor = Color.FromRgb(221, 160, 221); // Plum (progression)
                     else if (e.Item.IsUseful)
-                        itemColor = Color.FromRgb(0, 100, 255); // Blue
+                        itemColor = Color.FromRgb(106, 90, 205); // SlateBlue (useful)
                     else if (e.Item.IsTrap)
-                        itemColor = Color.FromRgb(255, 165, 0); // Orange
+                        itemColor = Color.FromRgb(250, 128, 114); // Salmon (trap)
                     else
-                        itemColor = Color.FromRgb(255, 255, 255); // White (filler)
+                        itemColor = Color.FromRgb(0, 255, 255); // Cyan (filler)
 
                     var textSpan = new TextSpan { Text = e.Item.Name, TextColor = new SolidColorBrush(itemColor) };
                     var logItem = new LogListItem(e.Item.Name);
                     logItem.TextSpans.Clear();
                     logItem.TextSpans.Add(textSpan);
-                    Context.LogList.Add(logItem);
                     Context.ItemList.Add(logItem);
                 });
             }
@@ -372,36 +371,6 @@ namespace Ys8AP
             if (e.Message.Parts.Any(x => x.Text == "[Hint]: "))
             {
                 LogHint(e.Message);
-            }
-            else if (messageText.Contains("Cheat console:"))
-            {
-                // Parse !getitem message: "Cheat console: sending "ItemName" to SlotName"
-                var match = System.Text.RegularExpressions.Regex.Match(messageText, @"sending\s+""(.+?)""\s+to\s+(\S+)");
-                if (match.Success)
-                {
-                    var itemName = match.Groups[1].Value;
-                    var targetSlot = match.Groups[2].Value;
-                    
-                    // Verify this command is for the current client's slot
-                    if (Context?.Slot != targetSlot)
-                    {
-                        Log.Logger.Information("Ignoring cheat for slot '{TargetSlot}' (current slot: '{CurrentSlot}')", targetSlot, Context?.Slot);
-                        return;
-                    }
-                    
-                    // Look up item in Items.json by name
-                    var itemEntry = Utils.Resources.Embedded.Items?.FirstOrDefault(kvp => kvp.Value.Name == itemName);
-                    if (itemEntry?.Value != null)
-                    {
-                        long itemId = itemEntry.Value.Key;
-                        Log.Logger.Information(messageText);
-                        InventoryMgmt.GiveItem(itemId);
-                    }
-                    else
-                    {
-                        Log.Logger.Warning("Could not find item ID for cheat item '{ItemName}'", itemName);
-                    }
-                }
             }
             else
             {
@@ -516,7 +485,8 @@ namespace Ys8AP
                         Client.Disconnected += OnDisconnected;
                         Client.MessageReceived += Client_MessageReceived;
 
-                        await Client.Login(Context.Slot, !string.IsNullOrWhiteSpace(Context.Password) ? Context.Password : null);
+                        await Client.Login(Context.Slot, !string.IsNullOrWhiteSpace(Context.Password) ? Context.Password : null,
+                        Archipelago.MultiClient.Net.Enums.ItemsHandlingFlags.IncludeStartingInventory);
 
                         Client.ItemManager.ItemReceived += Client_ItemReceived;
                         Client.ItemManager.ReceiveReady(Client.CurrentSession);
