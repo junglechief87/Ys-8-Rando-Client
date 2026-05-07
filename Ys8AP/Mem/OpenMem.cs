@@ -54,13 +54,14 @@ namespace Ys8AP.Mem
             if (Contexts.FlagEnumContext == null || Contexts.GameContext == null)
                 return false;
 
+            bool isProcessRunning = App.IsYs8ProcessRunning();
             uint roomSeed = Contexts.FlagEnumContext.GetAPSeed();
             bool result = compressed == roomSeed;
             
             if (result)
             {
                 // Log success message only if we previously had a failure
-                if (!lastSeedWasGood && hasEverFailed && Contexts.GameContext.InventoryAddress != 0)
+                if (!lastSeedWasGood && hasEverFailed && isProcessRunning && Contexts.GameContext.InventoryAddress != 0)
                 {
                     Log.Logger.Information("Room seed verified successfully.");
                     lastSeedWasGood = true;
@@ -73,8 +74,8 @@ namespace Ys8AP.Mem
             
             lastSeedWasGood = false;
             
-            // Only log errors if the game is actually loaded; otherwise silently retry
-            if (Contexts.GameContext.InventoryAddress != 0)
+            // Only log errors if the Ys8 process is running and the game is actually loaded; otherwise silently retry
+            if (isProcessRunning && Contexts.GameContext.InventoryAddress != 0)
             {
                 DateTime now = DateTime.UtcNow;
                 

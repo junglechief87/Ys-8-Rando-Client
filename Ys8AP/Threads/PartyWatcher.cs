@@ -1,10 +1,7 @@
 using Ys8AP.GlobalAddresses;
-using Ys8AP.Threads;
-using Ys8AP.Mem;
-using Ys8AP;
 using System.Collections.Generic;
-using System.Threading;
-using Silk.NET.GLFW;
+using System.Threading.Tasks;
+using Serilog;
 using Archipelago.MultiClient.Net.BounceFeatures.DeathLink;
 using Archipelago.Core;
 using System;
@@ -18,14 +15,18 @@ namespace Ys8AP.Threads
     {
         private const int PARTY_SLOTS = 3;
         private static bool deathFromDeathlink = false;
-        private static Dictionary<uint, CharacterStats> currentPartyMembers = new Dictionary<uint, CharacterStats>();
+        private static bool deathLinkIncoming = false;
+        private static string deathLinkMsg = "";
+        private static bool deathLinkMsgLogged = false;
+        private static Dictionary<int, CharacterStats> currentPartyMembers = new Dictionary<int, CharacterStats>();
         private static int enemyKills = 0;
         private static DeathLinkService? _deathlinkService = null;
+        private static bool deathSent = false;
 
         // Character data structure to eliminate repetitive join flag checks
         private readonly struct CharacterInfo
         {
-            public uint CharacterID { get; init; }
+            public int CharacterID { get; init; }
             public Func<bool> IsJoined { get; init; }
         }
 
@@ -55,30 +56,68 @@ namespace Ys8AP.Threads
             return _deathlinkService;
         }
 
-        internal static void DoLoop(object? parameters)
+        /// <summary>
+        /// Sets the death link message and flag to indicate an incoming death link.
+        /// </summary>
+        internal static void SetDeathLinkIncoming(string message)
+        {
+            deathLinkMsg = message;
+            deathLinkMsgLogged = false;
+            deathLinkIncoming = true;
+        }
+
+        internal static async Task DoLoop()
         {
             while (App.Client != null)
             {
-                
-                if (PlayerState.IsPlayerReady)
                 {
-                    if (Contexts.FlagEnumContext.GetMonsterKillCount() != enemyKills)
+                    if (PlayerState.IsPlayerReady)
                     {
-                        enemyKills = Contexts.FlagEnumContext.GetMonsterKillCount();
-                        HandlePartyExperience();
-                    }
+                        // Only reset deathSent when we're truly ready and NOT recovering from a deathlink
+                        if (deathSent && !deathFromDeathlink)
+                        {
+                            deathSent = false;
+                        }
 
-                    ListenForDeath();
+                        if (Contexts.FlagEnumContext.GetMonsterKillCount() != enemyKills)
+                        {
+                            enemyKills = Contexts.FlagEnumContext.GetMonsterKillCount();
+                            HandlePartyExperience();
+                        }
+
+                        // Kill player x_x - keep retrying until gameover is detected
+                        if (deathLinkIncoming && PlayerState.NotInTown())
+                        {
+                            await Task.Delay(500); // 0.5 second delay for loading. State management mostly works but this is a safety net.
+                            KillParty();
+                            if (!deathLinkMsgLogged)
+                            {
+                                Log.Logger.Information(deathLinkMsg);
+                                deathLinkMsgLogged = true;
+                            }
+                        }
+                    }
+                    else if (!deathSent)
+                    {
+                        ListenForDeath();
+                    }
+                    
+                    if (deathLinkIncoming && PlayerState.GameOver())
+                    {
+                        deathLinkIncoming = false;
+                    }
                 }
-                Thread.Sleep(1000);
+                
+                await Task.Delay(1000);
             }
         }
+
         private static void GetCurrentPartyMembers()
         {
             currentPartyMembers.Clear();
             for (uint slot = 0; slot < PARTY_SLOTS; slot++)
             {
-                uint characterId = Contexts.InventoryContext.GetPartyMemberBySlot(slot);
+                int characterId = Contexts.InventoryContext.GetPartyMemberBySlot(slot);
                 if (characterId >= 0)
                     currentPartyMembers.Add(characterId, Contexts.CharacterDataContext.GetCharacterDataByID(characterId));
             }
@@ -89,9 +128,13 @@ namespace Ys8AP.Threads
             GetCurrentPartyMembers();
             foreach (var member in currentPartyMembers)
             {
-                member.Value.CurrentHP = 0;
-                Contexts.CharacterDataContext.WriteCharacterData(member.Key, member.Value);
-                deathFromDeathlink = true;
+                // Only kill characters that are not in a locked state (CharState != -1)
+                if (member.Value.CharState != -1)
+                {
+                    deathFromDeathlink = true;
+                    member.Value.CurrentHP = 0;
+                    Contexts.CharacterDataContext.WriteCharacterData(member.Key, member.Value);
+                }
             }
         }
 
@@ -100,45 +143,38 @@ namespace Ys8AP.Threads
             if (PlayerState.GameOver() && !deathFromDeathlink)
             {
                 App.sendDeathLink();
+                deathSent = true;
+            }
+            else if (PlayerState.GameOver() && deathFromDeathlink)
+            {
+                // Mark as sent so we don't send on the next loop iteration after resetting deathFromDeathlink
+                deathSent = true;
                 deathFromDeathlink = false;
+                deathLinkMsgLogged = false;
             }
         }
 
         private static void HandlePartyExperience()
         {
-            float PartyAverageExperience = GetPartyAverageExperience();
-            
-            foreach (var character in PartyCharacters)
-            {
-                if (!character.IsJoined())
-                {
-                    UpdateExperienceForCharacter(character.CharacterID, PartyAverageExperience);
-                }
-            }
+            uint partyAverageLevel = GetPartyAverageLevel();
+            Contexts.FlagEnumContext.WritePartyAverageLevel(partyAverageLevel);
         }
 
-        private static float GetPartyAverageExperience()
+        private static uint GetPartyAverageLevel()
         {
-            float totalExperience = 0;
+            uint totalLevel = 0;
             var processedFlags = new HashSet<Func<bool>>(); // Track processed flags to count Dana once
 
             foreach (var character in PartyCharacters)
             {
                 if (character.IsJoined() && processedFlags.Add(character.IsJoined))
                 {
-                    totalExperience += Contexts.CharacterDataContext.GetCharacterDataByID(character.CharacterID).CharacterEXP;
+                    totalLevel += Contexts.CharacterDataContext.GetCharacterDataByID(character.CharacterID).Level;
                 }
             }
 
             var availablePartyMembers = processedFlags.Count;
-            return availablePartyMembers > 0 ? totalExperience / availablePartyMembers : 0;
-        }
-
-        private static void UpdateExperienceForCharacter(uint characterID, float experience)
-        {
-            CharacterStats character = Contexts.CharacterDataContext.GetCharacterDataByID(characterID);
-            character.CharacterEXP = experience;
-            Contexts.CharacterDataContext.WriteCharacterData(characterID, character);
+            return availablePartyMembers > 0 ? totalLevel / (uint)availablePartyMembers : 0;
         }
     }
 }

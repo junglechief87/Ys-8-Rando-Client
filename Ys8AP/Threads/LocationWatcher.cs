@@ -28,7 +28,7 @@ namespace Ys8AP.Threads
         private static HashSet<long>? allLocationIds;
         private static bool goalCompleted = false;
 
-        internal static void DoLoop(object? parameters)
+        internal static async Task DoLoop()
         {
             if (allLocationIds == null && App.Client?.CurrentSession != null)
             {
@@ -43,7 +43,7 @@ namespace Ys8AP.Threads
                     CheckEvents();
                     WatchGoal();
                 }
-                Thread.Sleep(1000);
+                await Task.Delay(1000);
             }
         }
 

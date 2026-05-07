@@ -7,6 +7,7 @@ using Serilog;
 using System.Collections.Concurrent;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace Ys8AP.Threads
 {
@@ -39,12 +40,12 @@ namespace Ys8AP.Threads
             runThread = false;
         }
 
-        internal static void ThreadLoop(object? parameters)
+        internal static async Task ThreadLoop()
         {
             // Clean out the queues before stopping
             while (runThread && App.Client != null)
             {
-                Thread.Sleep(100);
+                await Task.Delay(100);
 
                 if (PlayerState.IsPlayerReady)
                 {

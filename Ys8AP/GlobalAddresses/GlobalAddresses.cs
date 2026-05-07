@@ -69,6 +69,8 @@ namespace Ys8AP.GlobalAddresses
         private const ulong HummelJoinFlagOffset = 0x002C7090;
         private const ulong RicottaJoinFlagOffset = 0x002C7094;
         private const ulong DanaJoinFlagOffset = 0x002C7098;
+        private const uint PartyAverageLevelOffset = 0x002CA5CC;
+
 
         public bool GetAdolJoinFlag() => Memory.ReadByte(Contexts.GameContext.FlagEnumAddress + AdolJoinFlagOffset) != 0;
         public bool GetLaxiaJoinFlag() => Memory.ReadByte(Contexts.GameContext.FlagEnumAddress + LaxiaJoinFlagOffset) != 0;
@@ -76,6 +78,8 @@ namespace Ys8AP.GlobalAddresses
         public bool GetHummelJoinFlag() => Memory.ReadByte(Contexts.GameContext.FlagEnumAddress + HummelJoinFlagOffset) != 0;
         public bool GetRicottaJoinFlag() => Memory.ReadByte(Contexts.GameContext.FlagEnumAddress + RicottaJoinFlagOffset) != 0;
         public bool GetDanaJoinFlag() => Memory.ReadByte(Contexts.GameContext.FlagEnumAddress + DanaJoinFlagOffset) != 0;
+        public void WritePartyAverageLevel(uint averageLevel) =>
+            Memory.Write(Contexts.GameContext.FlagEnumAddress + PartyAverageLevelOffset, (byte)averageLevel);
 
         // ============================================================================
         // T'S MEMOS - Direct memory reads
@@ -163,9 +167,6 @@ namespace Ys8AP.GlobalAddresses
     // ============================================================================
     public class Inventory
     {
-        [MemoryOffset(0x00000000)]
-        public uint Context { get; set; } // In case I need to call custom attrbiute on the object instead of the property for some reason
-
 
         // Item Quantities //////////////////////////////////////////////////////////
         public ulong ItemQuantityTblOffset = 0x00020F34;
@@ -234,9 +235,9 @@ namespace Ys8AP.GlobalAddresses
         // Current Party Members //////////////////////////////////////////////////////////
         public ulong PartyMemberOffset = 0x001809F8;
 
-        public uint GetPartyMemberBySlot(uint slot)
+        public int GetPartyMemberBySlot(uint slot)
         {
-            return (uint)Memory.ReadInt(Contexts.GameContext.InventoryAddress + PartyMemberOffset + (slot * 4));
+            return Memory.ReadInt(Contexts.GameContext.InventoryAddress + PartyMemberOffset + (slot * 4));
         }
     }
 
@@ -260,32 +261,28 @@ namespace Ys8AP.GlobalAddresses
     // ============================================================================
     public class CharacterData
     {
+        // ============================================================================
+        // CHARACTER DATA ADDRESSES - Direct memory lookups to avoid caching issues
+        // ============================================================================
+        private const ulong AdolDataOffset = 0x002EBC28;
+        private const ulong LaxiaDataOffset = 0x002EBCA0;
+        private const ulong SahadDataOffset = 0x002EBD18;
+        private const ulong HummelDataOffset = 0x002EBD90;
+        private const ulong RicottaDataOffset = 0x002EBE08;
+        private const ulong DanaDataOffset = 0x002EBE80;
+        private const ulong Dana2DataOffset = 0x002EBF70; // Gratika
+        private const ulong Dana3DataOffset = 0x002EBFE8; // Luminous
 
-        [MemoryOffset(0x002EBC28)]
-        public ulong AdolData { get; set; }
+        public ulong AdolData => Memory.ReadULong(Contexts.GameContext.CharacterDataAddress + AdolDataOffset);
+        public ulong LaxiaData => Memory.ReadULong(Contexts.GameContext.CharacterDataAddress + LaxiaDataOffset);
+        public ulong SahadData => Memory.ReadULong(Contexts.GameContext.CharacterDataAddress + SahadDataOffset);
+        public ulong HummelData => Memory.ReadULong(Contexts.GameContext.CharacterDataAddress + HummelDataOffset);
+        public ulong RicottaData => Memory.ReadULong(Contexts.GameContext.CharacterDataAddress + RicottaDataOffset);
+        public ulong DanaData => Memory.ReadULong(Contexts.GameContext.CharacterDataAddress + DanaDataOffset);
+        public ulong Dana2Data => Memory.ReadULong(Contexts.GameContext.CharacterDataAddress + Dana2DataOffset);
+        public ulong Dana3Data => Memory.ReadULong(Contexts.GameContext.CharacterDataAddress + Dana3DataOffset);
 
-        [MemoryOffset(0x002EBCA0)]
-        public ulong LaxiaData { get; set; }
-
-        [MemoryOffset(0x002EBD18)]
-        public ulong SahadData { get; set; }
-
-        [MemoryOffset(0x002EBD90)]
-        public ulong HummelData { get; set; }
-
-        [MemoryOffset(0x002EBE08)]
-        public ulong RicottaData { get; set; }
-
-        [MemoryOffset(0x002EBE80)]
-        public ulong DanaData { get; set; }
-
-        [MemoryOffset(0x002EBF70)]
-        public ulong Dana2Data { get; set; } // Gratika
-
-        [MemoryOffset(0x002EBFE8)]
-        public ulong Dana3Data { get; set; } // Luminous
-
-        public CharacterStats GetCharacterDataByID(uint characterId)
+        public CharacterStats GetCharacterDataByID(int characterId)
         {
             return characterId switch
             {
@@ -301,7 +298,7 @@ namespace Ys8AP.GlobalAddresses
             };
         }
 
-        public ulong GetCharacterDataAddressByID(uint characterId)
+        public ulong GetCharacterDataAddressByID(int characterId)
         {
             return characterId switch
             {
@@ -316,7 +313,8 @@ namespace Ys8AP.GlobalAddresses
                 _ => throw new ArgumentException("Invalid character ID")
             };
         }
-        public void WriteCharacterData(uint characterId, CharacterStats data)
+        
+        public void WriteCharacterData(int characterId, CharacterStats data)
         {
             Memory.WriteObject(GetCharacterDataAddressByID(characterId), data);
         }
@@ -324,11 +322,17 @@ namespace Ys8AP.GlobalAddresses
 
     public class CharacterStats
     {
+        [MemoryOffset(0x1080)]
+        public uint Level { get; set; }
+
         [MemoryOffset(0x1088)]
         public float CurrentHP { get; set; }
 
         [MemoryOffset(0x10A8)]
         public float CharacterEXP { get; set; }
+
+        [MemoryOffset(0x1290)]
+        public int CharState { get; set; } // not sure what this does, but it's consistently -1 when the character is locked due to cutscenes, loading, events, etc. 3 seems to be nuetral.
     }
 
     // ============================================================================
@@ -343,8 +347,9 @@ namespace Ys8AP.GlobalAddresses
                 Contexts.GameContext = Memory.ReadObject<MainGame>(Memory.GetBaseAddress("ys8"));
                 // FlagEnumContext is created as empty; flags are read directly from memory with Get methods
                 Contexts.FlagEnumContext = new FlagEnum();
-                Contexts.InventoryContext = Memory.ReadObject<Inventory>(Contexts.GameContext.InventoryAddress);
-                Contexts.CharacterDataContext = Memory.ReadObject<CharacterData>(Contexts.GameContext.CharacterDataAddress);
+                Contexts.CharacterDataContext = new CharacterData();;
+                Contexts.InventoryContext = new Inventory();
+                
             }
             catch (Exception)
             {

@@ -62,15 +62,18 @@ namespace Ys8AP
         private static readonly object _lockObject = new();
         private static readonly ConcurrentQueue<Location> locationQueue = new();
 
-        private Thread? queueThread;
-        private Thread? locationWatcherThread;
-        private Thread? reconnectThread;
-        private Thread? PartyWatcherThread;
+        private Task? queueTask;
+        private Task? locationWatcherTask;
+        private Task? reconnectTask;
+        private Task? PartyWatcherTask;
         private GameClient? Ys8Client;
         private static DeathLinkService? _deathlinkService = null;
         private bool deathFromDeathlink = false;
         private static string slotName = "";
         private static bool isShuttingDown = false;
+        private static bool ys8ProcessRunning = false;  // Cached process state, updated in Reconnect loop
+        private static bool ys8ProcessWasLost = false;  // Track if we lost the game process
+        private static DateTime lastReattachAttempt = DateTime.MinValue;  // Prevent rapid reattach spam
 
         public override void Initialize()
         {
@@ -138,7 +141,15 @@ namespace Ys8AP
                 ItemQueue.StopThread();
                 
                 // Disconnect the client
-                Client.Disconnect();
+                try
+                {
+                    Client.Disconnect();
+                }
+                catch (NullReferenceException)
+                {
+                    // Client might not be fully initialized
+                    Log.Logger.Warning("Disconnect threw NullReferenceException, continuing with cleanup");
+                }
                 
                 // Give threads a moment to exit their loops before nullifying Client
                 Thread.Sleep(200);
@@ -150,10 +161,10 @@ namespace Ys8AP
                     _deathlinkService = null;
                 }
                 
-                // Clear thread references
-                queueThread = null;
-                locationWatcherThread = null;
-                PartyWatcherThread = null;
+                // Clear task references
+                queueTask = null;
+                locationWatcherTask = null;
+                PartyWatcherTask = null;
             }
         
             Ys8Client = Ys8Connect();
@@ -219,13 +230,10 @@ namespace Ys8AP
                 return;
             }
 
-            if (reconnectThread == null)
+            if (reconnectTask == null)
             {
-                reconnectThread = new Thread(new ParameterizedThreadStart(Reconnect))
-                {
-                    IsBackground = true
-                };
-                reconnectThread.Start();
+                reconnectTask = Task.Run(Reconnect);
+                Thread.Sleep(100);
             }
 
             // Initialize things once the player is connected
@@ -233,34 +241,39 @@ namespace Ys8AP
             
             _deathlinkService = PartyWatcher.InitializeDeathLink(Client, Options.DeathLinkEnabled, _deathlinkService_OnDeathLinkReceived);
 
-            if (queueThread == null)
+            if (queueTask == null)
             {
                 ItemQueue.runThread = true;
-                queueThread = StartWorkerThread(ItemQueue.ThreadLoop);
+                queueTask = ItemQueue.ThreadLoop();
+                Thread.Sleep(100);
             }
 
-            if (locationWatcherThread == null && Client.IsConnected)
-                locationWatcherThread = StartWorkerThread(LocationWatcher.DoLoop);
+            if (locationWatcherTask == null && Client.IsConnected)
+            {
+                locationWatcherTask = LocationWatcher.DoLoop();
+                Thread.Sleep(100);
+            }
 
-            if (PartyWatcherThread == null && Client.IsConnected)
-                PartyWatcherThread = StartWorkerThread(PartyWatcher.DoLoop);
+            if (PartyWatcherTask == null && Client.IsConnected)
+            {
+                PartyWatcherTask = PartyWatcher.DoLoop();
+                Thread.Sleep(100);
+            }
 
             Context.ConnectButtonEnabled = true;
         }
         #region Ys8
 
-        private Thread StartWorkerThread(ParameterizedThreadStart action)
+        private Task StartWorkerTask(Func<Task> action)
         {
-            var thread = new Thread(action) { IsBackground = true };
-            thread.Start();
-            return thread;
+            return action();
         }
 
         private GameClient? Ys8Connect()
         {
             // Check if the Ys 8 process is actually running
-            var ys8Process = System.Diagnostics.Process.GetProcessesByName("Ys8").FirstOrDefault();
-            if (ys8Process == null)
+            UpdateYs8ProcessState();  // Initialize cache
+            if (!ys8ProcessRunning)
             {
                 Log.Logger.Error("Ys 8 not running, open Ys 8 before connecting!");
                 Context.ConnectButtonEnabled = true;
@@ -282,6 +295,17 @@ namespace Ys8AP
             Log.Logger.Information("Connected to game.");
 
             return client;
+        }
+
+        internal static bool IsYs8ProcessRunning()
+        {
+            return ys8ProcessRunning;
+        }
+        
+        private static void UpdateYs8ProcessState()
+        {
+            var ys8Process = System.Diagnostics.Process.GetProcessesByName("Ys8").FirstOrDefault();
+            ys8ProcessRunning = ys8Process != null;
         }
 
         private void PrepSeed()
@@ -315,12 +339,15 @@ namespace Ys8AP
 
         private void _deathlinkService_OnDeathLinkReceived(DeathLink deathLink)
         {
-            
-            // Kill player x_x
-            if (PlayerState.IsPlayerReady && !PlayerState.GameOver() && !PlayerState.NotInTown())
+            string message = "DeathLink: Received from " + deathLink.Source;
+            if(!PlayerState.IsPlayerReady || !PlayerState.NotInTown())
             {
-                PartyWatcher.KillParty();
-                Log.Logger.Information("DeathLink: Received from " + deathLink.Source);
+                Log.Logger.Information("Awaiting Death...");
+                PartyWatcher.SetDeathLinkIncoming(message);
+            }
+            else
+            {
+                PartyWatcher.SetDeathLinkIncoming(message);
             }
         }
 
@@ -436,74 +463,111 @@ namespace Ys8AP
             Log.Logger.Information("Disconnected from Archipelago");
         }
 
-        private async void Reconnect(object? parameters)
+        private async Task Reconnect()
         {
             int waitTime = 100;
+            // Give initial connection time to settle before starting monitor loop
+            await Task.Delay(2000);
 
             while (true)
             {
-                if (!PlayerState.IsPlayerReady)
+                try
                 {
-                    PrepSeed();
-                    AddressInit.InitializeAddresses();
-                }
-
-                if (Client.CurrentSession == null || !Client.CurrentSession.Socket.Connected)
-                {
-                    waitTime = 0;  // Setup for longer wait time on reconnect attempts
-
-                    if (Client != null)
+                    if (isShuttingDown || Client == null)
                     {
-                        Client.Disconnect();
+                        await Task.Delay(1000);
+                        continue;
+                    }
 
-                        Client.Connected -= OnConnected;
-                        Client.Disconnected -= OnDisconnected;
-                        Client.MessageReceived -= Client_MessageReceived;
+                    UpdateYs8ProcessState();  // Cache the current process state
+                    Log.Logger.Debug("Process state: running={ProcessRunning}, wasLost={ProcessWasLost}", ys8ProcessRunning, ys8ProcessWasLost);
 
-                        if (_deathlinkService != null)
+                    // If game process died, mark it and don't try to access memory
+                    if (!ys8ProcessRunning && !ys8ProcessWasLost)
+                    {
+                        Log.Logger.Warning("Ys8 process lost. Please restart Ys8 and reconnect.");
+                        ys8ProcessWasLost = true;
+                    }
+
+                    if (Client == null || Client.CurrentSession == null || !Client.CurrentSession.Socket.Connected)
+                    {
+                        // Check if ys8.exe is still running
+                        if (!IsYs8ProcessRunning())
                         {
-                            _deathlinkService.OnDeathLinkReceived -= _deathlinkService_OnDeathLinkReceived;
-                            _deathlinkService = null;
+                            Log.Logger.Error("Ys8 process is not running. Please start Ys8 and connect again.");
+                            waitTime = 5000; // Wait longer if game isn't running
+                            await Task.Delay(waitTime);
+                            continue;
+                        }
+
+                        waitTime = 0;  // Setup for longer wait time on reconnect attempts
+
+                        if (Client != null)
+                        {
+                            try
+                            {
+                                Client.Disconnect();
+                            }
+                            catch (NullReferenceException)
+                            {
+                                // ArchipelagoClient.Disconnect() can throw NullReferenceException if internal state is incomplete
+                                Log.Logger.Warning("Disconnect threw NullReferenceException, continuing with cleanup");
+                            }
+
+                            Client.Connected -= OnConnected;
+                            Client.Disconnected -= OnDisconnected;
+                            Client.MessageReceived -= Client_MessageReceived;
+
+                            if (_deathlinkService != null)
+                            {
+                                _deathlinkService.OnDeathLinkReceived -= _deathlinkService_OnDeathLinkReceived;
+                                _deathlinkService = null;
+                            }
+                        }
+
+                        // Connect to archipelago server
+                        Client = new ArchipelagoClient(Ys8Client);
+
+                        Client.Connected += OnConnected;
+
+                        await Client.Connect(Context.Host, "Ys 8");
+
+                        if (!Client.IsConnected && waitTime < 10_000)
+                        {
+                            if (!isShuttingDown)
+                                Log.Logger.Warning("Failed to reconnect, retrying in {WaitTime}ms", waitTime + 1000);
+                            waitTime += 1000;
+                        }
+                        else if (Client.IsConnected)
+                        {
+                            Client.Disconnected += OnDisconnected;
+                            Client.MessageReceived += Client_MessageReceived;
+
+                            await Client.Login(Context.Slot, !string.IsNullOrWhiteSpace(Context.Password) ? Context.Password : null,
+                            Archipelago.MultiClient.Net.Enums.ItemsHandlingFlags.IncludeStartingInventory);
+
+                            Client.ItemManager.ItemReceived += Client_ItemReceived;
+                            Client.ItemManager.ReceiveReady(Client.CurrentSession);
+
+                            Log.Logger.Information("Reconnected to Archipelago");
+                            waitTime = 100;
                         }
                     }
-
-                    // Connect to archipelago server
-                    Client = new ArchipelagoClient(Ys8Client);
-
-                    Client.Connected += OnConnected;
-
-                    await Client.Connect(Context.Host, "Ys 8");
-
-                    if (!Client.IsConnected && waitTime < 10_000)
+                    else
                     {
-                        if (!isShuttingDown)
-                            Log.Logger.Warning("Failed to reconnect, retrying in {WaitTime}ms", waitTime + 1000);
-                        waitTime += 1000;
+                        while (locationQueue.TryDequeue(out Location? loc))
+                        {
+                            Client.SendLocationAsync(loc);
+                        }
                     }
-                    else if (Client.IsConnected)
-                    {
-                        Client.Disconnected += OnDisconnected;
-                        Client.MessageReceived += Client_MessageReceived;
-
-                        await Client.Login(Context.Slot, !string.IsNullOrWhiteSpace(Context.Password) ? Context.Password : null,
-                        Archipelago.MultiClient.Net.Enums.ItemsHandlingFlags.IncludeStartingInventory);
-
-                        Client.ItemManager.ItemReceived += Client_ItemReceived;
-                        Client.ItemManager.ReceiveReady(Client.CurrentSession);
-
-                        Log.Logger.Information("Reconnected to Archipelago");
-                        waitTime = 100;
-                    }
+                
+                    await Task.Delay(waitTime);
                 }
-                else
+                catch (Exception ex)
                 {
-                    while (locationQueue.TryDequeue(out Location? loc))
-                    {
-                        Client.SendLocationAsync(loc);
-                    }
+                    Log.Logger.Error(ex, "Unexpected error in Reconnect loop");
+                    await Task.Delay(1000);  // Brief delay before retrying to avoid tight loop on repeated failures
                 }
-            
-                Thread.Sleep(waitTime);
             }
         }
     } 
