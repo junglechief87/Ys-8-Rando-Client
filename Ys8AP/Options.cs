@@ -1,5 +1,6 @@
 ﻿
 using Ys8AP.GlobalAddresses;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace Ys8AP
         public static bool DeathLinkEnabled = false;
 
         // Populated from slot data on connect
-        public static int StartingCharacter = 0;
+        public static string StartingCharacter = "";
         // Keys are character names: "Adol", "Sahad", "Laxia", "Ricotta", "Hummel", "Dana"
         public static Dictionary<string, List<int>> StartingSkills = new();
 
@@ -31,14 +32,14 @@ namespace Ys8AP
 
         internal static void ParseSlotData(Dictionary<string, object> slotData)
         {
-            if (slotData.TryGetValue("starting_character", out var sc) && sc is JsonElement scElem)
-                StartingCharacter = scElem.GetInt32();
+            if (slotData.TryGetValue("starting_character", out var sc) && sc is JToken scToken)
+                StartingCharacter = scToken.ToString();
 
             StartingSkills.Clear();
-            if (slotData.TryGetValue("starting_skills", out var raw) && raw is JsonElement skillsElem)
+            if (slotData.TryGetValue("starting_skills", out var raw) && raw is JObject skillsObj)
             {
-                foreach (var entry in skillsElem.EnumerateObject())
-                    StartingSkills[entry.Name] = entry.Value.EnumerateArray().Select(x => x.GetInt32()).ToList();
+                foreach (var entry in skillsObj.Properties())
+                    StartingSkills[entry.Name] = entry.Value.Select(x => x.Value<int>()).ToList();
             }
         }
     }
