@@ -25,7 +25,8 @@ namespace Ys8AP.Items
         private const int ESSENCE_STONE_BONUS_ID = 32803;
         
         internal static bool isVerifying = false;
-        
+        internal static bool processedStartingItems = true; // flag to allow starting items to output messages
+
         private static ConcurrentDictionary<long, InvItem>? ItemData = Resources.Embedded.Items;
         // Reverse lookup: APSaveID -> item key (string from Items.json)
         private static Dictionary<int, long>? APSaveIDToItemKey;
@@ -190,12 +191,18 @@ namespace Ys8AP.Items
                     Contexts.FlagEnumContext.SetNPCJoinState((int)receivedItem.CrewJoinID);
                 }
 
+                // if we're receiving the starting character then we havne't yet processed starting items
+                // this allows the received messages for starting items to be printed.
+                if(receivedItem.Name == Options.StartingCharacter)
+                    processedStartingItems = false; 
+
                 // Handle starting skills for party members.
                 if (Options.StartingSkills.TryGetValue(receivedItem.Name, out var skillIds))
                 {
                     foreach (int skillId in skillIds)
                         GiveItem(skillId); // Recursive call to give each starting skill, but safe as it's low depth and doesn't overlap with crew.
                 }
+
             }
             else if (receivedItem.Landmark)
             {
@@ -220,8 +227,14 @@ namespace Ys8AP.Items
             // Finally we log the item as recieved. We print any messages unless this item
             // is being given as part of the verification process, in which case we want to be silent to avoid spam.
             // ============================================================================
-            if (!isVerifying)
+            if (!isVerifying || !processedStartingItems)
             {
+                // starting character skills get processed before the starting character
+                // due to some recursive calls, so by the time the starting character makes it here
+                // we're finished processing starting items. 
+                if(receivedItem.Name == Options.StartingCharacter)
+                    processedStartingItems = true; 
+        
                 string msg = "Received " + receivedItem.Name + ".";
                 if (PlayerState.IsPlayerReady)
                 {

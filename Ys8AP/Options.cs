@@ -32,8 +32,8 @@ namespace Ys8AP
 
         internal static void ParseSlotData(Dictionary<string, object> slotData)
         {
-            if (slotData.TryGetValue("starting_character", out var sc) && sc is JToken scToken)
-                StartingCharacter = scToken.ToString();
+            if (slotData.TryGetValue("starting_character", out var sc) && sc != null)
+                StartingCharacter = sc.ToString();
 
             StartingSkills.Clear();
             if (slotData.TryGetValue("starting_skills", out var raw) && raw is JObject skillsObj)
