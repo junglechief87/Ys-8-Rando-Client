@@ -4,6 +4,7 @@ using Ys8AP.Items;
 using Ys8AP.Threads;
 using Ys8AP.Mem;
 using Serilog;
+using System;
 using System.Collections.Concurrent;
 using System.Linq;
 using System.Threading;
@@ -47,26 +48,32 @@ namespace Ys8AP.Threads
             {
                 await Task.Delay(100);
 
-                if (PlayerState.IsPlayerReady)
+                try
                 {
-                    // If player was not ready before but is now, we check items.
-                    if (checkItems)
+                    if (PlayerState.IsPlayerReady)
                     {
-                        InventoryMgmt.VerifyItems();
-                        checkItems = false;
-                    }
+                        // If player was not ready before but is now, we check items.
+                        if (checkItems)
+                        {
+                            InventoryMgmt.VerifyItems();
+                            checkItems = false;
+                        }
 
-                    while (inventoryQueue.TryDequeue(out long apId) && !checkItems)
-                    {
-                        InventoryMgmt.GiveItem(apId);
+                        while (inventoryQueue.TryDequeue(out long apId) && !checkItems)
+                        {
+                            InventoryMgmt.GiveItem(apId);
+                        }
                     }
-                    
+                    // If player enters a not ready state, we clear queues and prepare to check items, once they exit the states.
+                    else if (ShouldClearQueues())
+                    {
+                        ClearQueues();
+                        checkItems = true;
+                    }
                 }
-                // If player enters a not ready state, we clear queues and prepare to check items, once they exit the states.
-                else if (ShouldClearQueues())
+                catch (Exception ex)
                 {
-                    ClearQueues();
-                    checkItems = true;
+                    Log.Logger.Error(ex, "ItemQueue ThreadLoop encountered an error");
                 }
             }
         }

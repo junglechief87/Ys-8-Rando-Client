@@ -11,6 +11,7 @@ using System.Collections.Concurrent;
 using System.Reflection;
 using System.Collections.Generic;
 using System.Linq;
+using Avalonia.Logging;
 
 
 namespace Ys8AP.Items
@@ -21,7 +22,7 @@ namespace Ys8AP.Items
         internal const int CASTAWAY_TRACKING_ID = 143;
         internal const int LANDMARK_TRACKING_ID = 148;
         internal const int PSYCHES_ITEM_ID = 831;
-        private const int ESSENCE_STONE_ID = 32800;
+        private const int ESSENCE_STONE_BONUS_ID = 32803;
         
         internal static bool isVerifying = false;
         
@@ -36,15 +37,21 @@ namespace Ys8AP.Items
         /// Handles all receiving logic for items, including setting flags, handling special item cases, and enforcing quantity limits.
         /// </summary>
         internal static void GiveItem(long itemId)
-        {   
+        {
+            if (ItemData == null || !ItemData.ContainsKey(itemId))
+            {
+                Log.Logger.Warning("GiveItem: unknown AP item ID {ItemId}, skipping", itemId);
+                return;
+            }
+
             InvItem receivedItem = ItemData[itemId];
             int currentQuantity = Memory.ReadUShort(Contexts.InventoryContext.GetItemQuantityAddress(receivedItem.ItemID));
             int newQuantity = currentQuantity + receivedItem.ItemQuantity;
             
             // handle special items
-            if (receivedItem.ItemID == PROGRESSIVE_SHOP_RANK_ID && currentQuantity >= 7) // Progressive shop rank, if we have 7 we give essences stone instead.
+            if (receivedItem.ItemID == PROGRESSIVE_SHOP_RANK_ID && currentQuantity >= 7 && !isVerifying) // Progressive shop rank, if we have 7 we give essences stone instead.
             {
-                receivedItem = ItemData[ESSENCE_STONE_ID]; // Essence Stone
+                receivedItem = ItemData[ESSENCE_STONE_BONUS_ID]; // Essence Stone Bonus
                 currentQuantity = Memory.ReadUShort(Contexts.InventoryContext.GetItemQuantityAddress(receivedItem.ItemID));
                 newQuantity = currentQuantity + 5;
             }
@@ -233,6 +240,11 @@ namespace Ys8AP.Items
                     continue;
 
                 long apId = itemInfo.ItemId;
+                if (ItemData == null || !ItemData.ContainsKey(apId))
+                {
+                    Log.Logger.Warning("VerifyItems: unknown AP item ID {ApId}, skipping", apId);
+                    continue;
+                }
                 InvItem receivedItem = ItemData[apId];
                 if (!itemCounts.ContainsKey(receivedItem.APSaveID))
                     itemCounts[receivedItem.APSaveID] = 0;
@@ -245,9 +257,15 @@ namespace Ys8AP.Items
                 if (receivedItemCount < item.Value)
                 {
                     int quantityToGive = item.Value - receivedItemCount;
+                    if (!APSaveIDToItemKey.ContainsKey(item.Key))
+                    {
+                        Log.Logger.Warning("VerifyItems: no item key for APSaveID {Key}, skipping", item.Key);
+                        continue;
+                    }
                     for (int i = 0; i < quantityToGive; i++)
                     {
-                        ItemQueue.AddItem(APSaveIDToItemKey[item.Key]);
+                        GiveItem(APSaveIDToItemKey[item.Key]);
+                        Log.Logger.Debug("VerifyItems: Gave item with APSaveID {Key} to player, {Current}/{Expected} received", item.Key, receivedItemCount + i + 1, item.Value);
                     }
                 }
             }

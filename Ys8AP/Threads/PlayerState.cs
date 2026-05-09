@@ -52,6 +52,19 @@ namespace Ys8AP.Threads
             {
                 try
                 {
+                    // If we connected before loading a save, InventoryAddress will be 0 because the game
+                    // hadn't loaded the save yet when InitializeAddresses() was called. Re-read the addresses
+                    // from memory once the process is running and they become available.
+                    if (Contexts.GameContext != null && Contexts.GameContext.InventoryAddress == 0 && App.IsYs8ProcessRunning())
+                    {
+                        try
+                        {
+                            AddressInit.InitializeAddresses();
+                            OpenMem.ResetState();  // Suppress first seed check — seed may not be written yet
+                        }
+                        catch { /* process not available yet */ }
+                    }
+
                     // Check basic conditions (file loaded, not in menu, etc)
                     bool basicConditionsMet = Contexts.GameContext != null && 
                         Contexts.FlagEnumContext != null &&

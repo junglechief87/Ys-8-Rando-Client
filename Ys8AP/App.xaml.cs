@@ -70,10 +70,14 @@ namespace Ys8AP
         private static DeathLinkService? _deathlinkService = null;
         private bool deathFromDeathlink = false;
         private static string slotName = "";
+        private static string _apHost = "";
+        private static string _apSlot = "";
+        private static string _apPassword = "";
         private static bool isShuttingDown = false;
         private static bool ys8ProcessRunning = false;  // Cached process state, updated in Reconnect loop
         private static bool ys8ProcessWasLost = false;  // Track if we lost the game process
         private static DateTime lastReattachAttempt = DateTime.MinValue;  // Prevent rapid reattach spam
+        private static volatile bool _apDisconnected = false;  // Set by OnDisconnected event, cleared on successful (re)connect
 
         public override void Initialize()
         {
@@ -167,6 +171,12 @@ namespace Ys8AP
                 PartyWatcherTask = null;
             }
         
+            isShuttingDown = false;  // Cleanup done, allow Reconnect loop to resume
+            ys8ProcessWasLost = false;  // Reset so the warning can fire again if process dies
+            _apDisconnected = false;  // Reset disconnect flag on fresh connect
+            _apHost = e.Host ?? "localhost:38281";
+            _apSlot = e.Slot ?? "Player1";
+            _apPassword = e.Password ?? "";
             Ys8Client = Ys8Connect();
 
             if (Ys8Client == null)
@@ -460,12 +470,17 @@ namespace Ys8AP
 
         private static void OnDisconnected(object? sender, EventArgs? args)
         {
-            Log.Logger.Information("Disconnected from Archipelago");
+            if (!isShuttingDown)
+            {
+                _apDisconnected = true;
+                Log.Logger.Warning("Disconnected from Archipelago. Attempting to reconnect...");
+            }
         }
 
         private async Task Reconnect()
         {
             int waitTime = 100;
+            bool reconnectClientReady = false;  // True once we've swapped to a fresh client for the current disconnect episode
             // Give initial connection time to settle before starting monitor loop
             await Task.Delay(2000);
 
@@ -475,12 +490,12 @@ namespace Ys8AP
                 {
                     if (isShuttingDown || Client == null)
                     {
+                        reconnectClientReady = false;
                         await Task.Delay(1000);
                         continue;
                     }
 
                     UpdateYs8ProcessState();  // Cache the current process state
-                    Log.Logger.Debug("Process state: running={ProcessRunning}, wasLost={ProcessWasLost}", ys8ProcessRunning, ys8ProcessWasLost);
 
                     // If game process died, mark it and don't try to access memory
                     if (!ys8ProcessRunning && !ys8ProcessWasLost)
@@ -489,72 +504,118 @@ namespace Ys8AP
                         ys8ProcessWasLost = true;
                     }
 
-                    if (Client == null || Client.CurrentSession == null || !Client.CurrentSession.Socket.Connected)
+                    // Reset backoff quickly when a fresh disconnect is signaled so we retry promptly
+                    if (_apDisconnected)
+                        waitTime = Math.Min(waitTime, 2000);
+
+                    bool needsReconnect = _apDisconnected || Client == null || !Client.IsConnected ||
+                        Client.CurrentSession == null || Client.CurrentSession.Socket?.Connected == false;
+
+                    if (needsReconnect)
                     {
+                        bool suppressOutput = waitTime > 6_000;
+
                         // Check if ys8.exe is still running
                         if (!IsYs8ProcessRunning())
                         {
-                            Log.Logger.Error("Ys8 process is not running. Please start Ys8 and connect again.");
-                            waitTime = 5000; // Wait longer if game isn't running
+                            if (!suppressOutput)
+                                Log.Logger.Warning("Reconnect skipped: Ys8 process is not running.");
+                            waitTime = Math.Min(waitTime + 1000, 10_000);
                             await Task.Delay(waitTime);
                             continue;
                         }
 
-                        waitTime = 0;  // Setup for longer wait time on reconnect attempts
-
-                        if (Client != null)
+                        if (Ys8Client == null)
                         {
-                            try
-                            {
-                                Client.Disconnect();
-                            }
-                            catch (NullReferenceException)
-                            {
-                                // ArchipelagoClient.Disconnect() can throw NullReferenceException if internal state is incomplete
-                                Log.Logger.Warning("Disconnect threw NullReferenceException, continuing with cleanup");
-                            }
+                            if (!suppressOutput)
+                                Log.Logger.Warning("Reconnect skipped: game client (Ys8Client) is null.");
+                            waitTime = Math.Min(waitTime + 1000, 10_000);
+                            await Task.Delay(waitTime);
+                            continue;
+                        }
 
+                        if (!suppressOutput)
+                            Log.Logger.Information("Attempting AP reconnect to {Host} as {Slot}...", _apHost, _apSlot);
+
+                        // Only swap to a fresh ArchipelagoClient once per disconnect episode.
+                        // Reusing the same client for retries avoids leaking Timer objects
+                        // (ArchipelagoClient starts a System.Threading.Timer in its constructor
+                        //  that holds a strong GC root; without Dispose() it is never collected).
+                        if (!reconnectClientReady)
+                        {
+                            var oldClient = Client;
                             Client.Connected -= OnConnected;
                             Client.Disconnected -= OnDisconnected;
                             Client.MessageReceived -= Client_MessageReceived;
+                            if (Client.ItemManager != null)
+                                Client.ItemManager.ItemReceived -= Client_ItemReceived;
 
                             if (_deathlinkService != null)
                             {
                                 _deathlinkService.OnDeathLinkReceived -= _deathlinkService_OnDeathLinkReceived;
                                 _deathlinkService = null;
                             }
+
+                            // Dispose old client in background so its Timer is collected and
+                            // the ProcessExit handler accumulation is cleaned up.
+                            // SaveGameStateAsync in Dispose() returns immediately when _gameStateManager is null.
+                            _ = Task.Run(() =>
+                            {
+                                try { oldClient.Dispose(); }
+                                catch (Exception ex) { Log.Logger.Debug("Old client dispose threw {ExType}: {ExMsg}", ex.GetType().Name, ex.Message); }
+                            });
+
+                            Client = new ArchipelagoClient(Ys8Client);
+                            Client.Connected += OnConnected;
+                            reconnectClientReady = true;
                         }
 
-                        // Connect to archipelago server
-                        Client = new ArchipelagoClient(Ys8Client);
+                        await Client.Connect(_apHost, "Ys 8");
 
-                        Client.Connected += OnConnected;
-
-                        await Client.Connect(Context.Host, "Ys 8");
-
-                        if (!Client.IsConnected && waitTime < 10_000)
+                        if (!Client.IsConnected)
                         {
                             if (!isShuttingDown)
-                                Log.Logger.Warning("Failed to reconnect, retrying in {WaitTime}ms", waitTime + 1000);
-                            waitTime += 1000;
+                            {
+                                waitTime = Math.Min(Math.Max(waitTime * 2, 2_000), 10_000);
+                                if (!suppressOutput)
+                                    Log.Logger.Warning("Failed to reconnect, retrying in {WaitTime}ms", waitTime);
+                            }
                         }
-                        else if (Client.IsConnected)
+                        else
                         {
                             Client.Disconnected += OnDisconnected;
                             Client.MessageReceived += Client_MessageReceived;
 
-                            await Client.Login(Context.Slot, !string.IsNullOrWhiteSpace(Context.Password) ? Context.Password : null,
-                            Archipelago.MultiClient.Net.Enums.ItemsHandlingFlags.IncludeStartingInventory);
+                            await Client.Login(_apSlot, !string.IsNullOrWhiteSpace(_apPassword) ? _apPassword : null,
+                                Archipelago.MultiClient.Net.Enums.ItemsHandlingFlags.IncludeStartingInventory);
 
-                            Client.ItemManager.ItemReceived += Client_ItemReceived;
-                            Client.ItemManager.ReceiveReady(Client.CurrentSession);
+                            if (!Client.IsConnected || !Client.IsLoggedIn)
+                            {
+                                if (!isShuttingDown)
+                                {
+                                    waitTime = Math.Min(Math.Max(waitTime * 2, 2_000), 10_000);
+                                    if (!suppressOutput)
+                                        Log.Logger.Warning("Reconnect login failed, retrying in {WaitTime}ms", waitTime);
+                                }
+                            }
+                            else
+                            {
+                                Client.ItemManager.ItemReceived += Client_ItemReceived;
+                                Client.ItemManager.ReceiveReady(Client.CurrentSession);
 
-                            Log.Logger.Information("Reconnected to Archipelago");
-                            waitTime = 100;
+                                _deathlinkService = PartyWatcher.InitializeDeathLink(Client, Options.DeathLinkEnabled, _deathlinkService_OnDeathLinkReceived);
+                                ItemQueue.checkItems = true;
+                                _apDisconnected = false;
+                                reconnectClientReady = false;  // Reset for next disconnect episode
+
+                                Log.Logger.Information("Reconnected to Archipelago");
+                                waitTime = 100;
+                            }
                         }
                     }
                     else
                     {
+                        reconnectClientReady = false;  // Healthy — reset in case we somehow skipped the success path
                         while (locationQueue.TryDequeue(out Location? loc))
                         {
                             Client.SendLocationAsync(loc);
@@ -566,7 +627,9 @@ namespace Ys8AP
                 catch (Exception ex)
                 {
                     Log.Logger.Error(ex, "Unexpected error in Reconnect loop");
-                    await Task.Delay(1000);  // Brief delay before retrying to avoid tight loop on repeated failures
+                    reconnectClientReady = false;
+                    waitTime = Math.Min(waitTime + 1000, 10_000);
+                    await Task.Delay(waitTime);
                 }
             }
         }

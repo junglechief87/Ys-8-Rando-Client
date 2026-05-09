@@ -163,18 +163,25 @@ namespace Ys8AP.Threads
         private static uint GetPartyAverageLevel()
         {
             uint totalLevel = 0;
-            var processedFlags = new HashSet<Func<bool>>(); // Track processed flags to count Dana once
+            int count = 0;
+            var seen = new HashSet<int>();
 
             foreach (var character in PartyCharacters)
             {
-                if (character.IsJoined() && processedFlags.Add(character.IsJoined))
+                if (!character.IsJoined())
+                    continue;
+
+                // Dana has three forms (IDs 5, 7, 8) sharing the same join flag — normalize to 5 to count her once
+                int key = character.CharacterID is 7 or 8 ? 5 : character.CharacterID;
+
+                if (seen.Add(key))
                 {
                     totalLevel += Contexts.CharacterDataContext.GetCharacterDataByID(character.CharacterID).Level;
+                    count++;
                 }
             }
 
-            var availablePartyMembers = processedFlags.Count;
-            return availablePartyMembers > 0 ? totalLevel / (uint)availablePartyMembers : 0;
+            return count > 0 ? totalLevel / (uint)count : 0;
         }
     }
 }

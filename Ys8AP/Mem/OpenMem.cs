@@ -2,6 +2,7 @@ using Archipelago.Core.Util;
 using Serilog;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Numerics;
@@ -19,6 +20,15 @@ namespace Ys8AP.Mem
         private const int MAX_BACKOFF_SECONDS = 30;
         internal static bool lastSeedWasGood = false;
         private static bool hasEverFailed = false;  // Track if we've ever logged an error
+
+        /// Reset error tracking so the first mismatch after a re-init is suppressed (seed may not be written yet)
+        internal static void ResetState()
+        {
+            errorLogCount = 0;
+            lastErrorLogTime = DateTime.MinValue;
+            lastSeedWasGood = false;
+            hasEverFailed = false;
+        }
 
         /// <summary>
         /// Compute the compressed seed to match Python's int.from_bytes(float32(...).tobytes(), 'little')
@@ -54,20 +64,26 @@ namespace Ys8AP.Mem
             if (Contexts.FlagEnumContext == null || Contexts.GameContext == null)
                 return false;
 
-            bool isProcessRunning = App.IsYs8ProcessRunning();
+            // Always do a fresh process check here to avoid stale cache causing seed mismatch on process death
+            bool isProcessRunning = Process.GetProcessesByName("Ys8").Any();
+            if (!isProcessRunning) return false;  // Process gone — don't log seed mismatch, let Reconnect loop handle the warning
             uint roomSeed = Contexts.FlagEnumContext.GetAPSeed();
+            // roomSeed == 0 means either: process memory is gone (race with process exit), or seed not yet written to save.
+            // Either way it's not a real mismatch — silently return false.
+            if (roomSeed == 0) return false;
             bool result = compressed == roomSeed;
             
             if (result)
             {
-                // Log success message only if we previously had a failure
+                // Always reset backoff so the next mismatch (e.g. on process death) is treated as a fresh first occurrence
+                errorLogCount = 0;
+                lastErrorLogTime = DateTime.MinValue;
+                // Log success message only if we previously had a logged failure
                 if (!lastSeedWasGood && hasEverFailed && isProcessRunning && Contexts.GameContext.InventoryAddress != 0)
                 {
                     Log.Logger.Information("Room seed verified successfully.");
                     lastSeedWasGood = true;
-                    hasEverFailed = false;  // Reset failure flag so we won't log success again until next failure
-                    errorLogCount = 0; // Reset error count on success
-                    lastErrorLogTime = DateTime.MinValue;
+                    hasEverFailed = false;
                 }
                 return true;
             }
@@ -79,23 +95,30 @@ namespace Ys8AP.Mem
             {
                 DateTime now = DateTime.UtcNow;
                 
-                // Calculate backoff interval based on error count: skip first, then 10s, 10s, 20s, then cap at 30s
-                int backoffInterval = errorLogCount switch
+                if (errorLogCount == 0)
                 {
-                    0 => int.MaxValue,  // First error: suppress (don't log on initial file load)
-                    1 => 10,  // Second error: wait 10s
-                    2 => 10,  // Third error: wait another 10s
-                    3 => 20,  // Fourth error: wait 20s
-                    _ => MAX_BACKOFF_SECONDS  // Fifth+ errors: wait 30s (capped)
-                };
-                
-                // Check if enough time has passed to log the error again
-                if (now.Subtract(lastErrorLogTime).TotalSeconds >= backoffInterval)
-                {
-                    Log.Logger.Error("Room seed mismatch. Expected " + compressed + ", found " + roomSeed + ".");
-                    lastErrorLogTime = now;
+                    // First mismatch after a (re)init: seed may not be written to memory yet, suppress and start the clock
                     errorLogCount++;
-                    hasEverFailed = true;  // Mark that we've had at least one logged error
+                    lastErrorLogTime = now;
+                }
+                else
+                {
+                    // Subsequent mismatches: apply backoff before logging
+                    int backoffInterval = errorLogCount switch
+                    {
+                        1 => 10,
+                        2 => 10,
+                        3 => 20,
+                        _ => MAX_BACKOFF_SECONDS
+                    };
+                    
+                    if (now.Subtract(lastErrorLogTime).TotalSeconds >= backoffInterval)
+                    {
+                        Log.Logger.Error("Room seed mismatch. Expected " + compressed + ", found " + roomSeed + ".");
+                        lastErrorLogTime = now;
+                        errorLogCount++;
+                        hasEverFailed = true;
+                    }
                 }
             }
             return false;
