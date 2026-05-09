@@ -78,7 +78,7 @@ namespace Ys8AP
         private static bool ys8ProcessWasLost = false;  // Track if we lost the game process
         private static DateTime lastReattachAttempt = DateTime.MinValue;  // Prevent rapid reattach spam
         private static volatile bool _apDisconnected = false;  // Set by OnDisconnected event, cleared on successful (re)connect
-
+        private static readonly List<string> Party = new() { "Adol", "Laxia", "Sahad", "Hummel", "Ricotta", "Dana" };
         public override void Initialize()
         {
             AvaloniaXamlLoader.Load(this);
@@ -423,6 +423,19 @@ namespace Ys8AP
                         Context.LogList.Add(new LogListItem(spans));
                     }
                 });
+            }
+
+            // Handle starting skills for locally-found party members.
+            // Client_ItemReceived doesn't fire for local items, so we detect them via chat messages.
+            foreach (var characterName in Party)
+            {
+                if (messageText.StartsWith(slotName) &&
+                    messageText.Contains($"found their {characterName}") &&
+                    Options.StartingSkills.TryGetValue(characterName, out var skillIds))
+                {
+                    foreach (int skillId in skillIds)
+                        InventoryMgmt.GiveItem(skillId);
+                }
             }
         }
 
