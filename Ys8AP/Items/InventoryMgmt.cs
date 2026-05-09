@@ -38,6 +38,9 @@ namespace Ys8AP.Items
         /// </summary>
         internal static void GiveItem(long itemId)
         {
+            // ============================================================================
+            // Item received, we retrieve item data and setup our new quantity.
+            // ============================================================================
             if (ItemData == null || !ItemData.ContainsKey(itemId))
             {
                 Log.Logger.Warning("GiveItem: unknown AP item ID {ItemId}, skipping", itemId);
@@ -48,7 +51,12 @@ namespace Ys8AP.Items
             int currentQuantity = Memory.ReadUShort(Contexts.InventoryContext.GetItemQuantityAddress(receivedItem.ItemID));
             int newQuantity = currentQuantity + receivedItem.ItemQuantity;
             
-            // handle special items
+            // ============================================================================
+            // Special item handling, we give additional items for some items and things like 
+            // progressive shop rank, TMemos, and crew members have special handling.
+            // If we give extra items here we also handle all their quantities internally 
+            // inside the conditional so the base item can continue to process as normal.
+            // ============================================================================
             if (receivedItem.ItemID == PROGRESSIVE_SHOP_RANK_ID && currentQuantity >= 7 && !isVerifying) // Progressive shop rank, if we have 7 we give essences stone instead.
             {
                 receivedItem = ItemData[ESSENCE_STONE_BONUS_ID]; // Essence Stone Bonus
@@ -123,7 +131,10 @@ namespace Ys8AP.Items
                 Memory.WriteByte(Contexts.InventoryContext.GetItemQuantityAddress(220), (byte)newStrikeMedalQuantity); // Strike Medal
             }
 
-            // handle event flags
+            // ============================================================================
+            // Here we set flags for items that require event triggers. 
+            // A few flags have values other than 1, which we handle as special cases.
+            // ============================================================================
             if (receivedItem.Flags != null)
             {
                 foreach (string flag in receivedItem.Flags)
@@ -144,7 +155,9 @@ namespace Ys8AP.Items
                 }
             }
 
-            // handle item quantity limits
+            // ============================================================================
+            // Simplest part of the item code, we enforce quantity limits and then write the new quantity to memory.
+            // ============================================================================
             if (currentQuantity > receivedItem.QuantityMax)
             {
                 newQuantity = receivedItem.QuantityMax;
@@ -154,8 +167,18 @@ namespace Ys8AP.Items
                 newQuantity = receivedItem.QuantityMaxInferno;
             }
 
+            // ============================================================================
+            // Okay maybe this is the simplest, we just set the APSaveID used to track remote
+            // items so we can verify them later and prevent item loss via 
+            // retries, crashes, file loads, etc..
+            // ============================================================================
             Contexts.FlagEnumContext.SetAPSaveValue((uint)receivedItem.APSaveID);
 
+            // ============================================================================
+            // Based on the item type we have a final piece to how we have to write the data.
+            // We also give our tracking items here. If it's a basic consumable we just give
+            // it with little extra processing.
+            // ============================================================================
             if (receivedItem.CrewMember)
             {
                 Contexts.InventoryContext.CheckIfObtainedAndSet(CASTAWAY_TRACKING_ID); // Castaway item for tracking crew member obtained for work totals.
@@ -165,6 +188,13 @@ namespace Ys8AP.Items
                 if (receivedItem.CrewJoinID != null)
                 {
                     Contexts.FlagEnumContext.SetNPCJoinState((int)receivedItem.CrewJoinID);
+                }
+
+                // Handle starting skills for party members.
+                if (Options.StartingSkills.TryGetValue(receivedItem.Name, out var skillIds))
+                {
+                    foreach (int skillId in skillIds)
+                        GiveItem(skillId); // Recursive call to give each starting skill, but safe as it's low depth and doesn't overlap with crew.
                 }
             }
             else if (receivedItem.Landmark)
@@ -186,6 +216,10 @@ namespace Ys8AP.Items
                 Memory.WriteByte(Contexts.InventoryContext.GetItemQuantityAddress(receivedItem.ItemID), (byte)newQuantity);
             }
 
+            // ============================================================================
+            // Finally we log the item as recieved. We print any messages unless this item
+            // is being given as part of the verification process, in which case we want to be silent to avoid spam.
+            // ============================================================================
             if (!isVerifying)
             {
                 string msg = "Received " + receivedItem.Name + ".";
@@ -205,7 +239,6 @@ namespace Ys8AP.Items
         /// <summary>
         /// Compares the GameState item counts to how many of each item are saved to memory, giving the player the difference.
         /// </summary>
-
         internal static void VerifyItems()
         {
             isVerifying = true;

@@ -232,6 +232,7 @@ namespace Ys8AP
             {
                 // Pull out options from AP
                 Options.ParseOptions(Client.Options);
+                Options.ParseSlotData(slotData);
             }
             catch (FormatException)
             {
@@ -246,7 +247,7 @@ namespace Ys8AP
                 Thread.Sleep(100);
             }
 
-            // Initialize things once the player is connected
+            PrepSeed();
             // If the player isn't in a valid game state it's likely due to the inventory address not being loaded yet, so try to initialize addresses and check again.  
             
             _deathlinkService = PartyWatcher.InitializeDeathLink(Client, Options.DeathLinkEnabled, _deathlinkService_OnDeathLinkReceived);
@@ -273,11 +274,6 @@ namespace Ys8AP
             Context.ConnectButtonEnabled = true;
         }
         #region Ys8
-
-        private Task StartWorkerTask(Func<Task> action)
-        {
-            return action();
-        }
 
         private GameClient? Ys8Connect()
         {
@@ -608,6 +604,7 @@ namespace Ys8AP
                                 _apDisconnected = false;
                                 reconnectClientReady = false;  // Reset for next disconnect episode
 
+                                PrepSeed();
                                 Log.Logger.Information("Reconnected to Archipelago");
                                 waitTime = 100;
                             }
