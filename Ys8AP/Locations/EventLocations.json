@@ -623,5 +623,10 @@
         "Name": "Towering Coral Forest After Mid-Boss Corpse",
         "LocationIDs": [430],
         "Flag": "0x002C754C"
+    },
+    "125": {
+        "Name": "Towal Highway Baja Tower Approach Katthew Join",
+        "LocationIDs": [423],
+        "Flag": "0x002C94B8"
     }
 }

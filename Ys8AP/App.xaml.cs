@@ -400,6 +400,7 @@ namespace Ys8AP
         private void Client_MessageReceived(object? sender, MessageReceivedEventArgs e)
         {
             var messageText = string.Concat(e.Message.Parts.Select(p => p.Text));
+            Log.Logger.Debug("MessageReceived: {MsgType} | {MsgText}", e.Message.GetType().Name, messageText);
             
             if (e.Message.Parts.Any(x => x.Text == "[Hint]: "))
             {
@@ -434,7 +435,10 @@ namespace Ys8AP
                     Options.StartingSkills.TryGetValue(characterName, out var skillIds))
                 {
                     foreach (int skillId in skillIds)
-                        InventoryMgmt.GiveItem(skillId);
+                    {
+                        try { InventoryMgmt.GiveItem(skillId); }
+                        catch (Exception ex) { Log.Logger.Error(ex, "MessageReceived: failed to give starting skill {SkillId} for {Name}", skillId, characterName); }
+                    }
                 }
             }
         }

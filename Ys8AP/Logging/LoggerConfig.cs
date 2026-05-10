@@ -10,12 +10,23 @@ namespace Ys8AP.Logging
         private static Action<string, LogEventLevel> _outputAction;
         private static Action<APMessageModel, LogEventLevel> _archipelagoEventLogHandler;
         private static LogEventLevel _minimumLevel = LogEventLevel.Information;
+
+        private static bool IsLibraryNoise(LogEvent le)
+        {
+            var t = le.MessageTemplate.Text;
+            return t == "Disconnected"
+                || t == "Disconnecting..."
+                || t.Contains("CancellationTokenSource")
+                || t.Contains("task was canceled")
+                || t.Contains("task was cancelled");
+        }
+
         public static void Initialize(Action<string, LogEventLevel> mainFormWriter,Action<APMessageModel, LogEventLevel> archipelagoEventLogHandler)
         {
             _outputAction = mainFormWriter;
             _archipelagoEventLogHandler = archipelagoEventLogHandler;
             var loggerConfiguration = new LoggerConfiguration()
-                .Filter.ByExcluding(le => le.MessageTemplate.Text == "Disconnected")
+                .Filter.ByExcluding(IsLibraryNoise)
                 .WriteTo.ArchipelagoGuiSink(_outputAction, archipelagoEventLogHandler);
                 //.WriteTo.File("Logging/log.txt", rollingInterval: RollingInterval.Day);
 
@@ -31,7 +42,7 @@ namespace Ys8AP.Logging
             _minimumLevel = level;
             var loggerConfiguration = new LoggerConfiguration()
             .MinimumLevel.Is(level)
-            .Filter.ByExcluding(le => le.MessageTemplate.Text == "Disconnected")
+            .Filter.ByExcluding(IsLibraryNoise)
             //.WriteTo.File("Logging/log.txt", rollingInterval: RollingInterval.Day, restrictedToMinimumLevel: level);
             .WriteTo.ArchipelagoGuiSink(_outputAction, _archipelagoEventLogHandler, level);
             _logger = loggerConfiguration.CreateLogger();
@@ -42,7 +53,7 @@ namespace Ys8AP.Logging
             _minimumLevel = LogEventLevel.Information;
             return new LoggerConfiguration()
                 .MinimumLevel.Information()
-                .Filter.ByExcluding(le => le.MessageTemplate.Text == "Disconnected")
+                .Filter.ByExcluding(IsLibraryNoise)
                 //.WriteTo.File("Logging/log.txt", rollingInterval: RollingInterval.Day);
                 .WriteTo.ArchipelagoGuiSink(mainFormWriter, archipelagoEventLogHandler);
         }

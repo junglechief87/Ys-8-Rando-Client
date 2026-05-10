@@ -200,7 +200,10 @@ namespace Ys8AP.Items
                 if (Options.StartingSkills.TryGetValue(receivedItem.Name, out var skillIds))
                 {
                     foreach (int skillId in skillIds)
-                        GiveItem(skillId); // Recursive call to give each starting skill, but safe as it's low depth and doesn't overlap with crew.
+                    {
+                        try { GiveItem(skillId); }
+                        catch (Exception ex) { Log.Logger.Error(ex, "GiveItem: failed to give starting skill {SkillId} for {Name}", skillId, receivedItem.Name); }
+                    }
                 }
 
             }
