@@ -29,6 +29,8 @@
     <!-- Windows specific settings -->
     <UseWindowsForms>false</UseWindowsForms>
     <UseWPF>false</UseWPF>
+    <ApplicationIcon>../Ys8AP/Assets/ysR Logo.ico</ApplicationIcon>
+    <AssemblyName>Ys8 Seiren Shuffle AP Client</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
