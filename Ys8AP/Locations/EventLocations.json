@@ -628,5 +628,15 @@
         "Name": "Towal Highway Baja Tower Approach Katthew Join",
         "LocationIDs": [423],
         "Flag": "0x002C94B8"
+    },
+    "126": {
+        "Name": "Nostalgia Cape Nostalgia Cape Ed Join",
+        "LocationIDs": [424],
+        "Flag": "0x002CA4FC"
+    },
+    "127": {
+        "Name": "The Ruins of Eternia Central Stupa Jade Pendant",
+        "LocationIDs": [635],
+        "Flag": "0x002CA90C"
     }
 }

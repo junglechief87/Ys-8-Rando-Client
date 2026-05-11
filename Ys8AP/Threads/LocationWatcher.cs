@@ -80,6 +80,10 @@ namespace Ys8AP.Threads
             foreach (EventLocation eventLoc in EventData.Values)
             {   
                 byte eventCheck = Memory.ReadByte(Contexts.GameContext.FlagEnumAddress + Convert.ToUInt32(eventLoc.Flag, 16));
+                if (eventLoc.Name == "The Ruins of Eternia Central Stupa Jade Pendant" && eventCheck != 98)
+                    eventCheck = 0; // Special case for this event which has a non-standard flag value when completed, 
+                                    // to avoid false positives before the event is actually completed.
+
                 if (eventCheck >= 1)
                 {
                     foreach (int check in eventLoc.LocationIDs)

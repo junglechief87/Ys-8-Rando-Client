@@ -10,7 +10,7 @@
     },
     "901": {
         "Name": "Broken Mistilteinn",
-        "ItemID": 9,
+        "ItemID": 146,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
         "ItemQuantity": 1,
@@ -28,7 +28,7 @@
     },
     "1301": {
         "Name": "Broken Spirit Ring",
-        "ItemID": 13,
+        "ItemID": 147,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
         "ItemQuantity": 1,
