@@ -2357,7 +2357,7 @@
         "APSaveID": 288
     },
     "78300": {
-        "Name": "Shiny Corn Seeds",
+        "Name": "Corn Seeds",
         "ItemID": 783,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
@@ -2365,7 +2365,7 @@
         "APSaveID": 289
     },
     "78400": {
-        "Name": "Queen Tomato Seeds",
+        "Name": "Tomato Seeds",
         "ItemID": 784,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
@@ -2373,7 +2373,7 @@
         "APSaveID": 290
     },
     "78500": {
-        "Name": "King Pumpkin seeds",
+        "Name": "Pumpkin Seeds",
         "ItemID": 785,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
@@ -2381,7 +2381,7 @@
         "APSaveID": 291
     },
     "79500": {
-        "Name": "Seiren Nautical Chart",
+        "Name": "Seiren Area Map",
         "ItemID": 795,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
