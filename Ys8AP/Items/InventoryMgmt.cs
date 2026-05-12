@@ -273,6 +273,7 @@ namespace Ys8AP.Items
 
             // Clear current values, check what the server thinks first, then compare that against the save file.
             ItemQueue.ClearItemQueues();
+            
             if (itemCounts == null)
             {
                 itemCounts = new Dictionary<int, int>();

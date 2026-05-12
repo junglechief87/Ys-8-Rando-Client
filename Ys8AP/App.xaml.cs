@@ -321,7 +321,7 @@ namespace Ys8AP
                 Contexts.InventoryContext.CheckIfObtainedAndSet(InventoryMgmt.PSYCHES_ITEM_ID); // Psyches
             }
 
-            //ItemQueue.checkItems = true;
+            ItemQueue.checkItems = true;
         }
 
         internal static async Task SendLocation(int locId)
