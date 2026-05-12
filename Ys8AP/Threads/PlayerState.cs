@@ -70,9 +70,9 @@ namespace Ys8AP.Threads
                         Contexts.FlagEnumContext != null &&
                         Contexts.GameContext.InventoryAddress != 0 &&
                         !Contexts.FlagEnumContext.GetSaveMenuFlag() &&
-                        !Contexts.FlagEnumContext.GetTimeAttackFlag() &&
-                        !Contexts.FlagEnumContext.GetCustomGameOverFlag();
-
+                        !Contexts.FlagEnumContext.GetCustomGameOverFlag() &&
+                        Contexts.FlagEnumContext.GetEventStartFlag();  
+                        
                     // Detect state transition (entering or exiting valid state)
                     if (basicConditionsMet != _lastBasicConditionsMet)
                     {

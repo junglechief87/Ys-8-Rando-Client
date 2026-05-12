@@ -42,7 +42,7 @@ namespace Ys8AP.GlobalAddresses
         // ============================================================================
         private const ulong RetryFlagOffset = 0x002C72AC;
         private const ulong SaveMenuFlagOffset = 0x002C705C;
-        private const ulong TimeAttackFlagOffset = 0x002C7130;
+        private const ulong EventStartFlagOffset = 0x002C7268; // Flag is set on game start to allow events to trigger
         private const ulong InTownFlagOffset = 0x002C7074;
         private const ulong APSeedOffset = 0x002CA5BC;
         private const ulong InfernoFlagOffset = 0x002C71B0;
@@ -52,7 +52,7 @@ namespace Ys8AP.GlobalAddresses
 
         public bool GetRetryFlag() => Memory.ReadByte(Contexts.GameContext.FlagEnumAddress + RetryFlagOffset) != 0;
         public bool GetSaveMenuFlag() => Memory.ReadByte(Contexts.GameContext.FlagEnumAddress + SaveMenuFlagOffset) != 0;
-        public bool GetTimeAttackFlag() => Memory.ReadByte(Contexts.GameContext.FlagEnumAddress + TimeAttackFlagOffset) != 0;
+        public bool GetEventStartFlag() => Memory.ReadByte(Contexts.GameContext.FlagEnumAddress + EventStartFlagOffset) != 0;
         public bool GetInTownFlag() => Memory.ReadByte(Contexts.GameContext.FlagEnumAddress + InTownFlagOffset) != 0;
         public uint GetAPSeed() => Memory.ReadUInt(Contexts.GameContext.FlagEnumAddress + APSeedOffset);
         public bool GetInfernoFlag() => Memory.ReadByte(Contexts.GameContext.FlagEnumAddress + InfernoFlagOffset) != 0;
@@ -179,7 +179,7 @@ namespace Ys8AP.GlobalAddresses
         } 
 
         // Item Obtained Flags //////////////////////////////////////////////////////////
-        public ulong ItemObtainedFlgTblOffset = 0x00022C92;
+        public const ulong ItemObtainedFlgTblOffset = 0x00022C92;
         public ulong ItemObtainedFlgTblAddress 
         { 
             get
@@ -207,7 +207,7 @@ namespace Ys8AP.GlobalAddresses
         }
 
         // Skill Data //////////////////////////////////////////////////////////
-        public ulong SkillTableStartOffset = 0x0001E6E4;
+        public const ulong SkillTableStartOffset = 0x0001E6E4;
         public ulong SkillTableStartAddress 
         { 
             get

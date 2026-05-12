@@ -56,9 +56,6 @@ namespace Ys8AP.Mem
         internal static bool TestRoomSeed()
         {
             uint? compressed = GetCompressedRoomSeed();
-            // If session isn't initialized yet, pass the check and allow connection to proceed
-            if (compressed == null)
-                return true;
 
             // If contexts aren't initialized, can't validate
             if (Contexts.FlagEnumContext == null || Contexts.GameContext == null)
@@ -68,9 +65,8 @@ namespace Ys8AP.Mem
             bool isProcessRunning = Process.GetProcessesByName("Ys8").Any();
             if (!isProcessRunning) return false;  // Process gone — don't log seed mismatch, let Reconnect loop handle the warning
             uint roomSeed = Contexts.FlagEnumContext.GetAPSeed();
-            // roomSeed == 0 means either: process memory is gone (race with process exit), or seed not yet written to save.
-            // Either way it's not a real mismatch — silently return false.
-            if (roomSeed == 0) return false;
+
+            if (Contexts.GameContext.InventoryAddress == 0) return false;
             bool result = compressed == roomSeed;
             
             if (result)
@@ -106,7 +102,7 @@ namespace Ys8AP.Mem
                     // Subsequent mismatches: apply backoff before logging
                     int backoffInterval = errorLogCount switch
                     {
-                        1 => 10,
+                        1 => 2,
                         2 => 10,
                         3 => 20,
                         _ => MAX_BACKOFF_SECONDS
@@ -114,7 +110,15 @@ namespace Ys8AP.Mem
                     
                     if (now.Subtract(lastErrorLogTime).TotalSeconds >= backoffInterval)
                     {
-                        Log.Logger.Error("Room seed mismatch. Expected " + compressed + ", found " + roomSeed + ".");
+                        if (roomSeed == 0)
+                        {
+                            Log.Logger.Error("Room seed is 0. Not an AP Save File.");
+                        }
+                        else
+                        {
+                            Log.Logger.Error("Room seed mismatch. Expected " + compressed + ", found " + roomSeed + ".");
+                        }
+                        
                         lastErrorLogTime = now;
                         errorLogCount++;
                         hasEverFailed = true;
