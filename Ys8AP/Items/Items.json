@@ -164,7 +164,7 @@
         "APSaveID": 19
     },
     "17600": {
-        "Name": "Warrior's Mark",
+        "Name": "Warrior Seal",
         "ItemID": 176,
         "QuantityMax": 999,
         "QuantityMaxInferno": 999,
@@ -180,7 +180,7 @@
         "APSaveID": 21
     },
     "17800": {
-        "Name": "Warrior's Mark III",
+        "Name": "Warrior Seal III",
         "ItemID": 178,
         "QuantityMax": 999,
         "QuantityMaxInferno": 999,
@@ -188,7 +188,7 @@
         "APSaveID": 22
     },
     "17900": {
-        "Name": "Warrior's Mark IV",
+        "Name": "Warrior Seal IV",
         "ItemID": 179,
         "QuantityMax": 999,
         "QuantityMaxInferno": 999,
@@ -244,7 +244,7 @@
         "APSaveID": 29
     },
     "19200": {
-        "Name": "Athlete's Ring",
+        "Name": "Athlete Ring",
         "ItemID": 192,
         "QuantityMax": 999,
         "QuantityMaxInferno": 999,
@@ -260,7 +260,7 @@
         "APSaveID": 31
     },
     "19500": {
-        "Name": "Hero's Belt",
+        "Name": "Hero Belt",
         "ItemID": 195,
         "QuantityMax": 999,
         "QuantityMaxInferno": 999,
@@ -268,7 +268,7 @@
         "APSaveID": 32
     },
     "19600": {
-        "Name": "Legend's Belt",
+        "Name": "Legend Belt",
         "ItemID": 196,
         "QuantityMax": 999,
         "QuantityMaxInferno": 999,
@@ -348,7 +348,7 @@
         "APSaveID": 42
     },
     "21200": {
-        "Name": "Saint's Ring",
+        "Name": "Saint Ring",
         "ItemID": 212,
         "QuantityMax": 999,
         "QuantityMaxInferno": 999,
@@ -404,7 +404,7 @@
         "APSaveID": 49
     },
     "25400": {
-        "Name": "Stone Glove",
+        "Name": "Stone Gloves",
         "ItemID": 254,
         "QuantityMax": 999,
         "QuantityMaxInferno": 999,
@@ -420,7 +420,7 @@
         "APSaveID": 51
     },
     "25700": {
-        "Name": "Red Glove",
+        "Name": "Red Gloves",
         "ItemID": 257,
         "QuantityMax": 999,
         "QuantityMaxInferno": 999,
@@ -428,7 +428,7 @@
         "APSaveID": 52
     },
     "25800": {
-        "Name": "Dark Glove",
+        "Name": "Dark Gloves",
         "ItemID": 258,
         "QuantityMax": 999,
         "QuantityMaxInferno": 999,
@@ -444,7 +444,7 @@
         "APSaveID": 54
     },
     "26000": {
-        "Name": "Blue Glove",
+        "Name": "Blue Gloves",
         "ItemID": 260,
         "QuantityMax": 999,
         "QuantityMaxInferno": 999,
@@ -468,7 +468,7 @@
         "APSaveID": 57
     },
     "26800": {
-        "Name": "Tektite Shield",
+        "Name": "Tectite Shield",
         "ItemID": 268,
         "QuantityMax": 999,
         "QuantityMaxInferno": 999,
@@ -676,7 +676,7 @@
         "APSaveID": 80
     },
     "32700": {
-        "Name": "Tektite Ore x2",
+        "Name": "Tectite Ore x2",
         "ItemID": 327,
         "QuantityMax": 999,
         "QuantityMaxInferno": 999,
@@ -684,7 +684,7 @@
         "APSaveID": 81
     },
     "32701": {
-        "Name": "Tektite Ore x3",
+        "Name": "Tectite Ore x3",
         "ItemID": 327,
         "QuantityMax": 999,
         "QuantityMaxInferno": 999,
@@ -692,7 +692,7 @@
         "APSaveID": 82
     },
     "32702": {
-        "Name": "Tektite Ore x5",
+        "Name": "Tectite Ore x5",
         "ItemID": 327,
         "QuantityMax": 999,
         "QuantityMaxInferno": 999,
@@ -820,7 +820,7 @@
         "APSaveID": 97
     },
     "43600": {
-        "Name": "Large Pearl",
+        "Name": "Big Pearl",
         "ItemID": 436,
         "QuantityMax": 999,
         "QuantityMaxInferno": 999,
@@ -828,7 +828,7 @@
         "APSaveID": 98
     },
     "43601": {
-        "Name": "Large Pearl x3",
+        "Name": "Big Pearl x3",
         "ItemID": 436,
         "QuantityMax": 999,
         "QuantityMaxInferno": 999,
@@ -868,7 +868,7 @@
         "APSaveID": 103
     },
     "44100": {
-        "Name": "Blue Sky Feather x3",
+        "Name": "Blue Feather x3",
         "ItemID": 441,
         "QuantityMax": 999,
         "QuantityMaxInferno": 999,
@@ -884,7 +884,7 @@
         "APSaveID": 105
     },
     "44300": {
-        "Name": "Rigid Fiber",
+        "Name": "Hard Fiber",
         "ItemID": 443,
         "QuantityMax": 999,
         "QuantityMaxInferno": 999,
@@ -892,7 +892,7 @@
         "APSaveID": 106
     },
     "44301": {
-        "Name": "Rigid Fiber x2",
+        "Name": "Hard Fiber x2",
         "ItemID": 443,
         "QuantityMax": 999,
         "QuantityMaxInferno": 999,
@@ -900,7 +900,7 @@
         "APSaveID": 107
     },
     "44302": {
-        "Name": "Rigid Fiber x3",
+        "Name": "Hard Fiber x3",
         "ItemID": 443,
         "QuantityMax": 999,
         "QuantityMaxInferno": 999,
@@ -1356,7 +1356,7 @@
         "APSaveID": 164
     },
     "52200": {
-        "Name": "Hermit's Elixir",
+        "Name": "Hermit's Remedy",
         "ItemID": 522,
         "QuantityMax": 99,
         "QuantityMaxInferno": 9,
@@ -1364,7 +1364,7 @@
         "APSaveID": 165
     },
     "52201": {
-        "Name": "Hermit's Elixir x3",
+        "Name": "Hermit's Remedy x3",
         "ItemID": 522,
         "QuantityMax": 99,
         "QuantityMaxInferno": 9,
@@ -2203,7 +2203,7 @@
         "APSaveID": 269
     },
     "75000": {
-        "Name": "Pirate's Notes",
+        "Name": "Pirate's Note 1",
         "ItemID": 750,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
@@ -2211,7 +2211,7 @@
         "APSaveID": 270
     },
     "75100": {
-        "Name": "Pirate Memo A",
+        "Name": "Pirate's Note 2",
         "ItemID": 751,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
@@ -2219,7 +2219,7 @@
         "APSaveID": 271
     },
     "75200": {
-        "Name": "Pirate Memo B",
+        "Name": "Pirate's Note 3",
         "ItemID": 752,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
@@ -2227,7 +2227,7 @@
         "APSaveID": 272
     },
     "75300": {
-        "Name": "Pirate Memo C",
+        "Name": "Pirate's Note 4",
         "ItemID": 753,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
@@ -2235,7 +2235,7 @@
         "APSaveID": 273
     },
     "75400": {
-        "Name": "Pirate Memo D",
+        "Name": "Pirate's Note 5",
         "ItemID": 754,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
@@ -2243,7 +2243,7 @@
         "APSaveID": 274
     },
     "75500": {
-        "Name": "Pirate's Memo E",
+        "Name": "Pirate's Note 6",
         "ItemID": 755,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
@@ -2251,7 +2251,7 @@
         "APSaveID": 275
     },
     "76000": {
-        "Name": "T's Memo",
+        "Name": "T's Note 1",
         "ItemID": 760,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
@@ -2259,7 +2259,7 @@
         "APSaveID": 276
     },
     "76100": {
-        "Name": "T's Memo A",
+        "Name": "T's Note 2",
         "ItemID": 761,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
@@ -2267,7 +2267,7 @@
         "APSaveID": 277
     },
     "76200": {
-        "Name": "T's Memo B",
+        "Name": "T's Note 3",
         "ItemID": 762,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
@@ -2275,7 +2275,7 @@
         "APSaveID": 278
     },
     "76300": {
-        "Name": "T's Memo C",
+        "Name": "T's Note 4",
         "ItemID": 763,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
@@ -2283,7 +2283,7 @@
         "APSaveID": 279
     },
     "77000": {
-        "Name": "Logbook 1",
+        "Name": "Ship's Log 1",
         "ItemID": 770,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
@@ -2292,7 +2292,7 @@
         "APSaveID": 280
     },
     "77100": {
-        "Name": "Logbook 2",
+        "Name": "Ship's Log 2",
         "ItemID": 771,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
@@ -2300,7 +2300,7 @@
         "APSaveID": 281
     },
     "77200": {
-        "Name": "Logbook 3",
+        "Name": "Ship's Log 3",
         "ItemID": 772,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
@@ -2308,7 +2308,7 @@
         "APSaveID": 282
     },
     "77300": {
-        "Name": "Logbook 4",
+        "Name": "Ship's Log 4",
         "ItemID": 773,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
@@ -2316,7 +2316,7 @@
         "APSaveID": 283
     },
     "77400": {
-        "Name": "Logbook 5",
+        "Name": "Ship's Log 5",
         "ItemID": 774,
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,

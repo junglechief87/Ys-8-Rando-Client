@@ -306,7 +306,7 @@ namespace Ys8AP
         
         private static void UpdateYs8ProcessState()
         {
-            var ys8Process = System.Diagnostics.Process.GetProcessesByName("Ys8").FirstOrDefault();
+            var ys8Process = System.Diagnostics.Process.GetProcessesByName("ys8").FirstOrDefault();
             ys8ProcessRunning = ys8Process != null;
         }
 

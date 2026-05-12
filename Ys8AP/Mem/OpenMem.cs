@@ -62,7 +62,7 @@ namespace Ys8AP.Mem
                 return false;
 
             // Always do a fresh process check here to avoid stale cache causing seed mismatch on process death
-            bool isProcessRunning = Process.GetProcessesByName("Ys8").Any();
+            bool isProcessRunning = Process.GetProcessesByName("ys8").Any();
             if (!isProcessRunning) return false;  // Process gone — don't log seed mismatch, let Reconnect loop handle the warning
             uint roomSeed = Contexts.FlagEnumContext.GetAPSeed();
 
