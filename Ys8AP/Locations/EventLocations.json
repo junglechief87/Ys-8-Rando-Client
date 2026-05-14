@@ -638,5 +638,10 @@
         "Name": "The Ruins of Eternia Central Stupa Jade Pendant",
         "LocationIDs": [635],
         "Flag": "0x002CA90C"
+    },
+    "128": {
+        "Name": "The Ruins of Eternia Palace Ruins Ship Blueprints",
+        "LocationIDs": [511],
+        "Flag": "0x002CA590"
     }
 }
