@@ -8,7 +8,7 @@
         "Flags": ["0x002CA504"],
         "APSaveID": 0
     },
-    "901": {
+    "14600": {
         "Name": "Broken Mistilteinn",
         "ItemID": 146,
         "QuantityMax": 1,
@@ -26,7 +26,7 @@
         "Flags": ["0x002CA598"],
         "APSaveID": 2
     },
-    "1301": {
+    "14700": {
         "Name": "Broken Spirit Ring",
         "ItemID": 147,
         "QuantityMax": 1,
