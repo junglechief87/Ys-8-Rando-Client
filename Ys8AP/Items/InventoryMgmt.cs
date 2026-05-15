@@ -32,7 +32,6 @@ namespace Ys8AP.Items
         // Reverse lookup: APSaveID -> item key (string from Items.json)
         private static Dictionary<int, long>? APSaveIDToItemKey;
         private static readonly HashSet<string> FlagsSetTo2 = new() { "0x002C8B70", "0x002C8B94", "0x002C7D24" }; // when these flags are set, they need to be set to 2 instead of 1 to properly trigger events.
-        private static readonly HashSet<long> TMemos = new() { 760, 761, 762, 763 };
         private static Dictionary<int, int>? itemCounts;
 
         /// <summary>
