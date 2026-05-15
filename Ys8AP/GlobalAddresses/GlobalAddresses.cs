@@ -373,6 +373,7 @@ namespace Ys8AP.GlobalAddresses
             Contexts.InventoryContext.CheckIfObtainedAndSet(702); // Golden Seal of Piercing Light
             Contexts.InventoryContext.CheckIfObtainedAndSet(727); // Shrine Maiden Amulet
             Contexts.InventoryContext.CheckIfObtainedAndSet(739); // Glow Stone
+            Contexts.InventoryContext.CheckIfObtainedAndSet(770); // Ship's Log 1
 
             if (Options.FormerSanctuaryCrypt == 1) 
                 Contexts.InventoryContext.CheckIfObtainedAndSet(206); // Jade Pendant
