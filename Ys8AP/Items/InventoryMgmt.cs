@@ -19,6 +19,7 @@ namespace Ys8AP.Items
     internal class InventoryMgmt
     {
         internal const int PROGRESSIVE_SHOP_RANK_ID = 139;
+        internal const int PROGRESSIVE_RAID_LIST_ID = 764;
         internal const int CASTAWAY_TRACKING_ID = 143;
         internal const int LANDMARK_TRACKING_ID = 148;
         internal const int PSYCHES_ITEM_ID = 831;
@@ -79,32 +80,14 @@ namespace Ys8AP.Items
                 Contexts.InventoryContext.CheckIfObtainedAndSet(580);
                 Memory.WriteByte(Contexts.InventoryContext.GetItemQuantityAddress(580), 0x63); // Give 99 Insect Repellent
             }
-            else if (TMemos.Contains(receivedItem.ItemID)) // TMemo Intercept unlocks - progressive unlock based on current count
+            else if (receivedItem.ItemID == PROGRESSIVE_RAID_LIST_ID && currentQuantity == 0) // TMemo Intercept unlocks - progressive unlock based on current count
             {
-                // Count how many TMemos are already unlocked
-                int unlockedCount = 0;
-                if (Contexts.FlagEnumContext.GetTMemo1()) unlockedCount++;
-                if (Contexts.FlagEnumContext.GetTMemo2()) unlockedCount++;
-                if (Contexts.FlagEnumContext.GetTMemo3()) unlockedCount++;
-                if (Contexts.FlagEnumContext.GetTMemo4()) unlockedCount++;
+                Contexts.FlagEnumContext.SetNPCJoinState(1); // Dogi Join Flag
+                Memory.WriteByte(Contexts.GameContext.FlagEnumAddress + 0x002CB1F8, 1); // DF_JOIN_DOGI
 
-                // Unlock the next TMemo based on current count
-                switch (unlockedCount)
-                {
-                    case 0:
-                        Memory.WriteByte(Contexts.GameContext.FlagEnumAddress + 0x002CA578, 1); // Intercept List 1
-                        break;
-                    case 1:
-                        Memory.WriteByte(Contexts.GameContext.FlagEnumAddress + 0x002CA57C, 1); // Intercept List 2
-                        Memory.WriteByte(Contexts.GameContext.FlagEnumAddress + 0x002CA560, 1); // Dogi Control Option Unlocked
-                        break;
-                    case 2:
-                        Memory.WriteByte(Contexts.GameContext.FlagEnumAddress + 0x002CA580, 1); // Intercept List 3
-                        break;
-                    case 3:
-                        Memory.WriteByte(Contexts.GameContext.FlagEnumAddress + 0x002CA584, 1); // Intercept List 4
-                        break;
-                }
+                Contexts.InventoryContext.CheckIfObtainedAndSet(CASTAWAY_TRACKING_ID); // Castaway item for tracking crew member obtained for work totals.
+                int currentCastaways = Memory.ReadUShort(Contexts.InventoryContext.GetItemQuantityAddress(CASTAWAY_TRACKING_ID));
+                Memory.WriteByte(Contexts.InventoryContext.GetItemQuantityAddress(CASTAWAY_TRACKING_ID), (byte)(currentCastaways + 1));
             }
             else if (receivedItem.ItemID == 629) // Fishing rod
             {

@@ -2282,6 +2282,14 @@
         "ItemQuantity": 1,
         "APSaveID": 279
     },
+    "76400": {
+        "Name": "Progressive Raid List",
+        "ItemID": 764,
+        "QuantityMax": 1,
+        "QuantityMaxInferno": 1,
+        "ItemQuantity": 1,
+        "APSaveID": 309
+    },
     "77000": {
         "Name": "Ship's Log 1",
         "ItemID": 770,
@@ -2526,17 +2534,6 @@
         "Flags": ["0x002C7364"],
         "CrewMember": true,
         "APSaveID": 308
-    },
-    "90500": {
-        "Name": "Dogi",
-        "ItemID": 90500,
-        "QuantityMax": 1,
-        "QuantityMaxInferno": 1,
-        "ItemQuantity": 1,
-        "Flags": ["0x002CB1F8"],
-        "CrewJoinID": 1,
-        "CrewMember": true,
-        "APSaveID": 309
     },
     "90600": {
         "Name": "Alison",
