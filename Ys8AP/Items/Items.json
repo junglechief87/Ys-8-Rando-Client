@@ -3749,5 +3749,77 @@
         "Flags": ["0x002C7EA8"],
         "Landmark": true,
         "APSaveID": 422
+    },
+    "26300": {
+        "Name": "Primordial Knowledge",
+        "ItemID": 263,
+        "QuantityMax": 1,
+        "QuantityMaxInferno": 1,
+        "ItemQuantity": 1,
+        "APSaveID": 427
+    },
+    "26400": {
+        "Name": "The Ultimate Catch",
+        "ItemID": 264,
+        "QuantityMax": 1,
+        "QuantityMaxInferno": 1,
+        "ItemQuantity": 1,
+        "APSaveID": 428
+    },
+    "26500": {
+        "Name": "Wild and Free",
+        "ItemID": 265,
+        "QuantityMax": 1,
+        "QuantityMaxInferno": 1,
+        "ItemQuantity": 1,
+        "APSaveID": 429
+    },
+    "27700": {
+        "Name": "AP Fury",
+        "ItemID": 277,
+        "QuantityMax": 1,
+        "QuantityMaxInferno": 1,
+        "ItemQuantity": 1,
+        "APSaveID": 430
+    },
+    "27800": {
+        "Name": "One Final Delivery",
+        "ItemID": 278,
+        "QuantityMax": 1,
+        "QuantityMaxInferno": 1,
+        "ItemQuantity": 1,
+        "APSaveID": 431
+    },
+    "27900": {
+        "Name": "Broken Glasses",
+        "ItemID": 279,
+        "QuantityMax": 1,
+        "QuantityMaxInferno": 1,
+        "ItemQuantity": 1,
+        "APSaveID": 432
+    },
+    "28000": {
+        "Name": "Broken Necklace",
+        "ItemID": 280,
+        "QuantityMax": 1,
+        "QuantityMaxInferno": 1,
+        "ItemQuantity": 1,
+        "APSaveID": 433
+    },
+    "29400": {
+        "Name": "Broken Lure",
+        "ItemID": 294,
+        "QuantityMax": 1,
+        "QuantityMaxInferno": 1,
+        "ItemQuantity": 1,
+        "APSaveID": 434
+    },
+    "40600": {
+        "Name": "Odd Rock",
+        "ItemID": 406,
+        "QuantityMax": 1,
+        "QuantityMaxInferno": 1,
+        "ItemQuantity": 1,
+        "APSaveID": 435
     }
 }

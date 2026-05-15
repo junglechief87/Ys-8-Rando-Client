@@ -2,7 +2,8 @@ using System.Reflection;
 using System;
 using Archipelago.Core.Util;
 using Serilog;
-using System.Xml;
+using Ys8AP.Items;
+using Ys8AP.Threads;
 
 namespace Ys8AP.GlobalAddresses
 {
@@ -349,13 +350,37 @@ namespace Ys8AP.GlobalAddresses
                 Contexts.FlagEnumContext = new FlagEnum();
                 Contexts.CharacterDataContext = new CharacterData();;
                 Contexts.InventoryContext = new Inventory();
-                
+                PrepSeed();  // Prepare seed tracking items and flags on connect      
             }
             catch (Exception)
             {
                 Log.Logger.Error("Unable to find process 'ys8.exe'");
                 throw;
             }
+        }
+
+        private static void PrepSeed()
+        {
+            // On connect reveal the player tracking items in the inventory.
+            Contexts.InventoryContext.CheckIfObtainedAndSet(InventoryMgmt.PROGRESSIVE_SHOP_RANK_ID); // Progressive Shop Rank
+            Contexts.InventoryContext.CheckIfObtainedAndSet(InventoryMgmt.CASTAWAY_TRACKING_ID); // Castaway
+            Contexts.InventoryContext.CheckIfObtainedAndSet(InventoryMgmt.LANDMARK_TRACKING_ID); // Discovery
+            Contexts.InventoryContext.CheckIfObtainedAndSet(InventoryMgmt.PROGRESSIVE_RAID_LIST_ID); // Progressive Raid List
+            Contexts.InventoryContext.CheckIfObtainedAndSet(698); // Maiden Journal
+            Contexts.InventoryContext.CheckIfObtainedAndSet(699); // Frozen Flower
+            Contexts.InventoryContext.CheckIfObtainedAndSet(700); // Blue Seal of Whirlying Water
+            Contexts.InventoryContext.CheckIfObtainedAndSet(701); // Green Seal of Roaring Stone
+            Contexts.InventoryContext.CheckIfObtainedAndSet(702); // Golden Seal of Piercing Light
+            Contexts.InventoryContext.CheckIfObtainedAndSet(727); // Shrine Maiden Amulet
+            Contexts.InventoryContext.CheckIfObtainedAndSet(739); // Glow Stone
+
+            if (Options.FormerSanctuaryCrypt == 1) 
+                Contexts.InventoryContext.CheckIfObtainedAndSet(206); // Jade Pendant
+
+            if (Options.FinalBossAccess == 2) 
+                Contexts.InventoryContext.CheckIfObtainedAndSet(InventoryMgmt.PSYCHES_ITEM_ID); // Psyches
+
+            ItemQueue.checkItems = true;
         }
     }
 }

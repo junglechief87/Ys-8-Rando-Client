@@ -243,7 +243,6 @@ namespace Ys8AP
                 Thread.Sleep(100);
             }
 
-            PrepSeed();
             // If the player isn't in a valid game state it's likely due to the inventory address not being loaded yet, so try to initialize addresses and check again.  
             
             _deathlinkService = PartyWatcher.InitializeDeathLink(Client, Options.DeathLinkEnabled, _deathlinkService_OnDeathLinkReceived);
@@ -308,20 +307,6 @@ namespace Ys8AP
         {
             var ys8Process = System.Diagnostics.Process.GetProcessesByName("ys8").FirstOrDefault();
             ys8ProcessRunning = ys8Process != null;
-        }
-
-        private void PrepSeed()
-        {
-            // On connect reveal the player tracking items in the inventory.
-            Contexts.InventoryContext.CheckIfObtainedAndSet(InventoryMgmt.PROGRESSIVE_SHOP_RANK_ID); // Progressive Shop Rank
-            Contexts.InventoryContext.CheckIfObtainedAndSet(InventoryMgmt.CASTAWAY_TRACKING_ID); // Castaway
-            Contexts.InventoryContext.CheckIfObtainedAndSet(InventoryMgmt.LANDMARK_TRACKING_ID); // Discovery
-            if (Options.FinalBossAccess == 2) 
-            {
-                Contexts.InventoryContext.CheckIfObtainedAndSet(InventoryMgmt.PSYCHES_ITEM_ID); // Psyches
-            }
-
-            ItemQueue.checkItems = true;
         }
 
         internal static async Task SendLocation(int locId)
@@ -617,7 +602,6 @@ namespace Ys8AP
                                 _apDisconnected = false;
                                 reconnectClientReady = false;  // Reset for next disconnect episode
 
-                                PrepSeed();
                                 Log.Logger.Information("Reconnected to Archipelago");
                                 waitTime = 100;
                             }
