@@ -1843,30 +1843,6 @@
         "ItemQuantity": 2,
         "APSaveID": 225
     },
-    "61700": {
-        "Name": "Strength Elixir",
-        "ItemID": 617,
-        "QuantityMax": 999,
-        "QuantityMaxInferno": 999,
-        "ItemQuantity": 1,
-        "APSaveID": 226
-    },
-    "61800": {
-        "Name": "Defense Elixir",
-        "ItemID": 618,
-        "QuantityMax": 999,
-        "QuantityMaxInferno": 999,
-        "ItemQuantity": 1,
-        "APSaveID": 227
-    },
-    "61900": {
-        "Name": "Life Elixir",
-        "ItemID": 619,
-        "QuantityMax": 999,
-        "QuantityMaxInferno": 999,
-        "ItemQuantity": 1,
-        "APSaveID": 228
-    },
     "62000": {
         "Name": "Empty Bottle",
         "ItemID": 620,

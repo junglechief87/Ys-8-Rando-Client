@@ -59,7 +59,6 @@ namespace Ys8AP
         public static ArchipelagoClient? Client { get; set; }
 
         private static MainWindowViewModel? Context;
-        private static readonly object _lockObject = new();
         private static readonly ConcurrentQueue<Location> locationQueue = new();
 
         private Task? queueTask;
@@ -76,7 +75,6 @@ namespace Ys8AP
         private static bool isShuttingDown = false;
         private static bool ys8ProcessRunning = false;  // Cached process state, updated in Reconnect loop
         private static bool ys8ProcessWasLost = false;  // Track if we lost the game process
-        private static DateTime lastReattachAttempt = DateTime.MinValue;  // Prevent rapid reattach spam
         private static volatile bool _apDisconnected = false;  // Set by OnDisconnected event, cleared on successful (re)connect
         private static readonly List<string> Party = new() { "Adol", "Laxia", "Sahad", "Hummel", "Ricotta", "Dana" };
         public override void Initialize()
