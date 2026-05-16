@@ -2285,8 +2285,8 @@
     "76400": {
         "Name": "Progressive Raid List",
         "ItemID": 764,
-        "QuantityMax": 1,
-        "QuantityMaxInferno": 1,
+        "QuantityMax": 5,
+        "QuantityMaxInferno": 5,
         "ItemQuantity": 1,
         "APSaveID": 309
     },
