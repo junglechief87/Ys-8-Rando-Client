@@ -141,7 +141,7 @@ namespace Ys8AP.Items
             // ============================================================================
             // Simplest part of the item code, we enforce quantity limits and then write the new quantity to memory.
             // ============================================================================
-            if (newQuantity > receivedItem.QuantityMax)
+            if (newQuantity > receivedItem.QuantityMax && !Contexts.FlagEnumContext.GetInfernoFlag())
             {
                 newQuantity = receivedItem.QuantityMax;
             }

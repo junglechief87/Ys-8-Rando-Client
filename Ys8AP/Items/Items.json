@@ -1283,30 +1283,6 @@
         "ItemQuantity": 3,
         "APSaveID": 155
     },
-    "51700": {
-        "Name": "Antiparalytic",
-        "ItemID": 517,
-        "QuantityMax": 99,
-        "QuantityMaxInferno": 9,
-        "ItemQuantity": 1,
-        "APSaveID": 156
-    },
-    "51800": {
-        "Name": "Burn Medicine",
-        "ItemID": 518,
-        "QuantityMax": 99,
-        "QuantityMaxInferno": 9,
-        "ItemQuantity": 1,
-        "APSaveID": 157
-    },
-    "51900": {
-        "Name": "Remedy",
-        "ItemID": 519,
-        "QuantityMax": 99,
-        "QuantityMaxInferno": 9,
-        "ItemQuantity": 1,
-        "APSaveID": 158
-    },
     "52000": {
         "Name": "Sweet Remedy",
         "ItemID": 520,
