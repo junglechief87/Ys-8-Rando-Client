@@ -50,7 +50,8 @@ namespace Ys8AP.GlobalAddresses
         private const ulong CustomGameOverFlagOffset = 0x002CA5C4;
         private const ulong MonsterKillCountOffset = 0x002C7278;
         private const ulong GoalFlagOffset = 0x002CA5C8;
-
+        private const ulong WarpDisabledOffset = 0x002C7274; 
+        
         public bool GetRetryFlag() => Memory.ReadByte(Contexts.GameContext.FlagEnumAddress + RetryFlagOffset) != 0;
         public bool GetSaveMenuFlag() => Memory.ReadByte(Contexts.GameContext.FlagEnumAddress + SaveMenuFlagOffset) != 0;
         public bool GetEventStartFlag() => Memory.ReadByte(Contexts.GameContext.FlagEnumAddress + EventStartFlagOffset) != 0;
@@ -60,6 +61,7 @@ namespace Ys8AP.GlobalAddresses
         public bool GetCustomGameOverFlag() => Memory.ReadByte(Contexts.GameContext.FlagEnumAddress + CustomGameOverFlagOffset) != 0;
         public int GetMonsterKillCount() => Memory.ReadInt(Contexts.GameContext.FlagEnumAddress + MonsterKillCountOffset);
         public bool GetGoalFlag() => Memory.ReadByte(Contexts.GameContext.FlagEnumAddress + GoalFlagOffset) != 0;
+        public void SetWarpDisabledFlag(bool value) => Memory.WriteByte(Contexts.GameContext.FlagEnumAddress + WarpDisabledOffset, (byte)(value ? 1 : 0));
 
         // ============================================================================
         // PARTY MEMBER FLAGS - Direct memory reads
@@ -81,19 +83,6 @@ namespace Ys8AP.GlobalAddresses
         public bool GetDanaJoinFlag() => Memory.ReadByte(Contexts.GameContext.FlagEnumAddress + DanaJoinFlagOffset) != 0;
         public void WritePartyAverageLevel(uint averageLevel) =>
             Memory.Write(Contexts.GameContext.FlagEnumAddress + PartyAverageLevelOffset, (byte)averageLevel);
-
-        // ============================================================================
-        // T'S MEMOS - Direct memory reads
-        // ============================================================================
-        private const ulong TMemo1Offset = 0x002CA578;
-        private const ulong TMemo2Offset = 0x002CA57C;
-        private const ulong TMemo3Offset = 0x002CA580;
-        private const ulong TMemo4Offset = 0x002CA584;
-
-        public bool GetTMemo1() => Memory.ReadByte(Contexts.GameContext.FlagEnumAddress + TMemo1Offset) != 0;
-        public bool GetTMemo2() => Memory.ReadByte(Contexts.GameContext.FlagEnumAddress + TMemo2Offset) != 0;
-        public bool GetTMemo3() => Memory.ReadByte(Contexts.GameContext.FlagEnumAddress + TMemo3Offset) != 0;
-        public bool GetTMemo4() => Memory.ReadByte(Contexts.GameContext.FlagEnumAddress + TMemo4Offset) != 0;
         
         // Village Join Flags ///////////////////////////////////////////////////////
         public ulong NPCJoinState = 0x002C7308;

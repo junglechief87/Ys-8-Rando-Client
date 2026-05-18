@@ -125,17 +125,37 @@ namespace Ys8AP.Threads
 
         public static void KillParty()
         {
-            GetCurrentPartyMembers();
-            foreach (var member in currentPartyMembers)
+            while(!PlayerState.GameOver())
             {
-                // Only kill characters that are not in a locked state (CharState != -1)
-                if (member.Value.CharState != -1)
+                GetCurrentPartyMembers();
+                // Gather all valid party members first
+                var toKill = new List<(int id, CharacterStats stats)>();
+                foreach (var member in currentPartyMembers)
                 {
+                    if (member.Value.CharState != -1)
+                    {
+                        toKill.Add((member.Key, member.Value));
+                    }
+                }
+
+                // this slightly more convluted method is meant to get as close to simultaneous as possible
+                if (toKill.Count > 0)
+                {
+                    Contexts.FlagEnumContext.SetWarpDisabledFlag(true); // Disable warping to prevent death softlock
                     deathFromDeathlink = true;
-                    member.Value.CurrentHP = 0;
-                    Contexts.CharacterDataContext.WriteCharacterData(member.Key, member.Value);
+                    // Set all HP to 0 in memory at the same time
+                    foreach (var entry in toKill)
+                    {
+                        entry.stats.CurrentHP = 0;
+                    }
+                    foreach (var entry in toKill)
+                    {
+                        Contexts.CharacterDataContext.WriteCharacterData(entry.id, entry.stats);
+                    }
                 }
             }
+
+            Contexts.FlagEnumContext.SetWarpDisabledFlag(false); // Re-enable warping after death
         }
 
         public static void ListenForDeath()
