@@ -113,6 +113,10 @@ namespace Ys8AP.Items
                     newStrikeMedalQuantity = 1;
                 Memory.WriteByte(Contexts.InventoryContext.GetItemQuantityAddress(220), (byte)newStrikeMedalQuantity); // Strike Medal
             }
+            else if (receivedItem.ItemID == 206 && Options.FormerSanctuaryCrypt == 1) // Jade Pendant
+            {
+                receivedItem.Flags = ["0x002C8C44", "0x002C71B4"]; // SF_SYS_CLEARED, GF_SUBEV_PAST_07_CLEAR
+            }
 
             // ============================================================================
             // Here we set flags for items that require event triggers. 
