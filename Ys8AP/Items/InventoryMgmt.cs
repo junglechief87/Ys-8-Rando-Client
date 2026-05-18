@@ -77,7 +77,7 @@ namespace Ys8AP.Items
             else if (receivedItem.Name == "Dina")
             {
                 Contexts.InventoryContext.CheckIfObtainedAndSet(580);
-                Memory.WriteByte(Contexts.InventoryContext.GetItemQuantityAddress(580), 0x63); // Give 99 Insect Repellent
+                Memory.WriteByte(Contexts.InventoryContext.GetItemQuantityAddress(580), 1); // Give 1 Insect Repellent
             }
             else if (receivedItem.ItemID == PROGRESSIVE_RAID_LIST_ID && currentQuantity == 0) // TMemo Intercept unlocks - progressive unlock based on current count
             {
@@ -94,7 +94,7 @@ namespace Ys8AP.Items
                 int currentBaitQuantity = Memory.ReadUShort(Contexts.InventoryContext.GetItemQuantityAddress(628));
                 int newBaitQuantity = currentBaitQuantity + 30;
                 if (newBaitQuantity > 999)
-                    newBaitQuantity = 30;
+                    newBaitQuantity = 999;
                 Memory.WriteByte(Contexts.InventoryContext.GetItemQuantityAddress(628), (byte)newBaitQuantity); // Give 30 bait
             }
             else if (receivedItem.ItemID == 218) // Slash Medal

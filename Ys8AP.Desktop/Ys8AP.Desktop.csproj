@@ -18,9 +18,9 @@
     <!-- App Identifier -->
     <ApplicationId>com.JungleChief87.ys8ap</ApplicationId>
     <!-- Versions -->
-    <ApplicationDisplayVersion>0.9.4</ApplicationDisplayVersion>
-    <ApplicationVersion>0.9.4</ApplicationVersion>
-    <Version>0.9.4</Version>
+    <ApplicationDisplayVersion>0.9.5</ApplicationDisplayVersion>
+    <ApplicationVersion>0.9.5</ApplicationVersion>
+    <Version>0.9.5</Version>
     <!-- Single File Publishing Properties -->
     <PublishSingleFile>true</PublishSingleFile>
     <EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>

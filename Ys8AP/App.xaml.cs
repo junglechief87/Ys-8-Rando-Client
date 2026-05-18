@@ -81,11 +81,14 @@ namespace Ys8AP
         {
             AvaloniaXamlLoader.Load(this);
 
+            // Load user settings
+            var settings = UserSettings.Load();
             Context = new MainWindowViewModel() { ConnectButtonEnabled = true };
             Context.ConnectClicked += Context_ConnectClicked;
             Context.CommandReceived += (_, a) => Client?.SendMessage(a.Command);
 
-            Context.Host = "archipelago.gg:";
+            Context.Host = settings.Host;
+            Context.Slot = settings.Slot;
         }
 
         public override void OnFrameworkInitializationCompleted()
@@ -117,8 +120,13 @@ namespace Ys8AP
             e.Host = e.Host?.Trim() ?? e.Host;
             e.Slot = e.Slot?.Trim() ?? e.Slot;
             // default to most basic local-hosted setup if they were empty
+
             if (string.IsNullOrEmpty(e.Host)) e.Host = "localhost:38281";
             if (string.IsNullOrEmpty(e.Slot)) e.Slot = "Player1";
+
+            // Save host and slot to user settings
+            var settings = new UserSettings { Host = e.Host, Slot = e.Slot };
+            settings.Save();
 
             if (Context == null)
                 return;
