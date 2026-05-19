@@ -12,6 +12,8 @@ using System.Reflection;
 using System.Collections.Generic;
 using System.Linq;
 using Avalonia.Logging;
+using Archipelago.Core.Models;
+using Metsys.Bson;
 
 
 namespace Ys8AP.Items
@@ -24,7 +26,7 @@ namespace Ys8AP.Items
         internal const int LANDMARK_TRACKING_ID = 148;
         internal const int PSYCHES_ITEM_ID = 831;
         private const int ESSENCE_STONE_BONUS_ID = 32803;
-        
+        private static readonly List<uint> PartyMembers = new() { 92800, 90100, 90400, 91000, 91600, 92100 }; // Adol, Laxia, Sahad, Hummel, Ricotta, Dana.
         internal static bool isVerifying = false;
         internal static bool processedStartingItems = true; // flag to allow starting items to output messages
 
@@ -33,6 +35,7 @@ namespace Ys8AP.Items
         private static Dictionary<int, long>? APSaveIDToItemKey;
         private static readonly HashSet<string> FlagsSetTo2 = new() { "0x002C8B70", "0x002C8B94", "0x002C7D24" }; // when these flags are set, they need to be set to 2 instead of 1 to properly trigger events.
         private static Dictionary<int, int>? itemCounts;
+        private static string? helperMessage = null;
 
         /// <summary>
         /// Handles all receiving logic for items, including setting flags, handling special item cases, and enforcing quantity limits.
@@ -47,6 +50,8 @@ namespace Ys8AP.Items
                 Log.Logger.Warning("GiveItem: unknown AP item ID {ItemId}, skipping", itemId);
                 return;
             }
+
+            helperMessage = null;
 
             InvItem receivedItem = ItemData[itemId];
             int currentQuantity = Memory.ReadUShort(Contexts.InventoryContext.GetItemQuantityAddress(receivedItem.ItemID));
@@ -173,9 +178,7 @@ namespace Ys8AP.Items
                 Memory.WriteByte(Contexts.InventoryContext.GetItemQuantityAddress(CASTAWAY_TRACKING_ID), (byte)(currentCastaways + 1));
 
                 if (receivedItem.CrewJoinID != null)
-                {
                     Contexts.FlagEnumContext.SetNPCJoinState((int)receivedItem.CrewJoinID);
-                }
 
                 // if we're receiving the starting character then we havne't yet processed starting items
                 // this allows the received messages for starting items to be printed.
@@ -192,12 +195,18 @@ namespace Ys8AP.Items
                     }
                 }
 
+                if (Options.HelperText == 1)
+                    helperMessage = "Received castaway: " + receivedItem.Name;
+                    if (PartyMembers.Contains(receivedItem.ItemID) && processedStartingItems)
+                        helperMessage += ". " + receivedItem.Name + " Awaiting in packages.";
             }
             else if (receivedItem.Landmark)
             {
                 Contexts.InventoryContext.CheckIfObtainedAndSet(LANDMARK_TRACKING_ID); // Landmark item for tracking totals.
                 int currentLandmarks = Memory.ReadUShort(Contexts.InventoryContext.GetItemQuantityAddress(LANDMARK_TRACKING_ID));
                 Memory.WriteByte(Contexts.InventoryContext.GetItemQuantityAddress(LANDMARK_TRACKING_ID), (byte)(currentLandmarks + 1));
+                if (Options.HelperText == 1)
+                    helperMessage = "Received landmark: " + receivedItem.Name;
             }
             else if (receivedItem.Skill)
             {
@@ -205,11 +214,17 @@ namespace Ys8AP.Items
                 CurrentSkill.SkillLevel = 1;
                 CurrentSkill.SkillExperience = 0;
                 Contexts.InventoryContext.SetSkillByCharacterAndID((uint)receivedItem.SkillID, (uint)receivedItem.SkillCharacterID, CurrentSkill);
+
+                if (Options.HelperText == 1)
+                    helperMessage = "Received skill: " + receivedItem.Name;
             }
             else
             {
                 Contexts.InventoryContext.CheckIfObtainedAndSet(receivedItem.ItemID);
                 Memory.WriteByte(Contexts.InventoryContext.GetItemQuantityAddress(receivedItem.ItemID), (byte)newQuantity);
+
+                if (Options.HelperText == 1 && (receivedItem.ItemID == 900 || receivedItem.ItemID == 1300)) // Mistilteinn, Spirit Ring Celesdia
+                    helperMessage = receivedItem.Name + " Awaiting in packages.";
             }
 
             // ============================================================================
@@ -223,17 +238,16 @@ namespace Ys8AP.Items
                 // we're finished processing starting items. 
                 if(receivedItem.Name == Options.StartingCharacter)
                     processedStartingItems = true; 
-        
-                string msg = "Received " + receivedItem.Name + ".";
-                if (PlayerState.IsPlayerReady)
-                {
-                    ItemQueue.AddMsg(msg);
-                }
+
+                string msg;
+                if (Options.HelperText == 1 && !string.IsNullOrEmpty(helperMessage))
+                    msg = helperMessage;
                 else
-                {
-                    Log.Logger.Information(msg);
-                    App.Client.AddOverlayMessage(msg);
-                }
+                    msg = "Received " + receivedItem.Name + ".";
+
+                ItemQueue.AddMsg(msg);
+                if (Options.HelperText == 1 && !string.IsNullOrEmpty(receivedItem.Information))
+                    ItemQueue.AddMsg(receivedItem.Information);
             }
             
         }

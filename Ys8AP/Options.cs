@@ -12,6 +12,7 @@ namespace Ys8AP
     {
         public static int FinalBossAccess = 0;
         public static int FormerSanctuaryCrypt = 0;
+        public static int HelperText = 0;
         public static bool DeathLinkEnabled = false;
 
         // Populated from slot data on connect
@@ -27,10 +28,14 @@ namespace Ys8AP
                     FinalBossAccess = result;
             }
 
-            if (options.TryGetValue("former_sanctuary_crypt", out var fsc) && fsc != null)
+            if (options.TryGetValue("former_sanctuary_crypt", out var fsc) && fsc is JsonElement jsonElementFsc)
             {
-                if (int.TryParse(fsc.ToString(), out int result))
-                    FormerSanctuaryCrypt = result;
+                FormerSanctuaryCrypt = jsonElementFsc.GetInt32() != 0 ? 1 : 0;
+            }
+
+            if (options.TryGetValue("helper_text", out var cht) && cht is JsonElement jsonElementCht)
+            {
+                HelperText = jsonElementCht.GetInt32() != 0 ? 1 : 0;
             }
 
             if (options.TryGetValue("death_link", out var deathValue) && deathValue is JsonElement jsonElement)

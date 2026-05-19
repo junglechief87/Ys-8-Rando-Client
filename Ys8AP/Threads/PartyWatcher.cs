@@ -92,6 +92,7 @@ namespace Ys8AP.Threads
                             KillParty();
                             if (!deathLinkMsgLogged)
                             {
+                                Contexts.FlagEnumContext.SetWarpDisabledFlag(false); // Re-enable warping after death
                                 Log.Logger.Information(deathLinkMsg);
                                 deathLinkMsgLogged = true;
                             }
@@ -125,37 +126,32 @@ namespace Ys8AP.Threads
 
         public static void KillParty()
         {
-            while(!PlayerState.GameOver())
+            GetCurrentPartyMembers();
+            // Gather all valid party members first
+            var toKill = new List<(int id, CharacterStats stats)>();
+            foreach (var member in currentPartyMembers)
             {
-                GetCurrentPartyMembers();
-                // Gather all valid party members first
-                var toKill = new List<(int id, CharacterStats stats)>();
-                foreach (var member in currentPartyMembers)
+                if (member.Value.CharState != -1)
                 {
-                    if (member.Value.CharState != -1)
-                    {
-                        toKill.Add((member.Key, member.Value));
-                    }
-                }
-
-                // this slightly more convluted method is meant to get as close to simultaneous as possible
-                if (toKill.Count > 0)
-                {
-                    Contexts.FlagEnumContext.SetWarpDisabledFlag(true); // Disable warping to prevent death softlock
-                    deathFromDeathlink = true;
-                    // Set all HP to 0 in memory at the same time
-                    foreach (var entry in toKill)
-                    {
-                        entry.stats.CurrentHP = 0;
-                    }
-                    foreach (var entry in toKill)
-                    {
-                        Contexts.CharacterDataContext.WriteCharacterData(entry.id, entry.stats);
-                    }
+                    toKill.Add((member.Key, member.Value));
                 }
             }
 
-            Contexts.FlagEnumContext.SetWarpDisabledFlag(false); // Re-enable warping after death
+            // this slightly more convluted method is meant to get as close to simultaneous as possible
+            if (toKill.Count > 0)
+            {
+                Contexts.FlagEnumContext.SetWarpDisabledFlag(true); // Disable warping to prevent death softlock
+                deathFromDeathlink = true;
+                // Set all HP to 0 in memory at the same time
+                foreach (var entry in toKill)
+                {
+                    entry.stats.CurrentHP = 0;
+                }
+                foreach (var entry in toKill)
+                {
+                    Contexts.CharacterDataContext.WriteCharacterData(entry.id, entry.stats);
+                }
+            }
         }
 
         public static void ListenForDeath()

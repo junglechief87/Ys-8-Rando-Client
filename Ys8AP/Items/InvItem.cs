@@ -18,5 +18,6 @@ namespace Ys8AP.Items
         public bool Landmark = false; 
         public bool Skill = false;
         public int APSaveID; // ID used for AP Save file, is just based on the order of items in the Items.json file
+        public string Information; // Extra info about the item, shown in the AP overlay when received. Can be used for hints or flavor text.
     }
 }

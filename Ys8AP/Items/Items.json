@@ -321,7 +321,8 @@
         "QuantityMax": 999,
         "QuantityMaxInferno": 999,
         "ItemQuantity": 1,
-        "APSaveID": 39
+        "APSaveID": 39,
+        "Information": "The stairs to the Crypt in the Stupa are lowered."
     },
     "20900": {
         "Name": "Ocean Hogeki",
@@ -1954,7 +1955,8 @@
         "QuantityMaxInferno": 1,
         "ItemQuantity": 1,
         "Flags": ["0x002C76B0", "0x002CA5F4"],
-        "APSaveID": 245
+        "APSaveID": 245,
+        "Information": "The way up the Mont Gendarme is open."
     },
     "69900": {
         "Name": "Frozen Flower",
@@ -1963,7 +1965,8 @@
         "QuantityMaxInferno": 1,
         "ItemQuantity": 1,
         "Flags": ["0x002C78B0", "0x002C8B90", "0x002C8B94", "0x002C8CA0"],
-        "APSaveID": 246
+        "APSaveID": 246,
+        "Information": "The Palace and Monastery are open."
     },
     "70000": {
         "Name": "Blue Seal of Whirling Water",
@@ -1972,7 +1975,8 @@
         "QuantityMaxInferno": 1,
         "ItemQuantity": 1,
         "Flags": ["0x002C77A4", "0x002C77A0", "0x002C7798", "0x002C779C", "0x002C8B0C", "0x002C8B10", "0x002C8B14"],
-        "APSaveID": 247
+        "APSaveID": 247,
+        "Information": "Pangai Plains to Eternia is open and the waterway is repaired."
     },
     "70100": {
         "Name": "Green Seal of Roaring Stone",
@@ -1981,7 +1985,8 @@
         "QuantityMaxInferno": 1,
         "ItemQuantity": 1,
         "Flags": ["0x002C77E8", "0x002C8B44", "0x002C8B48", "0x002C8B4C", "0x002C8B50", "0x002C8B54"],
-        "APSaveID": 248
+        "APSaveID": 248,
+        "Information": "Eternia to the Palace is open and the secret room is unlocked."
     },
     "70200": {
         "Name": "Golden Seal of Piercing Light",
@@ -1990,7 +1995,8 @@
         "QuantityMaxInferno": 1,
         "ItemQuantity": 1,
         "Flags": ["0x002C7844", "0x002C8B6C", "0x002C8B70", "0x002C8B74", "0x002C8C98"],
-        "APSaveID": 249
+        "APSaveID": 249,
+        "Information": "Baja Tower can be reached. Breath Fountain is revealed."
     },
     "70300": {
         "Name": "Essence Key Stone",
@@ -2039,7 +2045,8 @@
         "QuantityMaxInferno": 1,
         "ItemQuantity": 1,
         "Flags": ["0x002C8BFC", "0x002C8C00", "0x002C8C04", "0x002C8CA8", "0x002C8CAC"],
-        "APSaveID": 255
+        "APSaveID": 255,
+        "Information": "The way to Eternal Hill is open."
     },
     "72900": {
         "Name": "Stone Crown",
@@ -2240,7 +2247,8 @@
         "QuantityMax": 5,
         "QuantityMaxInferno": 5,
         "ItemQuantity": 1,
-        "APSaveID": 309
+        "APSaveID": 309,
+        "Information": "Raid list updated."
     },
     "77000": {
         "Name": "Ship's Log 1",
@@ -2249,7 +2257,8 @@
         "QuantityMaxInferno": 1,
         "ItemQuantity": 1,
         "Flags": ["0x002C787C"],
-        "APSaveID": 280
+        "APSaveID": 280,
+        "Information": "The gangway to the Eleftheria is down."
     },
     "77100": {
         "Name": "Ship's Log 2",
@@ -2297,7 +2306,8 @@
         "QuantityMax": 7,
         "QuantityMaxInferno": 7,
         "ItemQuantity": 1,
-        "APSaveID": 286
+        "APSaveID": 286,
+        "Information": "Village shops and forge upgraded."
     },
     "77900": {
         "Name": "Ship Blueprints",
@@ -2306,7 +2316,8 @@
         "QuantityMaxInferno": 1,
         "ItemQuantity": 1,
         "Flags": ["0x002C882C"],
-        "APSaveID": 287
+        "APSaveID": 287,
+        "Information": "The damaged boat on the Nameless Coast Shore has been repaired."
     },
     "78000": {
         "Name": "Sweet Pepper Seeds",
@@ -2355,7 +2366,8 @@
         "QuantityMaxInferno": 1,
         "ItemQuantity": 1,
         "Flags": ["0x002C78EC", "0x002C8CA4", "0x002C8C9C"],
-        "APSaveID": 293
+        "APSaveID": 293,
+        "Information": "Lodinia Marsh is open and the chest in Eternia can be opened."
     },
     "80100": {
         "Name": "Romun Badge",
@@ -2496,7 +2508,8 @@
         "Flags": ["0x002CB200", "0x002C7538", "0x002C7D2C", "0x002C7534", "0x002C8654"],
         "CrewJoinID": 2,
         "CrewMember": true,
-        "APSaveID": 310
+        "APSaveID": 310,
+        "Information": "The tailor is now open."
     },
     "90700": {
         "Name": "Sir Carlan",
@@ -2550,7 +2563,8 @@
         "Flags": ["0x002C75AC", "0x002C75AC", "0x002CB218"],
         "CrewJoinID": 7,
         "CrewMember": true,
-        "APSaveID": 315
+        "APSaveID": 315,
+        "Information": "Jewel trades can be made and insect repellent can be used."
     },
     "91200": {
         "Name": "Reja",
@@ -2572,7 +2586,8 @@
         "Flags": ["0x002C75B0", "0x002CB224"],
         "CrewJoinID": 6,
         "CrewMember": true,
-        "APSaveID": 317
+        "APSaveID": 317,
+        "Information": "The map can be shown for rewards."
     },
     "91400": {
         "Name": "Licht",
@@ -2583,7 +2598,8 @@
         "Flags": ["0x002CB228", "0x002C7D24"],
         "CrewJoinID": 8,
         "CrewMember": true,
-        "APSaveID": 318
+        "APSaveID": 318,
+        "Information": "Medicine can now be brewed."
     },
     "91500": {
         "Name": "Quina",
@@ -2604,7 +2620,8 @@
         "ItemQuantity": 1,
         "Flags": ["0x002C736C"],
         "CrewMember": true,
-        "APSaveID": 320
+        "APSaveID": 320,
+        "Information": "Master Kong can now be challenged."
     },
     "91700": {
         "Name": "Austin",
@@ -2648,7 +2665,8 @@
         "Flags": ["0x002CB238"],
         "CrewJoinID": 19,
         "CrewMember": true,
-        "APSaveID": 324
+        "APSaveID": 324,
+        "Information": "Silvia can now be fought in the village."
     },
     "92100": {
         "Name": "Dana",
@@ -2658,7 +2676,8 @@
         "ItemQuantity": 1,
         "Flags": ["0x002C7370"],
         "CrewMember": true,
-        "APSaveID": 325
+        "APSaveID": 325,
+        "Information": "Essence doors can be opened."
     },
     "92200": {
         "Name": "Katthew",
