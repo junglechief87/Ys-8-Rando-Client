@@ -2111,7 +2111,8 @@
         "QuantityMaxInferno": 1,
         "ItemQuantity": 1,
         "Flags": ["0x002C7D5C", "0x002C7D60", "0x002C7D64"],
-        "APSaveID": 263
+        "APSaveID": 263,
+        "Information": "Night exploration can now be undertaken."
     },
     "74000": {
         "Name": "Float Shoes",
