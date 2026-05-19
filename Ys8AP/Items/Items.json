@@ -15,7 +15,8 @@
         "QuantityMaxInferno": 1,
         "ItemQuantity": 1,
         "Flags": ["0x002CA504"],
-        "APSaveID": 1
+        "APSaveID": 1,
+        "Information": "Turn this into Kathleen at max shop rank."
     },
     "1300": {
         "Name": "Spirit Ring Celesdia",
@@ -33,7 +34,8 @@
         "QuantityMaxInferno": 1,
         "ItemQuantity": 1,
         "Flags": ["0x002CA598"],
-        "APSaveID": 3
+        "APSaveID": 3,
+        "Information": "Turn this into Kathleen at max shop rank."
     },
     "15100": {
         "Name": "Bone Necklace",
@@ -3768,7 +3770,8 @@
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
         "ItemQuantity": 1,
-        "APSaveID": 432
+        "APSaveID": 432,
+        "Information": "Turn this into Euron at max shop rank."
     },
     "28000": {
         "Name": "Broken Necklace",
@@ -3776,7 +3779,8 @@
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
         "ItemQuantity": 1,
-        "APSaveID": 433
+        "APSaveID": 433,
+        "Information": "Turn this into Euron at max shop rank."
     },
     "29400": {
         "Name": "Broken Lure",
@@ -3784,7 +3788,8 @@
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
         "ItemQuantity": 1,
-        "APSaveID": 434
+        "APSaveID": 434,
+        "Information": "Turn this into Euron at max shop rank."
     },
     "40600": {
         "Name": "Odd Rock",
@@ -3792,6 +3797,7 @@
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
         "ItemQuantity": 1,
-        "APSaveID": 435
+        "APSaveID": 435,
+        "Information": "Turn this into Euron at max shop rank."
     }
 }
