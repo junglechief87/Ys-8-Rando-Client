@@ -2,18 +2,11 @@
 using Archipelago.MultiClient.Net.Models;
 using Ys8AP.GlobalAddresses;
 using Ys8AP.Threads;
-using Ys8AP.Mem;
-using Ys8AP.Threads;
 using Ys8AP.Utils;
 using Serilog;
 using System;
 using System.Collections.Concurrent;
-using System.Reflection;
 using System.Collections.Generic;
-using System.Linq;
-using Avalonia.Logging;
-using Archipelago.Core.Models;
-using Metsys.Bson;
 
 
 namespace Ys8AP.Items
@@ -303,7 +296,7 @@ namespace Ys8AP.Items
 
             foreach (var item in itemCounts)
             {
-                int receivedItemCount = Contexts.FlagEnumContext.GetAPSaveValue((uint)item.Key);
+                byte receivedItemCount = Contexts.FlagEnumContext.GetAPSaveValue((uint)item.Key);
                 if (receivedItemCount < item.Value)
                 {
                     int quantityToGive = item.Value - receivedItemCount;

@@ -128,9 +128,9 @@ namespace Ys8AP.GlobalAddresses
             }
         }
 
-        public int GetAPSaveValue(uint id)
+        public byte GetAPSaveValue(uint id)
         {
-            return (int)Memory.ReadByte(APSaveStartAddress + id);
+            return Memory.ReadByte(APSaveStartAddress + id);
         }
 
         public void SetAPSaveValue(uint id)
