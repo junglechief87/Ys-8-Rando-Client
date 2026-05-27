@@ -1,4 +1,3 @@
-using System.Reflection;
 using System;
 using Archipelago.Core.Util;
 using Serilog;
@@ -51,7 +50,7 @@ namespace Ys8AP.GlobalAddresses
         private const ulong MonsterKillCountOffset = 0x002C7278;
         private const ulong GoalFlagOffset = 0x002CA5C8;
         private const ulong WarpDisabledOffset = 0x002C7274; 
-        
+        private const ulong LastEntryOffset = 0x002C70F8;
         public bool GetRetryFlag() => Memory.ReadByte(Contexts.GameContext.FlagEnumAddress + RetryFlagOffset) != 0;
         public bool GetSaveMenuFlag() => Memory.ReadByte(Contexts.GameContext.FlagEnumAddress + SaveMenuFlagOffset) != 0;
         public bool GetEventStartFlag() => Memory.ReadByte(Contexts.GameContext.FlagEnumAddress + EventStartFlagOffset) != 0;
@@ -62,6 +61,7 @@ namespace Ys8AP.GlobalAddresses
         public int GetMonsterKillCount() => Memory.ReadInt(Contexts.GameContext.FlagEnumAddress + MonsterKillCountOffset);
         public bool GetGoalFlag() => Memory.ReadByte(Contexts.GameContext.FlagEnumAddress + GoalFlagOffset) != 0;
         public void SetWarpDisabledFlag(bool value) => Memory.WriteByte(Contexts.GameContext.FlagEnumAddress + WarpDisabledOffset, (byte)(value ? 1 : 0));
+        public int GetLastEntry() => Memory.ReadInt(Contexts.GameContext.FlagEnumAddress + LastEntryOffset);
 
         // ============================================================================
         // PARTY MEMBER FLAGS - Direct memory reads
@@ -82,7 +82,7 @@ namespace Ys8AP.GlobalAddresses
         public bool GetRicottaJoinFlag() => Memory.ReadByte(Contexts.GameContext.FlagEnumAddress + RicottaJoinFlagOffset) != 0;
         public bool GetDanaJoinFlag() => Memory.ReadByte(Contexts.GameContext.FlagEnumAddress + DanaJoinFlagOffset) != 0;
         public void WritePartyAverageLevel(uint averageLevel) =>
-            Memory.Write(Contexts.GameContext.FlagEnumAddress + PartyAverageLevelOffset, (byte)averageLevel);
+                Memory.Write(Contexts.GameContext.FlagEnumAddress + PartyAverageLevelOffset, (byte)averageLevel);
         
         // Village Join Flags ///////////////////////////////////////////////////////
         public ulong NPCJoinState = 0x002C7308;
@@ -157,6 +157,9 @@ namespace Ys8AP.GlobalAddresses
     // ============================================================================
     public class Inventory
     {
+        // Map Data /////////////////////////////////////////////////////////////////
+        public const ulong MapDataOffset = 0x1CA5;
+        public string GetMapID() => Memory.ReadString(Contexts.GameContext.InventoryAddress + MapDataOffset,8);
 
         // Item Quantities //////////////////////////////////////////////////////////
         public ulong ItemQuantityTblOffset = 0x00020F34;
@@ -216,10 +219,17 @@ namespace Ys8AP.GlobalAddresses
             Memory.WriteObject<Skill>(SkillTableStartAddress + (id * 12) + (characterId * 0x1DC), skill);
         }
 
-        public int GetCharacterDamageType(uint characterId)
+        public void SetCharacterDamageType(uint characterId, string damageType)
         {
             // 24 is Slash, 25 is Strike, 26 is Pierce
-            return Memory.ReadInt(Contexts.InventoryContext.SkillTableStartAddress + 0x108 + (characterId * 0x1DC));
+            byte damageTypeByte = damageType switch
+            {
+                "Slash" => 0x18,
+                "Strike" => 0x19,
+                "Pierce" => 0x1A,
+                _ => throw new ArgumentException("Invalid damage type", nameof(damageType))
+            };
+            Memory.WriteByte(Contexts.InventoryContext.SkillTableStartAddress + 0x108 + (characterId * 0x1DC), damageTypeByte);
         }
 
         // Current Party Members //////////////////////////////////////////////////////////
@@ -363,6 +373,7 @@ namespace Ys8AP.GlobalAddresses
             Contexts.InventoryContext.CheckIfObtainedAndSet(727); // Shrine Maiden Amulet
             Contexts.InventoryContext.CheckIfObtainedAndSet(739); // Glow Stone
             Contexts.InventoryContext.CheckIfObtainedAndSet(770); // Ship's Log 1
+            Contexts.InventoryContext.CheckIfObtainedAndSet(796); // Tresure Chest Key
 
             if (Options.FormerSanctuaryCrypt == 1) 
                 Contexts.InventoryContext.CheckIfObtainedAndSet(206); // Jade Pendant

@@ -1,4 +1,3 @@
-using Archipelago.Core.Util;
 using Ys8AP.GlobalAddresses;
 using Ys8AP.Mem;
 using System;

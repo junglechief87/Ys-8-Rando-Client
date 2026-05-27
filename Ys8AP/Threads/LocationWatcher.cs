@@ -1,17 +1,11 @@
 ﻿using Archipelago.Core.Util;
 using Ys8AP.GlobalAddresses;
-using Ys8AP.Threads;
-using Ys8AP;
 using System.Collections.Generic;
 using System.Collections.Concurrent;
-using System.Threading;
 using System;
 using Ys8AP.Utils;
 using Ys8AP.Locations;
-using ReactiveUI;
-using Archipelago.Core.Models;
 using System.Threading.Tasks;
-using Silk.NET.GLFW;
 using System.Linq;
 
 namespace Ys8AP.Threads
@@ -27,12 +21,21 @@ namespace Ys8AP.Threads
         private static ConcurrentDictionary<int, EventLocation> EventData = Resources.Embedded.EventLocations;
         private static HashSet<long>? allLocationIds;
         private static bool goalCompleted = false;
+        private static string lastMapSent = "";
+        private static string mapID = "";
+        private static string SlotID = "";
+        private static int lastEntry = 999; // Initialized to an invalid entry ID to ensure the first entry is sent to AP on game start
 
         internal static async Task DoLoop()
         {
             if (allLocationIds == null && App.Client?.CurrentSession != null)
             {
                 allLocationIds = App.Client.CurrentSession.Locations.AllLocations.ToHashSet();
+            }
+
+            if (SlotID == "" && App.Client?.CurrentSession != null)
+            {
+                SlotID = "Ys8_" + App.Client.CurrentSession.ConnectionInfo.Team + "_" + App.Client.CurrentSession.ConnectionInfo.Slot + "_";
             }
 
             while (App.Client != null)
@@ -42,6 +45,11 @@ namespace Ys8AP.Threads
                     CheckChests();
                     CheckEvents();
                     WatchGoal();
+
+                    mapID = Contexts.InventoryContext.GetMapID();
+                    mapID = mapID.Replace("\0", string.Empty); // Remove null terminator if present
+                    if (lastMapSent != mapID)
+                        SendMapID(mapID);
                 }
                 await Task.Delay(1000);
             }
@@ -102,6 +110,14 @@ namespace Ys8AP.Threads
                 App.Client.SendGoalCompletion();
                 goalCompleted = true;
             }
+        }
+
+        private static void SendMapID(string mapID)
+        {
+            lastEntry = Contexts.FlagEnumContext.GetLastEntry();
+            App.Client.CurrentSession.DataStorage[SlotID + "current_map"] = mapID;
+            App.Client.CurrentSession.DataStorage[SlotID + "last_entry"] = lastEntry;
+            lastMapSent = mapID;
         }
     }
 }

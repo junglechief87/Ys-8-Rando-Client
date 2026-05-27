@@ -1,11 +1,7 @@
-using Archipelago.Core.Util;
 using Serilog;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Numerics;
 using Ys8AP.GlobalAddresses;
 
 namespace Ys8AP.Mem
