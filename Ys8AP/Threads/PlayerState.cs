@@ -1,5 +1,5 @@
 using Ys8AP.GlobalAddresses;
-using Ys8AP.Mem;
+using Ys8AP.Seed;
 using System;
 using System.Threading;
 using Serilog;
@@ -59,7 +59,7 @@ namespace Ys8AP.Threads
                         try
                         {
                             AddressInit.InitializeAddresses();
-                            OpenMem.ResetState();  // Suppress first seed check — seed may not be written yet
+                            SeedTest.ResetState();  // Suppress first seed check — seed may not be written yet
                         }
                         catch { /* process not available yet */ }
                     }
@@ -77,7 +77,7 @@ namespace Ys8AP.Threads
                     {
                         _lastBasicConditionsMet = basicConditionsMet;
                         _lastStateChangeTime = DateTime.UtcNow;
-                        OpenMem.lastSeedWasGood = false;  // Force seed re-check on transition
+                        SeedTest.lastSeedWasGood = false;  // Force seed re-check on transition
                     }
 
                     // Update player ready state
@@ -86,7 +86,7 @@ namespace Ys8AP.Threads
                         // Wait for debounce period after state change before validating seed
                         if (DateTime.UtcNow.Subtract(_lastStateChangeTime).TotalMilliseconds >= SEED_VALIDATION_DEBOUNCE_MS)
                         {
-                            IsPlayerReady = OpenMem.TestRoomSeed() && App.Client?.IsConnected == true;
+                            IsPlayerReady = SeedTest.TestRoomSeed() && App.Client?.IsConnected == true;
                         }
                         else
                         {

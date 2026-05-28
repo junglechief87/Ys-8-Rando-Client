@@ -4,12 +4,12 @@ using System.Diagnostics;
 using System.Linq;
 using Ys8AP.GlobalAddresses;
 
-namespace Ys8AP.Mem
+namespace Ys8AP.Seed
 {
     /// <summary>
     /// Empty(?) block of memory on the mem card to use as we see fit.
     /// </summary>
-    internal class OpenMem
+    internal class SeedTest
     {
         private static DateTime lastErrorLogTime = DateTime.MinValue;
         private static int errorLogCount = 0;  // Track how many times we've logged the error

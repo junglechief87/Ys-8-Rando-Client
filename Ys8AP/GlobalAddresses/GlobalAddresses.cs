@@ -313,6 +313,22 @@ namespace Ys8AP.GlobalAddresses
                 _ => throw new ArgumentException("Invalid character ID")
             };
         }
+
+        public uint GetCharacterIDByName(string characterName)
+        {
+            return characterName switch
+            {
+                "Adol" => 0,
+                "Laxia" => 1,
+                "Sahad" => 2,
+                "Hummel" => 3,
+                "Ricotta" => 4,
+                "Dana" => 5,
+                "Dana2" => 7,
+                "Dana3" => 8,
+                _ => throw new ArgumentException("Invalid character name")
+            };
+        }
         
         public void WriteCharacterData(int characterId, CharacterStats data)
         {
@@ -380,6 +396,19 @@ namespace Ys8AP.GlobalAddresses
 
             if (Options.FinalBossAccess == 2) 
                 Contexts.InventoryContext.CheckIfObtainedAndSet(InventoryMgmt.PSYCHES_ITEM_ID); // Psyches
+
+            // Handling this in prepseed as this should only need to be done once per connect
+            if (Options.ShuffleDamageTypes == 1)
+            {
+                foreach (var kv in Options.DamageMapping)
+                {
+                    var type = kv.Key;
+                    foreach (var character in kv.Value)
+                    {
+                        Contexts.InventoryContext.SetCharacterDamageType(Contexts.CharacterDataContext.GetCharacterIDByName(character), type);
+                    }
+                }    
+            }
 
             ItemQueue.checkItems = true;
         }
