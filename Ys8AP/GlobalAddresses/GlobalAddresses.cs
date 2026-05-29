@@ -232,6 +232,28 @@ namespace Ys8AP.GlobalAddresses
             Memory.WriteByte(Contexts.InventoryContext.SkillTableStartAddress + 0x108 + (characterId * 0x1DC), damageTypeByte);
         }
 
+        public bool VerifyDamageType()
+        {
+            foreach (var kv in Options.DamageMapping)
+            {
+                var type = kv.Key;
+                foreach (var character in kv.Value)
+                {
+                    uint characterId = Contexts.CharacterDataContext.GetCharacterIDByName(character);
+                    byte damageTypeByte = Memory.ReadByte(Contexts.InventoryContext.SkillTableStartAddress + 0x108 + (characterId * 0x1DC));
+                    string currentType = damageTypeByte switch
+                    {
+                        0x18 => "Slash",
+                        0x19 => "Strike",
+                        0x1A => "Pierce",
+                        _ => "Unknown"
+                    };
+                    if (currentType != type)
+                        return false;
+                }
+            }
+            return true;
+        }
         // Current Party Members //////////////////////////////////////////////////////////
         public ulong PartyMemberOffset = 0x001809F8;
 
@@ -365,7 +387,8 @@ namespace Ys8AP.GlobalAddresses
                 Contexts.FlagEnumContext = new FlagEnum();
                 Contexts.CharacterDataContext = new CharacterData();;
                 Contexts.InventoryContext = new Inventory();
-                PrepSeed();  // Prepare seed tracking items and flags on connect      
+                // setting this to true so we make sure we grab any missed items sent before connecting and to make sure we prep our tracking items and seed settings
+                ItemQueue.checkItems = true;
             }
             catch (Exception)
             {
@@ -374,7 +397,7 @@ namespace Ys8AP.GlobalAddresses
             }
         }
 
-        private static void PrepSeed()
+        public static void PrepSeed()
         {
             // On connect reveal the player tracking items in the inventory.
             Contexts.InventoryContext.CheckIfObtainedAndSet(InventoryMgmt.PROGRESSIVE_SHOP_RANK_ID); // Progressive Shop Rank
@@ -397,20 +420,6 @@ namespace Ys8AP.GlobalAddresses
             if (Options.FinalBossAccess == 2) 
                 Contexts.InventoryContext.CheckIfObtainedAndSet(InventoryMgmt.PSYCHES_ITEM_ID); // Psyches
 
-            // Handling this in prepseed as this should only need to be done once per connect
-            if (Options.ShuffleDamageTypes == 1)
-            {
-                foreach (var kv in Options.DamageMapping)
-                {
-                    var type = kv.Key;
-                    foreach (var character in kv.Value)
-                    {
-                        Contexts.InventoryContext.SetCharacterDamageType(Contexts.CharacterDataContext.GetCharacterIDByName(character), type);
-                    }
-                }    
-            }
-
-            ItemQueue.checkItems = true;
         }
     }
 }

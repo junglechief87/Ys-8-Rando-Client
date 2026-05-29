@@ -70,43 +70,53 @@ namespace Ys8AP.Threads
         {
             while (App.Client != null)
             {
+                if (PlayerState.IsPlayerReady)
                 {
-                    if (PlayerState.IsPlayerReady)
+                    if (Options.ShuffleDamageTypes == 1 && !Contexts.InventoryContext.VerifyDamageType())
                     {
-                        // Only reset deathSent when we're truly ready and NOT recovering from a deathlink
-                        if (deathSent && !deathFromDeathlink)
+                        foreach (var kv in Options.DamageMapping)
                         {
-                            deathSent = false;
-                        }
-
-                        if (Contexts.FlagEnumContext.GetMonsterKillCount() != enemyKills)
-                        {
-                            enemyKills = Contexts.FlagEnumContext.GetMonsterKillCount();
-                            HandlePartyExperience();
-                        }
-
-                        // Kill player x_x - keep retrying until gameover is detected
-                        if (deathLinkIncoming && PlayerState.NotInTown())
-                        {
-                            await Task.Delay(500); // 0.5 second delay for loading. State management mostly works but this is a safety net.
-                            KillParty();
-                            if (!deathLinkMsgLogged)
+                            var type = kv.Key;
+                            foreach (var character in kv.Value)
                             {
-                                Contexts.FlagEnumContext.SetWarpDisabledFlag(false); // Re-enable warping after death
-                                Log.Logger.Information(deathLinkMsg);
-                                deathLinkMsgLogged = true;
+                                Contexts.InventoryContext.SetCharacterDamageType(Contexts.CharacterDataContext.GetCharacterIDByName(character), type);
                             }
                         }
                     }
-                    else if (!deathSent)
+
+                    // Only reset deathSent when we're truly ready and NOT recovering from a deathlink
+                    if (deathSent && !deathFromDeathlink)
                     {
-                        ListenForDeath();
+                        deathSent = false;
                     }
-                    
-                    if (deathLinkIncoming && PlayerState.GameOver())
+
+                    if (Contexts.FlagEnumContext.GetMonsterKillCount() != enemyKills)
                     {
-                        deathLinkIncoming = false;
+                        enemyKills = Contexts.FlagEnumContext.GetMonsterKillCount();
+                        HandlePartyExperience();
                     }
+
+                    // Kill player x_x - keep retrying until gameover is detected
+                    if (deathLinkIncoming && PlayerState.NotInTown())
+                    {
+                        await Task.Delay(500); // 0.5 second delay for loading. State management mostly works but this is a safety net.
+                        KillParty();
+                        if (!deathLinkMsgLogged)
+                        {
+                            Contexts.FlagEnumContext.SetWarpDisabledFlag(false); // Re-enable warping after death
+                            Log.Logger.Information(deathLinkMsg);
+                            deathLinkMsgLogged = true;
+                        }
+                    }
+                }
+                else if (!deathSent)
+                {
+                    ListenForDeath();
+                }
+
+                if (deathLinkIncoming && PlayerState.GameOver())
+                {
+                    deathLinkIncoming = false;
                 }
                 
                 await Task.Delay(1000);

@@ -252,6 +252,10 @@ namespace Ys8AP.Items
         {
             isVerifying = true;
             
+            // called here to ensure the seed tracking items are always sent each save and not just for initial connection.
+            // calling inside inventory managment also avoids race conditions with this loop when setting items.
+            AddressInit.PrepSeed();
+
             // Build APSaveID to item key lookup if not already built
             if (APSaveIDToItemKey == null)
             {
