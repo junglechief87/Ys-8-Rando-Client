@@ -104,6 +104,8 @@ namespace Ys8AP.Threads
                         if (!deathLinkMsgLogged)
                         {
                             Contexts.FlagEnumContext.SetWarpDisabledFlag(false); // Re-enable warping after death
+                            Contexts.FlagEnumContext.SetAutoSaveEnabledFlag(true); // Re-enable autosave after death
+                            Contexts.FlagEnumContext.SetSaveDisabledFlag(false); // Re-enable manual saving after death
                             Log.Logger.Information(deathLinkMsg);
                             deathLinkMsgLogged = true;
                         }
@@ -151,6 +153,9 @@ namespace Ys8AP.Threads
             if (toKill.Count > 0)
             {
                 Contexts.FlagEnumContext.SetWarpDisabledFlag(true); // Disable warping to prevent death softlock
+                Contexts.FlagEnumContext.SetAutoSaveEnabledFlag(false); // Disable autosave to prevent saving in a softlocked state
+                Contexts.FlagEnumContext.SetSaveDisabledFlag(true); // Disable manual saving as well
+
                 deathFromDeathlink = true;
                 // Set all HP to 0 in memory at the same time
                 foreach (var entry in toKill)

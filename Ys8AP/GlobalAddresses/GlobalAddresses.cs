@@ -50,6 +50,9 @@ namespace Ys8AP.GlobalAddresses
         private const ulong MonsterKillCountOffset = 0x002C7278;
         private const ulong GoalFlagOffset = 0x002CA5C8;
         private const ulong WarpDisabledOffset = 0x002C7274; 
+        private const ulong AutoSaveEnabledOffset = 0x002C71C4;
+        private const ulong SaveDisabledOffset = 0x002C7080;
+        private const ulong GoalCompletedFlagOffset = 0x002C71B4;
         private const ulong LastEntryOffset = 0x002C70F8;
         public bool GetRetryFlag() => Memory.ReadByte(Contexts.GameContext.FlagEnumAddress + RetryFlagOffset) != 0;
         public bool GetSaveMenuFlag() => Memory.ReadByte(Contexts.GameContext.FlagEnumAddress + SaveMenuFlagOffset) != 0;
@@ -61,6 +64,9 @@ namespace Ys8AP.GlobalAddresses
         public int GetMonsterKillCount() => Memory.ReadInt(Contexts.GameContext.FlagEnumAddress + MonsterKillCountOffset);
         public bool GetGoalFlag() => Memory.ReadByte(Contexts.GameContext.FlagEnumAddress + GoalFlagOffset) != 0;
         public void SetWarpDisabledFlag(bool value) => Memory.WriteByte(Contexts.GameContext.FlagEnumAddress + WarpDisabledOffset, (byte)(value ? 1 : 0));
+        public void SetAutoSaveEnabledFlag(bool value) => Memory.WriteByte(Contexts.GameContext.FlagEnumAddress + AutoSaveEnabledOffset, (byte)(value ? 1 : 0));
+        public void SetSaveDisabledFlag(bool value) => Memory.WriteByte(Contexts.GameContext.FlagEnumAddress + SaveDisabledOffset, (byte)(value ? 1 : 0));
+        public void SetGoalCompletedFlag(bool value) => Memory.WriteByte(Contexts.GameContext.FlagEnumAddress + GoalCompletedFlagOffset, (byte)(value ? 1 : 0));
         public int GetLastEntry() => Memory.ReadInt(Contexts.GameContext.FlagEnumAddress + LastEntryOffset);
 
         // ============================================================================
