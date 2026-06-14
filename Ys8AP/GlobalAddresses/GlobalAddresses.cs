@@ -61,6 +61,7 @@ namespace Ys8AP.GlobalAddresses
         public uint GetAPSeed() => Memory.ReadUInt(Contexts.GameContext.FlagEnumAddress + APSeedOffset);
         public bool GetInfernoFlag() => Memory.ReadByte(Contexts.GameContext.FlagEnumAddress + InfernoFlagOffset) != 0;
         public bool GetCustomGameOverFlag() => Memory.ReadByte(Contexts.GameContext.FlagEnumAddress + CustomGameOverFlagOffset) != 0;
+        public void SetCustomGameOverFlag(bool value) => Memory.WriteByte(Contexts.GameContext.FlagEnumAddress + CustomGameOverFlagOffset, (byte)(value ? 1 : 0));
         public int GetMonsterKillCount() => Memory.ReadInt(Contexts.GameContext.FlagEnumAddress + MonsterKillCountOffset);
         public bool GetGoalFlag() => Memory.ReadByte(Contexts.GameContext.FlagEnumAddress + GoalFlagOffset) != 0;
         public void SetWarpDisabledFlag(bool value) => Memory.WriteByte(Contexts.GameContext.FlagEnumAddress + WarpDisabledOffset, (byte)(value ? 1 : 0));

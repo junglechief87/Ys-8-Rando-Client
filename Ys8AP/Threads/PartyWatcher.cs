@@ -120,7 +120,21 @@ namespace Ys8AP.Threads
                 {
                     deathLinkIncoming = false;
                 }
-                
+                else if (PlayerState.GameOver())
+                {
+                    GetCurrentPartyMembers();
+                    foreach (var member in currentPartyMembers)
+                    {
+                        if (member.Value.CharState != -1)
+                        {
+                            Contexts.FlagEnumContext.SetCustomGameOverFlag(false); 
+                            // Clear game over flag to allow sending and receiving items, 
+                            // this is a failsafe in case the player somehow gets the custom game over flag set 
+                            // without actually being in the game over state
+                            break;
+                        }
+                    }
+                }
                 await Task.Delay(1000);
             }
         }
