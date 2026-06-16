@@ -3806,7 +3806,7 @@
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
         "ItemQuantity": 1,
-        "Flags": ["0x002CA578"],
+        "Flags": ["0x002C7378"],
         "CrewMember": true,
         "APSaveID": 436
     },
@@ -3816,7 +3816,7 @@
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
         "ItemQuantity": 1,
-        "Flags": ["0x002CA57C"],
+        "Flags": ["0x002C737C"],
         "CrewMember": true,
         "APSaveID": 437
     },

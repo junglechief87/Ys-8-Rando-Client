@@ -297,14 +297,14 @@ namespace Ys8AP.GlobalAddresses
         // ============================================================================
         // CHARACTER DATA ADDRESSES - Direct memory lookups to avoid caching issues
         // ============================================================================
-        private const ulong AdolDataOffset = 0x002EBC28;
-        private const ulong LaxiaDataOffset = 0x002EBCA0;
-        private const ulong SahadDataOffset = 0x002EBD18;
-        private const ulong HummelDataOffset = 0x002EBD90;
-        private const ulong RicottaDataOffset = 0x002EBE08;
-        private const ulong DanaDataOffset = 0x002EBE80;
-        private const ulong Dana2DataOffset = 0x002EBF70; // Gratika
-        private const ulong Dana3DataOffset = 0x002EBFE8; // Luminous
+        private const ulong AdolDataOffset = 0x002C735C;
+        private const ulong LaxiaDataOffset = 0x002C7360;
+        private const ulong SahadDataOffset = 0x002C7364;
+        private const ulong HummelDataOffset = 0x002C7368;
+        private const ulong RicottaDataOffset = 0x002C736C;
+        private const ulong DanaDataOffset = 0x002C7370;
+        private const ulong Dana2DataOffset = 0x002C7378; // Gratika
+        private const ulong Dana3DataOffset = 0x002C737C; // Luminous
 
         public ulong AdolData => Memory.ReadULong(Contexts.GameContext.CharacterDataAddress + AdolDataOffset);
         public ulong LaxiaData => Memory.ReadULong(Contexts.GameContext.CharacterDataAddress + LaxiaDataOffset);
