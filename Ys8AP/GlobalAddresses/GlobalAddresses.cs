@@ -79,6 +79,8 @@ namespace Ys8AP.GlobalAddresses
         private const ulong HummelJoinFlagOffset = 0x002C7090;
         private const ulong RicottaJoinFlagOffset = 0x002C7094;
         private const ulong DanaJoinFlagOffset = 0x002C7098;
+        private const ulong GratikaJoinFlagOffset = 0x002CA578;
+        private const ulong LuminousJoinFlagOffset = 0x002CA57C;
         private const uint PartyAverageLevelOffset = 0x002CA5CC;
 
 
@@ -88,6 +90,8 @@ namespace Ys8AP.GlobalAddresses
         public bool GetHummelJoinFlag() => Memory.ReadByte(Contexts.GameContext.FlagEnumAddress + HummelJoinFlagOffset) != 0;
         public bool GetRicottaJoinFlag() => Memory.ReadByte(Contexts.GameContext.FlagEnumAddress + RicottaJoinFlagOffset) != 0;
         public bool GetDanaJoinFlag() => Memory.ReadByte(Contexts.GameContext.FlagEnumAddress + DanaJoinFlagOffset) != 0;
+        public bool GetGratikaJoinFlag() => Memory.ReadByte(Contexts.GameContext.FlagEnumAddress + GratikaJoinFlagOffset) != 0;
+        public bool GetLuminousJoinFlag() => Memory.ReadByte(Contexts.GameContext.FlagEnumAddress + LuminousJoinFlagOffset) != 0;
         public void WritePartyAverageLevel(uint averageLevel) =>
                 Memory.Write(Contexts.GameContext.FlagEnumAddress + PartyAverageLevelOffset, (byte)averageLevel);
         

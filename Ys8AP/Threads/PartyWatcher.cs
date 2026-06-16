@@ -38,8 +38,8 @@ namespace Ys8AP.Threads
             new() { CharacterID = 3, IsJoined = () => Contexts.FlagEnumContext.GetHummelJoinFlag() },
             new() { CharacterID = 4, IsJoined = () => Contexts.FlagEnumContext.GetRicottaJoinFlag() },
             new() { CharacterID = 5, IsJoined = () => Contexts.FlagEnumContext.GetDanaJoinFlag() },
-            new() { CharacterID = 7, IsJoined = () => Contexts.FlagEnumContext.GetDanaJoinFlag() },
-            new() { CharacterID = 8, IsJoined = () => Contexts.FlagEnumContext.GetDanaJoinFlag() },
+            new() { CharacterID = 7, IsJoined = () => Contexts.FlagEnumContext.GetGratikaJoinFlag() },
+            new() { CharacterID = 8, IsJoined = () => Contexts.FlagEnumContext.GetLuminousJoinFlag() },
         };
 
         /// <summary>
@@ -216,10 +216,7 @@ namespace Ys8AP.Threads
                 if (!character.IsJoined())
                     continue;
 
-                // Dana has three forms (IDs 5, 7, 8) sharing the same join flag — normalize to 5 to count her once
-                int key = character.CharacterID is 7 or 8 ? 5 : character.CharacterID;
-
-                if (seen.Add(key))
+                if (seen.Add(character.CharacterID))
                 {
                     totalLevel += Contexts.CharacterDataContext.GetCharacterDataByID(character.CharacterID).Level;
                     count++;

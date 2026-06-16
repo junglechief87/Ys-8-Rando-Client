@@ -3799,5 +3799,113 @@
         "ItemQuantity": 1,
         "APSaveID": 435,
         "Information": "Turn this into Euron at max shop rank."
+    },
+    "101900": {
+        "Name": "Gratika",
+        "ItemID": 101900,
+        "QuantityMax": 1,
+        "QuantityMaxInferno": 1,
+        "ItemQuantity": 1,
+        "Flags": ["0x002CA578"],
+        "CrewMember": true,
+        "APSaveID": 436
+    },
+    "102000": {
+        "Name": "Luminous",
+        "ItemID": 102000,
+        "QuantityMax": 1,
+        "QuantityMaxInferno": 1,
+        "ItemQuantity": 1,
+        "Flags": ["0x002CA57C"],
+        "CrewMember": true,
+        "APSaveID": 437
+    },
+    "102100": {
+        "Name": "Spiel Round Dance (Gratika)",
+        "ItemID": 102100,
+        "QuantityMax": 1,
+        "QuantityMaxInferno": 1,
+        "ItemQuantity": 1,
+        "SkillCharacterID": 7,
+        "SkillID": 10,
+        "Skill": true,
+        "APSaveID": 438
+    },
+    "102200": {
+        "Name": "Mistral Edge (Gratika)",
+        "ItemID": 102200,
+        "QuantityMax": 1,
+        "QuantityMaxInferno": 1,
+        "ItemQuantity": 1,
+        "SkillCharacterID": 7,
+        "SkillID": 8,
+        "Skill": true,
+        "APSaveID": 439
+    },
+    "102300": {
+        "Name": "Dragon Spirit (Gratika)",
+        "ItemID": 102300,
+        "QuantityMax": 1,
+        "QuantityMaxInferno": 1,
+        "ItemQuantity": 1,
+        "SkillCharacterID": 7,
+        "SkillID": 3,
+        "Skill": true,
+        "APSaveID": 440
+    },
+    "102400": {
+        "Name": "Elemental Shot (Gratika)",
+        "ItemID": 102400,
+        "QuantityMax": 1,
+        "QuantityMaxInferno": 1,
+        "ItemQuantity": 1,
+        "SkillCharacterID": 7,
+        "SkillID": 2,
+        "Skill": true,
+        "APSaveID": 441
+    },
+    "102500": {
+        "Name": "Spiel Round Dance (Luminous)",
+        "ItemID": 102500,
+        "QuantityMax": 1,
+        "QuantityMaxInferno": 1,
+        "ItemQuantity": 1,
+        "SkillCharacterID": 7,
+        "SkillID": 10,
+        "Skill": true,
+        "APSaveID": 442
+    },
+    "102600": {
+        "Name": "Mistral Edge (Luminous)",
+        "ItemID": 102600,
+        "QuantityMax": 1,
+        "QuantityMaxInferno": 1,
+        "ItemQuantity": 1,
+        "SkillCharacterID": 7,
+        "SkillID": 8,
+        "Skill": true,
+        "APSaveID": 443
+    },
+    "102700": {
+        "Name": "Dragon Spirit (Luminous)",
+        "ItemID": 102700,
+        "QuantityMax": 1,
+        "QuantityMaxInferno": 1,
+        "ItemQuantity": 1,
+        "SkillCharacterID": 7,
+        "SkillID": 3,
+        "Skill": true,
+        "APSaveID": 444
+    },
+    "102800": {
+        "Name": "Elemental Shot (Luminous)",
+        "ItemID": 102800,
+        "QuantityMax": 1,
+        "QuantityMaxInferno": 1,
+        "ItemQuantity": 1,
+        "SkillCharacterID": 7,
+        "SkillID": 2,
+        "Skill": true,
+        "APSaveID": 445
     }
 }
