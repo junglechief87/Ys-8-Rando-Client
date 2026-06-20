@@ -73,12 +73,12 @@ namespace Ys8AP.GlobalAddresses
         // ============================================================================
         // PARTY MEMBER FLAGS - Direct memory reads
         // ============================================================================
-        private const ulong AdolJoinFlagOffset = 0x002C7084;
-        private const ulong LaxiaJoinFlagOffset = 0x002C7088;
-        private const ulong SahadJoinFlagOffset = 0x002C708C;
-        private const ulong HummelJoinFlagOffset = 0x002C7090;
-        private const ulong RicottaJoinFlagOffset = 0x002C7094;
-        private const ulong DanaJoinFlagOffset = 0x002C7098;
+        private const ulong AdolJoinFlagOffset = 0x002C735C;
+        private const ulong LaxiaJoinFlagOffset = 0x002C7360;
+        private const ulong SahadJoinFlagOffset = 0x002C7364;
+        private const ulong HummelJoinFlagOffset = 0x002C7368;
+        private const ulong RicottaJoinFlagOffset = 0x002C736C;
+        private const ulong DanaJoinFlagOffset = 0x002C7370;
         private const ulong GratikaJoinFlagOffset = 0x002CA578;
         private const ulong LuminousJoinFlagOffset = 0x002CA57C;
         private const uint PartyAverageLevelOffset = 0x002CA5CC;
@@ -297,14 +297,14 @@ namespace Ys8AP.GlobalAddresses
         // ============================================================================
         // CHARACTER DATA ADDRESSES - Direct memory lookups to avoid caching issues
         // ============================================================================
-        private const ulong AdolDataOffset = 0x002C735C;
-        private const ulong LaxiaDataOffset = 0x002C7360;
-        private const ulong SahadDataOffset = 0x002C7364;
-        private const ulong HummelDataOffset = 0x002C7368;
-        private const ulong RicottaDataOffset = 0x002C736C;
-        private const ulong DanaDataOffset = 0x002C7370;
-        private const ulong Dana2DataOffset = 0x002C7378; // Gratika
-        private const ulong Dana3DataOffset = 0x002C737C; // Luminous
+        private const ulong AdolDataOffset = 0x002EBC28;
+        private const ulong LaxiaDataOffset = 0x002EBCA0;
+        private const ulong SahadDataOffset = 0x002EBD18;
+        private const ulong HummelDataOffset = 0x002EBD90;
+        private const ulong RicottaDataOffset = 0x002EBE08;
+        private const ulong DanaDataOffset = 0x002EBE80;
+        private const ulong Dana2DataOffset = 0x002EBF70; // Gratika
+        private const ulong Dana3DataOffset = 0x002EBFE8; // Luminous
 
         public ulong AdolData => Memory.ReadULong(Contexts.GameContext.CharacterDataAddress + AdolDataOffset);
         public ulong LaxiaData => Memory.ReadULong(Contexts.GameContext.CharacterDataAddress + LaxiaDataOffset);
@@ -357,8 +357,8 @@ namespace Ys8AP.GlobalAddresses
                 "Hummel" => 3,
                 "Ricotta" => 4,
                 "Dana" => 5,
-                "Dana2" => 7,
-                "Dana3" => 8,
+                "Gratika" => 7,
+                "Luminous" => 8,
                 _ => throw new ArgumentException("Invalid character name")
             };
         }
