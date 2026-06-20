@@ -24,7 +24,7 @@ namespace Ys8AP.Threads
         private static string lastMapSent = "";
         private static string mapID = "";
         private static string SlotID = "";
-        private static int lastEntry = 999; // Initialized to an invalid entry ID to ensure the first entry is sent to AP on game start
+        private static int randomizedEntranceInd = 0; // Initialized to an invalid entry ID to ensure the first entry is sent to AP on game start
 
         internal static async Task DoLoop()
         {
@@ -114,9 +114,16 @@ namespace Ys8AP.Threads
 
         private static void SendMapID(string mapID)
         {
-            lastEntry = Contexts.FlagEnumContext.GetLastEntry();
-            App.Client.CurrentSession.DataStorage[SlotID + "current_map"] = mapID;
-            App.Client.CurrentSession.DataStorage[SlotID + "last_entry"] = lastEntry;
+            randomizedEntranceInd = Contexts.FlagEnumContext.GetRandomizedEntrance();
+            if (randomizedEntranceInd != 0)
+            {
+                App.Client.CurrentSession.DataStorage[SlotID + "current_map"] = mapID + "*"; // Append an asterisk to indicate a randomized entrance
+                Contexts.FlagEnumContext.SetRandomizedEntrance(false); // Reset the flag so it's ready for the next randomized entrance trigger
+            }
+            else
+            {
+                App.Client.CurrentSession.DataStorage[SlotID + "current_map"] = mapID;
+            }
             lastMapSent = mapID;
         }
     }
