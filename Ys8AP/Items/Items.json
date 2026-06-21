@@ -3870,7 +3870,7 @@
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
         "ItemQuantity": 1,
-        "SkillCharacterID": 7,
+        "SkillCharacterID": 8,
         "SkillID": 10,
         "Skill": true,
         "APSaveID": 442
@@ -3881,7 +3881,7 @@
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
         "ItemQuantity": 1,
-        "SkillCharacterID": 7,
+        "SkillCharacterID": 8,
         "SkillID": 8,
         "Skill": true,
         "APSaveID": 443
@@ -3892,7 +3892,7 @@
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
         "ItemQuantity": 1,
-        "SkillCharacterID": 7,
+        "SkillCharacterID": 8,
         "SkillID": 3,
         "Skill": true,
         "APSaveID": 444
@@ -3903,7 +3903,7 @@
         "QuantityMax": 1,
         "QuantityMaxInferno": 1,
         "ItemQuantity": 1,
-        "SkillCharacterID": 7,
+        "SkillCharacterID": 8,
         "SkillID": 2,
         "Skill": true,
         "APSaveID": 445
