@@ -80,8 +80,8 @@ namespace Ys8AP.GlobalAddresses
         private const ulong HummelJoinFlagOffset = 0x002C7368;
         private const ulong RicottaJoinFlagOffset = 0x002C736C;
         private const ulong DanaJoinFlagOffset = 0x002C7370;
-        private const ulong GratikaJoinFlagOffset = 0x002CA578;
-        private const ulong LuminousJoinFlagOffset = 0x002CA57C;
+        private const ulong GratikaJoinFlagOffset = 0x002C7378;
+        private const ulong LuminousJoinFlagOffset = 0x002C737C;
         private const uint PartyAverageLevelOffset = 0x002CA5CC;
 
 
