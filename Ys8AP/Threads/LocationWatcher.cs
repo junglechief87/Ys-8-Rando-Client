@@ -48,10 +48,16 @@ namespace Ys8AP.Threads
 
                     mapID = Contexts.InventoryContext.GetMapID();
                     mapID = mapID.Replace("\0", string.Empty); // Remove null terminator if present
+                    if (!mapID.StartsWith(lastMapSent))
+                        randomizedEntranceInd = Contexts.FlagEnumContext.GetRandomizedEntrance();
+
+                    if (randomizedEntranceInd != 0)
+                        mapID += "*"; 
+                    
                     if (lastMapSent != mapID)
                         SendMapID(mapID);
                 }
-                await Task.Delay(1000);
+                await Task.Delay(200);
             }
         }
 
@@ -114,17 +120,9 @@ namespace Ys8AP.Threads
 
         private static void SendMapID(string mapID)
         {
-            randomizedEntranceInd = Contexts.FlagEnumContext.GetRandomizedEntrance();
-            if (randomizedEntranceInd != 0)
-            {
-                App.Client.CurrentSession.DataStorage[SlotID + "current_map"] = mapID + "*"; // Append an asterisk to indicate a randomized entrance
-                Contexts.FlagEnumContext.SetRandomizedEntrance(false); // Reset the flag so it's ready for the next randomized entrance trigger
-            }
-            else
-            {
-                App.Client.CurrentSession.DataStorage[SlotID + "current_map"] = mapID;
-            }
+            App.Client.CurrentSession.DataStorage[SlotID + "current_map"] = mapID;
             lastMapSent = mapID;
+            Contexts.FlagEnumContext.SetRandomizedEntrance(false); // Reset the flag so it's ready for the next randomized entrance trigger
         }
     }
 }

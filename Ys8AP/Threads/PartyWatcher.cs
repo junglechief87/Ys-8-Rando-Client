@@ -72,7 +72,7 @@ namespace Ys8AP.Threads
             {
                 if (PlayerState.IsPlayerReady)
                 {
-                    if (Options.ShuffleDamageTypes == 1 && !Contexts.InventoryContext.VerifyDamageType())
+                    if (!Contexts.InventoryContext.VerifyDamageType())
                     {
                         foreach (var kv in Options.DamageMapping)
                         {

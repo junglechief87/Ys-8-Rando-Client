@@ -12,7 +12,6 @@ namespace Ys8AP
         public static int FinalBossAccess = 0;
         public static int FormerSanctuaryCrypt = 0;
         public static int HelperText = 0;
-        public static int ShuffleDamageTypes = 0;
         public static bool DeathLinkEnabled = false;
         public static string StartingCharacter = "";
         // Keys are character names: "Adol", "Sahad", "Laxia", "Ricotta", "Hummel", "Dana"
@@ -36,9 +35,6 @@ namespace Ys8AP
 
             if (options.TryGetValue("death_link", out var deathValue) && deathValue is JsonElement jsonElement)
                 DeathLinkEnabled = jsonElement.GetInt32() != 0;
-            
-            if (options.TryGetValue("shuffle_damage_types", out var shuffleValue) && shuffleValue is JsonElement jsonElementShuffle)
-                ShuffleDamageTypes = jsonElementShuffle.GetInt32() != 0 ? 1 : 0;
         }
 
         internal static void ParseSlotData(Dictionary<string, object> slotData)
@@ -54,15 +50,12 @@ namespace Ys8AP
             }
 
             DamageMapping.Clear();
-            if (ShuffleDamageTypes == 1)
+            if (slotData.TryGetValue("damage_mapping", out var dmRaw) && dmRaw is JObject dmObj)
             {
-                if (slotData.TryGetValue("damage_mapping", out var dmRaw) && dmRaw is JObject dmObj)
+                foreach (var entry in dmObj.Properties())
                 {
-                    foreach (var entry in dmObj.Properties())
-                    {
-                        // each entry is an array of strings
-                        DamageMapping[entry.Name] = entry.Value.Select(x => x.Value<string>()).ToList();
-                    }
+                    // each entry is an array of strings
+                    DamageMapping[entry.Name] = entry.Value.Select(x => x.Value<string>()).ToList();
                 }
             }
         }
