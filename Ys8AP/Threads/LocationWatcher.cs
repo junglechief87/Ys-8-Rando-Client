@@ -48,11 +48,6 @@ namespace Ys8AP.Threads
 
                     mapID = Contexts.InventoryContext.GetMapID();
                     mapID = mapID.Replace("\0", string.Empty); // Remove null terminator if present
-                    if (!mapID.StartsWith(lastMapSent))
-                        randomizedEntranceInd = Contexts.FlagEnumContext.GetRandomizedEntrance();
-
-                    if (randomizedEntranceInd != 0)
-                        mapID += "*"; 
                     
                     if (lastMapSent != mapID)
                         SendMapID(mapID);

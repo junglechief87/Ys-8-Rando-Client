@@ -68,7 +68,6 @@ namespace Ys8AP.GlobalAddresses
         public void SetAutoSaveEnabledFlag(bool value) => Memory.WriteByte(Contexts.GameContext.FlagEnumAddress + AutoSaveEnabledOffset, (byte)(value ? 1 : 0));
         public void SetSaveDisabledFlag(bool value) => Memory.WriteByte(Contexts.GameContext.FlagEnumAddress + SaveDisabledOffset, (byte)(value ? 1 : 0));
         public void SetGoalCompletedFlag(bool value) => Memory.WriteByte(Contexts.GameContext.FlagEnumAddress + GoalCompletedFlagOffset, (byte)(value ? 1 : 0));
-        public int GetRandomizedEntrance() => Memory.ReadInt(Contexts.GameContext.FlagEnumAddress + RandomizedEntranceOffset);
         public void SetRandomizedEntrance(bool value) => Memory.WriteByte(Contexts.GameContext.FlagEnumAddress + RandomizedEntranceOffset, (byte)(value ? 1 : 0));
 
         // ============================================================================
