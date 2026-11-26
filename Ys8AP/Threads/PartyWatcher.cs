@@ -22,6 +22,7 @@ namespace Ys8AP.Threads
         private static int enemyKills = 0;
         private static DeathLinkService? _deathlinkService = null;
         private static bool deathSent = false;
+        private static bool lastRetryFlagValue = false;
 
         // Character data structure to eliminate repetitive join flag checks
         private readonly struct CharacterInfo
@@ -95,17 +96,19 @@ namespace Ys8AP.Threads
                         enemyKills = Contexts.FlagEnumContext.GetMonsterKillCount();
                         HandlePartyExperience();
                     }
-
-                    // Kill player x_x - keep retrying until gameover is detected
+                    
+                    // Kill player x_x - keep retrying until gameover is detected.
+                    // We deliberately keep re-killing/re-disabling every tick: the player may be standing
+                    // on a healing checkpoint/crystal that restores HP between retries, and we don't want
+                    // them able to warp away mid-death (which can softlock). Warp/autosave/save stay
+                    // disabled for the entire duration of this retry loop - they are only re-enabled once
+                    // below, at the moment GameOver() is actually confirmed.
                     if (deathLinkIncoming && PlayerState.NotInTown())
                     {
                         await Task.Delay(500); // 0.5 second delay for loading. State management mostly works but this is a safety net.
                         KillParty();
                         if (!deathLinkMsgLogged)
                         {
-                            Contexts.FlagEnumContext.SetWarpDisabledFlag(false); // Re-enable warping after death
-                            Contexts.FlagEnumContext.SetAutoSaveEnabledFlag(true); // Re-enable autosave after death
-                            Contexts.FlagEnumContext.SetSaveDisabledFlag(false); // Re-enable manual saving after death
                             Log.Logger.Information(deathLinkMsg);
                             deathLinkMsgLogged = true;
                         }
@@ -116,9 +119,23 @@ namespace Ys8AP.Threads
                     ListenForDeath();
                 }
 
+                // Failsafe: whenever deathlink is enabled, treat ANY change in the retry flag (either
+                // direction) or the player somehow accessing the save menu as a signal to make sure 
+                // warp/autosave/save aren't stuck disabled. 
+                bool retryFlagNow = PlayerState.PostRetry();
+                if (_deathlinkService != null && (retryFlagNow != lastRetryFlagValue || PlayerState.InSaveMenu()))
+                {
+                    ReenableAfterDeathLink();
+                }
+                lastRetryFlagValue = retryFlagNow;
+
                 if (deathLinkIncoming && PlayerState.GameOver())
                 {
-                    deathLinkIncoming = false;
+                    // Death is now confirmed - safe to restore warping/saving. This runs unconditionally
+                    // (outside the IsPlayerReady gate above, which goes false while GameOver() is true),
+                    // so it can't be skipped by the same state transition it depends on. No-op if the retry-flag
+                    // check above already handled it.
+                    ReenableAfterDeathLink();
                 }
                 else if (PlayerState.GameOver())
                 {
@@ -137,6 +154,17 @@ namespace Ys8AP.Threads
                 }
                 await Task.Delay(1000);
             }
+        }
+
+        private static void ReenableAfterDeathLink()
+        {
+            if (!deathLinkIncoming)
+                return; // already handled by the other trigger this tick
+
+            deathLinkIncoming = false;
+            Contexts.FlagEnumContext.SetWarpDisabledFlag(false); // Re-enable warping after death
+            Contexts.FlagEnumContext.SetAutoSaveEnabledFlag(true); // Re-enable autosave after death
+            Contexts.FlagEnumContext.SetSaveDisabledFlag(false); // Re-enable manual saving after death
         }
 
         private static void GetCurrentPartyMembers()

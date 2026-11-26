@@ -113,6 +113,11 @@ namespace Ys8AP.Threads
             return Contexts.FlagEnumContext.GetRetryFlag();
         }
 
+        public static bool InSaveMenu()
+        {
+            return Contexts.FlagEnumContext.GetSaveMenuFlag();
+        }
+
         public static bool GameOver()
         {
             return Contexts.FlagEnumContext.GetCustomGameOverFlag();
